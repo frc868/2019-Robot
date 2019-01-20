@@ -8,5 +8,12 @@ public class RobotMap {
     public static final int RIGHT_PRIMARY = 2;
     public static final int RIGHT_SECONDARY = 3;
   }
+
+  public class Climber {
+    public static final int MOTOR = 4;
+  }
   
+  public class HatchClaw {
+    public static final int SOLENOID = 0;
+  }
 }
