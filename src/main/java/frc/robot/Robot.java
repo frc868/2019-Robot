@@ -20,6 +20,7 @@ import frc.robot.hatchClaw.HatchClaw;
 public class Robot extends TimedRobot {
   public static Drivetrain drivetrain = new Drivetrain();
   public static HatchClaw hatchClaw = new HatchClaw();
+  public static Climber climber = new Climber();
   public static OI m_oi;
 
   SendableChooser<Command> m_chooser = new SendableChooser<>();
