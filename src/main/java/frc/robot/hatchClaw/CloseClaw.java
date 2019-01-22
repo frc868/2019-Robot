@@ -8,6 +8,7 @@
 package frc.robot.hatchClaw;
 
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.Robot;
 
 public class CloseClaw extends Command {
   public CloseClaw() {

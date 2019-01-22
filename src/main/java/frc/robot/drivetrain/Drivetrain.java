@@ -1,4 +1,4 @@
-package frc.robot.subsystems;
+package frc.robot.drivetrain;
 import com.revrobotics.CANPIDController;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.ControlType;

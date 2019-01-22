@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import frc.robot.drivetrain.Drivetrain;
 import frc.robot.climber.Climber;
+import frc.robot.hatchClaw.HatchClaw;
 
 public class Robot extends TimedRobot {
   public static Drivetrain drivetrain = new Drivetrain();

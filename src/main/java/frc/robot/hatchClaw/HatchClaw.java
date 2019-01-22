@@ -7,7 +7,9 @@
 
 package frc.robot.hatchClaw;
 
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.RobotMap;
 
 /**
  * Add your docs here.
@@ -53,7 +55,7 @@ public class HatchClaw extends Subsystem {
    * @return state of claw
    */
   public boolean getState() {
-    return actuator.get()
+    return actuator.get();
   }
 
 

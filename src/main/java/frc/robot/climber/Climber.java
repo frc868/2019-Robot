@@ -1,13 +1,19 @@
 package frc.robot.climber;
 
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANDigitalInput.LimitSwitchPolarity;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.Helper;
+import frc.robot.RobotMap;
 
 
 public class Climber extends Subsystem {
   private CANSparkMax motor;
 
   public Climber() {
-    motor = new CANSparkMax(RobotMap.Climber.motor, MotorType.kBrushless);
+    motor = new CANSparkMax(RobotMap.Climber.MOTOR, MotorType.kBrushless);
   } 
 
   @Override
@@ -59,7 +65,7 @@ public class Climber extends Subsystem {
    * @return state of forward limit switch
    */
   public boolean getForwardLimitSwitch() {
-    return motor.getForwardLimitSwitch().get();
+    return motor.getForwardLimitSwitch(LimitSwitchPolarity.kNormallyOpen).get();
   }
 
   /** 
@@ -67,6 +73,6 @@ public class Climber extends Subsystem {
    * @return state of reverse limit switch
    */
   public boolean getReverseLimitSwtich() {
-    return motor.getReverseLimitSwtich().get();
+    return motor.getReverseLimitSwitch(LimitSwitchPolarity.kNormallyOpen).get();
   }
 }
