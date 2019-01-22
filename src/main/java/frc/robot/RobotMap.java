@@ -17,7 +17,7 @@ public class RobotMap {
     public static final int SOLENOID = 0;
   }
 
-  /**contains mappings for an xbox controller and its buttons
+  /**contains mappings for an xbox controller's buttons to their int's
    * current values need to be varified
    */
   public class ControllerMapping{

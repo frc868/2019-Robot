@@ -49,7 +49,8 @@ public class OI {
   public XboxController operator;
   public final int operatorPort = 1;
 
-  public OI(){}
+  public OI(){
+  }
 
   public void initDriver(){
     driver = new XboxController(driverPort);
