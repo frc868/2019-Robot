@@ -13,10 +13,12 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import frc.robot.subsystems.*;
+import frc.robot.drivetrain.Drivetrain;
+import frc.robot.climber.Climber;
 
 public class Robot extends TimedRobot {
   public static Drivetrain drivetrain = new Drivetrain();
+  public static HatchClaw hatchClaw = new HatchClaw();
   public static OI m_oi;
 
   SendableChooser<Command> m_chooser = new SendableChooser<>();
