@@ -5,10 +5,9 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.hatchclaw;
+package frc.robot.elevator.subsystems;
 
 import edu.wpi.first.wpilibj.Solenoid;
-import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 import frc.robot.helpers.SubsystemManagerChild;
 
@@ -17,7 +16,7 @@ public class HatchClaw extends SubsystemManagerChild {
   private Solenoid actuator;
 
   public HatchClaw() {
-    actuator = new Solenoid(RobotMap.HatchClaw.SOLENOID);
+    actuator = new Solenoid(RobotMap.Elevator.HATCH_CLAW);
   }
   
   /**

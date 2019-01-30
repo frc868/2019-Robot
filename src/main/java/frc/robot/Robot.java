@@ -12,13 +12,17 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import frc.robot.drivetrain.Drivetrain;
-import frc.robot.hatchclaw.HatchClaw;
-import frc.robot.climber.Climber;
+import frc.robot.elevator.subsystems.*;
+import frc.robot.helpers.SubsystemManager;
+import frc.robot.climber.subsystems.*;
 
 public class Robot extends TimedRobot {
   public static Drivetrain drivetrain = new Drivetrain();
   public static HatchClaw hatchClaw = new HatchClaw();
-  public static Climber climber = new Climber();
+  public static Drive climberDrive = new Drive();
+  public static Foot climberFoot = new Foot();
+  public static Ramp climberRamp = new Ramp();
+  public static Forks forks = new Forks();
   public static OI m_oi;
 
   SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -26,10 +30,15 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     m_oi = new OI();
+    SubsystemManager.init();
+    SubsystemManager.initSD();
+
   }
 
   @Override
   public void robotPeriodic() {
+    SubsystemManager.update();
+    SubsystemManager.updateSD();
   }
 
   @Override

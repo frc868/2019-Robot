@@ -1,10 +1,6 @@
-package frc.robot.forks;
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+package frc.robot.climber.subsystems;
 
 import edu.wpi.first.wpilibj.Solenoid;
-import edu.wpi.first.wpilibj.command.Subsystem;
-import frc.robot.Helper;
 import frc.robot.RobotMap;
 import frc.robot.helpers.SubsystemManagerChild;
 
@@ -12,8 +8,8 @@ public class Forks extends SubsystemManagerChild {
     private Solenoid left, right;
 
     public Forks() {
-        left = new Solenoid(RobotMap.Forks.LEFT);
-        right = new Solenoid(RobotMap.Forks.RIGHT);
+        left = new Solenoid(RobotMap.Climber.FORKS_LEFT);
+        right = new Solenoid(RobotMap.Climber.FORKS_RIGHT);
     }
 
     /**
