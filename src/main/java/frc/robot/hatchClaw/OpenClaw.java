@@ -5,9 +5,10 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.hatchClaw;
+package frc.robot.hatchclaw;
 
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.Robot;
 
 public class OpenClaw extends Command {
   public OpenClaw() {
@@ -17,7 +18,7 @@ public class OpenClaw extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.hatchClaw.open
+    Robot.hatchClaw.open();
   }
 
   // Called repeatedly when this Command is scheduled to run

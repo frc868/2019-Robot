@@ -1,11 +1,13 @@
-package frc.robot.subsystems;
+package frc.robot.drivetrain;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.Helper;
 import frc.robot.RobotMap;
+import frc.robot.helpers.SubsystemManagerChild;
 
-public class Drivetrain {
+public class Drivetrain extends SubsystemManagerChild {
     private CANSparkMax leftPrimary, leftSecondary, rightPrimary, rightSecondary;
 
     public Drivetrain() {
@@ -14,12 +16,12 @@ public class Drivetrain {
         rightPrimary = new CANSparkMax(RobotMap.Drivetrain.RIGHT_PRIMARY, MotorType.kBrushless);
         rightSecondary = new CANSparkMax(RobotMap.Drivetrain.RIGHT_SECONDARY, MotorType.kBrushless);
 
-        rightPrimary.setInverted(true);
-        rightSecondary.setInverted(true);
-
         leftSecondary.follow(leftPrimary);
         rightSecondary.follow(rightPrimary);
-    }
+
+        leftPrimary.setInverted(RobotMap.Drivetrain.IS_LEFT_INVERTED);
+        rightPrimary.setInverted(RobotMap.Drivetrain.IS_RIGHT_INVERTED);
+     }
 
     /**
      * sets left motor's speed

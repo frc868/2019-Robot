@@ -5,26 +5,24 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.hatchClaw;
+package frc.robot.hatchclaw;
 
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.RobotMap;
+import frc.robot.helpers.SubsystemManagerChild;
 
 /**
  * Add your docs here.
  */
-public class HatchClaw extends Subsystem {
+public class HatchClaw extends SubsystemManagerChild {
   
   private Solenoid actuator;
 
   public HatchClaw() {
     actuator = new Solenoid(RobotMap.HatchClaw.SOLENOID);
   }
-
-  @Override
-  public void initDefaultCommand() {
-
-  }
-
+  
   /**
    * 
    * @param state which state to set the claw to
@@ -53,7 +51,7 @@ public class HatchClaw extends Subsystem {
    * @return state of claw
    */
   public boolean getState() {
-    return actuator.get()
+    return actuator.get();
   }
 
 

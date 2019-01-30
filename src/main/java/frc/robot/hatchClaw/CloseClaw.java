@@ -5,9 +5,10 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.hatchClaw;
+package frc.robot.hatchclaw;
 
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.Robot;
 
 public class CloseClaw extends Command {
   public CloseClaw() {
