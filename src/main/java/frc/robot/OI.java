@@ -45,39 +45,56 @@ public class OI {
    */
   
   public XboxController driver;
-  public final int driverPort = 0;
   public XboxController operator;
-  public final int operatorPort = 1;
 
   public OI(){
   }
 
   public void initDriver(){
-    driver = new XboxController(driverPort);
+    driver = new XboxController(RobotMap.Controls.DRIVER);
 
-    Button a = new JoystickButton(driver, RobotMap.ControllerMapping.A);
-    Button b = new JoystickButton(driver, RobotMap.ControllerMapping.B);
-    Button x = new JoystickButton(driver, RobotMap.ControllerMapping.X);
-    Button y = new JoystickButton(driver, RobotMap.ControllerMapping.Y);
-    Button rb = new JoystickButton(driver, RobotMap.ControllerMapping.RB);
-    Button lb = new JoystickButton(driver, RobotMap.ControllerMapping.LB);
-    Button rstk = new JoystickButton(driver, RobotMap.ControllerMapping.RSTK);
-    Button lstk = new JoystickButton(driver, RobotMap.ControllerMapping.LSTK);
+    Button a = new JoystickButton(driver, RobotMap.Controls.A);
+    Button b = new JoystickButton(driver, RobotMap.Controls.B);
+    Button x = new JoystickButton(driver, RobotMap.Controls.X);
+    Button y = new JoystickButton(driver, RobotMap.Controls.Y);
+    Button rb = new JoystickButton(driver, RobotMap.Controls.RB);
+    Button lb = new JoystickButton(driver, RobotMap.Controls.LB);
+    Button rstk = new JoystickButton(driver, RobotMap.Controls.RSTK);
+    Button lstk = new JoystickButton(driver, RobotMap.Controls.LSTK);
 
   }
 
   public void initOperator(){
-    operator = new XboxController(operatorPort);
+    operator = new XboxController(RobotMap.Controls.OPERATOR);
 
-    Button a = new JoystickButton(driver, RobotMap.ControllerMapping.A);
-    Button b = new JoystickButton(driver, RobotMap.ControllerMapping.B);
-    Button x = new JoystickButton(driver, RobotMap.ControllerMapping.X);
-    Button y = new JoystickButton(driver, RobotMap.ControllerMapping.Y);
-    Button rb = new JoystickButton(driver, RobotMap.ControllerMapping.RB);
-    Button lb = new JoystickButton(driver, RobotMap.ControllerMapping.LB);
-    Button rstk = new JoystickButton(driver, RobotMap.ControllerMapping.RSTK);
-    Button lstk = new JoystickButton(driver, RobotMap.ControllerMapping.LSTK);
+    Button a = new JoystickButton(driver, RobotMap.Controls.A);
+    Button b = new JoystickButton(driver, RobotMap.Controls.B);
+    Button x = new JoystickButton(driver, RobotMap.Controls.X);
+    Button y = new JoystickButton(driver, RobotMap.Controls.Y);
+    Button rb = new JoystickButton(driver, RobotMap.Controls.RB);
+    Button lb = new JoystickButton(driver, RobotMap.Controls.LB);
+    Button rstk = new JoystickButton(driver, RobotMap.Controls.RSTK);
+    Button lstk = new JoystickButton(driver, RobotMap.Controls.LSTK);
+  }
 
+  public void updateDriver() {
+    double lx = driver.getRawAxis(RobotMap.Controls.LX);
+    double ly = driver.getRawAxis(RobotMap.Controls.LY);
+    double rx = driver.getRawAxis(RobotMap.Controls.RX);
+    double ry = driver.getRawAxis(RobotMap.Controls.RY);
+    double lt = driver.getRawAxis(RobotMap.Controls.LT);
+    double rt = driver.getRawAxis(RobotMap.Controls.RT);
+
+    Robot.drivetrain.setSpeed(ly + lx, ly - lx);
+  }
+
+  public void updateOperator() {
+    double lx = operator.getRawAxis(RobotMap.Controls.LX);
+    double ly = operator.getRawAxis(RobotMap.Controls.LY);
+    double rx = operator.getRawAxis(RobotMap.Controls.RX);
+    double ry = operator.getRawAxis(RobotMap.Controls.RY);
+    double lt = operator.getRawAxis(RobotMap.Controls.LT);
+    double rt = operator.getRawAxis(RobotMap.Controls.RT);
   }
 
 }
