@@ -12,9 +12,6 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 import frc.robot.helpers.SubsystemManagerChild;
 
-/**
- * Add your docs here.
- */
 public class HatchClaw extends SubsystemManagerChild {
   
   private Solenoid actuator;

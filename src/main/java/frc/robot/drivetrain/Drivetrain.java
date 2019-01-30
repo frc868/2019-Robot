@@ -1,5 +1,7 @@
 package frc.robot.drivetrain;
+import com.revrobotics.CANPIDController;
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.ControlType;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -9,6 +11,8 @@ import frc.robot.helpers.SubsystemManagerChild;
 
 public class Drivetrain extends SubsystemManagerChild {
     private CANSparkMax leftPrimary, leftSecondary, rightPrimary, rightSecondary;
+    private double P, I, D, F;
+    private CANPIDController rightPID, leftPID;
 
     public Drivetrain() {
         leftPrimary = new CANSparkMax(RobotMap.Drivetrain.LEFT_PRIMARY, MotorType.kBrushless);
@@ -22,6 +26,45 @@ public class Drivetrain extends SubsystemManagerChild {
         leftPrimary.setInverted(RobotMap.Drivetrain.IS_LEFT_INVERTED);
         rightPrimary.setInverted(RobotMap.Drivetrain.IS_RIGHT_INVERTED);
      }
+
+    /**
+     * initiates a PID controller for the left and right motors
+     */
+    private void initPID(){
+        rightPID = new CANPIDController(rightPrimary);
+        leftPID = new CANPIDController(leftPrimary);
+
+        setDrivePIDFValues(0.01, 0.01, 0.01, 0.01);
+        rightPID.setOutputRange(-1, 1);
+        leftPID.setOutputRange(-1, 1);
+    }
+
+    /**
+     * sets PIDF values for both sides
+     * @param P propotional, Pe, based on error it adds that times the P value
+     * @param I integral, used for compensating for constant forces automagically
+     * @param D derivative, used to prevent overshooting
+     * @param F Feed-forward, filter for the first derivative
+     */
+    public void setDrivePIDFValues(double P, double I, double D, double F){
+        P = this.P;
+        I = this.I;
+        D = this.D;
+        F = this.F;
+        rightPID.setP(P);
+        leftPID.setP(P);
+        rightPID.setI(I);
+        leftPID.setI(I);
+        rightPID.setD(D);
+        leftPID.setD(D);
+        rightPID.setFF(F);
+        leftPID.setFF(F);
+    }
+
+    public void setPID(double right, double left, ControlType ctrl){
+        rightPID.setReference(right, ctrl);
+        leftPID.setReference(left, ctrl);
+    }
 
     /**
      * sets left motor's speed
@@ -58,7 +101,6 @@ public class Drivetrain extends SubsystemManagerChild {
     }
 
     /**
-     * 
      * @return speed left motor is set to
      */
     public double getLeftSpeed() {
@@ -66,7 +108,6 @@ public class Drivetrain extends SubsystemManagerChild {
     }
 
     /**
-     * 
      * @return speed right motor is set to
      */
     public double getRightSpeed() {
@@ -74,7 +115,6 @@ public class Drivetrain extends SubsystemManagerChild {
     }
 
     /**
-     * 
      * @return position of left motor according to encoder
      */
     public double getLeftEncPosition() {
@@ -82,7 +122,6 @@ public class Drivetrain extends SubsystemManagerChild {
     }
 
     /**
-     * 
      * @return position of right motor according to encoder
      */
     public double getRightEncPosition() {
@@ -90,7 +129,6 @@ public class Drivetrain extends SubsystemManagerChild {
     }
 
     /**
-     * 
      * @return average position of motors according to encoder
      */
     public double getEncPosition() {
@@ -98,7 +136,6 @@ public class Drivetrain extends SubsystemManagerChild {
     }
 
     /**
-     * 
      * @return velocity of left motor according to encoder
      */
     public double getLeftEncVelocity() {
@@ -106,7 +143,6 @@ public class Drivetrain extends SubsystemManagerChild {
     }
 
     /**
-     * 
      * @return velocity of right motor according to encoder
      */
     public double getRightEncVelocity() {
@@ -114,7 +150,6 @@ public class Drivetrain extends SubsystemManagerChild {
     }
 
     /**
-     * 
      * @return average velocity of motors according to encoder
      */
     public double getEncVelocity() {

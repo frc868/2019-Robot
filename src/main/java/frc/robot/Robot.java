@@ -13,10 +13,12 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import frc.robot.drivetrain.Drivetrain;
 import frc.robot.hatchclaw.HatchClaw;
+import frc.robot.climber.Climber;
 
 public class Robot extends TimedRobot {
   public static Drivetrain drivetrain = new Drivetrain();
   public static HatchClaw hatchClaw = new HatchClaw();
+  public static Climber climber = new Climber();
   public static OI m_oi;
 
   SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -42,7 +44,6 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousInit() {
-    
   }
 
   @Override
@@ -52,7 +53,6 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
-
   }
 
   @Override
