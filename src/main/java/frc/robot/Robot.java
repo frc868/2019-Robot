@@ -12,17 +12,23 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import frc.robot.drivetrain.Drivetrain;
-import frc.robot.elevator.subsystems.*;
+import frc.robot.powerpack.subsystems.*;
 import frc.robot.helpers.SubsystemManager;
-import frc.robot.climber.subsystems.*;
+import frc.robot.carriage.subsystems.*;
 
 public class Robot extends TimedRobot {
-  public static Drivetrain drivetrain = new Drivetrain();
+  public static BallIntake ballIntake = new BallIntake();
   public static HatchClaw hatchClaw = new HatchClaw();
-  public static Drive climberDrive = new Drive();
-  public static Foot climberFoot = new Foot();
-  public static Ramp climberRamp = new Ramp();
+  public static HatchPickup hatchPickup = new HatchPickup();
+  public static Tilt tilt = new Tilt();
+
+  public static Drivetrain drivetrain = new Drivetrain();
+
+  public static FootDrive footDrive = new FootDrive();
   public static Forks forks = new Forks();
+  public static PowerPack powerPack = new PowerPack();
+  public static Ramps climberRamps = new Ramps();
+
   public static OI m_oi;
 
   SendableChooser<Command> m_chooser = new SendableChooser<>();

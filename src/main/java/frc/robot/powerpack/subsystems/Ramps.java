@@ -1,15 +1,16 @@
-package frc.robot.climber.subsystems;
+package frc.robot.powerpack.subsystems;
 
 import edu.wpi.first.wpilibj.Solenoid;
 import frc.robot.RobotMap;
 import frc.robot.helpers.SubsystemManagerChild;
 
 
-public class Ramp extends SubsystemManagerChild {
-    private Solenoid actuator;
+public class Ramps extends SubsystemManagerChild {
+    private Solenoid left, right;
 
-    public Ramp() {
-        actuator = new Solenoid(RobotMap.Climber.RAMP);
+    public Ramps() {
+        left = new Solenoid(RobotMap.Powerpack.RAMP_LEFT);
+        right = new Solenoid(RobotMap.Powerpack.RAMP_RIGHT);
     } 
 
     /**
@@ -17,7 +18,8 @@ public class Ramp extends SubsystemManagerChild {
      * @param state which state to set the ramp to
      */
     public void setState(boolean state) {
-        actuator.set(state);
+        left.set(state);
+        right.set(state);
     }
 
     /**
@@ -40,6 +42,6 @@ public class Ramp extends SubsystemManagerChild {
      * @return state of ramp
      */
     public boolean getState() {
-        return actuator.get();
+        return left.get();
     }
 }

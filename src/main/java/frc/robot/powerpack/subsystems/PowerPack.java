@@ -1,25 +1,28 @@
-package frc.robot.elevator.subsystems;
+package frc.robot.powerpack.subsystems;
 
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
+import edu.wpi.first.wpilibj.Solenoid;
 import frc.robot.RobotMap;
 import frc.robot.helpers.Helper;
 import frc.robot.helpers.SubsystemManagerChild;
 
 
-public class Elevator extends SubsystemManagerChild {
-  private CANSparkMax primary, secondary, tertiary, quaternary;
+public class PowerPack extends SubsystemManagerChild {
+  private WPI_TalonSRX primary, secondary, tertiary, quaternary;
+  private Solenoid switcher;
 
-  public Elevator() {
-    primary = new CANSparkMax(RobotMap.Elevator.ELEVATOR_PRIMARY, MotorType.kBrushless);
-    secondary = new CANSparkMax(RobotMap.Elevator.ELEVATOR_SECONDARY, MotorType.kBrushless);
-    tertiary = new CANSparkMax(RobotMap.Elevator.ELEVATOR_TERTIARY, MotorType.kBrushless);
-    quaternary = new CANSparkMax(RobotMap.Elevator.ELEVATOR_QUATERNARY, MotorType.kBrushless);
+  public PowerPack() {
+    primary = new WPI_TalonSRX(RobotMap.Powerpack.POWERPACK_PRIMARY);
+    secondary = new WPI_TalonSRX(RobotMap.Powerpack.POWERPACK_SECONDARY);
+    tertiary = new WPI_TalonSRX(RobotMap.Powerpack.POWERPACK_TERTIARY);
+    quaternary = new WPI_TalonSRX(RobotMap.Powerpack.POWERPACK_QUATERNARY);
 
     secondary.follow(primary);
     tertiary.follow(primary);
     quaternary.follow(primary);
+
+    switcher = new Solenoid(RobotMap.Powerpack.POWERPACK_SWITCHER);
   }
 
   /**
@@ -50,7 +53,7 @@ public class Elevator extends SubsystemManagerChild {
    * @return position of motor according to encoder
    */
   public double getEncPosition() {
-    return primary.getEncoder().getPosition();
+    return primary.getSelectedSensorPosition();
   }
 
   /** 
@@ -58,7 +61,7 @@ public class Elevator extends SubsystemManagerChild {
    * @return state of forward limit switch
    */
   public boolean getForwardLimitSwitch() {
-    return primary.getForwardLimitSwitch(RobotMap.Elevator.ELEVATOR_FORWARD_LIMIT_SWITCH_POLARITY).get();
+    return true; //TODO fix this
   }
 
   /** 
@@ -66,6 +69,6 @@ public class Elevator extends SubsystemManagerChild {
    * @return state of reverse limit switch
    */
   public boolean getReverseLimitSwtich() {
-    return primary.getReverseLimitSwitch(RobotMap.Elevator.ELEVATOR_REVERSE_LIMIT_SWITCH_POLARITY).get();
+    return true; //TODO fix this
   }
 }

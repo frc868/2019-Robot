@@ -5,20 +5,20 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.elevator.commands;
+package frc.robot.powerpack.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class OpenClaw extends Command {
-  public OpenClaw() {
-    requires(Robot.hatchClaw);
+public class DeployForks extends Command {
+  public DeployForks() {
+    requires(Robot.forks);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.hatchClaw.open();
+    Robot.forks.open();
   }
 
   // Called repeatedly when this Command is scheduled to run

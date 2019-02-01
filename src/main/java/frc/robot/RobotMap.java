@@ -1,45 +1,41 @@
 package frc.robot;
 
-import com.revrobotics.CANDigitalInput.LimitSwitchPolarity;
-
 public class RobotMap {
 
   public static class Drivetrain {
     public static final int LEFT_PRIMARY = 0;
     public static final int LEFT_SECONDARY = 1;
+    public static final int LEFT_TERTIARY = 1;
     public static final int RIGHT_PRIMARY = 2;
     public static final int RIGHT_SECONDARY = 3;
-
+    public static final int RIGHT_TERTIARY = 0;
+ 
     public static final boolean IS_LEFT_INVERTED = false;
     public static final boolean IS_RIGHT_INVERTED = true;
   }
 
-  public static class Climber {
-    public static final int FOOT_PRIMARY = 4;
-    public static final int FOOT_SECONDARY = 5;
+  public static class Powerpack {
+    public static final int POWERPACK_PRIMARY = 7;
+    public static final int POWERPACK_SECONDARY = 8;
+    public static final int POWERPACK_TERTIARY = 9;
+    public static final int POWERPACK_QUATERNARY = 10;
+    public static final int POWERPACK_SWITCHER = 0;
+
     public static final int DRIVE = 6;
-    public static final int RAMP = 0;
+
+    public static final int RAMP_LEFT = 1;
+    public static final int RAMP_RIGHT = 1;
+
     public static final int FORKS_LEFT = 2;
     public static final int FORKS_RIGHT = 3;
-
-    public static final LimitSwitchPolarity FORWARD_LIMIT_SWITCH_POLARITY = LimitSwitchPolarity.kNormallyClosed;
-    public static final LimitSwitchPolarity REVERSE_LIMIT_SWITCH_POLARITY = LimitSwitchPolarity.kNormallyClosed;
   }
   
-  public static class Elevator {
-    public static final LimitSwitchPolarity ELEVATOR_FORWARD_LIMIT_SWITCH_POLARITY = LimitSwitchPolarity.kNormallyClosed;
-    public static final LimitSwitchPolarity ELEVATOR_REVERSE_LIMIT_SWITCH_POLARITY = LimitSwitchPolarity.kNormallyClosed;
-    public static final int ELEVATOR_PRIMARY = 7;
-    public static final int ELEVATOR_SECONDARY = 8;
-    public static final int ELEVATOR_TERTIARY = 9;
-    public static final int ELEVATOR_QUATERNARY = 10;
-
-    public static final LimitSwitchPolarity TILT_FORWARD_LIMIT_SWITCH_POLARITY = LimitSwitchPolarity.kNormallyClosed;
-    public static final LimitSwitchPolarity TILT_REVERSE_LIMIT_SWITCH_POLARITY = LimitSwitchPolarity.kNormallyClosed;
+  public static class Carraige {
     public static final int TILT = 11;
-
     public static final int BALL_INTAKE = 12;
     public static final int HATCH_CLAW = 1;
+    public static final int HATCH_PICKUP_TILT = 13;
+    public static final int HATCH_PICKUP_INTAKE = 14;
   }
 
   /**contains mappings for an xbox controller's buttons to their int's

@@ -1,18 +1,17 @@
-package frc.robot.elevator.subsystems;
+package frc.robot.powerpack.subsystems;
 
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import frc.robot.RobotMap;
 import frc.robot.helpers.Helper;
 import frc.robot.helpers.SubsystemManagerChild;
 
 
-public class BallIntake extends SubsystemManagerChild {
-  private CANSparkMax primary;
+public class FootDrive extends SubsystemManagerChild {
+  private WPI_TalonSRX primary;
 
-  public BallIntake() {
-    primary = new CANSparkMax(RobotMap.Elevator.BALL_INTAKE, MotorType.kBrushless);
+  public FootDrive() {
+    primary = new WPI_TalonSRX(RobotMap.Powerpack.DRIVE);
   }
 
   /**
@@ -37,5 +36,12 @@ public class BallIntake extends SubsystemManagerChild {
   public double getSpeed() {
     return primary.get();
   }
-  
+
+  /**
+   * 
+   * @return position of motor according to encoder
+   */
+  public double getEncPosition() {
+    return primary.getSelectedSensorPosition();
+  }
 }

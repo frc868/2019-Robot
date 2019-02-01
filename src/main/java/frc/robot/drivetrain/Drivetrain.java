@@ -1,69 +1,71 @@
 package frc.robot.drivetrain;
-import com.revrobotics.CANPIDController;
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-import com.revrobotics.ControlType;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import frc.robot.RobotMap;
 import frc.robot.helpers.Helper;
 import frc.robot.helpers.SubsystemManagerChild;
 
 public class Drivetrain extends SubsystemManagerChild {
-    private CANSparkMax leftPrimary, leftSecondary, rightPrimary, rightSecondary;
-    private double P, I, D, F;
-    private CANPIDController rightPID, leftPID;
+    private WPI_TalonSRX leftPrimary, leftSecondary, leftTertiary, rightPrimary, rightSecondary, rightTertiary;
+    // private double P, I, D, F;
+    // private CANPIDController rightPID, leftPID;
 
     public Drivetrain() {
-        leftPrimary = new CANSparkMax(RobotMap.Drivetrain.LEFT_PRIMARY, MotorType.kBrushless);
-        leftSecondary = new CANSparkMax(RobotMap.Drivetrain.LEFT_SECONDARY, MotorType.kBrushless);
-        rightPrimary = new CANSparkMax(RobotMap.Drivetrain.RIGHT_PRIMARY, MotorType.kBrushless);
-        rightSecondary = new CANSparkMax(RobotMap.Drivetrain.RIGHT_SECONDARY, MotorType.kBrushless);
+        leftPrimary = new WPI_TalonSRX(RobotMap.Drivetrain.LEFT_PRIMARY);
+        leftSecondary = new WPI_TalonSRX(RobotMap.Drivetrain.LEFT_SECONDARY);
+        leftTertiary = new WPI_TalonSRX(RobotMap.Drivetrain.LEFT_TERTIARY);
+
+        rightPrimary = new WPI_TalonSRX(RobotMap.Drivetrain.RIGHT_PRIMARY);
+        rightSecondary = new WPI_TalonSRX(RobotMap.Drivetrain.RIGHT_SECONDARY);
+        rightTertiary = new WPI_TalonSRX(RobotMap.Drivetrain.RIGHT_TERTIARY);
 
         leftSecondary.follow(leftPrimary);
+        leftSecondary.follow(leftPrimary);
         rightSecondary.follow(rightPrimary);
+        rightTertiary.follow(rightPrimary);
 
         leftPrimary.setInverted(RobotMap.Drivetrain.IS_LEFT_INVERTED);
         rightPrimary.setInverted(RobotMap.Drivetrain.IS_RIGHT_INVERTED);
      }
 
-    /**
-     * initiates a PID controller for the left and right motors
-     */
-    private void initPID(){
-        rightPID = new CANPIDController(rightPrimary);
-        leftPID = new CANPIDController(leftPrimary);
+    // /**
+    //  * initiates a PID controller for the left and right motors
+    //  */
+    // private void initPID(){
+    //     rightPID = new CANPIDController(rightPrimary);
+    //     leftPID = new CANPIDController(leftPrimary);
 
-        setDrivePIDFValues(0.01, 0.01, 0.01, 0.01);
-        rightPID.setOutputRange(-1, 1);
-        leftPID.setOutputRange(-1, 1);
-    }
+    //     setDrivePIDFValues(0.01, 0.01, 0.01, 0.01);
+    //     rightPID.setOutputRange(-1, 1);
+    //     leftPID.setOutputRange(-1, 1);
+    // }
 
-    /**
-     * sets PIDF values for both sides
-     * @param P propotional, Pe, based on error it adds that times the P value
-     * @param I integral, used for compensating for constant forces automagically
-     * @param D derivative, used to prevent overshooting
-     * @param F Feed-forward, filter for the first derivative
-     */
-    public void setDrivePIDFValues(double P, double I, double D, double F){
-        P = this.P;
-        I = this.I;
-        D = this.D;
-        F = this.F;
-        rightPID.setP(P);
-        leftPID.setP(P);
-        rightPID.setI(I);
-        leftPID.setI(I);
-        rightPID.setD(D);
-        leftPID.setD(D);
-        rightPID.setFF(F);
-        leftPID.setFF(F);
-    }
+    // /**
+    //  * sets PIDF values for both sides
+    //  * @param P propotional, Pe, based on error it adds that times the P value
+    //  * @param I integral, used for compensating for constant forces automagically
+    //  * @param D derivative, used to prevent overshooting
+    //  * @param F Feed-forward, filter for the first derivative
+    //  */
+    // public void setDrivePIDFValues(double P, double I, double D, double F){
+    //     P = this.P;
+    //     I = this.I;
+    //     D = this.D;
+    //     F = this.F;
+    //     rightPID.setP(P);
+    //     leftPID.setP(P);
+    //     rightPID.setI(I);
+    //     leftPID.setI(I);
+    //     rightPID.setD(D);
+    //     leftPID.setD(D);
+    //     rightPID.setFF(F);
+    //     leftPID.setFF(F);
+    // }
 
-    public void setPID(double right, double left, ControlType ctrl){
-        rightPID.setReference(right, ctrl);
-        leftPID.setReference(left, ctrl);
-    }
+    // public void setPID(double right, double left, ControlType ctrl){
+    //     rightPID.setReference(right, ctrl);
+    //     leftPID.setReference(left, ctrl);
+    // }
 
     /**
      * sets left motor's speed
@@ -117,14 +119,14 @@ public class Drivetrain extends SubsystemManagerChild {
      * @return position of left motor according to encoder
      */
     public double getLeftEncPosition() {
-        return leftPrimary.getEncoder().getPosition();
+        return leftPrimary.getSelectedSensorPosition();
     }
 
     /**
      * @return position of right motor according to encoder
      */
     public double getRightEncPosition() {
-        return rightPrimary.getEncoder().getPosition();
+        return rightPrimary.getSelectedSensorPosition();
     }
 
     /**
@@ -137,15 +139,15 @@ public class Drivetrain extends SubsystemManagerChild {
     /**
      * @return velocity of left motor according to encoder
      */
-    public double getLeftEncVelocity() {
-        return leftPrimary.getEncoder().getVelocity();
+    public int getLeftEncVelocity() {
+        return leftPrimary.getSelectedSensorVelocity();
     }
 
     /**
      * @return velocity of right motor according to encoder
      */
-    public double getRightEncVelocity() {
-        return rightPrimary.getEncoder().getVelocity();
+    public int getRightEncVelocity() {
+        return rightPrimary.getSelectedSensorVelocity();
     }
 
     /**

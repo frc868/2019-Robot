@@ -1,7 +1,6 @@
-package frc.robot.elevator.subsystems;
+package frc.robot.carriage.subsystems;
 
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import frc.robot.RobotMap;
 import frc.robot.helpers.Helper;
@@ -9,10 +8,10 @@ import frc.robot.helpers.SubsystemManagerChild;
 
 
 public class Tilt extends SubsystemManagerChild {
-  private CANSparkMax primary;
+  private WPI_TalonSRX primary;
 
   public Tilt() {
-    primary = new CANSparkMax(RobotMap.Elevator.TILT, MotorType.kBrushless);
+    primary = new WPI_TalonSRX(RobotMap.Carraige.TILT);
   }
 
   /**
@@ -43,7 +42,7 @@ public class Tilt extends SubsystemManagerChild {
    * @return position of motor according to encoder
    */
   public double getEncPosition() {
-    return primary.getEncoder().getPosition();
+    return primary.getSelectedSensorPosition();
   }
 
    /** 
@@ -51,7 +50,7 @@ public class Tilt extends SubsystemManagerChild {
    * @return state of forward limit switch
    */
   public boolean getForwardLimitSwitch() {
-    return primary.getForwardLimitSwitch(RobotMap.Elevator.TILT_FORWARD_LIMIT_SWITCH_POLARITY).get();
+    return true; //TODO fix this
   }
 
   /** 
@@ -59,6 +58,6 @@ public class Tilt extends SubsystemManagerChild {
    * @return state of reverse limit switch
    */
   public boolean getReverseLimitSwtich() {
-    return primary.getReverseLimitSwitch(RobotMap.Elevator.TILT_REVERSE_LIMIT_SWITCH_POLARITY).get();
+    return true; //TODO fix this
   }
 }

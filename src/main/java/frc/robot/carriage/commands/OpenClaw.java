@@ -5,20 +5,20 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.climber.commands;
+package frc.robot.carriage.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class DeployRamp extends Command {
-  public DeployRamp() {
-    requires(Robot.climberRamp);
+public class OpenClaw extends Command {
+  public OpenClaw() {
+    requires(Robot.hatchClaw);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.climberRamp.open();
+    Robot.hatchClaw.open();
   }
 
   // Called repeatedly when this Command is scheduled to run

@@ -1,4 +1,4 @@
-package frc.robot.climber.subsystems;
+package frc.robot.powerpack.subsystems;
 
 import edu.wpi.first.wpilibj.Solenoid;
 import frc.robot.RobotMap;
@@ -8,8 +8,8 @@ public class Forks extends SubsystemManagerChild {
     private Solenoid left, right;
 
     public Forks() {
-        left = new Solenoid(RobotMap.Climber.FORKS_LEFT);
-        right = new Solenoid(RobotMap.Climber.FORKS_RIGHT);
+        left = new Solenoid(RobotMap.Powerpack.FORKS_LEFT);
+        right = new Solenoid(RobotMap.Powerpack.FORKS_RIGHT);
     }
 
     /**
