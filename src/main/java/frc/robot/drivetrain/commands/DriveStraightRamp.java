@@ -31,7 +31,7 @@ public class DriveStraightRamp extends DriveStraight {
     }
     
     public void execute() {
-    	double rampValue = (Robot.drivetrain.getScaledAverageDistance() - initialDistance) / targetDistance;
+    	double rampValue = (Robot.drivetrain.getAvgScaledDistance() - initialDistance) / targetDistance;
     	targetPower = startPower + (rampValue * (endPower - startPower));
     	
     	super.execute();

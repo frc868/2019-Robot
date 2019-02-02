@@ -124,10 +124,26 @@ public class Drivetrain extends SubsystemManagerChild {
     }
 
     /**
+     * 
+     * @return distance travelled by left side, scaled to inches
+     */
+    public double getScaledLeftDistance() {
+        return getLeftEncPosition() * INCHES_PER_TICK;
+    }
+
+    /**
      * @return position of right motor according to encoder
      */
     public double getRightEncPosition() {
         return rightPrimary.getSelectedSensorPosition();
+    }
+
+    /**
+     * 
+     * @return distance travelled by left side, scaled to inches
+     */
+    public double getScaledRightDistance() {
+        return getRightEncPosition() * INCHES_PER_TICK;
     }
 
     /**
@@ -137,28 +153,56 @@ public class Drivetrain extends SubsystemManagerChild {
         return (getLeftEncPosition() + getRightEncPosition())/2;
     }
 
-    public double getScaledAverageDistance() {
-        return getAvgEncPosition() / INCHES_PER_TICK;
+    /**
+     * 
+     * @return average distance travelled, scalled to inches
+     */
+    public double getAvgScaledDistance() {
+        return getAvgEncPosition() * INCHES_PER_TICK;
     }
 
     /**
      * @return velocity of left motor according to encoder
      */
-    public int getLeftEncVelocity() {
+    public double getLeftEncVelocity() {
         return leftPrimary.getSelectedSensorVelocity();
+    }
+
+    /**
+     * 
+     * @return velocity of left motor, scaled to inches
+     */
+    public double getScaledLeftVelocity() {
+        return getLeftEncVelocity() * INCHES_PER_TICK;
     }
 
     /**
      * @return velocity of right motor according to encoder
      */
-    public int getRightEncVelocity() {
+    public double getRightEncVelocity() {
         return rightPrimary.getSelectedSensorVelocity();
+    }
+
+    /**
+     * 
+     * @return velocity of right motor, scaled to inches
+     */
+    public double getScaledRightVelocity() {
+        return getRightEncVelocity() * INCHES_PER_TICK;
     }
 
     /**
      * @return average velocity of motors according to encoder
      */
-    public double getEncVelocity() {
+    public double getAvgEncVelocity() {
         return (getLeftEncVelocity() + getRightEncVelocity())/2;
+    }
+
+    /**
+     * 
+     * @return average velocity of the motors, scaled to inches
+     */
+    public double getAvgScaledVelocity() {
+        return getAvgEncVelocity() * INCHES_PER_TICK;
     }
 }

@@ -27,7 +27,7 @@ public class DriveStraight extends Command {
     	if (readInitialAngle) {
     		initialAngle = Robot.gyro.getRotation();
     	}
-    	initialDistance = Robot.drivetrain.getScaledAverageDistance();
+    	initialDistance = Robot.drivetrain.getAvgScaledDistance();
     }
 
     protected void execute() {
@@ -46,7 +46,7 @@ public class DriveStraight extends Command {
     }
 
     protected boolean isFinished() {
-    	return Math.abs(Robot.drivetrain.getScaledAverageDistance() - initialDistance) > Math.abs(targetDistance);
+    	return Math.abs(Robot.drivetrain.getAvgScaledDistance() - initialDistance) > Math.abs(targetDistance);
     }
 
     protected void end() {

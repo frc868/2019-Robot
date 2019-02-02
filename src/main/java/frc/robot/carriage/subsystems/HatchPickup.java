@@ -22,22 +22,42 @@ public class HatchPickup extends SubsystemManagerChild {
         wrist = new WPI_TalonSRX(RobotMap.Carraige.HATCH_PICKUP_WRIST);
     }
     
+    /**
+     * 
+     * @param power speed to set intake motor to
+     */
     public void setIntakeSpeed(double power) {
         intake.set(Helper.boundValue(power));
     }
 
+    /**
+     * 
+     * @return speed intake is set to
+     */
     public double getIntakeSpeed() {
         return intake.get();
     }
 
+    /**
+     * 
+     * @param power speed to set wrist to
+     */
     public void setWristSpeed(double power) {
         wrist.set(Helper.boundValue(power));
     }
 
+    /**
+     * 
+     * @return speed wrist is set to
+     */
     public double getWristSpeed() {
         return wrist.get();
     }
 
+    /**
+     * 
+     * @return position wrist is at
+     */
     public double getWristEncPosition() {
         return wrist.getSelectedSensorPosition();
     }
