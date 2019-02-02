@@ -16,7 +16,6 @@ public class Camera extends SubsystemManagerChild {
   private SerialPort port;
   private String raw;
   private double distance, position, heightDifference;
-  private boolean isVisionCam = false;
 
   public Camera() {
     super();
@@ -80,11 +79,9 @@ public class Camera extends SubsystemManagerChild {
 
   public void switchToVisionAlgorithm() {
     sendData("setmapping MJPG 320 240 10 YUYV 640 480 30 TechHOUNDS DeepSpace");
-    isVisionCam = true;
   }
 
   public void switchToCameraView() {
     sendData("setmapping MJPG 320 240 10 YUYV 320 240 10 TechHOUNDS868 Trash2019");
-    isVisionCam = false;
   }
 }

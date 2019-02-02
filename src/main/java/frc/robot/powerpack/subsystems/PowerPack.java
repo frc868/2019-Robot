@@ -3,6 +3,7 @@ package frc.robot.powerpack.subsystems;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import frc.robot.helpers.Helper;
 import frc.robot.helpers.SubsystemManagerChild;
@@ -11,6 +12,7 @@ import frc.robot.helpers.SubsystemManagerChild;
 public class PowerPack extends SubsystemManagerChild {
   private WPI_TalonSRX primary, secondary, tertiary, quaternary;
   private Solenoid switcher;
+  private final boolean ELEVATOR_MODE = true;
 
   public PowerPack() {
     primary = new WPI_TalonSRX(RobotMap.Powerpack.POWERPACK_PRIMARY);
@@ -44,7 +46,7 @@ public class PowerPack extends SubsystemManagerChild {
    * 
    * @return speed motor is set to
    */
-  public double getFootSpeed() {
+  public double getSpeed() {
     return primary.get();
   }
 
@@ -71,4 +73,59 @@ public class PowerPack extends SubsystemManagerChild {
   public boolean getReverseLimitSwtich() {
     return true; //TODO fix this
   }
+
+  /**
+   * 
+   * @param mode mode to set powerpack to
+   */
+  public void setMode(boolean mode) {
+    switcher.set(mode);
+  }
+
+  /**
+   * switches powerpack to elevator mode
+   */
+  public void switchToElevator() {
+    setMode(ELEVATOR_MODE);
+  }
+
+  /**
+   * switches powerpack to climber mode
+   */
+  public void switchToClimber() {
+    setMode(!ELEVATOR_MODE);
+  }
+
+  /**
+   * 
+   * @return mode powerpack is set to
+   */
+  public boolean getMode() {
+    return switcher.get();
+  }
+
+  /**
+   * 
+   * @return true if powerpack is on elevator mode
+   */
+  public boolean isElevatorMode() {
+    return getMode() == ELEVATOR_MODE;
+  }
+
+  /**
+   * 
+   * @return true if powerpack is on climber mode
+   */
+  public boolean isClimberMode() {
+    return !isElevatorMode();
+  }
+
+
+  @Override
+  public void updateSD() {
+    SmartDashboard.putBoolean("Elevator Mode", isElevatorMode());
+    SmartDashboard.putNumber("Powerpack Speed", getSpeed());
+    SmartDashboard.putNumber("Powerpack Position", getEncPosition());
+  }
+  
 }
