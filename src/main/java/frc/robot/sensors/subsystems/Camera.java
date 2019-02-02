@@ -18,16 +18,15 @@ public class Camera extends SubsystemManagerChild {
   private double distance, position, heightDifference;
   private boolean isVisionCam = false;
 
-  public Camera(boolean isVisionCam) {
+  public Camera() {
     super();
-    this.isVisionCam = isVisionCam;
-
     port = new SerialPort(115200, SerialPort.Port.kUSB1);
   }
 
   @Override
   public void init() {
-    CameraServer.getInstance().startAutomaticCapture();
+    CameraServer.getInstance().startAutomaticCapture(0);
+    CameraServer.getInstance().startAutomaticCapture(1);
   }
 
   @Override
@@ -36,7 +35,7 @@ public class Camera extends SubsystemManagerChild {
       String newData = port.readString();
       if (newData != null && !newData.equals("")) {  
         raw = newData;      
-        if (isVisionCam && hasTarget()) {
+        if (hasTarget()) {
           String[] dataArray = raw.split(",");
           distance = Double.parseDouble(dataArray[0]);
           position = Double.parseDouble(dataArray[1]);
@@ -49,16 +48,14 @@ public class Camera extends SubsystemManagerChild {
   @Override
   public void updateSD() {
     SmartDashboard.putString("Raw Data", getRawData());
-    if (isVisionCam) {
-      SmartDashboard.putBoolean("Has Target", hasTarget());
-      SmartDashboard.putNumber("Distance", getDistance());
-      SmartDashboard.putNumber("Position", getPosition());
-      SmartDashboard.putNumber("Height Difference", getHeightDifference());
-    }
+    SmartDashboard.putBoolean("Has Target", hasTarget());
+    SmartDashboard.putNumber("Distance", getDistance());
+    SmartDashboard.putNumber("Position", getPosition());
+    SmartDashboard.putNumber("Height Difference", getHeightDifference());  
   }
 
   public boolean hasTarget() {
-    return isVisionCam && !getRawData().contains(",,");
+    return !getRawData().contains(",,");
   }
 
   public String getRawData() {

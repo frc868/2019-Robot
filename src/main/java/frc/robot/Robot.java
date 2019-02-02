@@ -31,7 +31,7 @@ public class Robot extends TimedRobot {
   public static PowerPack powerPack = new PowerPack();
   public static Ramps climberRamps = new Ramps();
 
-  public static Camera camera = new Camera(true);
+  public static Camera camera = new Camera();
   public static Gyroscope gyro = new Gyroscope();
 
   public static OI m_oi;
