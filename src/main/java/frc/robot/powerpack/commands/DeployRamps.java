@@ -10,8 +10,8 @@ package frc.robot.powerpack.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class DeployRamp extends Command {
-  public DeployRamp() {
+public class DeployRamps extends Command {
+  public DeployRamps() {
     requires(Robot.climberRamps);
   }
 

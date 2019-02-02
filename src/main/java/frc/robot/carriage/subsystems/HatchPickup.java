@@ -15,11 +15,11 @@ import frc.robot.helpers.SubsystemManagerChild;
 
 public class HatchPickup extends SubsystemManagerChild {
   
-    private WPI_TalonSRX intake, tilt;
+    private WPI_TalonSRX intake, wrist;
 
     public HatchPickup() {
         intake = new WPI_TalonSRX(RobotMap.Carraige.HATCH_PICKUP_INTAKE);
-        tilt = new WPI_TalonSRX(RobotMap.Carraige.HATCH_PICKUP_INTAKE);
+        wrist = new WPI_TalonSRX(RobotMap.Carraige.HATCH_PICKUP_WRIST);
     }
     
     public void setIntakeSpeed(double power) {
@@ -30,16 +30,16 @@ public class HatchPickup extends SubsystemManagerChild {
         return intake.get();
     }
 
-    public void setTiltSpeed(double power) {
-        tilt.set(Helper.boundValue(power));
+    public void setWristSpeed(double power) {
+        wrist.set(Helper.boundValue(power));
     }
 
-    public double getTiltSpeed() {
-        return tilt.get();
+    public double getWristSpeed() {
+        return wrist.get();
     }
 
-    public int getTiltEncPosition() {
-        return tilt.getSelectedSensorPosition();
+    public double getWristEncPosition() {
+        return wrist.getSelectedSensorPosition();
     }
 
 

@@ -34,7 +34,7 @@ public class RobotMap {
     public static final int TILT = 11;
     public static final int BALL_INTAKE = 12;
     public static final int HATCH_CLAW = 1;
-    public static final int HATCH_PICKUP_TILT = 13;
+    public static final int HATCH_PICKUP_WRIST = 13;
     public static final int HATCH_PICKUP_INTAKE = 14;
   }
 
