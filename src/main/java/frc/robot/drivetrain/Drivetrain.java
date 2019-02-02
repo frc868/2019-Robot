@@ -7,6 +7,7 @@ import frc.robot.helpers.SubsystemManagerChild;
 
 public class Drivetrain extends SubsystemManagerChild {
     private WPI_TalonSRX leftPrimary, leftSecondary, leftTertiary, rightPrimary, rightSecondary, rightTertiary;
+    private final double INCHES_PER_TICK = 1;
     // private double P, I, D, F;
     // private CANPIDController rightPID, leftPID;
 
@@ -96,7 +97,7 @@ public class Drivetrain extends SubsystemManagerChild {
     /**
      * turn off both motors
      */
-    public void off() {
+    public void stop() {
         leftPrimary.stopMotor();
         rightPrimary.stopMotor();
     }
@@ -132,8 +133,12 @@ public class Drivetrain extends SubsystemManagerChild {
     /**
      * @return average position of motors according to encoder
      */
-    public double getEncPosition() {
+    public double getAvgEncPosition() {
         return (getLeftEncPosition() + getRightEncPosition())/2;
+    }
+
+    public double getScaledAverageDistance() {
+        return getAvgEncPosition() / INCHES_PER_TICK;
     }
 
     /**

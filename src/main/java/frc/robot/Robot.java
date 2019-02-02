@@ -13,6 +13,8 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import frc.robot.drivetrain.Drivetrain;
 import frc.robot.powerpack.subsystems.*;
+import frc.robot.sensors.subsystems.Camera;
+import frc.robot.sensors.subsystems.gyro.Gyroscope;
 import frc.robot.helpers.SubsystemManager;
 import frc.robot.carriage.subsystems.*;
 
@@ -28,6 +30,9 @@ public class Robot extends TimedRobot {
   public static Forks forks = new Forks();
   public static PowerPack powerPack = new PowerPack();
   public static Ramps climberRamps = new Ramps();
+
+  public static Camera camera = new Camera(true);
+  public static Gyroscope gyro = new Gyroscope();
 
   public static OI m_oi;
 

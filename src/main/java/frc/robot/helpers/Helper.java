@@ -2,7 +2,7 @@ package frc.robot.helpers;
 
 public class Helper {
 
-    public static double boundValue(double value, double upperLimit, double lowerLimit) {
+    public static double boundValue(double value, double lowerLimit, double upperLimit) {
         if (value > upperLimit) {
             return upperLimit;
         } else if (value < lowerLimit) {
@@ -13,6 +13,6 @@ public class Helper {
     }
 
     public static double boundValue(double value) {
-        return boundValue(value, 1, -1);
+        return boundValue(value, -1, 1);
     }
 }
