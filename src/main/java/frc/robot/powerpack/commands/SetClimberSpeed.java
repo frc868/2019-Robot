@@ -18,8 +18,18 @@ public class SetClimberSpeed extends Command {
     }
 
     @Override
+    protected void end() {
+        Robot.powerPack.stop();
+    }
+
+    @Override
+    protected void interrupted() {
+        end();
+    }
+
+    @Override
     protected boolean isFinished() {
-        return true;
+        return false;
     }
 
 }

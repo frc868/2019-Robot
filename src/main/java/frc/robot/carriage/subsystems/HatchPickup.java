@@ -39,6 +39,13 @@ public class HatchPickup extends SubsystemManagerChild {
     }
 
     /**
+     * stops the intake motor from running
+     */
+    public void stopIntake() {
+        intake.stopMotor();
+    }
+
+    /**
      * 
      * @param power speed to set wrist to
      */
@@ -52,6 +59,13 @@ public class HatchPickup extends SubsystemManagerChild {
      */
     public double getWristSpeed() {
         return wrist.get();
+    }
+
+    /**
+     * stops the wrist motor from running
+     */
+    public void stopWrist() {
+        wrist.stopMotor();
     }
 
     /**

@@ -15,9 +15,19 @@ public class SetHatchPickupIntakeSpeed extends Command {
     protected void initialize() {
         Robot.hatchPickup.setIntakeSpeed(speed);
     }
+
+    @Override
+    protected void end() {
+        Robot.hatchPickup.stopIntake();
+    }
+
+    @Override
+    protected void interrupted() {
+        end();
+    }
     
     @Override
     protected boolean isFinished() {
-        return true; //TODO fix this
+        return false;
     }
 }

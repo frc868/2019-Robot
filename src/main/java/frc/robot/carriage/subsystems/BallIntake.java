@@ -25,7 +25,7 @@ public class BallIntake extends SubsystemManagerChild {
   /**
    * turn off motor
    */
-  public void turnOff() {
+  public void stop() {
     primary.stopMotor();
   }
 

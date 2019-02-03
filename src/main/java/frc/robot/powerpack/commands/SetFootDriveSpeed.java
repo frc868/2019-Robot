@@ -17,8 +17,18 @@ public class SetFootDriveSpeed extends Command {
     }
 
     @Override
+    protected void end() {
+        Robot.footDrive.stop();
+    }
+
+    @Override
+    protected void interrupted() {
+        end();
+    }
+
+    @Override
     protected boolean isFinished() {
-        return true;
+        return false;
     }
 
 }
