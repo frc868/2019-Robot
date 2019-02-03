@@ -36,5 +36,13 @@ public class BallIntake extends SubsystemManagerChild {
   public double getSpeed() {
     return primary.get();
   }
+
+  /**
+   * 
+   * @return true if ball is detected
+   */
+  public boolean isBallDetected() {
+    return primary.getSensorCollection().isFwdLimitSwitchClosed();
+  }
   
 }
