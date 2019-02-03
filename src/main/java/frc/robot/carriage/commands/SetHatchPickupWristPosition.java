@@ -25,7 +25,7 @@ public class SetHatchPickupWristPosition extends PIDCommand {
 
     @Override
     protected boolean isFinished() {
-        return false;
+        return false; //TODO fix this
     }
 
 
