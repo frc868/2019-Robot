@@ -2,11 +2,11 @@ package frc.robot.carriage.commands;
 
 import frc.robot.Robot;
 
-public class IntakeUntilDetected extends SetBallIntakeSpeed {
+public class IntakeUntilBallDetected extends SetBallIntakeSpeed {
     private int countsDetected = 0;
     private final int COUNTS_NEEDED = 5; // the counts needed to determine that the ball is indeed detected
 
-    public IntakeUntilDetected() {
+    public IntakeUntilBallDetected() {
         super(1.0);
     }
 
