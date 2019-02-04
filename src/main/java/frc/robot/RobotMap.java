@@ -9,8 +9,7 @@ public class RobotMap {
     public static final int RIGHT_PRIMARY = 2;
     public static final int RIGHT_SECONDARY = 3;
     public static final int RIGHT_TERTIARY = 0;
-    
-    
+ 
     public static final boolean IS_LEFT_INVERTED = false;
     public static final boolean IS_RIGHT_INVERTED = true;
   }

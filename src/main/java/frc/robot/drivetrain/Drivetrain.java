@@ -1,8 +1,6 @@
 package frc.robot.drivetrain;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.FeedbackDevice;
-import com.ctre.phoenix.motorcontrol.NeutralMode;
+
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import frc.robot.helpers.Helper;
@@ -11,7 +9,6 @@ import frc.robot.helpers.SubsystemManagerChild;
 public class Drivetrain extends SubsystemManagerChild {
     private WPI_TalonSRX leftPrimary, leftSecondary, leftTertiary, rightPrimary, rightSecondary, rightTertiary;
     private final double INCHES_PER_TICK = 1;
-    public static final double ENCODER_TO_INCHES = 217.299548969;
     // private double P, I, D, F;
     // private CANPIDController rightPID, leftPID;
 
@@ -31,17 +28,6 @@ public class Drivetrain extends SubsystemManagerChild {
 
         leftPrimary.setInverted(RobotMap.Drivetrain.IS_LEFT_INVERTED);
         rightPrimary.setInverted(RobotMap.Drivetrain.IS_RIGHT_INVERTED);
-
-        rightPrimary.config_kP(0, 0.05, 10);
-        rightPrimary.config_kI(0, 0, 10);
-        rightPrimary.config_kD(0, 0, 10);
-        //rightPrimary.config_kF(0, 0, 10);
-
-        leftPrimary.config_kP(0, 0.05, 10);
-        leftPrimary.config_kI(0, 0, 10);
-        leftPrimary.config_kD(0, 0, 10);
-        //leftPrimary.config_kF(0, 0, 10);
-
      }
 
     // /**
@@ -109,10 +95,6 @@ public class Drivetrain extends SubsystemManagerChild {
         setRightSpeed(rightSpeed);
     }
 
-    public void setPosition(double leftPosition, double rightPosition) {
-        rightPrimary.set(ControlMode.Position, rightPosition * ENCODER_TO_INCHES);
-        leftPrimary.set(ControlMode.Position, leftPosition * ENCODER_TO_INCHES);
-    }
     /**
      * turn off both motors
      */
@@ -140,7 +122,6 @@ public class Drivetrain extends SubsystemManagerChild {
      */
     public double getLeftEncPosition() {
         return leftPrimary.getSelectedSensorPosition();
-        
     }
 
     /**
@@ -226,7 +207,6 @@ public class Drivetrain extends SubsystemManagerChild {
         return getAvgEncVelocity() * INCHES_PER_TICK;
     }
 
-    
     @Override
     public void updateSD() {
         SmartDashboard.putNumber("Left Speed", getLeftSpeed());
