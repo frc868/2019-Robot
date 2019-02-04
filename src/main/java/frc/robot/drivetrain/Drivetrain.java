@@ -24,6 +24,13 @@ public class Drivetrain extends SubsystemManagerChild {
         rightSecondary = new WPI_TalonSRX(RobotMap.Drivetrain.RIGHT_SECONDARY);
         rightTertiary = new WPI_TalonSRX(RobotMap.Drivetrain.RIGHT_TERTIARY);
 
+        configure(leftPrimary);
+        configure(leftSecondary);
+        configure(leftTertiary);
+        configure(rightPrimary);
+        configure(rightSecondary);
+        configure(rightTertiary);
+
         leftSecondary.follow(leftPrimary);
         leftSecondary.follow(leftPrimary);
         rightSecondary.follow(rightPrimary);
@@ -82,7 +89,9 @@ public class Drivetrain extends SubsystemManagerChild {
     //     rightPID.setReference(right, ctrl);
     //     leftPID.setReference(left, ctrl);
     // }
-
+    private void configure(WPI_TalonSRX talon) {
+        talon.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 10);
+    }
     /**
      * sets left motor's speed
      * @param speed percentage power from -1 to 1
