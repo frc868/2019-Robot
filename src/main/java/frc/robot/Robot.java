@@ -17,6 +17,7 @@ import frc.robot.sensors.subsystems.Camera;
 import frc.robot.sensors.subsystems.gyro.Gyroscope;
 import frc.robot.helpers.SubsystemManager;
 import frc.robot.carriage.subsystems.*;
+import frc.robot.drivetrain.commands.EvanIsGood;
 
 public class Robot extends TimedRobot {
   public static BallIntake ballIntake = new BallIntake();
@@ -64,6 +65,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousInit() {
+    new EvanIsGood(24);
   }
 
   @Override
