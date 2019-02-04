@@ -1,6 +1,7 @@
 package frc.robot.drivetrain;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import frc.robot.helpers.Helper;
 import frc.robot.helpers.SubsystemManagerChild;
@@ -204,5 +205,13 @@ public class Drivetrain extends SubsystemManagerChild {
      */
     public double getAvgScaledVelocity() {
         return getAvgEncVelocity() * INCHES_PER_TICK;
+    }
+
+    @Override
+    public void updateSD() {
+        SmartDashboard.putNumber("Left Speed", getLeftSpeed());
+        SmartDashboard.putNumber("Right Speed", getRightSpeed());
+        SmartDashboard.putNumber("Left Position", getLeftEncPosition());
+        SmartDashboard.putNumber("Right Position", getRightEncPosition());
     }
 }

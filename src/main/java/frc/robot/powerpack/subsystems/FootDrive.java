@@ -2,6 +2,7 @@ package frc.robot.powerpack.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import frc.robot.helpers.Helper;
 import frc.robot.helpers.SubsystemManagerChild;
@@ -43,5 +44,11 @@ public class FootDrive extends SubsystemManagerChild {
    */
   public double getEncPosition() {
     return primary.getSelectedSensorPosition();
+  }
+
+  @Override
+  public void updateSD() {
+    SmartDashboard.putNumber("Foot Drive Speed", getSpeed());
+    SmartDashboard.putNumber("Foot Drive Position", getEncPosition());
   }
 }

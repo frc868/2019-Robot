@@ -2,6 +2,7 @@ package frc.robot.carriage.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import frc.robot.helpers.Helper;
 import frc.robot.helpers.SubsystemManagerChild;
@@ -50,7 +51,7 @@ public class Tilt extends SubsystemManagerChild {
    * @return state of forward limit switch
    */
   public boolean getForwardLimitSwitch() {
-    return true; //TODO fix this
+    return primary.getSensorCollection().isFwdLimitSwitchClosed(); //TODO fix this
   }
 
   /** 
@@ -58,6 +59,14 @@ public class Tilt extends SubsystemManagerChild {
    * @return state of reverse limit switch
    */
   public boolean getReverseLimitSwtich() {
-    return true; //TODO fix this
+    return primary.getSensorCollection().isRevLimitSwitchClosed(); //TODO fix this
+  }
+
+  @Override
+  public void updateSD() {
+    SmartDashboard.putNumber("Hatch Pickup Wrist Speed", getSpeed());
+    SmartDashboard.putNumber("Hatch Pickup Wrist Position", getEncPosition());
+    SmartDashboard.putBoolean("Hatch Pickup Wrist Forward Limit", getForwardLimitSwitch());
+    SmartDashboard.putBoolean("Hatch Pickup Wrist Reverse Limit", getReverseLimitSwtich());
   }
 }

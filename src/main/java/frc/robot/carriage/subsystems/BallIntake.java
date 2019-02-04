@@ -2,6 +2,7 @@ package frc.robot.carriage.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import frc.robot.helpers.Helper;
 import frc.robot.helpers.SubsystemManagerChild;
@@ -43,6 +44,12 @@ public class BallIntake extends SubsystemManagerChild {
    */
   public boolean isBallDetected() {
     return primary.getSensorCollection().isFwdLimitSwitchClosed();
+  }
+
+  @Override
+  public void updateSD() {
+    SmartDashboard.putNumber("Ball Intake Speed", getSpeed());
+    SmartDashboard.putBoolean("Is Ball Detected", isBallDetected());
   }
   
 }

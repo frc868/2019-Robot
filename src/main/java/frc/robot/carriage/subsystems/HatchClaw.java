@@ -8,12 +8,13 @@
 package frc.robot.carriage.subsystems;
 
 import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import frc.robot.helpers.SubsystemManagerChild;
 
 public class HatchClaw extends SubsystemManagerChild {
-  
   private Solenoid actuator;
+  private final boolean IS_OPEN = true;
 
   public HatchClaw() {
     actuator = new Solenoid(RobotMap.Carraige.HATCH_CLAW);
@@ -31,7 +32,7 @@ public class HatchClaw extends SubsystemManagerChild {
    * opens claw
    */
   public void open() {
-    setState(false);
+    setState(IS_OPEN);
   }
 
 
@@ -39,7 +40,7 @@ public class HatchClaw extends SubsystemManagerChild {
    * closes claw
    */
   public void close() {
-    setState(true);
+    setState(!IS_OPEN);
   }
 
   /**
@@ -48,6 +49,26 @@ public class HatchClaw extends SubsystemManagerChild {
    */
   public boolean getState() {
     return actuator.get();
+  }
+
+  /**
+   * @return whether the claw is open or not
+   */
+  public boolean isOpen() {
+    return getState() == IS_OPEN;
+  }
+
+  /**
+   * 
+   * @return whether the claw is closed or not
+   */
+  public boolean isClosed() {
+    return !isOpen();
+  }
+
+  @Override
+  public void updateSD() {
+    SmartDashboard.putBoolean("Hatch Claw Openned", isOpen());
   }
 
 }
