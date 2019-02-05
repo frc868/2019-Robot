@@ -3,12 +3,13 @@ package frc.robot;
 public class RobotMap {
 
   public static class Drivetrain {
-    public static final int LEFT_PRIMARY = 0;
-    public static final int LEFT_SECONDARY = 1;
-    public static final int LEFT_TERTIARY = 1;
-    public static final int RIGHT_PRIMARY = 2;
-    public static final int RIGHT_SECONDARY = 3;
-    public static final int RIGHT_TERTIARY = 0;
+    //TODO: change talon ids!
+    public static final int LEFT_PRIMARY = 25;
+    public static final int LEFT_SECONDARY = 24;
+    // public static final int LEFT_TERTIARY = 1;
+    public static final int RIGHT_PRIMARY = 10;
+    public static final int RIGHT_SECONDARY = 11;
+    // public static final int RIGHT_TERTIARY = 0;
  
     public static final boolean IS_LEFT_INVERTED = false;
     public static final boolean IS_RIGHT_INVERTED = true;
@@ -23,7 +24,7 @@ public class RobotMap {
 
     public static final int DRIVE = 6;
 
-    public static final int RAMP_LEFT = 1;
+    public static final int RAMP_LEFT = 7;
     public static final int RAMP_RIGHT = 1;
 
     public static final int FORKS_LEFT = 2;

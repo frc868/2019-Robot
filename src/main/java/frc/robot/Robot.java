@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import frc.robot.drivetrain.Drivetrain;
 import frc.robot.drivetrain.commands.DriveStraight;
 import frc.robot.powerpack.subsystems.*;
-import frc.robot.sensors.subsystems.Camera;
+// import frc.robot.sensors.subsystems.Camera;
 import frc.robot.sensors.subsystems.gyro.Gyroscope;
 import frc.robot.helpers.SubsystemManager;
 import frc.robot.carriage.subsystems.*;
@@ -32,7 +32,7 @@ public class Robot extends TimedRobot {
   public static PowerPack powerPack = new PowerPack();
   public static Ramps climberRamps = new Ramps();
 
-  public static Camera camera = new Camera();
+  // public static Camera camera = new Camera();
   public static Gyroscope gyro = new Gyroscope();
 
   public static OI m_oi;
@@ -47,7 +47,7 @@ public class Robot extends TimedRobot {
     SubsystemManager.init();
     SubsystemManager.initSD();
     gyro.reset();
-
+    drivetrain.resetEncoders();
   }
 
   @Override
@@ -68,8 +68,8 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousInit() {
-    test = new DriveStraight(24, 0.5);
-    // test.start();
+    test = new DriveStraight(12, 0.3);
+    test.start();
   }
 
   @Override
