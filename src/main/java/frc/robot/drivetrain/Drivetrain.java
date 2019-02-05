@@ -18,36 +18,40 @@ public class Drivetrain extends SubsystemManagerChild {
     public Drivetrain() {
         leftPrimary = new WPI_TalonSRX(RobotMap.Drivetrain.LEFT_PRIMARY);
         leftSecondary = new WPI_TalonSRX(RobotMap.Drivetrain.LEFT_SECONDARY);
-        leftTertiary = new WPI_TalonSRX(RobotMap.Drivetrain.LEFT_TERTIARY);
+        //leftTertiary = new WPI_TalonSRX(RobotMap.Drivetrain.LEFT_TERTIARY);
 
         rightPrimary = new WPI_TalonSRX(RobotMap.Drivetrain.RIGHT_PRIMARY);
         rightSecondary = new WPI_TalonSRX(RobotMap.Drivetrain.RIGHT_SECONDARY);
-        rightTertiary = new WPI_TalonSRX(RobotMap.Drivetrain.RIGHT_TERTIARY);
+        //rightTertiary = new WPI_TalonSRX(RobotMap.Drivetrain.RIGHT_TERTIARY);
 
         configure(leftPrimary);
         configure(leftSecondary);
-        configure(leftTertiary);
+        //configure(leftTertiary);
         configure(rightPrimary);
         configure(rightSecondary);
-        configure(rightTertiary);
+        //configure(rightTertiary);
 
         leftSecondary.follow(leftPrimary);
-        leftSecondary.follow(leftPrimary);
+        //leftTertiary.follow(leftPrimary);
         rightSecondary.follow(rightPrimary);
-        rightTertiary.follow(rightPrimary);
+        //rightTertiary.follow(rightPrimary);
 
         leftPrimary.setInverted(RobotMap.Drivetrain.IS_LEFT_INVERTED);
+        leftSecondary.setInverted(RobotMap.Drivetrain.IS_LEFT_INVERTED);
+       // leftTertiary.setInverted(RobotMap.Drivetrain.IS_LEFT_INVERTED);
         rightPrimary.setInverted(RobotMap.Drivetrain.IS_RIGHT_INVERTED);
+        rightSecondary.setInverted(RobotMap.Drivetrain.IS_RIGHT_INVERTED);
+        //rightTertiary.setInverted(RobotMap.Drivetrain.IS_RIGHT_INVERTED);
 
-        rightPrimary.config_kP(0, 0.05, 10);
+        rightPrimary.config_kP(0, 0.2, 10);
         rightPrimary.config_kI(0, 0, 10);
         rightPrimary.config_kD(0, 0, 10);
-        //rightPrimary.config_kF(0, 0, 10);
+        rightPrimary.config_kF(0, 0.19864, 10);
 
-        leftPrimary.config_kP(0, 0.05, 10);
+        leftPrimary.config_kP(0, 0.2, 10);
         leftPrimary.config_kI(0, 0, 10);
         leftPrimary.config_kD(0, 0, 10);
-        //leftPrimary.config_kF(0, 0, 10);
+        leftPrimary.config_kF(0, 0.21882 * 1.065, 10);
 
      }
 

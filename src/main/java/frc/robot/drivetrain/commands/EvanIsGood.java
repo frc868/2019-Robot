@@ -8,6 +8,7 @@
 package frc.robot.drivetrain.commands;
 import frc.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class EvanIsGood extends Command {
   
@@ -24,6 +25,7 @@ public class EvanIsGood extends Command {
   @Override
   protected void initialize() {
     Robot.drivetrain.setPosition(distance, distance);
+    SmartDashboard.putNumber("test", 1);
   }
 
   // Called repeatedly when this Command is scheduled to run

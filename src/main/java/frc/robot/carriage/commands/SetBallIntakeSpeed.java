@@ -1,33 +1,33 @@
-package frc.robot.carriage.commands;
+// package frc.robot.carriage.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.Robot;
+// import edu.wpi.first.wpilibj.command.Command;
+// import frc.robot.Robot;
 
-public class SetBallIntakeSpeed extends Command {
-    private double speed;
+// public class SetBallIntakeSpeed extends Command {
+//     private double speed;
 
-    public SetBallIntakeSpeed(double speed) {
-        requires(Robot.ballIntake);
-        this.speed = speed;
-    }
+//     public SetBallIntakeSpeed(double speed) {
+//         requires(Robot.ballIntake);
+//         this.speed = speed;
+//     }
 
-    @Override
-    protected void initialize() {
-        Robot.ballIntake.setSpeed(speed);
-    }
+//     @Override
+//     protected void initialize() {
+//         Robot.ballIntake.setSpeed(speed);
+//     }
 
-    @Override
-    protected void end() {
-        Robot.ballIntake.stop();
-    }
+//     @Override
+//     protected void end() {
+//         Robot.ballIntake.stop();
+//     }
 
-    @Override
-    protected void interrupted() {
-        end();
-    }
+//     @Override
+//     protected void interrupted() {
+//         end();
+//     }
     
-    @Override
-    protected boolean isFinished() {
-        return false;
-    }
-}
+//     @Override
+//     protected boolean isFinished() {
+//         return false;
+//     }
+// }
