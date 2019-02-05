@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj.command.PIDCommand;
 import frc.robot.Robot;
 
 public class DriveStraight extends PIDCommand {
-    private static final double P = 1.0, I = 0.0, D = 0.0;
+    private static final double P = 0.05, I = 0.0, D = 0.0;
     public double initialDistance;
     public double targetDistance, targetPower, targetAngleChange;
 

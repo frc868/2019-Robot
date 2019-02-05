@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import frc.robot.drivetrain.Drivetrain;
+import frc.robot.drivetrain.commands.DriveStraight;
 import frc.robot.powerpack.subsystems.*;
 import frc.robot.sensors.subsystems.Camera;
 import frc.robot.sensors.subsystems.gyro.Gyroscope;
@@ -36,6 +37,8 @@ public class Robot extends TimedRobot {
 
   public static OI m_oi;
 
+  public static DriveStraight test;
+
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
   @Override
@@ -43,6 +46,7 @@ public class Robot extends TimedRobot {
     m_oi = new OI();
     SubsystemManager.init();
     SubsystemManager.initSD();
+    gyro.reset();
 
   }
 
@@ -64,6 +68,8 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousInit() {
+    test = new DriveStraight(24, 0.5);
+    // test.start();
   }
 
   @Override

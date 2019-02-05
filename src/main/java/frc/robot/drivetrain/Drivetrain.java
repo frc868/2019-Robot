@@ -207,6 +207,11 @@ public class Drivetrain extends SubsystemManagerChild {
         return getAvgEncVelocity() * INCHES_PER_TICK;
     }
 
+    public void resetEncoders(){
+        leftPrimary.setSelectedSensorPosition(0);
+        rightPrimary.setSelectedSensorPosition(0);
+    }
+
     @Override
     public void updateSD() {
         SmartDashboard.putNumber("Left Speed", getLeftSpeed());
