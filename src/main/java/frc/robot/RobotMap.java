@@ -12,7 +12,7 @@ public class RobotMap {
     // public static final int RIGHT_TERTIARY = 0;
  
     public static final boolean IS_LEFT_INVERTED = false;
-    public static final boolean IS_RIGHT_INVERTED = true;
+    public static final boolean IS_RIGHT_INVERTED = false;
   }
 
   public static class Powerpack {
