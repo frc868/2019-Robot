@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import frc.robot.drivetrain.Drivetrain;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 //import frc.robot.powerpack.subsystems.*;
 import frc.robot.sensors.subsystems.Camera;
 import frc.robot.sensors.subsystems.gyro.Gyroscope;
@@ -44,6 +45,7 @@ public class Robot extends TimedRobot {
     // m_oi = new OI();
     SubsystemManager.init();
     SubsystemManager.initSD();
+    SmartDashboard.putBoolean("zero encoders", false);
 
   }
 
@@ -51,6 +53,9 @@ public class Robot extends TimedRobot {
   public void robotPeriodic() {
     SubsystemManager.update();
     SubsystemManager.updateSD();
+    if(SmartDashboard.getBoolean("zero encoders", true)) {
+      drivetrain.zeroEncoders(); 
+    }
   }
 
   @Override
@@ -65,7 +70,8 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousInit() {
-    new EvanIsGood(24);
+    EvanIsGood var = new EvanIsGood(1000);
+    var.start();
   }
 
   @Override

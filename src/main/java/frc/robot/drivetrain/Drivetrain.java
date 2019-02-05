@@ -43,15 +43,15 @@ public class Drivetrain extends SubsystemManagerChild {
         rightSecondary.setInverted(RobotMap.Drivetrain.IS_RIGHT_INVERTED);
         //rightTertiary.setInverted(RobotMap.Drivetrain.IS_RIGHT_INVERTED);
 
-        rightPrimary.config_kP(0, 0.2, 10);
+        rightPrimary.config_kP(0, 0.00008, 10);
         rightPrimary.config_kI(0, 0, 10);
         rightPrimary.config_kD(0, 0, 10);
-        rightPrimary.config_kF(0, 0.19864, 10);
+       // rightPrimary.config_kF(0, 0.19864, 10);
 
-        leftPrimary.config_kP(0, 0.2, 10);
+        leftPrimary.config_kP(0, 0.00008, 10);
         leftPrimary.config_kI(0, 0, 10);
         leftPrimary.config_kD(0, 0, 10);
-        leftPrimary.config_kF(0, 0.21882 * 1.065, 10);
+        //leftPrimary.config_kF(0, 0.21882 * 1.065, 10);
 
      }
 
@@ -94,6 +94,7 @@ public class Drivetrain extends SubsystemManagerChild {
     //     leftPID.setReference(left, ctrl);
     // }
     private void configure(WPI_TalonSRX talon) {
+        talon.changeControlMode(ControlMode.Position);
         talon.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 10);
     }
     /**
@@ -123,8 +124,8 @@ public class Drivetrain extends SubsystemManagerChild {
     }
 
     public void setPosition(double leftPosition, double rightPosition) {
-        rightPrimary.set(ControlMode.Position, rightPosition * ENCODER_TO_INCHES);
-        leftPrimary.set(ControlMode.Position, leftPosition * ENCODER_TO_INCHES);
+        rightPrimary.set(rightPosition);
+        leftPrimary.set(leftPosition);
     }
     /**
      * turn off both motors
@@ -133,6 +134,11 @@ public class Drivetrain extends SubsystemManagerChild {
         leftPrimary.stopMotor();
         rightPrimary.stopMotor();
     }
+
+    public void zeroEncoders() {
+		leftPrimary.setSelectedSensorPosition(0, 0, 0);
+		rightPrimary.setSelectedSensorPosition(0, 0, 0);
+	}
 
     /**
      * @return speed left motor is set to

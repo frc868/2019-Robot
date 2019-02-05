@@ -24,8 +24,7 @@ public class EvanIsGood extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.drivetrain.setPosition(distance, distance);
-    SmartDashboard.putNumber("test", 1);
+    Robot.drivetrain.setPosition(-distance, -distance);
   }
 
   // Called repeatedly when this Command is scheduled to run
