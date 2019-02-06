@@ -101,6 +101,7 @@ public class Drivetrain extends SubsystemManagerChild {
     public void stop() {
         // leftPrimary.stopMotor();
         // rightPrimary.stopMotor();
+        SmartDashboard.putBoolean("Stopping", true);
         setSpeed(0, 0);
     }
 
@@ -217,9 +218,9 @@ public class Drivetrain extends SubsystemManagerChild {
 
     @Override
     public void updateSD() {
-        SmartDashboard.putNumber("Left Speed", getLeftSpeed());
-        SmartDashboard.putNumber("Right Speed", getRightSpeed());
-        SmartDashboard.putNumber("Left Position", getLeftEncPosition());
-        SmartDashboard.putNumber("Right Position", getRightEncPosition());
+        // SmartDashboard.putNumber("Left Speed", getLeftSpeed());
+        // SmartDashboard.putNumber("Right Speed", getRightSpeed());
+        // SmartDashboard.putNumber("Left Position", getLeftEncPosition());
+        // SmartDashboard.putNumber("Right Position", getRightEncPosition());
     }
 }
