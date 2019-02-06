@@ -8,23 +8,23 @@ import frc.robot.helpers.SubsystemManagerChild;
 
 public class Drivetrain extends SubsystemManagerChild {
     private WPI_TalonSRX leftPrimary, leftSecondary, leftTertiary, rightPrimary, rightSecondary, rightTertiary;
-    private final double INCHES_PER_TICK = 1;
+    private final double INCHES_PER_TICK = 0.0045998; //TODO: make sure this is right
     // private double P, I, D, F;
     // private CANPIDController rightPID, leftPID;
 
     public Drivetrain() {
         leftPrimary = new WPI_TalonSRX(RobotMap.Drivetrain.LEFT_PRIMARY);
         leftSecondary = new WPI_TalonSRX(RobotMap.Drivetrain.LEFT_SECONDARY);
-        leftTertiary = new WPI_TalonSRX(RobotMap.Drivetrain.LEFT_TERTIARY);
-
+        // leftTertiary = new WPI_TalonSRX(RobotMap.Drivetrain.LEFT_TERTIARY);
+        //TODO: uncomment this
         rightPrimary = new WPI_TalonSRX(RobotMap.Drivetrain.RIGHT_PRIMARY);
         rightSecondary = new WPI_TalonSRX(RobotMap.Drivetrain.RIGHT_SECONDARY);
-        rightTertiary = new WPI_TalonSRX(RobotMap.Drivetrain.RIGHT_TERTIARY);
+        // rightTertiary = new WPI_TalonSRX(RobotMap.Drivetrain.RIGHT_TERTIARY);
 
         leftSecondary.follow(leftPrimary);
-        leftSecondary.follow(leftPrimary);
+        // leftTertiary.follow(leftPrimary);
         rightSecondary.follow(rightPrimary);
-        rightTertiary.follow(rightPrimary);
+        // rightTertiary.follow(rightPrimary);
 
         leftPrimary.setInverted(RobotMap.Drivetrain.IS_LEFT_INVERTED);
         rightPrimary.setInverted(RobotMap.Drivetrain.IS_RIGHT_INVERTED);
@@ -99,8 +99,9 @@ public class Drivetrain extends SubsystemManagerChild {
      * turn off both motors
      */
     public void stop() {
-        leftPrimary.stopMotor();
-        rightPrimary.stopMotor();
+        // leftPrimary.stopMotor();
+        // rightPrimary.stopMotor();
+        setSpeed(0, 0);
     }
 
     /**
@@ -166,6 +167,7 @@ public class Drivetrain extends SubsystemManagerChild {
      * @return velocity of left motor according to encoder
      */
     public double getLeftEncVelocity() {
+
         return leftPrimary.getSelectedSensorVelocity();
     }
 
@@ -181,6 +183,7 @@ public class Drivetrain extends SubsystemManagerChild {
      * @return velocity of right motor according to encoder
      */
     public double getRightEncVelocity() {
+
         return rightPrimary.getSelectedSensorVelocity();
     }
 
@@ -205,6 +208,11 @@ public class Drivetrain extends SubsystemManagerChild {
      */
     public double getAvgScaledVelocity() {
         return getAvgEncVelocity() * INCHES_PER_TICK;
+    }
+
+    public void resetEncoders(){
+        leftPrimary.setSelectedSensorPosition(0);
+        rightPrimary.setSelectedSensorPosition(0);
     }
 
     @Override
