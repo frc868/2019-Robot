@@ -48,7 +48,6 @@ public class Robot extends TimedRobot {
     SubsystemManager.init();
     SubsystemManager.initSD();
     gyro.reset();
-    drivetrain.resetEncoders();
   }
 
   @Override
@@ -59,6 +58,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void disabledInit() {
+    drivetrain.resetEncoders();
   }
 
   @Override
@@ -69,17 +69,21 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousInit() {
+    drivetrain.resetEncoders();
     test = new DriveStraight(12, 0.3);
     test.start();
   }
 
   @Override
   public void autonomousPeriodic() {
+    SmartDashboard.putNumber("Left Velocity", drivetrain.getLeftEncVelocity());
+    SmartDashboard.putNumber("Right Velocity", drivetrain.getRightEncVelocity());
     Scheduler.getInstance().run();
   }
 
   @Override
   public void teleopInit() {
+    drivetrain.resetEncoders();
   }
 
   @Override

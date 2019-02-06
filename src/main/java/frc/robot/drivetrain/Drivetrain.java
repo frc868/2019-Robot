@@ -122,7 +122,6 @@ public class Drivetrain extends SubsystemManagerChild {
      * @return position of left motor according to encoder
      */
     public double getLeftEncPosition() {
-        SmartDashboard.putNumber("Left Position", leftPrimary.getSelectedSensorPosition());
         return leftPrimary.getSelectedSensorPosition();
     }
 
@@ -138,7 +137,6 @@ public class Drivetrain extends SubsystemManagerChild {
      * @return position of right motor according to encoder
      */
     public double getRightEncPosition() {
-        SmartDashboard.putNumber("Right Position", rightPrimary.getSelectedSensorPosition());
         return rightPrimary.getSelectedSensorPosition();
     }
 
@@ -169,7 +167,6 @@ public class Drivetrain extends SubsystemManagerChild {
      * @return velocity of left motor according to encoder
      */
     public double getLeftEncVelocity() {
-        SmartDashboard.putNumber("leftVelocity", leftPrimary.getSelectedSensorVelocity());
 
         return leftPrimary.getSelectedSensorVelocity();
     }
@@ -186,7 +183,6 @@ public class Drivetrain extends SubsystemManagerChild {
      * @return velocity of right motor according to encoder
      */
     public double getRightEncVelocity() {
-        SmartDashboard.putNumber("rightVelocity", rightPrimary.getSelectedSensorVelocity());
 
         return rightPrimary.getSelectedSensorVelocity();
     }
