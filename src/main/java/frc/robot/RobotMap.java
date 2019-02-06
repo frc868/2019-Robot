@@ -3,7 +3,7 @@ package frc.robot;
 public class RobotMap {
 
   public static class Drivetrain {
-    //TODO: change talon ids!
+    //TODO: change talon ids back to commented out versions
     public static final int LEFT_PRIMARY = 25;
     public static final int LEFT_SECONDARY = 24;
     // public static final int LEFT_TERTIARY = 1;
@@ -16,24 +16,24 @@ public class RobotMap {
   }
 
   public static class Powerpack {
-    public static final int POWERPACK_PRIMARY = 7;
-    public static final int POWERPACK_SECONDARY = 8;
-    public static final int POWERPACK_TERTIARY = 9;
-    public static final int POWERPACK_QUATERNARY = 10;
+    public static final int POWERPACK_PRIMARY = 13;//7;
+    public static final int POWERPACK_SECONDARY = 1;//8;
+    public static final int POWERPACK_TERTIARY = 22;//9;
+    public static final int POWERPACK_QUATERNARY = 23;//10;
     public static final int POWERPACK_SWITCHER = 0;
 
-    public static final int DRIVE = 6;
+    public static final int DRIVE = 14;//6;
 
-    public static final int RAMP_LEFT = 7;
+    public static final int RAMP_LEFT = 7; //TODO: change this value if needed
     public static final int RAMP_RIGHT = 1;
 
     public static final int FORKS_LEFT = 2;
     public static final int FORKS_RIGHT = 3;
   }
   
-  public static class Carraige {
+  public static class Carraige { //TODO: this should be Carriage
     public static final int TILT = 11;
-    public static final int BALL_INTAKE = 12;
+    public static final int BALL_INTAKE = 20;//12;
     public static final int HATCH_CLAW = 1;
     public static final int HATCH_PICKUP_WRIST = 13;
     public static final int HATCH_PICKUP_INTAKE = 14;
