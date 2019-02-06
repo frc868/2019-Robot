@@ -6,7 +6,7 @@ import frc.robot.Robot;
 import frc.robot.helpers.Helper;
 
 public class DriveStraight extends PIDCommand {
-    private static final double P = 0.0001, I = 0.0, D = 0.0;
+    private static final double P = 0.0001, I = 0.0, D = 0.0; //TODO: tune these constants
     public double initialDistance;
     public double targetDistance, targetPower, targetAngleChange;
 
@@ -24,15 +24,15 @@ public class DriveStraight extends PIDCommand {
 
     @Override
     protected void initialize() {
-        // setSetpoint(Robot.gyro.getRotation() + targetAngleChange);
-        setSetpoint(targetDistance);
+        setSetpoint(Robot.gyro.getRotation() + targetAngleChange); //TODO: if it's drive straight, wouldn't target angle change be 0?
+        // setSetpoint(targetDistance);
         initialDistance = Robot.drivetrain.getAvgScaledDistance();
     }
 
     @Override
     protected double returnPIDInput() {
-        // return Robot.gyro.getRotation();
-        return Robot.drivetrain.getAvgEncPosition();
+        return Robot.gyro.getRotation();
+        // return Robot.drivetrain.getAvgEncPosition();
     }
 
     @Override
