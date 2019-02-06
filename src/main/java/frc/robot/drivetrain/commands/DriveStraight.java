@@ -24,15 +24,16 @@ public class DriveStraight extends PIDCommand {
 
     @Override
     protected void initialize() {
-        setSetpoint(Robot.gyro.getRotation() + targetAngleChange); //TODO: if it's drive straight, wouldn't target angle change be 0?
-        // setSetpoint(targetDistance);
+        // setSetpoint(Robot.gyro.getRotation() + targetAngleChange); //TODO: if it's drive straight, wouldn't target angle change be 0?
+        setSetpoint(targetDistance);
         initialDistance = Robot.drivetrain.getAvgScaledDistance();
+        
     }
 
     @Override
     protected double returnPIDInput() {
-        return Robot.gyro.getRotation();
-        // return Robot.drivetrain.getAvgEncPosition();
+        // return Robot.gyro.getRotation();
+        return Robot.drivetrain.getAvgEncPosition();
     }
 
     @Override
@@ -46,6 +47,7 @@ public class DriveStraight extends PIDCommand {
     @Override
     protected boolean isFinished() {
         SmartDashboard.putNumber("dist", distanceToTarget());
+        // Robot.drivetrain.stop();
         return distanceToTarget() < 0;
         // SmartDashboard.putNumber("Distance to Target", distanceToTarget());
         // SmartDashboard.putBoolean("isFinished", Math.abs(Robot.drivetrain.getAvgScaledDistance() - initialDistance) >= getSetpoint());
