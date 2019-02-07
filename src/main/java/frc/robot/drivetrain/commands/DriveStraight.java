@@ -24,16 +24,17 @@ public class DriveStraight extends PIDCommand {
 
     @Override
     protected void initialize() {
-        // setSetpoint(Robot.gyro.getRotation() + targetAngleChange); //TODO: if it's drive straight, wouldn't target angle change be 0?
-        setSetpoint(targetDistance);
+        setSetpoint(Robot.gyro.getRotation() + targetAngleChange); //TODO: if it's drive straight, wouldn't target angle change be 0?
+        // setSetpoint(targetDistance);
+        getPIDController().setAbsoluteTolerance(1);
         initialDistance = Robot.drivetrain.getAvgScaledDistance();
         
     }
 
     @Override
     protected double returnPIDInput() {
-        // return Robot.gyro.getRotation();
-        return Robot.drivetrain.getAvgEncPosition();
+        return Robot.gyro.getRotation();
+        // return Robot.drivetrain.getAvgEncPosition();
     }
 
     @Override
