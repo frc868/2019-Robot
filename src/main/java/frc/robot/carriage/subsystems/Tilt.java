@@ -12,7 +12,7 @@ public class Tilt extends SubsystemManagerChild {
   private WPI_TalonSRX primary;
 
   public Tilt() {
-    primary = new WPI_TalonSRX(RobotMap.Carraige.TILT);
+    primary = new WPI_TalonSRX(RobotMap.Carriage.TILT);
   }
 
   /**

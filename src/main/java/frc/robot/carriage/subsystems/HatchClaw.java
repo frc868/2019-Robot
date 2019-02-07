@@ -17,7 +17,7 @@ public class HatchClaw extends SubsystemManagerChild {
   private final boolean IS_OPEN = true;
 
   public HatchClaw() {
-    actuator = new Solenoid(RobotMap.Carraige.HATCH_CLAW);
+    actuator = new Solenoid(RobotMap.Carriage.HATCH_CLAW);
   }
   
   /**

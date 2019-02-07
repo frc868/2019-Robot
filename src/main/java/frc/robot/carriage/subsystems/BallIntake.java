@@ -12,7 +12,7 @@ public class BallIntake extends SubsystemManagerChild {
   private WPI_TalonSRX primary;
 
   public BallIntake() {
-    primary = new WPI_TalonSRX(RobotMap.Carraige.BALL_INTAKE);
+    primary = new WPI_TalonSRX(RobotMap.Carriage.BALL_INTAKE);
   }
 
   /**

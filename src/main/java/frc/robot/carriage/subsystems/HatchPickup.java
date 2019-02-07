@@ -19,8 +19,8 @@ public class HatchPickup extends SubsystemManagerChild {
     private WPI_TalonSRX intake, wrist;
 
     public HatchPickup() {
-        intake = new WPI_TalonSRX(RobotMap.Carraige.HATCH_PICKUP_INTAKE);
-        wrist = new WPI_TalonSRX(RobotMap.Carraige.HATCH_PICKUP_WRIST);
+        intake = new WPI_TalonSRX(RobotMap.Carriage.HATCH_PICKUP_INTAKE);
+        wrist = new WPI_TalonSRX(RobotMap.Carriage.HATCH_PICKUP_WRIST);
     }
     
     /**

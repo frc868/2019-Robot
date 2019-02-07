@@ -31,7 +31,7 @@ public class RobotMap {
     public static final int FORKS_RIGHT = 3;
   }
   
-  public static class Carraige { //TODO: this should be Carriage
+  public static class Carriage { //TODO: this should be Carriage
     public static final int TILT = 11;
     public static final int BALL_INTAKE = 20;//12;
     public static final int HATCH_CLAW = 1;
