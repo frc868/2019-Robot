@@ -10,19 +10,15 @@ import frc.robot.helpers.SubsystemManagerChild;
 
 
 public class PowerPack extends SubsystemManagerChild {
-  private WPI_TalonSRX primary, secondary, tertiary, quaternary;
+  private WPI_TalonSRX primary, secondary;
   private Solenoid switcher;
   private final boolean ELEVATOR_MODE = true;
 
   public PowerPack() {
     primary = new WPI_TalonSRX(RobotMap.Powerpack.POWERPACK_PRIMARY);
     secondary = new WPI_TalonSRX(RobotMap.Powerpack.POWERPACK_SECONDARY);
-    tertiary = new WPI_TalonSRX(RobotMap.Powerpack.POWERPACK_TERTIARY);
-    quaternary = new WPI_TalonSRX(RobotMap.Powerpack.POWERPACK_QUATERNARY);
 
     secondary.follow(primary);
-    tertiary.follow(primary);
-    quaternary.follow(primary);
 
     switcher = new Solenoid(RobotMap.Powerpack.POWERPACK_SWITCHER);
   }
