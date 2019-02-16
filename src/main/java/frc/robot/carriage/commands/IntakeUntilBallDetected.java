@@ -5,9 +5,14 @@ import frc.robot.Robot;
 public class IntakeUntilBallDetected extends SetBallIntakeSpeed {
     private int countsDetected = 0;
     private final int COUNTS_NEEDED = 5; // the counts needed to determine that the ball is indeed detected
+    private final int DEFAULT_POWER = 1.0;
+
+    public IntakeUntilBallDetected(double power) {
+        super(power);
+    }
 
     public IntakeUntilBallDetected() {
-        super(1.0);
+        this(DEFAULT_POWER);
     }
 
     @Override

@@ -37,7 +37,8 @@ public class RobotMap {
     public static final int HATCH_PICKUP_INTAKE = 14;
   }
 
-  /**contains mappings for an xbox controller's buttons to their int's
+  /**
+   * contains mappings for an xbox controller's buttons to their int's
    * current values need to be varified
    */
   public class Controls{
