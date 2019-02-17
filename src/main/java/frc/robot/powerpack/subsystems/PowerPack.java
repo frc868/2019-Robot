@@ -117,22 +117,37 @@ public class PowerPack extends SubsystemManagerChild {
     return !isElevatorMode();
   }
 
+  /**
+   * @param mode the mode to set brake to
+   */
   public void setBrakeMode(boolean mode) {
     brake.set(mode);
   }
 
+  /**
+   * turns brake on
+   */
   public void brakeOn() {
     setBrakeMode(BRAKE_MODE)''
   }
 
+  /**
+   * turns brake off
+   */
   public void brakeOff() {
     setBrakeMode(!BRAKE_MODE);
   }
 
+  /**
+   * returns brake solenoid state
+   */
   public boolean getBrakeMode() {
     return brake.get();
   }
 
+  /**
+   * returns true if breaking, false if not
+   */
   public boolean isBrakeMode() {
     return getBrakeMode() == BRAKE_MODE;
   }
