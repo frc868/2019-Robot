@@ -11,8 +11,8 @@ import frc.robot.helpers.SubsystemManagerChild;
 
 public class PowerPack extends SubsystemManagerChild {
   private WPI_TalonSRX primary, secondary;
-  private Solenoid switcher;
-  private final boolean ELEVATOR_MODE = true;
+  private Solenoid switcher, brake;
+  private final boolean ELEVATOR_MODE = true, BRAKE_MODE = true;
 
   public PowerPack() {
     primary = new WPI_TalonSRX(RobotMap.Powerpack.POWERPACK_PRIMARY);
@@ -21,6 +21,7 @@ public class PowerPack extends SubsystemManagerChild {
     secondary.follow(primary);
 
     switcher = new Solenoid(RobotMap.Powerpack.POWERPACK_SWITCHER);
+    brake = new Solenoid(RobotMap.PowerPack.POWERPACK_BRAKE)
   }
 
   /**
@@ -74,7 +75,7 @@ public class PowerPack extends SubsystemManagerChild {
    * 
    * @param mode mode to set powerpack to
    */
-  public void setMode(boolean mode) {
+  public void setShifterMode(boolean mode) {
     switcher.set(mode);
   }
 
@@ -96,7 +97,7 @@ public class PowerPack extends SubsystemManagerChild {
    * 
    * @return mode powerpack is set to
    */
-  public boolean getMode() {
+  public boolean getShifterMode() {
     return switcher.get();
   }
 
@@ -114,6 +115,26 @@ public class PowerPack extends SubsystemManagerChild {
    */
   public boolean isClimberMode() {
     return !isElevatorMode();
+  }
+
+  public void setBrakeMode(boolean mode) {
+    brake.set(mode);
+  }
+
+  public void brakeOn() {
+    setBrakeMode(BRAKE_MODE)''
+  }
+
+  public void brakeOff() {
+    setBrakeMode(!BRAKE_MODE);
+  }
+
+  public boolean getBrakeMode() {
+    return brake.get();
+  }
+
+  public boolean isBrakeMode() {
+    return getBrakeMode() == BRAKE_MODE;
   }
 
 

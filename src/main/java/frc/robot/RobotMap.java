@@ -19,6 +19,7 @@ public class RobotMap {
     public static final int POWERPACK_PRIMARY = 13;//7;
     public static final int POWERPACK_SECONDARY = 1;//8;
     public static final int POWERPACK_SWITCHER = 0;
+    public static final int POWERPACK_SWITCHER = 1;
 
     public static final int DRIVE = 14;//6;
 
