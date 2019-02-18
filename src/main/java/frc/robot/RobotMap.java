@@ -65,6 +65,7 @@ public class RobotMap {
       public static final int INTAKE = 14;
       public static final int WRIST_ENCODER_A = 0;
       public static final int WRIST_ENCODER_B = 1;
+      public static final int FAILSAFE = 0; // TODO: don't know what this is yet...
     }
   }
 

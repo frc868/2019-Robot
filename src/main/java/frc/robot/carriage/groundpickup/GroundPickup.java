@@ -10,6 +10,7 @@ package frc.robot.carriage.groundpickup;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.DigitalInput;
 import frc.robot.RobotMap;
 import frc.robot.helpers.Helper;
 import frc.robot.helpers.SubsystemManagerChild;
@@ -17,12 +18,14 @@ import edu.wpi.first.wpilibj.Encoder;
 
 public class GroundPickup extends SubsystemManagerChild {
     private WPI_TalonSRX intake, wrist;
-    private Encoder encoder;
+    //private Encoder encoder;
+    private DigitalInput failsafe;
 
     public GroundPickup() {
         intake = new WPI_TalonSRX(RobotMap.Carriage.GroundPickup.INTAKE);
         wrist = new WPI_TalonSRX(RobotMap.Carriage.GroundPickup.WRIST);
-        encoder = new Encoder(RobotMap.Carriage.Tilt.ENCODER_A, RobotMap.Carriage.Tilt.ENCODER_B);
+        //encoder = new Encoder(RobotMap.Carriage.Tilt.ENCODER_A, RobotMap.Carriage.Tilt.ENCODER_B);
+        failsafe = new DigitalInput(RobotMap.Carriage.GroundPickup.FAILSAFE);
     }
     
     /**
@@ -72,11 +75,25 @@ public class GroundPickup extends SubsystemManagerChild {
     }
 
     /**
+     * @return whether the failsafe has been triggered
+     */
+    public boolean getFailsafe() {
+        return failsafe.get();
+    }
+
+    /**
      * 
      * @return position wrist is at
      */
     public double getWristEncPosition() {
-        return encoder.get();
+        return intake.getSelectedSensorPosition();
+    }
+
+    @Override
+    public void update() {
+        if (getFailsafe()) { // TODO: might be open-default or closed-default, idk, trivial
+            stopIntake();
+        }
     }
 
     @Override
