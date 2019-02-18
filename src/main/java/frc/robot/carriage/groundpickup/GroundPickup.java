@@ -5,7 +5,7 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.carriage.subsystems;
+package frc.robot.carriage.groundpickup;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
@@ -13,14 +13,16 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import frc.robot.helpers.Helper;
 import frc.robot.helpers.SubsystemManagerChild;
+import edu.wpi.first.wpilibj.Encoder;
 
-public class HatchPickup extends SubsystemManagerChild {
-  
+public class GroundPickup extends SubsystemManagerChild {
     private WPI_TalonSRX intake, wrist;
+    private Encoder encoder;
 
-    public HatchPickup() {
-        intake = new WPI_TalonSRX(RobotMap.Carriage.HATCH_PICKUP_INTAKE);
-        wrist = new WPI_TalonSRX(RobotMap.Carriage.HATCH_PICKUP_WRIST);
+    public GroundPickup() {
+        intake = new WPI_TalonSRX(RobotMap.Carriage.GroundPickup.INTAKE);
+        wrist = new WPI_TalonSRX(RobotMap.Carriage.GroundPickup.WRIST);
+        encoder = new Encoder(RobotMap.Carriage.Tilt.ENCODER_A, RobotMap.Carriage.Tilt.ENCODER_B);
     }
     
     /**
@@ -74,23 +76,7 @@ public class HatchPickup extends SubsystemManagerChild {
      * @return position wrist is at
      */
     public double getWristEncPosition() {
-        return wrist.getSelectedSensorPosition();
-    }
-
-     /** 
-     * 
-     * @return state of forward limit switch
-     */
-    public boolean getWristForwardLimitSwitch() {
-        return wrist.getSensorCollection().isFwdLimitSwitchClosed(); //TODO fix this
-    }
-
-    /** 
-     * 
-     * @return state of reverse limit switch
-     */
-    public boolean getWristReverseLimitSwtich() {
-        return wrist.getSensorCollection().isRevLimitSwitchClosed(); //TODO fix this
+        return encoder.get();
     }
 
     @Override
@@ -98,7 +84,5 @@ public class HatchPickup extends SubsystemManagerChild {
         SmartDashboard.putNumber("Hatch Pickup Intake Speed", getIntakeSpeed());
         SmartDashboard.putNumber("Hatch Pickup Wrist Speed", getWristSpeed());
         SmartDashboard.putNumber("Hatch Pickup Wrist Position", getWristEncPosition());
-        SmartDashboard.putBoolean("Hatch Pickup Wrist Forward Limit", getWristForwardLimitSwitch());
-        SmartDashboard.putBoolean("Hatch Pickup Wrist Reverse Limit", getWristReverseLimitSwtich());
     }
 }

@@ -1,4 +1,4 @@
-package frc.robot.carriage.subsystems;
+package frc.robot.carriage.ballintake;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
@@ -6,13 +6,16 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import frc.robot.helpers.Helper;
 import frc.robot.helpers.SubsystemManagerChild;
+import edu.wpi.first.wpilibj.DigitalInput;
 
 
 public class BallIntake extends SubsystemManagerChild {
   private WPI_TalonSRX primary;
+  private DigitalInput limit;
 
   public BallIntake() {
-    primary = new WPI_TalonSRX(RobotMap.Carriage.BALL_INTAKE);
+    primary = new WPI_TalonSRX(RobotMap.Carriage.BallIntake.MOTOR);
+    limit = new DigitalInput(RobotMap.Carriage.BallIntake.LIMIT);
   }
 
   /**
@@ -37,13 +40,13 @@ public class BallIntake extends SubsystemManagerChild {
   public double getSpeed() {
     return primary.get();
   }
-
+  
   /**
    * 
    * @return true if ball is detected
    */
   public boolean isBallDetected() {
-    return primary.getSensorCollection().isFwdLimitSwitchClosed();
+    return limit.get();
   }
 
   @Override

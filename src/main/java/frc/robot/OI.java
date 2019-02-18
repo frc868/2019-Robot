@@ -44,13 +44,10 @@ public class OI {
    * button.whenReleased(new ExampleCommand());
    */
   
-  public XboxController driver;
-  public XboxController operator;
+  public static XboxController driver;
+  public static XboxController operator;
 
-  public OI(){
-  }
-
-  public void initDriver(){
+  public static void initDriver(){
     driver = new XboxController(RobotMap.Controls.DRIVER);
 
     Button a = new JoystickButton(driver, RobotMap.Controls.A);
@@ -64,7 +61,7 @@ public class OI {
 
   }
 
-  public void initOperator(){
+  public static void initOperator(){
     operator = new XboxController(RobotMap.Controls.OPERATOR);
 
     Button a = new JoystickButton(driver, RobotMap.Controls.A);
@@ -77,7 +74,7 @@ public class OI {
     Button lstk = new JoystickButton(driver, RobotMap.Controls.LSTK);
   }
 
-  public void updateDriver() {
+  public static void updateDriver() {
     double lx = driver.getRawAxis(RobotMap.Controls.LX);
     double ly = driver.getRawAxis(RobotMap.Controls.LY);
     double rx = driver.getRawAxis(RobotMap.Controls.RX);
@@ -88,7 +85,7 @@ public class OI {
     Robot.drivetrain.setSpeed(ly + lx, ly - lx);
   }
 
-  public void updateOperator() {
+  public static void updateOperator() {
     double lx = operator.getRawAxis(RobotMap.Controls.LX);
     double ly = operator.getRawAxis(RobotMap.Controls.LY);
     double rx = operator.getRawAxis(RobotMap.Controls.RX);

@@ -11,19 +11,26 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.drivetrain.Drivetrain;
-import frc.robot.drivetrain.commands.DriveStraight;
-import frc.robot.powerpack.subsystems.*;
-// import frc.robot.sensors.subsystems.Camera;
+
 import frc.robot.sensors.subsystems.gyro.Gyroscope;
 import frc.robot.helpers.SubsystemManager;
-import frc.robot.carriage.subsystems.*;
+
+import frc.robot.drivetrain.Drivetrain;
+
+import frc.robot.carriage.ballintake.*;
+import frc.robot.carriage.hatchclaw.*;
+import frc.robot.carriage.tilt.*;
+import frc.robot.carriage.groundpickup.*;
+
+import frc.robot.climberelevator.powerpack.*;
+import frc.robot.climberelevator.ramps.*;
+import frc.robot.climberelevator.forks.*;
+import frc.robot.climberelevator.footdrive.*;
 
 public class Robot extends TimedRobot {
   public static BallIntake ballIntake = new BallIntake();
   public static HatchClaw hatchClaw = new HatchClaw();
-  public static HatchPickup hatchPickup = new HatchPickup();
+  public static GroundPickup groundPickup = new GroundPickup();
   public static Tilt tilt = new Tilt();
 
   public static Drivetrain drivetrain = new Drivetrain();
@@ -33,32 +40,24 @@ public class Robot extends TimedRobot {
   public static PowerPack powerPack = new PowerPack();
   public static Ramps climberRamps = new Ramps();
 
-  // public static Camera camera = new Camera();
   public static Gyroscope gyro = new Gyroscope();
-
-  public static OI m_oi;
-
-  public static DriveStraight test;
 
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
   @Override
   public void robotInit() {
-    m_oi = new OI();
     SubsystemManager.init();
     SubsystemManager.initSD();
-    gyro.reset();
+    OI.initDriver();
+    OI.initOperator();
   }
 
   @Override
   public void robotPeriodic() {
     SubsystemManager.update();
     SubsystemManager.updateSD();
-  }
-
-  @Override
-  public void disabledInit() {
-    drivetrain.resetEncoders();
+    OI.updateDriver();
+    OI.updateOperator();
   }
 
   @Override
@@ -69,21 +68,17 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousInit() {
-    drivetrain.resetEncoders();
-    test = new DriveStraight(12, 0.3);
-    test.start();
+
   }
 
   @Override
   public void autonomousPeriodic() {
-    SmartDashboard.putNumber("Left Velocity", drivetrain.getLeftEncVelocity());
-    SmartDashboard.putNumber("Right Velocity", drivetrain.getRightEncVelocity());
     Scheduler.getInstance().run();
   }
 
   @Override
   public void teleopInit() {
-    drivetrain.resetEncoders();
+
   }
 
   @Override
@@ -93,5 +88,6 @@ public class Robot extends TimedRobot {
 
   @Override
   public void testPeriodic() {
+    Scheduler.getInstance().run();
   }
 }

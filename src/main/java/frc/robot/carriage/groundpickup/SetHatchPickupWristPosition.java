@@ -1,4 +1,4 @@
-package frc.robot.carriage.commands;
+package frc.robot.carriage.groundpickup;
 
 import edu.wpi.first.wpilibj.command.PIDCommand;
 import frc.robot.Robot;
@@ -9,18 +9,18 @@ public class SetHatchPickupWristPosition extends PIDCommand {
 
     public SetHatchPickupWristPosition(int setpoint) {
         super("SetHatchPickupWristPosition", P, I, D);
-        requires(Robot.hatchPickup);
+        requires(Robot.groundPickup);
         setSetpoint(setpoint);
     }
 
     @Override
     protected double returnPIDInput() {
-        return Robot.hatchPickup.getWristEncPosition();
+        return Robot.groundPickup.getWristEncPosition();
     }
 
     @Override
     protected void usePIDOutput(double output) {
-        Robot.hatchPickup.setWristSpeed(output);
+        Robot.groundPickup.setWristSpeed(output);
     }
 
     @Override

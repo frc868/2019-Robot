@@ -5,19 +5,19 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.powerpack.commands;
-
+package frc.robot.climberelevator.ramps;
+ 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class DeployForks extends Command {
-  public DeployForks() {
-    requires(Robot.forks);
+public class DeployRamps extends Command {
+  public DeployRamps() {
+    requires(Robot.climberRamps);
   }
 
   @Override
   protected void initialize() {
-    Robot.forks.open();
+    Robot.climberRamps.open();
   }
 
   @Override

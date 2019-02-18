@@ -5,19 +5,19 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.carriage.commands;
+package frc.robot.carriage.hatchclaw;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class OpenClaw extends Command {
-  public OpenClaw() {
+public class Release extends Command {
+  public Release() {
     requires(Robot.hatchClaw);
   }
 
   @Override
   protected void initialize() {
-    Robot.hatchClaw.open();
+    Robot.hatchClaw.release();
   }
 
   @Override

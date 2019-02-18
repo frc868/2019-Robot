@@ -1,11 +1,11 @@
-package frc.robot.carriage.commands;
+package frc.robot.carriage.ballintake;
 
 import frc.robot.Robot;
 
 public class IntakeUntilBallDetected extends SetBallIntakeSpeed {
     private int countsDetected = 0;
     private final int COUNTS_NEEDED = 5; // the counts needed to determine that the ball is indeed detected
-    private final int DEFAULT_POWER = 1.0;
+    private static final double DEFAULT_POWER = 1.0;
 
     public IntakeUntilBallDetected(double power) {
         super(power);

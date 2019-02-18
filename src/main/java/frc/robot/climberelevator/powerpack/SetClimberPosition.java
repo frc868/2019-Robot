@@ -1,21 +1,21 @@
-package frc.robot.powerpack.commands;
+package frc.robot.climberelevator.powerpack;
 
 import edu.wpi.first.wpilibj.command.PIDCommand;
 import frc.robot.Robot;
 
-public class SetElevatorPosition extends PIDCommand {
+public class SetClimberPosition extends PIDCommand {
     public static final double P = 1.0, I = 0.0, D = 0.0;
-    public final double LOWER = 0, MIDDLE = 1, UPPER = 2;
+    public final double FLOOR = 0, LEVEL_ONE = 1, LEVEL_TWO = 2;
 
-    public SetElevatorPosition(double setpoint) {
-        super("SetElevatorPosition", P, I, D);
+    public SetClimberPosition(double setpoint) {
+        super("SetClimberPosition", P, I, D);
         requires(Robot.powerPack);
         setSetpoint(setpoint);
     }
     
     @Override
     protected void initialize() {
-        Robot.powerPack.switchToElevator();
+        Robot.powerPack.switchToClimber();
     }
 
     @Override

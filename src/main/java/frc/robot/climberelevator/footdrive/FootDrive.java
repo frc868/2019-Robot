@@ -1,4 +1,4 @@
-package frc.robot.powerpack.subsystems;
+package frc.robot.climberelevator.footdrive;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
@@ -12,7 +12,7 @@ public class FootDrive extends SubsystemManagerChild {
   private WPI_TalonSRX primary;
 
   public FootDrive() {
-    primary = new WPI_TalonSRX(RobotMap.Powerpack.DRIVE);
+    primary = new WPI_TalonSRX(RobotMap.ClimberElevator.FootDrive.MOTOR);
   }
 
   /**
@@ -38,17 +38,8 @@ public class FootDrive extends SubsystemManagerChild {
     return primary.get();
   }
 
-  /**
-   * 
-   * @return position of motor according to encoder
-   */
-  public double getEncPosition() {
-    return primary.getSelectedSensorPosition();
-  }
-
   @Override
   public void updateSD() {
     SmartDashboard.putNumber("Foot Drive Speed", getSpeed());
-    SmartDashboard.putNumber("Foot Drive Position", getEncPosition());
   }
 }

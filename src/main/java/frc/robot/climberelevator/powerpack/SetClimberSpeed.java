@@ -1,4 +1,4 @@
-package frc.robot.powerpack.commands;
+package frc.robot.climberelevator.powerpack;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;

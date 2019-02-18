@@ -1,24 +1,24 @@
-package frc.robot.carriage.commands;
+package frc.robot.carriage.groundpickup;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class SetBallIntakeSpeed extends Command {
+public class SetHatchPickupIntakeSpeed extends Command {
     private double speed;
 
-    public SetBallIntakeSpeed(double speed) {
-        requires(Robot.ballIntake);
+    public SetHatchPickupIntakeSpeed(double speed) {
+        requires(Robot.groundPickup);
         this.speed = speed;
     }
 
     @Override
     protected void initialize() {
-        Robot.ballIntake.setSpeed(speed);
+        Robot.groundPickup.setIntakeSpeed(speed);
     }
 
     @Override
     protected void end() {
-        Robot.ballIntake.stop();
+        Robot.groundPickup.stopIntake();
     }
 
     @Override
