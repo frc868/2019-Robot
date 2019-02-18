@@ -3,15 +3,15 @@ package frc.robot;
 public class RobotMap {
 
   public static class Drivetrain {
-    public static final int LEFT_PRIMARY = 25;
-    public static final int LEFT_SECONDARY = 24;
-    public static final int LEFT_TERTIARY = 26;
+    public static final int LEFT_PRIMARY = 13;
+    public static final int LEFT_SECONDARY = 14;
+    public static final int LEFT_TERTIARY = 15;
     public static final int LEFT_ENCODER_A = 24;
     public static final int LEFT_ENCODER_B = 26;
 
-    public static final int RIGHT_PRIMARY = 10;
-    public static final int RIGHT_SECONDARY = 11;
-    public static final int RIGHT_TERTIARY = 12;
+    public static final int RIGHT_PRIMARY = 0;
+    public static final int RIGHT_SECONDARY = 1;
+    public static final int RIGHT_TERTIARY = 2;
     public static final int RIGHT_ENCODER_A = 24;
     public static final int RIGHT_ENCODER_B = 26;
 
