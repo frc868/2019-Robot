@@ -37,8 +37,9 @@ public class RobotMap {
     }
 
     public static class Forks {
-      public static final int LEFT = 2;
-      public static final int RIGHT = 3;
+      public static final int FORKS = 2; // idk
+      //public static final int LEFT = 2;
+      //public static final int RIGHT = 3;
     }
   }
   

@@ -5,101 +5,37 @@ import frc.robot.RobotMap;
 import frc.robot.helpers.SubsystemManagerChild;
 
 public class Forks extends SubsystemManagerChild {
-    private Solenoid left, right;
+    private Solenoid forks;
 
     public Forks() {
-        left = new Solenoid(RobotMap.ClimberElevator.Forks.LEFT);
-        right = new Solenoid(RobotMap.ClimberElevator.Forks.RIGHT);
+        forks = new Solenoid(RobotMap.ClimberElevator.Forks.FORKS);
     }
 
     /**
-     * 
-     * @param state which state to set the left fork to
-     */
-    public void setLeftState(boolean state) {
-        left.set(state);
-    }
-
-    /**
-     * opens left fork
-     */
-    public void openLeft() {
-        setLeftState(false);
-    }
-
-
-    /**
-     * closes left fork
-     */
-    public void closeLeft() {
-        setLeftState(true);
-    }
-
-    /**
-     * 
-     * @return state of left fork
-     */
-    public boolean getLeftState() {
-        return left.get();
-    }
-
-    /**
-     * 
-     * @param state which state to set the right fork to
-     */
-    public void setRightState(boolean state) {
-        right.set(state);
-    }
-
-    /**
-     * opens right fork
-     */
-    public void openRight() {
-        setRightState(false);
-    }
-
-
-    /**
-     * closes right fork
-     */
-    public void closeRight() {
-        setRightState(true);
-    }
-
-    /**
-     * 
-     * @return state of right fork
-     */
-    public boolean getRightState() {
-        return right.get();
-    }
-
-    /**
-     * 
-     * @param state which state to set the both forks to
+     * @param state which state to set the forks to
      */
     public void setState(boolean state) {
-        setRightState(state);
-        setLeftState(state);
+        forks.set(state);
     }
 
     /**
-     * opens both forks
+     * opens forks
      */
     public void open() {
-        openLeft();
-        openRight();
+        setState(false);
     }
-
 
     /**
-     * closes both forks
+     * closes forks
      */
     public void close() {
-        closeLeft();
-        closeRight();
+        setState(true);
     }
 
-    
-    
+    /**
+     * @return state of forks
+     */
+    public boolean getState() {
+        return forks.get();
+    }
 }
