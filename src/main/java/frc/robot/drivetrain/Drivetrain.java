@@ -5,11 +5,13 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import frc.robot.helpers.Helper;
 import frc.robot.helpers.SubsystemManagerChild;
+import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.Encoder;
 
 public class Drivetrain extends SubsystemManagerChild {
     private WPI_TalonSRX leftPrimary, leftSecondary, leftTertiary, rightPrimary, rightSecondary, rightTertiary;
     private Encoder leftEncoder, rightEncoder;
+    private AnalogGyro gyro;
     private final double INCHES_PER_TICK = 0.0045998; 
 
     public Drivetrain() {
@@ -31,6 +33,8 @@ public class Drivetrain extends SubsystemManagerChild {
 
         leftEncoder = new Encoder(RobotMap.Drivetrain.LEFT_ENCODER_A, RobotMap.Drivetrain.LEFT_ENCODER_B);
         rightEncoder = new Encoder(RobotMap.Drivetrain.RIGHT_ENCODER_A, RobotMap.Drivetrain.RIGHT_ENCODER_B);
+
+        gyro = new AnalogGyro(RobotMap.Drivetrain.GYRO);
      }
 
     /**
@@ -125,9 +129,27 @@ public class Drivetrain extends SubsystemManagerChild {
         return getAvgEncPosition() * INCHES_PER_TICK;
     }
 
+    /**
+     * resets encoder counts on gyros
+     */
     public void resetEncoders(){
         leftEncoder.reset();
         rightEncoder.reset();
+    }
+
+    /**
+     * 
+     * @return angle given by the gyro
+     */
+    public double getGyroAngle() {
+        return gyro.getAngle();
+    }
+
+    /**
+     * resets gyro angle
+     */
+    public void resetGyro() {
+        gyro.reset();
     }
 
     @Override

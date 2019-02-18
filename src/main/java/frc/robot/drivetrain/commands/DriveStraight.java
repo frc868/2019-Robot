@@ -11,9 +11,10 @@ public class DriveStraight extends PIDCommand {
     public double targetDistance, targetPower, targetAngleChange;
 
     public DriveStraight(double targetDistance, double targetPower) {
-        super("DriveStraight", P, I, D);
+        super(P, I, D);
         this.targetDistance = targetDistance;
         this.targetPower = targetPower;
+        requires(Robot.drivetrain);
     }
     
     public DriveStraight(double targetDistance, double targetPower, double targetAngleChange) {
@@ -24,7 +25,7 @@ public class DriveStraight extends PIDCommand {
 
     @Override
     protected void initialize() {
-        setSetpoint(Robot.gyro.getRotation() + targetAngleChange); //TODO: if it's drive straight, wouldn't target angle change be 0?
+        setSetpoint(Robot.drivetrain.getGyroAngle() + targetAngleChange); //TODO: if it's drive straight, wouldn't target angle change be 0?
         // setSetpoint(targetDistance);
         getPIDController().setAbsoluteTolerance(1);
         initialDistance = Robot.drivetrain.getAvgScaledDistance();
@@ -33,7 +34,7 @@ public class DriveStraight extends PIDCommand {
 
     @Override
     protected double returnPIDInput() {
-        return Robot.gyro.getRotation();
+        return Robot.drivetrain.getGyroAngle();
         // return Robot.drivetrain.getAvgEncPosition();
     }
 

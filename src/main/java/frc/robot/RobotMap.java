@@ -14,6 +14,8 @@ public class RobotMap {
     public static final int RIGHT_TERTIARY = 12;
     public static final int RIGHT_ENCODER_A = 24;
     public static final int RIGHT_ENCODER_B = 26;
+
+    public static final int GYRO = 0;
   }
 
   public static class ClimberElevator {

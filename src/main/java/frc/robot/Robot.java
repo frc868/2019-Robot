@@ -11,8 +11,6 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-
-import frc.robot.sensors.subsystems.gyro.Gyroscope;
 import frc.robot.helpers.SubsystemManager;
 
 import frc.robot.drivetrain.Drivetrain;
@@ -39,8 +37,6 @@ public class Robot extends TimedRobot {
   public static Forks forks = new Forks();
   public static PowerPack powerPack = new PowerPack();
   public static Ramps climberRamps = new Ramps();
-
-  public static Gyroscope gyro = new Gyroscope();
 
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 

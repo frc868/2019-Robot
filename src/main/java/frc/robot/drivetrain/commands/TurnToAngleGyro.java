@@ -14,12 +14,12 @@ public class TurnToAngleGyro extends PIDCommand {
 
 	@Override
 	protected void initialize() {
-		initialAngle = Robot.gyro.getRotation();
+		initialAngle = Robot.drivetrain.getGyroAngle();
 	}
 
 	@Override
 	protected double returnPIDInput() {
-		return Robot.gyro.getRotation();
+		return Robot.drivetrain.getGyroAngle();
 	}
 
 	@Override
