@@ -6,14 +6,10 @@ public class RobotMap {
     public static final int LEFT_PRIMARY = 13;
     public static final int LEFT_SECONDARY = 14;
     public static final int LEFT_TERTIARY = 15;
-    public static final int LEFT_ENCODER_A = 24;
-    public static final int LEFT_ENCODER_B = 26;
 
     public static final int RIGHT_PRIMARY = 0;
     public static final int RIGHT_SECONDARY = 1;
     public static final int RIGHT_TERTIARY = 2;
-    public static final int RIGHT_ENCODER_A = 24;
-    public static final int RIGHT_ENCODER_B = 26;
 
     public static final int GYRO = 0;
   }
@@ -46,13 +42,11 @@ public class RobotMap {
   public static class Carriage {
     public static class Tilt {
       public static final int MOTOR = 11;
-      public static final int ENCODER_A = 0;
-      public static final int ENCODER_B = 1;
     }
 
     public static class BallIntake {
       public static final int MOTOR = 20;
-      public static final int LIMIT = 0;
+      public static final int DETECTION_LIMIT = 0;
     }
 
     public static class HatchClaw {
@@ -66,7 +60,9 @@ public class RobotMap {
       public static final int INTAKE = 14;
       public static final int WRIST_ENCODER_A = 0;
       public static final int WRIST_ENCODER_B = 1;
-      public static final int FAILSAFE = 0; // TODO: don't know what this is yet...
+      public static final int FORWARD_LIMIT = 0; 
+      public static final int REVERSE_LIMIT = 0; 
+      public static final int DETECTION_LIMIT = 0; 
     }
   }
 

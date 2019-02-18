@@ -6,6 +6,7 @@ import frc.robot.helpers.SubsystemManagerChild;
 
 public class Forks extends SubsystemManagerChild {
     private Solenoid forks;
+    private final boolean OPEN_MODE = true;
 
     public Forks() {
         forks = new Solenoid(RobotMap.ClimberElevator.Forks.FORKS);
@@ -22,20 +23,20 @@ public class Forks extends SubsystemManagerChild {
      * opens forks
      */
     public void open() {
-        setState(false);
+        setState(OPEN_MODE);
     }
 
     /**
      * closes forks
      */
     public void close() {
-        setState(true);
+        setState(!OPEN_MODE);
     }
 
     /**
-     * @return state of forks
+     * @return true if forks are open
      */
-    public boolean getState() {
-        return forks.get();
+    public boolean isOpen() {
+        return forks.get() == OPEN_MODE;
     }
 }

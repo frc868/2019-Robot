@@ -1,35 +1,34 @@
 package frc.robot.carriage.tilt;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-
-import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import frc.robot.RobotMap;
 import frc.robot.helpers.Helper;
 import frc.robot.helpers.SubsystemManagerChild;
 
 
 public class Tilt extends SubsystemManagerChild {
-  private WPI_TalonSRX motor;
-  private Encoder encoder;
+  private WPI_TalonSRX motor;  
 
   public Tilt() {
     motor = new WPI_TalonSRX(RobotMap.Carriage.Tilt.MOTOR);
-    encoder = new Encoder(RobotMap.Carriage.Tilt.ENCODER_A, RobotMap.Carriage.Tilt.ENCODER_B);
   }
 
   /**
    * sets motor's speed
-   * @param speed percentage power from -1 to 1
+   * @param speed percentage power from -1 to 1, will not work if limits are tripped
    */
   public void setSpeed(double speed) {
-    motor.set(Helper.boundValue(speed));
+    if (!getLimits()) {
+      motor.set(Helper.boundValue(speed));
+    }
   }
 
   /**
    * turn off motor
    */
-  public void turnOff() {
+  public void stop() {
     motor.stopMotor();
   }
 
@@ -46,12 +45,42 @@ public class Tilt extends SubsystemManagerChild {
    * @return position of motor according to encoder
    */
   public double getEncPosition() {
-    return encoder.get();
+    return motor.getSelectedSensorPosition();
+  }
+
+  /**
+   * 
+   * @return if forward limit is tripped
+   */
+  public boolean getForwardLimit() {
+    return motor.getSensorCollection().isFwdLimitSwitchClosed();
+  }
+
+  /**
+   * @return if reverse limit is tripped
+   */
+  public boolean getReverseLimit() {
+    return motor.getSensorCollection().isRevLimitSwitchClosed();
+  }
+
+  /**
+   * @return if one of the limits are tripped
+   */
+  public boolean getLimits() {
+    return getForwardLimit() || getReverseLimit();
+  }
+  
+  public void update() {
+    if (getLimits()) {
+      stop();
+    }
   }
 
   @Override
   public void updateSD() {
-    SmartDashboard.putNumber("Hatch Pickup Wrist Speed", getSpeed());
-    SmartDashboard.putNumber("Hatch Pickup Wrist Position", getEncPosition());
+    SmartDashboard.putNumber("Tilt Speed", getSpeed());
+    SmartDashboard.putNumber("Tilt Position", getEncPosition());
+    SmartDashboard.putBoolean("Tilt Forward Limit", getForwardLimit());
+    SmartDashboard.putBoolean("Tilt Reverse Limit", getReverseLimit());
   }
 }

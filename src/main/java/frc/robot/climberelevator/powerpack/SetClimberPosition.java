@@ -1,20 +1,20 @@
 package frc.robot.climberelevator.powerpack;
 
-import edu.wpi.first.wpilibj.command.PIDCommand;
 import frc.robot.Robot;
+import frc.robot.helpers.PIDCommandPlus;
 
-public class SetClimberPosition extends PIDCommand {
+public class SetClimberPosition extends PIDCommandPlus {
     public static final double P = 1.0, I = 0.0, D = 0.0;
     public final double FLOOR = 0, LEVEL_ONE = 1, LEVEL_TWO = 2;
 
     public SetClimberPosition(double setpoint) {
-        super("SetClimberPosition", P, I, D);
+        super(P, I, D, setpoint);
         requires(Robot.powerPack);
-        setSetpoint(setpoint);
     }
     
     @Override
     protected void initialize() {
+        super.initialize();
         Robot.powerPack.switchToClimber();
     }
 
@@ -26,10 +26,5 @@ public class SetClimberPosition extends PIDCommand {
     @Override
     protected void usePIDOutput(double output) {
         Robot.powerPack.setSpeed(output);
-    }
-
-    @Override
-    protected boolean isFinished() {
-        return false; //TODO fix this
     }
 }

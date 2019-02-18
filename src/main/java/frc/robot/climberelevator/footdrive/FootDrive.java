@@ -9,10 +9,10 @@ import frc.robot.helpers.SubsystemManagerChild;
 
 
 public class FootDrive extends SubsystemManagerChild {
-  private WPI_TalonSRX primary;
+  private WPI_TalonSRX motor;
 
   public FootDrive() {
-    primary = new WPI_TalonSRX(RobotMap.ClimberElevator.FootDrive.MOTOR);
+    motor = new WPI_TalonSRX(RobotMap.ClimberElevator.FootDrive.MOTOR);
   }
 
   /**
@@ -20,14 +20,14 @@ public class FootDrive extends SubsystemManagerChild {
    * @param speed percentage power from -1 to 1
    */
   public void setSpeed(double speed) {
-    primary.set(Helper.boundValue(speed));
+    motor.set(Helper.boundValue(speed));
   }
 
   /**
    * turn off motor
    */
   public void stop() {
-    primary.stopMotor();
+    motor.stopMotor();
   }
 
   /**
@@ -35,7 +35,7 @@ public class FootDrive extends SubsystemManagerChild {
    * @return speed motor is set to
    */
   public double getSpeed() {
-    return primary.get();
+    return motor.get();
   }
 
   @Override

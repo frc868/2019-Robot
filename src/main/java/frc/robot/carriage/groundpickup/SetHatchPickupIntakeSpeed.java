@@ -4,16 +4,21 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 public class SetHatchPickupIntakeSpeed extends Command {
-    private double speed;
+    private double power;
+    private static final double DEFAULT_POWER = 1.0;
 
-    public SetHatchPickupIntakeSpeed(double speed) {
+    public SetHatchPickupIntakeSpeed() {
+        this(DEFAULT_POWER);
+    }
+    
+    public SetHatchPickupIntakeSpeed(double power) {
         requires(Robot.groundPickup);
-        this.speed = speed;
+        this.power = power;
     }
 
     @Override
     protected void initialize() {
-        Robot.groundPickup.setIntakeSpeed(speed);
+        Robot.groundPickup.setIntakeSpeed(power);
     }
 
     @Override

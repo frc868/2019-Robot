@@ -10,43 +10,41 @@ import edu.wpi.first.wpilibj.DigitalInput;
 
 
 public class BallIntake extends SubsystemManagerChild {
-  private WPI_TalonSRX primary;
-  private DigitalInput limit;
+  private WPI_TalonSRX motor;
+  private DigitalInput detection_limit;
 
   public BallIntake() {
-    primary = new WPI_TalonSRX(RobotMap.Carriage.BallIntake.MOTOR);
-    limit = new DigitalInput(RobotMap.Carriage.BallIntake.LIMIT);
+    motor = new WPI_TalonSRX(RobotMap.Carriage.BallIntake.MOTOR);
+    detection_limit = new DigitalInput(RobotMap.Carriage.BallIntake.DETECTION_LIMIT);
   }
 
   /**
    * sets motor's speed
-   * @param speed percentage power from -1 to 1
+   * @param speed percentage power from -1 to 1 (anything outside of this range will be bounded)
    */
   public void setSpeed(double speed) {
-    primary.set(Helper.boundValue(speed));
+    motor.set(Helper.boundValue(speed));
   }
 
   /**
-   * turn off motor
+   * turns off the motor
    */
   public void stop() {
-    primary.stopMotor();
+    motor.stopMotor();
   }
 
   /**
-   * 
-   * @return speed motor is set to
+   * @return speed that the motor is set to
    */
   public double getSpeed() {
-    return primary.get();
+    return motor.get();
   }
   
   /**
-   * 
-   * @return true if ball is detected
+   * @return true if ball is detected, else false
    */
   public boolean isBallDetected() {
-    return limit.get();
+    return detection_limit.get();
   }
 
   @Override

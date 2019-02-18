@@ -10,7 +10,6 @@ import edu.wpi.first.wpilibj.Encoder;
 
 public class Drivetrain extends SubsystemManagerChild {
     private WPI_TalonSRX leftPrimary, leftSecondary, leftTertiary, rightPrimary, rightSecondary, rightTertiary;
-    private Encoder leftEncoder, rightEncoder;
     private AnalogGyro gyro;
     private final double INCHES_PER_TICK = 0.0045998; 
 
@@ -30,9 +29,6 @@ public class Drivetrain extends SubsystemManagerChild {
 
         leftPrimary.setInverted(false);
         rightPrimary.setInverted(true);
-
-        leftEncoder = new Encoder(RobotMap.Drivetrain.LEFT_ENCODER_A, RobotMap.Drivetrain.LEFT_ENCODER_B);
-        rightEncoder = new Encoder(RobotMap.Drivetrain.RIGHT_ENCODER_A, RobotMap.Drivetrain.RIGHT_ENCODER_B);
 
         gyro = new AnalogGyro(RobotMap.Drivetrain.GYRO);
      }
@@ -67,7 +63,8 @@ public class Drivetrain extends SubsystemManagerChild {
      * turn off both motors
      */
     public void stop() {
-        setSpeed(0, 0);
+        leftPrimary.stopMotor();
+        rightPrimary.stopMotor();
     }
 
     /**
@@ -88,7 +85,7 @@ public class Drivetrain extends SubsystemManagerChild {
      * @return position of left motor according to encoder
      */
     public double getLeftEncPosition() {
-        return leftEncoder.get();
+        return leftPrimary.getSelectedSensorPosition();
     }
 
     /**
@@ -103,7 +100,7 @@ public class Drivetrain extends SubsystemManagerChild {
      * @return position of right motor according to encoder
      */
     public double getRightEncPosition() {
-        return rightEncoder.get();
+        return rightPrimary.getSelectedSensorPosition();
     }
 
     /**
@@ -133,8 +130,8 @@ public class Drivetrain extends SubsystemManagerChild {
      * resets encoder counts on gyros
      */
     public void resetEncoders(){
-        leftEncoder.reset();
-        rightEncoder.reset();
+        leftPrimary.setSelectedSensorPosition(0);
+        rightPrimary.setSelectedSensorPosition(0);
     }
 
     /**

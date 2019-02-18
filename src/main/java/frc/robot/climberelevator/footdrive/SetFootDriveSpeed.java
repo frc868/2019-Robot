@@ -4,26 +4,21 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 public class SetFootDriveSpeed extends Command {
-    private double targetSpeed;
+    private double speed;
 
-    public SetFootDriveSpeed(double targetSpeed) {
+    public SetFootDriveSpeed(double speed) {
         requires(Robot.footDrive);
-        this.targetSpeed = targetSpeed;
+        this.speed = speed;
     }
 
     @Override
     protected void initialize() {
-        Robot.footDrive.setSpeed(targetSpeed);
+        Robot.footDrive.setSpeed(speed);
     }
 
     @Override
     protected void end() {
         Robot.footDrive.stop();
-    }
-
-    @Override
-    protected void interrupted() {
-        end();
     }
 
     @Override

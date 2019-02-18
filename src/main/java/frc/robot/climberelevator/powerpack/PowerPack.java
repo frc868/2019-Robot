@@ -30,11 +30,13 @@ public class PowerPack extends SubsystemManagerChild {
   }
 
   /**
-     * sets motor's speed
-     * @param speed percentage power from -1 to 1
-     */
-    public void setSpeed(double speed) {
-    primary.set(Helper.boundValue(speed));
+    * sets motor's speed
+    * @param speed percentage power from -1 to 1, will not work if limits are tripped
+    */
+  public void setSpeed(double speed) {
+    if (!getLimits()) {
+      primary.set(Helper.boundValue(speed));
+    }
   }
 
   /**
@@ -77,33 +79,24 @@ public class PowerPack extends SubsystemManagerChild {
   }
 
   /**
-   * 
-   * @param mode mode to set powerpack to
+   * @return state of limits
    */
-  public void setShifterMode(boolean mode) {
-    switcher.set(mode);
+  public boolean getLimits() {
+    return getTopLimitSwitch() || getBottomLimitSwitch();
   }
 
   /**
    * switches powerpack to elevator mode
    */
   public void switchToElevator() {
-    setShifterMode(ELEVATOR_MODE);
+    switcher.set(ELEVATOR_MODE);
   }
 
   /**
    * switches powerpack to climber mode
    */
   public void switchToClimber() {
-    setShifterMode(!ELEVATOR_MODE);
-  }
-
-  /**
-   * 
-   * @return mode powerpack is set to
-   */
-  public boolean getShifterMode() {
-    return switcher.get();
+    switcher.set(!ELEVATOR_MODE);
   }
 
   /**
@@ -111,36 +104,21 @@ public class PowerPack extends SubsystemManagerChild {
    * @return true if powerpack is on elevator mode
    */
   public boolean isElevatorMode() {
-    return getShifterMode() == ELEVATOR_MODE;
-  }
-
-  /**
-   * 
-   * @return true if powerpack is on climber mode
-   */
-  public boolean isClimberMode() {
-    return !isElevatorMode();
-  }
-
-  /**
-   * @param mode the mode to set brake to
-   */
-  public void setBrakeMode(boolean mode) {
-    brake.set(mode);
+    return switcher.get() == ELEVATOR_MODE;
   }
 
   /**
    * turns brake on
    */
   public void brakeOn() {
-    setBrakeMode(BRAKE_MODE);
+    brake.set(BRAKE_MODE);
   }
 
   /**
    * turns brake off
    */
   public void brakeOff() {
-    setBrakeMode(!BRAKE_MODE);
+    brake.set(!BRAKE_MODE);
   }
 
   /**
@@ -155,6 +133,13 @@ public class PowerPack extends SubsystemManagerChild {
    */
   public boolean isBrakeMode() {
     return getBrakeMode() == BRAKE_MODE;
+  }
+
+  @Override
+  public void update() {
+    if (getLimits()) {
+      stop();
+    }
   }
 
 

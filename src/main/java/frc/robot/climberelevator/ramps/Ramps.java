@@ -7,24 +7,17 @@ import frc.robot.helpers.SubsystemManagerChild;
 
 public class Ramps extends SubsystemManagerChild {
     private Solenoid ramps;
+    private final boolean RAMPS_MODE = true;
 
     public Ramps() {
         ramps = new Solenoid(RobotMap.ClimberElevator.Ramps.RAMPS);
-    } 
-
-    /**
-     * 
-     * @param state which state to set the ramp to
-     */
-    public void setState(boolean state) {
-        ramps.set(state);
     }
 
     /**
      * opens ramp
      */
     public void open() {
-        setState(false);
+        ramps.set(RAMPS_MODE);
     }
 
 
@@ -32,14 +25,14 @@ public class Ramps extends SubsystemManagerChild {
      * closes ramp
      */
     public void close() {
-        setState(true);
+        ramps.set(!RAMPS_MODE);
     }
 
     /**
      * 
-     * @return state of ramp
+     * @return true if ramps are open
      */
-    public boolean getState() {
-        return ramps.get();
+    public boolean isOpen() {
+        return ramps.get() == RAMPS_MODE;
     }
 }

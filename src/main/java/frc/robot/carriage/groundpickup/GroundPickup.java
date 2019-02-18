@@ -18,26 +18,28 @@ import edu.wpi.first.wpilibj.Encoder;
 
 public class GroundPickup extends SubsystemManagerChild {
     private WPI_TalonSRX intake, wrist;
-    //private Encoder encoder;
-    private DigitalInput failsafe;
+    private Encoder encoder;
+    private DigitalInput forward_limit, reverse_limit, detection_limit;
 
     public GroundPickup() {
         intake = new WPI_TalonSRX(RobotMap.Carriage.GroundPickup.INTAKE);
+        detection_limit = new DigitalInput(RobotMap.Carriage.GroundPickup.REVERSE_LIMIT);
+
         wrist = new WPI_TalonSRX(RobotMap.Carriage.GroundPickup.WRIST);
-        //encoder = new Encoder(RobotMap.Carriage.Tilt.ENCODER_A, RobotMap.Carriage.Tilt.ENCODER_B);
-        failsafe = new DigitalInput(RobotMap.Carriage.GroundPickup.FAILSAFE);
+        encoder = new Encoder(RobotMap.Carriage.GroundPickup.WRIST_ENCODER_A, 
+            RobotMap.Carriage.GroundPickup.WRIST_ENCODER_B);
+        forward_limit = new DigitalInput(RobotMap.Carriage.GroundPickup.FORWARD_LIMIT);
+        reverse_limit = new DigitalInput(RobotMap.Carriage.GroundPickup.REVERSE_LIMIT);
     }
     
     /**
-     * 
-     * @param power speed to set intake motor to
+     * @param power speed to set intake motor to, from -1 to 1 (bounded if not in interval)
      */
     public void setIntakeSpeed(double power) {
         intake.set(Helper.boundValue(power));
     }
 
     /**
-     * 
      * @return speed intake is set to
      */
     public double getIntakeSpeed() {
@@ -51,16 +53,25 @@ public class GroundPickup extends SubsystemManagerChild {
         intake.stopMotor();
     }
 
+
+
     /**
-     * 
-     * @param power speed to set wrist to
+     * @return whether a hatch is detected
      */
-    public void setWristSpeed(double power) {
-        wrist.set(Helper.boundValue(power));
+    public boolean isHatchDetected() {
+        return detection_limit.get();
     }
 
     /**
-     * 
+     * @param power speed to set wrist to (bounded into [-1, 1] & will not function if limit tripped)
+     */
+    public void setWristSpeed(double power) {
+        if (!getWristLimits()) {
+            wrist.set(Helper.boundValue(power));
+        }
+    }
+
+    /**
      * @return speed wrist is set to
      */
     public double getWristSpeed() {
@@ -75,31 +86,48 @@ public class GroundPickup extends SubsystemManagerChild {
     }
 
     /**
-     * @return whether the failsafe has been triggered
-     */
-    public boolean getFailsafe() {
-        return failsafe.get();
-    }
-
-    /**
-     * 
      * @return position wrist is at
      */
     public double getWristEncPosition() {
-        return intake.getSelectedSensorPosition();
+        return encoder.get();
     }
+
+    /**
+     * @return whether the forward limit has been triggered
+     */
+    public boolean getForwardLimit() {
+        return forward_limit.get();
+    }
+
+    /**
+     * @return whether the reverse limit has been triggered
+     */
+     public boolean getReverseLimit() {
+        return reverse_limit.get();
+     }
+
+     /**
+      * @return whether either limit has been tripped
+      */
+     public boolean getWristLimits() {
+        return getForwardLimit() || getReverseLimit();
+     }
 
     @Override
     public void update() {
-        if (getFailsafe()) { // TODO: might be open-default or closed-default, idk, trivial
-            stopIntake();
-        }
+        if (getWristLimits()) {
+            stopWrist();
+        } 
     }
 
     @Override
     public void updateSD() {
         SmartDashboard.putNumber("Hatch Pickup Intake Speed", getIntakeSpeed());
+        SmartDashboard.putBoolean("Hatch Pickup Hatch Detected", isHatchDetected());
+
         SmartDashboard.putNumber("Hatch Pickup Wrist Speed", getWristSpeed());
         SmartDashboard.putNumber("Hatch Pickup Wrist Position", getWristEncPosition());
+        SmartDashboard.putBoolean("Hatch Pickup Forward Limit", getForwardLimit());
+        SmartDashboard.putBoolean("Hatch Pickup Reverse Limit", getReverseLimit());
     }
 }
