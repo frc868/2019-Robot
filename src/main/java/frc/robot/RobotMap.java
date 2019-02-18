@@ -68,30 +68,8 @@ public class RobotMap {
     }
   }
 
-  /**
-   * contains mappings for an xbox controller's buttons to their int's
-   * current values need to be varified
-   */
   public class Controls{
     public static final int DRIVER = 0;
     public static final int OPERATOR = 1;
-    
-    public static final int A = 0;
-    public static final int B = 1;
-    public static final int X = 2;
-    public static final int Y = 3;
-    public static final int RB = 6;
-    public static final int LB = 7;
-    public static final int RSTK = 4;
-    public static final int LSTK = 5;
-    public static final int START = 8;
-    public static final int MENU = 9;
-
-    public static final int LX = 0;
-    public static final int LY = 1;
-    public static final int RX = 2;
-    public static final int RY = 3;
-    public static final int LT = 4;
-    public static final int RT = 5;
   }
 }
