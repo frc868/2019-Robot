@@ -21,7 +21,7 @@ public class PowerPack extends SubsystemManagerChild {
     secondary.follow(primary);
 
     switcher = new Solenoid(RobotMap.Powerpack.POWERPACK_SWITCHER);
-    brake = new Solenoid(RobotMap.PowerPack.POWERPACK_BRAKE)
+    brake = new Solenoid(RobotMap.Powerpack.POWERPACK_BRAKE);
   }
 
   /**
@@ -83,14 +83,14 @@ public class PowerPack extends SubsystemManagerChild {
    * switches powerpack to elevator mode
    */
   public void switchToElevator() {
-    setMode(ELEVATOR_MODE);
+    setShifterMode(ELEVATOR_MODE);
   }
 
   /**
    * switches powerpack to climber mode
    */
   public void switchToClimber() {
-    setMode(!ELEVATOR_MODE);
+    setShifterMode(!ELEVATOR_MODE);
   }
 
   /**
@@ -106,7 +106,7 @@ public class PowerPack extends SubsystemManagerChild {
    * @return true if powerpack is on elevator mode
    */
   public boolean isElevatorMode() {
-    return getMode() == ELEVATOR_MODE;
+    return getShifterMode() == ELEVATOR_MODE;
   }
 
   /**
@@ -128,7 +128,7 @@ public class PowerPack extends SubsystemManagerChild {
    * turns brake on
    */
   public void brakeOn() {
-    setBrakeMode(BRAKE_MODE)''
+    setBrakeMode(BRAKE_MODE);
   }
 
   /**
