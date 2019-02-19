@@ -10,7 +10,7 @@ package frc.robot.oi;
 import frc.robot.RobotMap;
 import frc.robot.carriage.ballintake.IntakeUntilBallDetected;
 import frc.robot.carriage.hatchclaw.GrabWhenDetected;
-import frc.robot.carriage.hatchclaw.Toggle;
+import frc.robot.carriage.hatchclaw.ToggleClaw;;
 import frc.robot.climberelevator.ThirdLevelClimb;
 import frc.robot.climberelevator.forks.DeployForks;
 import frc.robot.climberelevator.ramps.DeployRamps;
@@ -29,8 +29,8 @@ public class OI {
     (new ArcadeDrive()).start();
     (new TriggerIntakeControl()).start();
 
-    driver.rb.whenPressed(new Toggle());
-    operator.rb.whenPressed(new Toggle());
+    driver.rb.whenPressed(new ToggleClaw());
+    operator.rb.whenPressed(new ToggleClaw());
 
     // driver.a.whileHeld(new FollowVision()); TODO comment back in when follow vision is added
     driver.b.whileHeld(new GrabWhenDetected());

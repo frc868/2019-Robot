@@ -10,8 +10,8 @@ package frc.robot.carriage.hatchclaw;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class Toggle extends Command {
-  public Toggle() {
+public class ToggleClaw extends Command {
+  public ToggleClaw() {
     requires(Robot.hatchClaw);
   }
 
