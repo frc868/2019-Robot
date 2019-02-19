@@ -11,6 +11,8 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+
+import frc.robot.oi.OI;
 import frc.robot.helpers.SubsystemManager;
 
 import frc.robot.drivetrain.Drivetrain;
@@ -44,16 +46,14 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     SubsystemManager.init();
     SubsystemManager.initSD();
-    OI.initDriver();
-    OI.initOperator();
+    OI.init();
   }
 
   @Override
   public void robotPeriodic() {
     SubsystemManager.update();
     SubsystemManager.updateSD();
-    OI.updateDriver();
-    OI.updateOperator();
+    OI.update();
   }
 
   @Override

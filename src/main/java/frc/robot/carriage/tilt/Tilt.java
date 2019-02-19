@@ -2,14 +2,15 @@ package frc.robot.carriage.tilt;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
+import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.helpers.Helper;
 import frc.robot.helpers.SubsystemManagerChild;
 
 
 public class Tilt extends SubsystemManagerChild {
-  private WPI_TalonSRX motor;  
+  private WPI_TalonSRX motor; 
+  // private final double CLAW_CLOSED_THRESHOLD = 10; 
 
   public Tilt() {
     motor = new WPI_TalonSRX(RobotMap.Carriage.Tilt.MOTOR);
@@ -74,6 +75,10 @@ public class Tilt extends SubsystemManagerChild {
     if (getLimits()) {
       stop();
     }
+
+    // if (getEncPosition() < CLAW_CLOSED_THRESHOLD) {
+    //   Robot.hatchClaw.grab();
+    // }
   }
 
   @Override

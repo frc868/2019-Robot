@@ -3,11 +3,9 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
-import frc.robot.drivetrain.commands.ArcadeDrive;
 import frc.robot.helpers.Helper;
 import frc.robot.helpers.SubsystemManagerChild;
 import edu.wpi.first.wpilibj.AnalogGyro;
-import edu.wpi.first.wpilibj.Encoder;
 
 public class Drivetrain extends SubsystemManagerChild {
     private WPI_TalonSRX leftPrimary, leftSecondary, leftTertiary, rightPrimary, rightSecondary, rightTertiary;

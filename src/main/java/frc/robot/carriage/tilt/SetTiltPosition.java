@@ -5,11 +5,19 @@ import frc.robot.helpers.PIDCommandPlus;
 
 public class SetTiltPosition extends PIDCommandPlus {
     private static final double P = 1.0, I = 0.0, D = 0.0;
-    public static final double HATCH = 0, BALL = 1;
+    public static final double LOWER = 0, MIDDLE = 1, UPPER = 2;
 
-    public SetTiltPosition(int setpoint) {
+    public SetTiltPosition(double setpoint) {
         super(P, I, D, setpoint);
         requires(Robot.tilt);
+        requires(Robot.hatchClaw);
+    }
+    
+    @Override
+    protected void initialize() {
+        if (getSetpoint() < MIDDLE) {
+            Robot.hatchClaw.grab();
+        }
     }
 
     @Override
