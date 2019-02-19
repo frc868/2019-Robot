@@ -1,9 +1,6 @@
 package frc.robot.helpers;
 
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.buttons.Button;
-import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 public class XboxControllerPlus extends XboxController {
     private static class Bindings {
@@ -26,20 +23,20 @@ public class XboxControllerPlus extends XboxController {
         private static final int RT = 5;
     }
 
-    public Button a, b, x, y, rb, lb, rstk, lstk, start, menu;
+    public ButtonPlus a, b, x, y, rb, lb, rstk, lstk, start, menu;
 
     public XboxControllerPlus(int port) {
         super(port);
-        a = new JoystickButton(this, Bindings.A);
-        b = new JoystickButton(this, Bindings.B);
-        x = new JoystickButton(this, Bindings.X);
-        y = new JoystickButton(this, Bindings.Y);
-        rb = new JoystickButton(this, Bindings.RB);
-        lb = new JoystickButton(this, Bindings.LB);
-        rstk = new JoystickButton(this, Bindings.RSTK);
-        lstk = new JoystickButton(this, Bindings.LSTK);
-        start = new JoystickButton(this, Bindings.START);
-        menu = new JoystickButton(this, Bindings.MENU);
+        a = new ButtonPlus(this, Bindings.A);
+        b = new ButtonPlus(this, Bindings.B);
+        x = new ButtonPlus(this, Bindings.X);
+        y = new ButtonPlus(this, Bindings.Y);
+        rb = new ButtonPlus(this, Bindings.RB);
+        lb = new ButtonPlus(this, Bindings.LB);
+        rstk = new ButtonPlus(this, Bindings.RSTK);
+        lstk = new ButtonPlus(this, Bindings.LSTK);
+        start = new ButtonPlus(this, Bindings.START);
+        menu = new ButtonPlus(this, Bindings.MENU);
     }
 
     public double getLX() {
@@ -64,5 +61,13 @@ public class XboxControllerPlus extends XboxController {
 
     public double getRT() {
         return getRawAxis(Bindings.RT);
+    }
+
+    public boolean getRSTK() {
+        return getStickButtonPressed(Hand.kRight);
+    }
+
+    public boolean getLSTK() {
+        return getStickButtonPressed(Hand.kLeft);
     }
 }
