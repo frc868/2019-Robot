@@ -8,24 +8,36 @@
 package frc.robot.sensors.subsystems;
 
 import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.helpers.SubsystemManagerChild;
+import frc.robot.sensors.vision.SwitchToCamera;
+import frc.robot.sensors.vision.SwitchToVision;
 
 public class Camera extends SubsystemManagerChild {
   private SerialPort port;
-  private String raw;
-  private double distance, position, heightDifference;
+  private UsbCamera  jevois;
+  private String     raw;
+  private double     distance, position, heightRatio;
+  
+  private final int RES_WIDTH  = 320;
+  private final int RES_HEIGHT = 240;
+  private final int FPS_VISION = 10;
+  private final int FPS_CAMERA = 15;
 
   public Camera() {
     super();
+    // following assumes that cam is on port 1 *which is robot-specific*
     port = new SerialPort(115200, SerialPort.Port.kUSB1);
   }
 
   @Override
   public void init() {
-    CameraServer.getInstance().startAutomaticCapture(0);
-    CameraServer.getInstance().startAutomaticCapture(1);
+    // change the param of startAutomaticCapture to whatever cam you're using
+    jevois = CameraServer.getInstance().startAutomaticCapture(); // returns a UsbCamera
+    jevois.setResolution(RES_WIDTH, RES_HEIGHT);
+    this.switchToVision();
   }
 
   @Override
@@ -36,21 +48,32 @@ public class Camera extends SubsystemManagerChild {
         raw = newData;      
         if (hasTarget()) {
           String[] dataArray = raw.split(",");
+
           distance = Double.parseDouble(dataArray[0]);
           position = Double.parseDouble(dataArray[1]);
-          heightDifference = Double.parseDouble(dataArray[2]);  
+          heightRatio = Double.parseDouble(dataArray[2]);
+        } else {
+          distance = -1; // "null", want to avoid NPEs
+          position = -1;
+          heightRatio = -1;
         }
       }
     } catch (Exception e) {}
   }
 
+  @Override 
+  public void initSD() {
+    SmartDashboard.putData("Switch to Camera", new SwitchToCamera());
+    SmartDashboard.putData("Switch to Vision", new SwitchToVision());
+  }
+
   @Override
   public void updateSD() {
-    SmartDashboard.putString("Raw Data", getRawData());
     SmartDashboard.putBoolean("Has Target", hasTarget());
+    SmartDashboard.putString("Raw Data", getRawData());
     SmartDashboard.putNumber("Distance", getDistance());
     SmartDashboard.putNumber("Position", getPosition());
-    SmartDashboard.putNumber("Height Difference", getHeightDifference());  
+    SmartDashboard.putNumber("Height Ratio", getHeightRatio());
   }
 
   public boolean hasTarget() {
@@ -58,7 +81,7 @@ public class Camera extends SubsystemManagerChild {
   }
 
   public String getRawData() {
-    return raw;
+    return raw != null ? raw : ",,";
   }
 
   public double getDistance() {
@@ -66,22 +89,22 @@ public class Camera extends SubsystemManagerChild {
   }
 
   public double getPosition() {
-    return position;
+    return position - RES_WIDTH/2;
   }
 
-  public double getHeightDifference() {
-    return heightDifference;
+  public double getHeightRatio() {
+    return heightRatio;
   }
 
   public void sendData(String data) {
     port.writeString(data);
   }
 
-  public void switchToVisionAlgorithm() {
-    sendData("setmapping MJPG 320 240 10 YUYV 640 480 30 TechHOUNDS DeepSpace");
+  public void switchToVision() {
+    jevois.setFPS(FPS_VISION);
   }
 
-  public void switchToCameraView() {
-    sendData("setmapping MJPG 320 240 10 YUYV 320 240 10 TechHOUNDS868 Trash2019");
+  public void switchToCamera() {
+    jevois.setFPS(FPS_CAMERA);
   }
 }

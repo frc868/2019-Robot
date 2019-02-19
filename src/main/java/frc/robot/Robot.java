@@ -27,6 +27,8 @@ import frc.robot.climberelevator.ramps.*;
 import frc.robot.climberelevator.forks.*;
 import frc.robot.climberelevator.footdrive.*;
 
+import frc.robot.sensors.subsystems.*;
+
 public class Robot extends TimedRobot {
   public static BallIntake ballIntake = new BallIntake();
   public static HatchClaw hatchClaw = new HatchClaw();
@@ -39,6 +41,8 @@ public class Robot extends TimedRobot {
   public static Forks forks = new Forks();
   public static PowerPack powerPack = new PowerPack();
   public static Ramps climberRamps = new Ramps();
+
+  public static Camera camera = new Camera();
 
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
