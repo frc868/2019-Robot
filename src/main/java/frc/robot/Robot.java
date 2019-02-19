@@ -27,7 +27,7 @@ import frc.robot.climberelevator.ramps.*;
 import frc.robot.climberelevator.forks.*;
 import frc.robot.climberelevator.footdrive.*;
 
-import frc.robot.sensors.subsystems.*;
+import frc.robot.sensors.camera.*;
 
 public class Robot extends TimedRobot {
   public static BallIntake ballIntake = new BallIntake();

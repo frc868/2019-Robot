@@ -5,26 +5,25 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.sensors.subsystems;
+package frc.robot.sensors.camera;
 
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.helpers.SubsystemManagerChild;
-import frc.robot.sensors.vision.SwitchToCamera;
-import frc.robot.sensors.vision.SwitchToVision;
 
 public class Camera extends SubsystemManagerChild {
   private SerialPort port;
-  private UsbCamera  jevois;
-  private String     raw;
-  private double     distance, position, heightRatio;
+  private UsbCamera jevois;
+  private String raw;
+  private double distance, position, heightRatio;
   
   private final int RES_WIDTH  = 320;
   private final int RES_HEIGHT = 240;
   private final int FPS_VISION = 10;
   private final int FPS_CAMERA = 15;
+  private boolean vision_mode;
 
   public Camera() {
     super();
@@ -37,7 +36,7 @@ public class Camera extends SubsystemManagerChild {
     // change the param of startAutomaticCapture to whatever cam you're using
     jevois = CameraServer.getInstance().startAutomaticCapture(); // returns a UsbCamera
     jevois.setResolution(RES_WIDTH, RES_HEIGHT);
-    this.switchToVision();
+    switchToVision();
   }
 
   @Override
@@ -63,8 +62,7 @@ public class Camera extends SubsystemManagerChild {
 
   @Override 
   public void initSD() {
-    SmartDashboard.putData("Switch to Camera", new SwitchToCamera());
-    SmartDashboard.putData("Switch to Vision", new SwitchToVision());
+    SmartDashboard.putData("Toggle Camera", new ToggleCamera());
   }
 
   @Override
@@ -102,9 +100,15 @@ public class Camera extends SubsystemManagerChild {
 
   public void switchToVision() {
     jevois.setFPS(FPS_VISION);
+    vision_mode = true;
   }
 
   public void switchToCamera() {
     jevois.setFPS(FPS_CAMERA);
+    vision_mode = false;
+  }
+
+  public boolean isVisionMode() {
+    return vision_mode;
   }
 }
