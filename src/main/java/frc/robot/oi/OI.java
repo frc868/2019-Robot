@@ -10,7 +10,7 @@ package frc.robot.oi;
 import frc.robot.RobotMap;
 import frc.robot.carriage.ballintake.IntakeUntilBallDetected;
 import frc.robot.carriage.hatchclaw.GrabWhenDetected;
-import frc.robot.carriage.hatchclaw.ToggleClaw;;
+import frc.robot.carriage.hatchclaw.ToggleClaw;
 import frc.robot.climberelevator.ThirdLevelClimb;
 import frc.robot.climberelevator.forks.DeployForks;
 import frc.robot.climberelevator.ramps.DeployRamps;

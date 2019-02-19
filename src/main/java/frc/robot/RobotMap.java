@@ -50,8 +50,8 @@ public class RobotMap {
     }
 
     public static class HatchClaw {
-      public static final int GRAB_SOLENOID = 1;
-      public static final int RELEASE_SOLENOID = 1;
+      public static final int GRAB_SOLENOID = 4;
+      public static final int RELEASE_SOLENOID = 5;
       public static final int LEFT_LIMIT = 0;
       public static final int RIGHT_LIMIT = 0;
     }
