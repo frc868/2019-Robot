@@ -14,12 +14,12 @@ import frc.robot.RobotMap;
 import frc.robot.helpers.SubsystemManagerChild;
 
 public class HatchClaw extends SubsystemManagerChild {
-  private Solenoid actuator;
+  private Solenoid grab_solenoid, release_solenoid;
   private DigitalInput left_limit, right_limit;
-  private final boolean GRABBED_MODE = true;
 
   public HatchClaw() {
-    actuator = new Solenoid(RobotMap.Carriage.HatchClaw.ACTUATOR);
+    grab_solenoid = new Solenoid(RobotMap.Carriage.HatchClaw.GRAB_SOLENOID);
+    release_solenoid = new Solenoid(RobotMap.Carriage.HatchClaw.RELEASE_SOLENOID);
     left_limit = new DigitalInput(RobotMap.Carriage.HatchClaw.LEFT_LIMIT);
     right_limit = new DigitalInput(RobotMap.Carriage.HatchClaw.RIGHT_LIMIT);
   }
@@ -28,7 +28,8 @@ public class HatchClaw extends SubsystemManagerChild {
    * opens claw
    */
   public void grab() {
-    actuator.set(GRABBED_MODE);
+    grab_solenoid.set(true);
+    release_solenoid.set(false);
   }
 
 
@@ -36,14 +37,15 @@ public class HatchClaw extends SubsystemManagerChild {
    * closes claw
    */
   public void release() {
-    actuator.set(!GRABBED_MODE);
+    grab_solenoid.set(false);
+    release_solenoid.set(true);
   }
 
   /**
    * @return whether the claw is grabbed or not
    */
   public boolean isGrabbed() {
-    return actuator.get() == GRABBED_MODE;
+    return grab_solenoid.get();
   }
 
   /**
@@ -66,6 +68,11 @@ public class HatchClaw extends SubsystemManagerChild {
    */
   public boolean isHatchDetected() {
     return getLeftLimit() && getRightLimit();
+  }
+
+  @Override
+  public void init() {
+    release();
   }
 
   @Override
