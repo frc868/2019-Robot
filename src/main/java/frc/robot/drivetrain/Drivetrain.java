@@ -42,12 +42,26 @@ public class Drivetrain extends SubsystemManagerChild {
         leftPrimary.set(Helper.boundValue(speed));
     }
 
+    /** 
+     *  @param adjustment adjustment to be added to previous left motor speed
+     */
+    public void adjustLeftSpeed(double adjustment) {
+        setLeftSpeed(getLeftSpeed() + adjustment);
+    }
+
      /**
      * sets right motor's speed
      * @param speed percentage power from -1 to 1
      */
     public void setRightSpeed(double speed) {
         rightPrimary.set(Helper.boundValue(speed));
+    }
+
+    /** 
+     *  @param adjustment adjustment to be added to previous right motor speed
+     */
+    public void adjustRightSpeed(double adjustment) {
+        setRightSpeed(getRightSpeed() + adjustment);
     }
 
      /**
@@ -58,6 +72,16 @@ public class Drivetrain extends SubsystemManagerChild {
     public void setSpeed(double leftSpeed, double rightSpeed) {
         setLeftSpeed(leftSpeed);
         setRightSpeed(rightSpeed);
+    }
+
+    /**
+     * 
+     * @param leftAdjustment adjustment to be added to previous left motor speed
+     * @param rightAdjustment adjustment to be added to previous right motor speed
+     */
+    public void adjustSpeed(double leftAdjustment, double rightAdjustment) {
+        adjustLeftSpeed(leftAdjustment);
+        adjustRightSpeed(rightAdjustment);
     }
   
     /**
@@ -141,6 +165,14 @@ public class Drivetrain extends SubsystemManagerChild {
      */
     public double getGyroAngle() {
         return gyro.getAngle() + angleOffset;
+    }
+
+    /**
+     * 
+     * @return angle from gyro in radians
+     */
+    public double getGyroAngleRadians() {
+        return Math.abs(Math.toRadians(getGyroAngle())%(2*Math.PI));
     }
 
     /**
