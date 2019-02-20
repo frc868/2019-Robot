@@ -7,26 +7,30 @@ import frc.robot.RobotMap;
 import frc.robot.helpers.Helper;
 import frc.robot.helpers.SubsystemManagerChild;
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 
 public class PowerPack extends SubsystemManagerChild {
   private CANSparkMax primary, secondary;
   private Solenoid switcher, brake;
-  private DigitalInput top_limit, bottom_limit;
+  // private DigitalInput top_limit, bottom_limit;
   private final boolean ELEVATOR_MODE = true, BRAKE_MODE = true;
 
   public PowerPack() {
     primary = new CANSparkMax(RobotMap.ClimberElevator.Powerpack.PRIMARY, MotorType.kBrushless);
     secondary = new CANSparkMax(RobotMap.ClimberElevator.Powerpack.SECONDARY, MotorType.kBrushless);
 
+    primary.setIdleMode(IdleMode.kBrake);
+    secondary.setIdleMode(IdleMode.kBrake);
+
     secondary.follow(primary);
 
-    switcher = new Solenoid(RobotMap.ClimberElevator.Powerpack.SWITCHER);
-    brake = new Solenoid(RobotMap.ClimberElevator.Powerpack.BRAKE);
+    switcher = new Solenoid(RobotMap.PCM, RobotMap.ClimberElevator.Powerpack.SWITCHER);
+    brake = new Solenoid(RobotMap.PCM, RobotMap.ClimberElevator.Powerpack.BRAKE);
 
-    top_limit = new DigitalInput(RobotMap.ClimberElevator.Powerpack.TOP_LIMIT);
-    bottom_limit = new DigitalInput(RobotMap.ClimberElevator.Powerpack.BOTTOM_LIMIT);
+    // top_limit = new DigitalInput(RobotMap.ClimberElevator.Powerpack.TOP_LIMIT);
+    // bottom_limit = new DigitalInput(RobotMap.ClimberElevator.Powerpack.BOTTOM_LIMIT);
   }
 
   /**
@@ -67,7 +71,8 @@ public class PowerPack extends SubsystemManagerChild {
    * @return state of forward limit switch
    */
   public boolean getTopLimitSwitch() {
-    return top_limit.get();
+    return false;
+    // return top_limit.get();
   }
 
   /** 
@@ -75,7 +80,8 @@ public class PowerPack extends SubsystemManagerChild {
    * @return state of reverse limit switch
    */
   public boolean getBottomLimitSwitch() {
-    return bottom_limit.get();
+    return false;
+    // return bottom_limit.get();
   }
 
   /**
@@ -150,6 +156,8 @@ public class PowerPack extends SubsystemManagerChild {
     SmartDashboard.putNumber("Powerpack Position", getEncPosition());
     SmartDashboard.putBoolean("Top Limit", getTopLimitSwitch());
     SmartDashboard.putBoolean("Bottom Limit", getBottomLimitSwitch());
+    SmartDashboard.putNumber("Primary Ele Current", primary.getOutputCurrent());
+    SmartDashboard.putNumber("Secondary Ele Current", primary.getOutputCurrent());
   }
   
 }

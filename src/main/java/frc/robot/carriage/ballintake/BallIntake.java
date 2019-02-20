@@ -51,6 +51,7 @@ public class BallIntake extends SubsystemManagerChild {
   public void updateSD() {
     SmartDashboard.putNumber("Ball Intake Speed", getSpeed());
     SmartDashboard.putBoolean("Is Ball Detected", isBallDetected());
+    SmartDashboard.putNumber("Current", motor.getOutputCurrent());
   }
   
 }

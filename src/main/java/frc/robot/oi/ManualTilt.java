@@ -16,7 +16,7 @@ public class ManualTilt extends Command {
 
     @Override
     protected void end() {
-        Robot.tilt.stop();
+        // Robot.tilt.stop();
     }
 
     @Override

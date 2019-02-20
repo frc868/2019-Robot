@@ -18,8 +18,9 @@ public class HatchClaw extends SubsystemManagerChild {
   private DigitalInput left_limit, right_limit;
 
   public HatchClaw() {
-    grab_solenoid = new Solenoid(RobotMap.Carriage.HatchClaw.GRAB_SOLENOID);
-    release_solenoid = new Solenoid(RobotMap.Carriage.HatchClaw.RELEASE_SOLENOID);
+
+    grab_solenoid = new Solenoid(RobotMap.PCM, RobotMap.Carriage.HatchClaw.GRAB_SOLENOID);
+    release_solenoid = new Solenoid(RobotMap.PCM, RobotMap.Carriage.HatchClaw.RELEASE_SOLENOID);
     left_limit = new DigitalInput(RobotMap.Carriage.HatchClaw.LEFT_LIMIT);
     right_limit = new DigitalInput(RobotMap.Carriage.HatchClaw.RIGHT_LIMIT);
   }
@@ -79,6 +80,8 @@ public class HatchClaw extends SubsystemManagerChild {
   public void updateSD() {
     SmartDashboard.putBoolean("Hatch Claw Grabbed", isGrabbed());
     SmartDashboard.putBoolean("Hatch Claw Hatch Detected", isHatchDetected());
+    SmartDashboard.putBoolean("Left", getLeftLimit());
+    SmartDashboard.putBoolean("Right", getRightLimit());
   }
 
 }

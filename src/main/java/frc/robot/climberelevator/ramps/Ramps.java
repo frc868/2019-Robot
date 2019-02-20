@@ -1,6 +1,7 @@
 package frc.robot.climberelevator.ramps;
 
 import edu.wpi.first.wpilibj.Solenoid;
+import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.helpers.SubsystemManagerChild;
 
@@ -10,7 +11,7 @@ public class Ramps extends SubsystemManagerChild {
     private final boolean RAMPS_MODE = true;
 
     public Ramps() {
-        ramps = new Solenoid(RobotMap.ClimberElevator.Ramps.RAMPS);
+        ramps = new Solenoid(RobotMap.PCM, RobotMap.ClimberElevator.Ramps.RAMPS);
     }
 
     /**

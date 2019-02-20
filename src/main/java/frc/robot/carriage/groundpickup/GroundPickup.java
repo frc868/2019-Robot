@@ -18,18 +18,18 @@ import edu.wpi.first.wpilibj.Encoder;
 
 public class GroundPickup extends SubsystemManagerChild {
     private WPI_TalonSRX intake, wrist;
-    private Encoder encoder;
-    private DigitalInput forward_limit, reverse_limit, detection_limit;
+    // private Encoder encoder;
+    // private DigitalInput forward_limit, reverse_limit, detection_limit;
 
     public GroundPickup() {
         intake = new WPI_TalonSRX(RobotMap.Carriage.GroundPickup.INTAKE);
-        detection_limit = new DigitalInput(RobotMap.Carriage.GroundPickup.REVERSE_LIMIT);
+        // detection_limit = new DigitalInput(RobotMap.Carriage.GroundPickup.REVERSE_LIMIT);
 
         wrist = new WPI_TalonSRX(RobotMap.Carriage.GroundPickup.WRIST);
-        encoder = new Encoder(RobotMap.Carriage.GroundPickup.WRIST_ENCODER_A, 
-            RobotMap.Carriage.GroundPickup.WRIST_ENCODER_B);
-        forward_limit = new DigitalInput(RobotMap.Carriage.GroundPickup.FORWARD_LIMIT);
-        reverse_limit = new DigitalInput(RobotMap.Carriage.GroundPickup.REVERSE_LIMIT);
+        // encoder = new Encoder(RobotMap.Carriage.GroundPickup.WRIST_ENCODER_A, 
+            // RobotMap.Carriage.GroundPickup.WRIST_ENCODER_B);
+        // forward_limit = new DigitalInput(RobotMap.Carriage.GroundPickup.FORWARD_LIMIT);
+        // reverse_limit = new DigitalInput(RobotMap.Carriage.GroundPickup.REVERSE_LIMIT);
     }
     
     /**
@@ -59,7 +59,8 @@ public class GroundPickup extends SubsystemManagerChild {
      * @return whether a hatch is detected
      */
     public boolean isHatchDetected() {
-        return detection_limit.get();
+        return false;
+        // return detection_limit.get();
     }
 
     /**
@@ -89,21 +90,24 @@ public class GroundPickup extends SubsystemManagerChild {
      * @return position wrist is at
      */
     public double getWristEncPosition() {
-        return encoder.get();
+        return 0;
+        // return encoder.get();
     }
 
     /**
      * @return whether the forward limit has been triggered
      */
     public boolean getForwardLimit() {
-        return forward_limit.get();
+        // return forward_limit.get();
+        return false;
     }
 
     /**
      * @return whether the reverse limit has been triggered
      */
      public boolean getReverseLimit() {
-        return reverse_limit.get();
+        // return reverse_limit.get();
+        return false;
      }
 
      /**

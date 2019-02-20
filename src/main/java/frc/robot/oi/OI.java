@@ -7,14 +7,11 @@
 
 package frc.robot.oi;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
-import frc.robot.carriage.ballintake.IntakeUntilBallDetected;
 import frc.robot.carriage.hatchclaw.GrabWhenDetected;
 import frc.robot.carriage.hatchclaw.ToggleClaw;
-import frc.robot.climberelevator.ThirdLevelClimb;
-import frc.robot.climberelevator.forks.DeployForks;
-import frc.robot.climberelevator.ramps.DeployRamps;
-import frc.robot.commands.AutoElevatorTilt;
+// import frc.robot.commands.AutoElevatorTilt;
 import frc.robot.helpers.XboxControllerPlus;
 
 public class OI {
@@ -26,42 +23,46 @@ public class OI {
     driver = new XboxControllerPlus(RobotMap.Controls.DRIVER);
     operator = new XboxControllerPlus(RobotMap.Controls.OPERATOR); 
 
+    SmartDashboard.putBoolean("has OI", true);
     (new ArcadeDrive()).start();
     (new TriggerIntakeControl()).start();
 
-    driver.rb.whenPressed(new ToggleClaw());
-    operator.rb.whenPressed(new ToggleClaw());
+    driver.lb.whenPressed(new ToggleClaw());
+    operator.lb.whenPressed(new ToggleClaw());
 
     // driver.a.whileHeld(new FollowVision()); TODO comment back in when follow vision is added
     driver.b.whileHeld(new GrabWhenDetected());
-    driver.x.whileHeld(new IntakeUntilBallDetected());
+    // driver.x.whileHeld(new IntakeUntilBallDetected());
 
-    operator.lstk.whileHeld(new ManualElevator());
-    operator.rstk.whileHeld(new ManualTilt());
+    (new ManualElevator()).start();
+    (new ManualTilt()).start();
+    // operator.lstk.whileHeld(new ManualElevator());
+    // operator.rstk.whileHeld(new ManualTilt());
 
-    operator.x.whenPressed(new AutoElevatorTilt(AutoElevatorTilt.State.intakeBall));
+    // operator.x.whenPressed(new AutoElevatorTilt(AutoElevatorTilt.State.intakeBall));
   }
 
   public static void update() { //TODO mappings for POV buttons on driver/operator
-    if (driver.rb.get()) {
-      driver.start.whenPressed(new DeployForks());
-      driver.menu.whenPressed(new DeployRamps());
-      driver.y.whenPressed(new ThirdLevelClimb(false));
-    } else {
-      driver.start.resetMappings();
-      driver.menu.resetMappings();
-      driver.y.resetMappings();
-    }
+    // if (driver.rb.get()) {
+    //   driver.start.whenPressed(new DeployForks());
+    //   driver.menu.whenPressed(new DeployRamps());
+    //   driver.y.whenPressed(new ThirdLevelClimb(false));
+    // } else {
+    //   driver.start.resetMappings();
+    //   driver.menu.resetMappings();
+    //   driver.y.resetMappings();
+    // }
 
-    if (operator.rb.get()) {
-      operator.a.whenPressed(new AutoElevatorTilt(AutoElevatorTilt.State.ballLower));
-      operator.b.whenPressed(new AutoElevatorTilt(AutoElevatorTilt.State.ballMiddle));
-      operator.y.whenPressed(new AutoElevatorTilt(AutoElevatorTilt.State.ballUpper));
-    } else {
-      operator.a.whenPressed(new AutoElevatorTilt(AutoElevatorTilt.State.hatchLower));
-      operator.b.whenPressed(new AutoElevatorTilt(AutoElevatorTilt.State.hatchMiddle));
-      operator.y.whenPressed(new AutoElevatorTilt(AutoElevatorTilt.State.hatchUpper));
-    }
+    // if (operator.rb.get()) {
+    //   operator.a.whenPressed(new AutoElevatorTilt(AutoElevatorTilt.State.ballLower));
+    //   operator.b.whenPressed(new AutoElevatorTilt(AutoElevatorTilt.State.ballMiddle));
+    //   operator.y.whenPressed(new AutoElevatorTilt(AutoElevatorTilt.State.ballUpper));
+    // } 
+    // else {
+    //   operator.a.whenPressed(new AutoElevatorTilt(AutoElevatorTilt.State.hatchLower));
+    //   operator.b.whenPressed(new AutoElevatorTilt(AutoElevatorTilt.State.hatchMiddle));
+    //   operator.y.whenPressed(new AutoElevatorTilt(AutoElevatorTilt.State.hatchUpper));
+    // }
   }
 
 }

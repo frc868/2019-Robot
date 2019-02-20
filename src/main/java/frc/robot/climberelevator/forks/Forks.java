@@ -9,7 +9,7 @@ public class Forks extends SubsystemManagerChild {
     private final boolean OPEN_MODE = true;
 
     public Forks() {
-        forks = new Solenoid(RobotMap.ClimberElevator.Forks.FORKS);
+        forks = new Solenoid(RobotMap.PCM, RobotMap.ClimberElevator.Forks.FORKS);
     }
 
     /**

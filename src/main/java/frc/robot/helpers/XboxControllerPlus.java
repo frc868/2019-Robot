@@ -4,23 +4,23 @@ import edu.wpi.first.wpilibj.XboxController;
 
 public class XboxControllerPlus extends XboxController {
     private static class Bindings {
-        private static final int A = 0;
-        private static final int B = 1;
-        private static final int X = 2;
-        private static final int Y = 3;
+        private static final int A = 1;
+        private static final int B = 2;
+        private static final int X = 3;
+        private static final int Y = 4;
         private static final int RB = 6;
-        private static final int LB = 7;
-        private static final int RSTK = 4;
-        private static final int LSTK = 5;
+        private static final int LB = 5;
+        private static final int RSTK = 10;
+        private static final int LSTK = 9;
         private static final int START = 8;
-        private static final int MENU = 9;
+        private static final int MENU = 7;
 
         private static final int LX = 0;
         private static final int LY = 1;
-        private static final int RX = 2;
-        private static final int RY = 3;
-        private static final int LT = 4;
-        private static final int RT = 5;
+        private static final int RX = 4;
+        private static final int RY = 5;
+        private static final int LT = 2;
+        private static final int RT = 3;
     }
 
     public ButtonPlus a, b, x, y, rb, lb, rstk, lstk, start, menu;
@@ -39,20 +39,24 @@ public class XboxControllerPlus extends XboxController {
         menu = new ButtonPlus(this, Bindings.MENU);
     }
 
+    private double cube(double input) {
+        return Math.pow(input, 3);
+    }
+
     public double getLX() {
-        return getRawAxis(Bindings.LX);
+        return cube(getRawAxis(Bindings.LX));
     }
 
     public double getLY() {
-        return getRawAxis(Bindings.LY);
+        return cube(getRawAxis(Bindings.LY));
     }
 
     public double getRX() {
-        return getRawAxis(Bindings.RX);
+        return cube(getRawAxis(Bindings.RX));
     }
 
     public double getRY() {
-        return getRawAxis(Bindings.RY);
+        return cube(getRawAxis(Bindings.RY));
     }
 
     public double getLT() {

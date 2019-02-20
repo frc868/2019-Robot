@@ -1,6 +1,7 @@
 package frc.robot.oi;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.*;
 
 public class TriggerIntakeControl extends Command {
@@ -11,17 +12,9 @@ public class TriggerIntakeControl extends Command {
 
     @Override
     protected void execute() {
-        if (OI.operator.getRT() != 0) {
-            Robot.ballIntake.setSpeed(OI.operator.getRT());
-        } else if (OI.operator.getLT() != 0) {
-            Robot.ballIntake.setSpeed(-OI.operator.getLT());
-        } else if (OI.driver.getRT() != 0) {
-            Robot.ballIntake.setSpeed(OI.driver.getRT());
-        } else if (OI.driver.getLT() != 0) {
-            Robot.ballIntake.setSpeed(-OI.driver.getLT());
-        } else {
-            Robot.ballIntake.stop();
-        }
+        double power = OI.operator.getRT() - OI.operator.getLT() + OI.driver.getRT() - OI.driver.getLT();
+        SmartDashboard.putNumber("trigger", power);
+        Robot.ballIntake.setSpeed(power);
     }
 
     @Override

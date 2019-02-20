@@ -14,6 +14,7 @@ public class Tilt extends SubsystemManagerChild {
 
   public Tilt() {
     motor = new WPI_TalonSRX(RobotMap.Carriage.Tilt.MOTOR);
+    motor.setInverted(true);
   }
 
   /**

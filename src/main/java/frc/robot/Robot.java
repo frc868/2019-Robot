@@ -27,7 +27,7 @@ import frc.robot.climberelevator.ramps.*;
 import frc.robot.climberelevator.forks.*;
 import frc.robot.climberelevator.footdrive.*;
 
-import frc.robot.sensors.camera.*;
+// import frc.robot.sensors.camera.*;
 
 public class Robot extends TimedRobot {
   public static BallIntake ballIntake = new BallIntake();
@@ -42,7 +42,7 @@ public class Robot extends TimedRobot {
   public static PowerPack powerPack = new PowerPack();
   public static Ramps climberRamps = new Ramps();
 
-  public static Camera camera = new Camera();
+  // public static Camera camera = new Camera();
 
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
@@ -50,14 +50,12 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     SubsystemManager.init();
     SubsystemManager.initSD();
-    OI.init();
   }
 
   @Override
   public void robotPeriodic() {
     SubsystemManager.update();
     SubsystemManager.updateSD();
-    OI.update();
   }
 
   @Override
@@ -78,12 +76,13 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
-
+    OI.init();
   }
 
   @Override
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
+    OI.update();
   }
 
   @Override

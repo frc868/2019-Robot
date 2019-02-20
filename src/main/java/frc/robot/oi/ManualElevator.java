@@ -20,6 +20,11 @@ public class ManualElevator extends Command {
     }
 
     @Override
+    protected void end() {
+        // Robot.powerPack.stop();
+    }
+
+    @Override
     protected boolean isFinished() {
         return false;
     }

@@ -11,7 +11,7 @@ public class ArcadeDrive extends Command {
 
     @Override
     protected void execute() {
-        Robot.drivetrain.setSpeed(-OI.driver.getLY() + OI.driver.getRX(), OI.driver.getLY() - OI.driver.getRX());
+        Robot.drivetrain.setSpeed(-OI.driver.getLY() + OI.driver.getRX(), OI.driver.getLY() + OI.driver.getRX());
     }
 
     @Override

@@ -1,16 +1,18 @@
 package frc.robot.drivetrain;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
+import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import frc.robot.helpers.Helper;
 import frc.robot.helpers.SubsystemManagerChild;
-import edu.wpi.first.wpilibj.AnalogGyro;
 
 public class Drivetrain extends SubsystemManagerChild {
     private WPI_TalonSRX leftPrimary, leftSecondary, leftTertiary, rightPrimary, rightSecondary, rightTertiary;
     private AnalogGyro gyro;
     private final double INCHES_PER_TICK = 0.0045998; 
+    private final double DEGREES_PER_LOOP = 0.1;
+    private double angleOffset = 0;
 
     public Drivetrain() {
         leftPrimary = new WPI_TalonSRX(RobotMap.Drivetrain.LEFT_PRIMARY);
@@ -57,7 +59,7 @@ public class Drivetrain extends SubsystemManagerChild {
         setLeftSpeed(leftSpeed);
         setRightSpeed(rightSpeed);
     }
-
+  
     /**
      * turn off both motors
      */
@@ -138,7 +140,7 @@ public class Drivetrain extends SubsystemManagerChild {
      * @return angle given by the gyro
      */
     public double getGyroAngle() {
-        return gyro.getAngle();
+        return gyro.getAngle() + angleOffset;
     }
 
     /**
@@ -149,10 +151,16 @@ public class Drivetrain extends SubsystemManagerChild {
     }
 
     @Override
+    public void update() {
+        angleOffset += DEGREES_PER_LOOP;
+    }
+
+    @Override
     public void updateSD() {
         SmartDashboard.putNumber("Left Speed", getLeftSpeed());
         SmartDashboard.putNumber("Right Speed", getRightSpeed());
         SmartDashboard.putNumber("Left Position", getLeftEncPosition());
         SmartDashboard.putNumber("Right Position", getRightEncPosition());
+        SmartDashboard.putNumber("Angle", getGyroAngle());
     }
 }

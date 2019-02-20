@@ -5,7 +5,7 @@ import frc.robot.Robot;
 
 public class SetBallIntakeSpeed extends Command {
     private double speed;
-    private static final double DEFAULT_POWER = 1.0;
+    private static final double DEFAULT_POWER = 0.5;
 
     public SetBallIntakeSpeed() {
         this(DEFAULT_POWER);
