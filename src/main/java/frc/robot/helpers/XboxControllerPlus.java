@@ -39,24 +39,24 @@ public class XboxControllerPlus extends XboxController {
         menu = new ButtonPlus(this, Bindings.MENU);
     }
 
-    private double cube(double input) {
+    public static double cube(double input) {
         return Math.pow(input, 3);
     }
 
     public double getLX() {
-        return cube(getRawAxis(Bindings.LX));
+        return getRawAxis(Bindings.LX);
     }
 
     public double getLY() {
-        return cube(getRawAxis(Bindings.LY));
+        return getRawAxis(Bindings.LY);
     }
 
     public double getRX() {
-        return cube(getRawAxis(Bindings.RX));
+        return getRawAxis(Bindings.RX);
     }
 
     public double getRY() {
-        return cube(getRawAxis(Bindings.RY));
+        return getRawAxis(Bindings.RY);
     }
 
     public double getLT() {

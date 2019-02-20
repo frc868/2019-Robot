@@ -2,6 +2,7 @@ package frc.robot.oi;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.*;
+import frc.robot.helpers.XboxControllerPlus;
 
 public class ArcadeDrive extends Command {
 
@@ -11,7 +12,9 @@ public class ArcadeDrive extends Command {
 
     @Override
     protected void execute() {
-        Robot.drivetrain.setSpeed(-OI.driver.getLY() + OI.driver.getRX(), OI.driver.getLY() + OI.driver.getRX());
+        double y = XboxControllerPlus.cube(OI.driver.getLY());
+        double x = XboxControllerPlus.cube(OI.driver.getRX());
+        Robot.drivetrain.setSpeed(-y + x, y + x);
     }
 
     @Override
