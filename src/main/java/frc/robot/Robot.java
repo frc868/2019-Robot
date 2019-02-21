@@ -16,6 +16,7 @@ import frc.robot.oi.OI;
 import frc.robot.helpers.SubsystemManager;
 
 import frc.robot.drivetrain.Drivetrain;
+import frc.robot.drivetrain.DrivetrainNEO;
 
 import frc.robot.carriage.ballintake.*;
 import frc.robot.carriage.hatchclaw.*;
@@ -36,6 +37,7 @@ public class Robot extends TimedRobot {
   public static Tilt tilt = new Tilt();
 
   public static Drivetrain drivetrain = new Drivetrain();
+  // public static DrivetrainNEO drivetrain = new DrivetrainNEO();
 
   public static FootDrive footDrive = new FootDrive();
   public static Forks forks = new Forks();
