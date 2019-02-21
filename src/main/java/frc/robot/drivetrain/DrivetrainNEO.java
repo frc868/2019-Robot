@@ -1,5 +1,6 @@
 package frc.robot.drivetrain;
 
+import com.revrobotics.CANEncoder;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
@@ -131,8 +132,8 @@ public class DrivetrainNEO extends SubsystemManagerChild {
      * resets encoder counts on gyros
      */
     public void resetEncoders(){
-        leftPrimary.setPosition(0);
-        rightPrimary.setPosition(0);
+        leftPrimary.getEncoder().setPosition(0);
+        rightPrimary.getEncoder().setPosition(0);
     }
 
     /**
