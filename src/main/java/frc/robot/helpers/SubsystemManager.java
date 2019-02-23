@@ -43,4 +43,10 @@ public abstract class SubsystemManager {
       sys.updateSD();
     }
   }
+
+  public static void tuningMode() {
+    for (SubsystemManagerChild sys : subsystems) {
+      sys.tuningMode();
+    }
+  }
 }

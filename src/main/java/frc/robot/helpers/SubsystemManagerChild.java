@@ -28,4 +28,8 @@ public abstract class SubsystemManagerChild extends Subsystem {
     public void initDefaultCommand() {
 
     }
+
+    public void tuningMode() {
+      
+    }
 }
