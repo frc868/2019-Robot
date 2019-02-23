@@ -29,6 +29,6 @@ public class PIDTuner extends Command {
 
     @Override
     protected boolean isFinished() {
-        return false;
+        return command.isCompleted();
     }
 }
