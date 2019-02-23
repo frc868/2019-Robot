@@ -1,10 +1,8 @@
 package frc.robot.climberelevator.ramps;
 
 import edu.wpi.first.wpilibj.Solenoid;
-import frc.robot.Robot;
 import frc.robot.RobotMap;
-import frc.robot.helpers.SubsystemManagerChild;
-
+import frc.robot.helpers.subsystems.SubsystemManagerChild;
 
 public class Ramps extends SubsystemManagerChild {
     private Solenoid ramps;

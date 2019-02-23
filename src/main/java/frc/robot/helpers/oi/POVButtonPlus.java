@@ -1,11 +1,12 @@
-package frc.robot.helpers;
+package frc.robot.helpers.oi;
 
-import edu.wpi.first.wpilibj.buttons.JoystickButton;;
+import edu.wpi.first.wpilibj.buttons.POVButton;
+import frc.robot.helpers.commands.EmptyCommand;
 
-public class ButtonPlus extends JoystickButton {
+public class POVButtonPlus extends POVButton {
 
-    public ButtonPlus(XboxControllerPlus controller, int id) {
-        super(controller, id);
+    public POVButtonPlus(XboxControllerPlus controller, int angle) {
+        super(controller, angle);
     }
 
     public void resetMappings() {

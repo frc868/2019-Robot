@@ -1,6 +1,7 @@
-package frc.robot.helpers;
+package frc.robot.helpers.oi;
 
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.buttons.POVButton;
 
 public class XboxControllerPlus extends XboxController {
     private static class Bindings {
@@ -24,6 +25,7 @@ public class XboxControllerPlus extends XboxController {
     }
 
     public ButtonPlus a, b, x, y, rb, lb, rstk, lstk, start, menu;
+    public POVButtonPlus povN, povNE, povE, povSE, povS, povSW, povW, povNW;
 
     public XboxControllerPlus(int port) {
         super(port);
@@ -37,6 +39,15 @@ public class XboxControllerPlus extends XboxController {
         lstk = new ButtonPlus(this, Bindings.LSTK);
         start = new ButtonPlus(this, Bindings.START);
         menu = new ButtonPlus(this, Bindings.MENU);
+
+        povN = new POVButtonPlus(this, 0);
+        povNE = new POVButtonPlus(this, 45);
+        povE = new POVButtonPlus(this, 90);
+        povSE = new POVButtonPlus(this, 135);
+        povS = new POVButtonPlus(this, 180);
+        povSW = new POVButtonPlus(this, 225);
+        povW = new POVButtonPlus(this, 270);
+        povNW = new POVButtonPlus(this, 315);
     }
 
     public static double cube(double input) {

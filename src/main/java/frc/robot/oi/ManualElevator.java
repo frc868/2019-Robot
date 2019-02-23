@@ -21,7 +21,12 @@ public class ManualElevator extends Command {
 
     @Override
     protected void end() {
-        // Robot.powerPack.stop();
+        Robot.powerPack.stop();
+    }
+
+    @Override
+    protected void interrupted() { // does not do anything on interupt since whileHeld will interupt it
+        
     }
 
     @Override
