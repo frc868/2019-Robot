@@ -2,7 +2,7 @@ package frc.robot.climberelevator.forks;
 
 import edu.wpi.first.wpilibj.Solenoid;
 import frc.robot.RobotMap;
-import frc.robot.helpers.SubsystemManagerChild;
+import frc.robot.helpers.subsystems.SubsystemManagerChild;
 
 public class Forks extends SubsystemManagerChild {
     private Solenoid forks;

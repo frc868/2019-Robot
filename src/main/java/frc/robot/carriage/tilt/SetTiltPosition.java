@@ -1,7 +1,7 @@
 package frc.robot.carriage.tilt;
 
 import frc.robot.Robot;
-import frc.robot.helpers.PIDCommandPlus;
+import frc.robot.helpers.pid.PIDCommandPlus;
 
 public class SetTiltPosition extends PIDCommandPlus {
     private static final double P = 1.0, I = 0.0, D = 0.0;

@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import frc.robot.helpers.Helper;
-import frc.robot.helpers.SubsystemManagerChild;
+import frc.robot.helpers.subsystems.SubsystemManagerChild;
 
 public class Drivetrain extends SubsystemManagerChild {
     private WPI_TalonSRX leftPrimary, leftSecondary, leftTertiary, rightPrimary, rightSecondary, rightTertiary;

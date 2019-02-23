@@ -16,7 +16,12 @@ public class ManualTilt extends Command {
 
     @Override
     protected void end() {
-        // Robot.tilt.stop();
+        Robot.tilt.stop();
+    }
+
+    @Override
+    protected void interrupted() { // does not do anything on interupt since whileHeld will interupt it
+        
     }
 
     @Override

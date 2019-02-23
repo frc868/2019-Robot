@@ -1,7 +1,6 @@
-package frc.robot.helpers;
+package frc.robot.helpers.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-import frc.robot.helpers.SubsystemManager;
 
 public abstract class SubsystemManagerChild extends Subsystem {
     public SubsystemManagerChild() {
