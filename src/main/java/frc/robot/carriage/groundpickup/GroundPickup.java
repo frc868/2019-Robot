@@ -10,11 +10,10 @@ package frc.robot.carriage.groundpickup;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj.DigitalInput;
 import frc.robot.RobotMap;
 import frc.robot.helpers.Helper;
+import frc.robot.helpers.PIDCommandPlus;
 import frc.robot.helpers.SubsystemManagerChild;
-import edu.wpi.first.wpilibj.Encoder;
 
 public class GroundPickup extends SubsystemManagerChild {
     private WPI_TalonSRX intake, wrist;
@@ -133,5 +132,14 @@ public class GroundPickup extends SubsystemManagerChild {
         SmartDashboard.putNumber("Hatch Pickup Wrist Position", getWristEncPosition());
         SmartDashboard.putBoolean("Hatch Pickup Forward Limit", getForwardLimit());
         SmartDashboard.putBoolean("Hatch Pickup Reverse Limit", getReverseLimit());
+    }
+
+    @Override
+    public void tuningMode() {
+        PIDCommandPlus tuning = new SetHatchPickupWristPosition(SetHatchPickupWristPosition.GIVE_HATCH);
+
+        tuning.setTuningMode();
+
+        SmartDashboard.putData("Tune Hatch Pickup Wrist Position", tuning);
     }
 }

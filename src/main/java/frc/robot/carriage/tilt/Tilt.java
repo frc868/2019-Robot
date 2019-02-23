@@ -1,10 +1,11 @@
 package frc.robot.carriage.tilt;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.helpers.Helper;
+import frc.robot.helpers.PIDCommandPlus;
 import frc.robot.helpers.SubsystemManagerChild;
 
 
@@ -88,5 +89,12 @@ public class Tilt extends SubsystemManagerChild {
     SmartDashboard.putNumber("Tilt Position", getEncPosition());
     SmartDashboard.putBoolean("Tilt Forward Limit", getForwardLimit());
     SmartDashboard.putBoolean("Tilt Reverse Limit", getReverseLimit());
+  }
+
+  @Override
+  public void tuningMode() {
+    PIDCommandPlus tuning = new SetTiltPosition(SetTiltPosition.MIDDLE);
+    tuning.setTuningMode();
+    SmartDashboard.putData("Tune Tilt", tuning);
   }
 }

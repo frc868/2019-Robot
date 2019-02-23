@@ -18,15 +18,14 @@ public abstract class PIDCommandPlus extends PIDCommand {
         this.P = P;
         this.I = I;
         this.D = D;
+
         this.tuningMode = tuningMode;
 
         setSetpoint(setpoint);
+    }
 
-        if (tuningMode) {
-            SmartDashboard.putNumber("P", P);
-            SmartDashboard.putNumber("I", I);
-            SmartDashboard.putNumber("D", D);
-        }
+    public void setTuningMode() {
+        tuningMode = true;
     }
 
     @Override

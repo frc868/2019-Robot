@@ -9,7 +9,7 @@ package frc.robot.helpers;
 
 import java.util.ArrayList;
 
-import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * Add your docs here.
@@ -45,6 +45,9 @@ public abstract class SubsystemManager {
   }
 
   public static void tuningMode() {
+    SmartDashboard.putNumber("P", 0);
+    SmartDashboard.putNumber("I", 0);
+    SmartDashboard.putNumber("D", 0);
     for (SubsystemManagerChild sys : subsystems) {
       sys.tuningMode();
     }

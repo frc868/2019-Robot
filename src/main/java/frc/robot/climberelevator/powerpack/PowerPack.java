@@ -1,14 +1,15 @@
 package frc.robot.climberelevator.powerpack;
 
-import edu.wpi.first.wpilibj.DigitalInput;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMax.IdleMode;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import frc.robot.helpers.Helper;
+import frc.robot.helpers.PIDCommandPlus;
 import frc.robot.helpers.SubsystemManagerChild;
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkMax.IdleMode;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 
 public class PowerPack extends SubsystemManagerChild {
@@ -160,4 +161,13 @@ public class PowerPack extends SubsystemManagerChild {
     SmartDashboard.putNumber("Secondary Ele Current", primary.getOutputCurrent());
   }
   
+
+  @Override
+  public void tuningMode() {
+    PIDCommandPlus tuning = new SetElevatorPosition(SetElevatorPosition.MIDDLE_BALL);
+
+    tuning.setTuningMode();
+    
+    SmartDashboard.putData("Tune Elevator Position", tuning);
+  }
 }
