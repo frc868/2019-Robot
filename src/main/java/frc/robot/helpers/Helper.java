@@ -44,4 +44,14 @@ public class Helper {
             return value;
         }
     }
+
+    /**
+     * 
+     * @param angle0 in radians
+     * @param angle1 in radians
+     * @return the difference between the two angles (between -pi and pi)
+     */
+    public static double angleDiff(double angle0, double angle1) {
+        return Math.atan2(Math.sin(angle0-angle1), Math.cos(angle0-angle1));
+    }
 }
