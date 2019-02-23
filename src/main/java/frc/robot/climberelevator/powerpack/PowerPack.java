@@ -8,8 +8,7 @@ import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import frc.robot.helpers.Helper;
-import frc.robot.helpers.PIDCommandPlus;
-import frc.robot.helpers.SubsystemManagerChild;
+import frc.robot.helpers.subsystems.SubsystemManagerChild;
 
 
 public class PowerPack extends SubsystemManagerChild {

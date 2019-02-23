@@ -11,22 +11,17 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-
-import frc.robot.oi.OI;
-import frc.robot.helpers.SubsystemManager;
-
+import frc.robot.carriage.ballintake.BallIntake;
+import frc.robot.carriage.groundpickup.GroundPickup;
+import frc.robot.carriage.hatchclaw.HatchClaw;
+import frc.robot.carriage.tilt.Tilt;
+import frc.robot.climberelevator.footdrive.FootDrive;
+import frc.robot.climberelevator.forks.Forks;
+import frc.robot.climberelevator.powerpack.PowerPack;
+import frc.robot.climberelevator.ramps.Ramps;
 import frc.robot.drivetrain.Drivetrain;
-import frc.robot.drivetrain.DrivetrainNEO;
-
-import frc.robot.carriage.ballintake.*;
-import frc.robot.carriage.hatchclaw.*;
-import frc.robot.carriage.tilt.*;
-import frc.robot.carriage.groundpickup.*;
-
-import frc.robot.climberelevator.powerpack.*;
-import frc.robot.climberelevator.ramps.*;
-import frc.robot.climberelevator.forks.*;
-import frc.robot.climberelevator.footdrive.*;
+import frc.robot.helpers.subsystems.SubsystemManager;
+import frc.robot.oi.OI;
 
 // import frc.robot.sensors.camera.*;
 
