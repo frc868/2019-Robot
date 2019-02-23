@@ -1,4 +1,4 @@
-package frc.robot.auton.util;
+package frc.robot.helpers.motionprofiling;
 
 import java.io.File;
 import java.io.FileNotFoundException;

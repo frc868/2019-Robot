@@ -1,4 +1,4 @@
-package frc.robot.auton.commands;
+package frc.robot.drivetrain.commands;
 
 import java.io.FileNotFoundException;
 
@@ -10,9 +10,9 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.helpers.Helper;
 import frc.robot.Robot;
-import frc.robot.auton.util.TrajectoryPair;
+import frc.robot.helpers.motionprofiling.TrajectoryPair;
 
-public class PIDProfileRunner extends Command {
+public class ProfileRunner extends Command {
     private TrajectoryPair pair;
     private final double P = 0.03, I = 0.00, D = 0.5, V = 0.3, A = 0.0; // constants for position keeping pids at max vel of 1.0
     //p = 0.025, d = 0.45
@@ -101,6 +101,11 @@ public class PIDProfileRunner extends Command {
         right = new PIDController(P, I, D, rightSource, rightOutput),
         angle = new PIDController(Pa, Ia, Da, angleSource, angleOutput);
 
+
+    public ProfileRunner() {
+        requires(Robot.drivetrain);
+    }
+    
     @Override
     protected void initialize() {
         i = 0;
