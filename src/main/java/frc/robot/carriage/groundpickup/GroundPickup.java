@@ -134,12 +134,4 @@ public class GroundPickup extends SubsystemManagerChild {
         SmartDashboard.putBoolean("Hatch Pickup Reverse Limit", getReverseLimit());
     }
 
-    @Override
-    public void tuningMode() {
-        PIDCommandPlus tuning = new SetHatchPickupWristPosition(SetHatchPickupWristPosition.GIVE_HATCH);
-
-        tuning.setTuningMode();
-
-        SmartDashboard.putData("Tune Hatch Pickup Wrist Position", tuning);
-    }
 }

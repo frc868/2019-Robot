@@ -43,13 +43,4 @@ public abstract class SubsystemManager {
       sys.updateSD();
     }
   }
-
-  public static void tuningMode() {
-    SmartDashboard.putNumber("P", 0);
-    SmartDashboard.putNumber("I", 0);
-    SmartDashboard.putNumber("D", 0);
-    for (SubsystemManagerChild sys : subsystems) {
-      sys.tuningMode();
-    }
-  }
 }

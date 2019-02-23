@@ -90,11 +90,4 @@ public class Tilt extends SubsystemManagerChild {
     SmartDashboard.putBoolean("Tilt Forward Limit", getForwardLimit());
     SmartDashboard.putBoolean("Tilt Reverse Limit", getReverseLimit());
   }
-
-  @Override
-  public void tuningMode() {
-    PIDCommandPlus tuning = new SetTiltPosition(SetTiltPosition.MIDDLE);
-    tuning.setTuningMode();
-    SmartDashboard.putData("Tune Tilt", tuning);
-  }
 }

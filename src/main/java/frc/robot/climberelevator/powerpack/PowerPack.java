@@ -161,13 +161,4 @@ public class PowerPack extends SubsystemManagerChild {
     SmartDashboard.putNumber("Secondary Ele Current", primary.getOutputCurrent());
   }
   
-
-  @Override
-  public void tuningMode() {
-    PIDCommandPlus tuning = new SetElevatorPosition(SetElevatorPosition.MIDDLE_BALL);
-
-    tuning.setTuningMode();
-    
-    SmartDashboard.putData("Tune Elevator Position", tuning);
-  }
 }
