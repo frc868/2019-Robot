@@ -1,4 +1,4 @@
-package frc.robot.drivetrain.commands;
+package frc.robot.auton.commands;
 
 public class DriveStraightRamp extends DriveStraight {
     public double startPower, endPower;

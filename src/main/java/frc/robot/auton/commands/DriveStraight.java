@@ -1,4 +1,4 @@
-package frc.robot.drivetrain.commands;
+package frc.robot.auton.commands;
 
 import edu.wpi.first.wpilibj.command.PIDCommand;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
