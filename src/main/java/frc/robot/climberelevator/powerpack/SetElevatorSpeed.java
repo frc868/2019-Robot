@@ -1,22 +1,20 @@
-package frc.robot.oi;
+package frc.robot.climberelevator.powerpack;
 
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.*;
+import frc.robot.Robot;
 
-public class ManualElevator extends Command {
+public class SetElevatorSpeed extends Command {
+    private double targetSpeed;
 
-    public ManualElevator() {
+    public SetElevatorSpeed(double targetSpeed) {
         requires(Robot.powerPack);
+        this.targetSpeed = targetSpeed;
     }
 
     @Override
     protected void initialize() {
         Robot.powerPack.switchToElevator();
-    }
-
-    @Override
-    protected void execute() {
-        Robot.powerPack.setSpeed(-OI.operator.getLY());
+        Robot.powerPack.setSpeed(targetSpeed);
     }
 
     @Override
@@ -28,4 +26,5 @@ public class ManualElevator extends Command {
     protected boolean isFinished() {
         return false;
     }
+
 }

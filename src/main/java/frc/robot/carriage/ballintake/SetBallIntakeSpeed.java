@@ -25,11 +25,6 @@ public class SetBallIntakeSpeed extends Command {
     protected void end() {
         Robot.ballIntake.stop();
     }
-
-    @Override
-    protected void interrupted() {
-        end();
-    }
     
     @Override
     protected boolean isFinished() {

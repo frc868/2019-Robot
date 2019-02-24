@@ -22,4 +22,9 @@ public class ButtonPlus extends JoystickButton {
         toggleWhenPressed(new EmptyCommand());
     }
 
+    public void pressToStartReleaseToStop(Command startCommand, Command stopCommand) {
+        whenPressed(startCommand);
+        whenReleased(stopCommand);
+    }
+
 }

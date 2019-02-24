@@ -15,10 +15,12 @@ import frc.robot.carriage.groundpickup.OpenAndIntake;
 import frc.robot.carriage.hatchclaw.GrabWhenDetected;
 import frc.robot.carriage.hatchclaw.ToggleClaw;
 import frc.robot.carriage.tilt.SetTiltPosition;
+import frc.robot.carriage.tilt.SetTiltSpeed;
 import frc.robot.climberelevator.footdrive.SetFootDriveSpeed;
 import frc.robot.climberelevator.forks.DeployForks;
 import frc.robot.climberelevator.powerpack.AutoElevatorTilt;
 import frc.robot.climberelevator.powerpack.SetClimberSpeed;
+import frc.robot.climberelevator.powerpack.SetElevatorSpeed;
 import frc.robot.climberelevator.powerpack.ThirdLevelClimb;
 import frc.robot.climberelevator.ramps.DeployRamps;
 import frc.robot.helpers.oi.XboxControllerPlus;
@@ -43,8 +45,8 @@ public class OI {
     driver.b.whileHeld(new GrabWhenDetected());
     driver.x.whileHeld(new IntakeUntilBallDetected());
 
-    operator.lstk.whileHeld(new ManualElevator());
-    operator.rstk.whileHeld(new ManualTilt());
+    operator.lstk.pressToStartReleaseToStop(new ManualElevator(), new SetElevatorSpeed(0));
+    operator.rstk.pressToStartReleaseToStop(new ManualTilt(), new SetTiltSpeed(0));
 
     operator.x.whenPressed(new AutoElevatorTilt(AutoElevatorTilt.State.intakeBall));
 
@@ -62,11 +64,11 @@ public class OI {
       driver.menu.whenPressed(new DeployRamps());
       driver.y.whenPressed(new ThirdLevelClimb(false));
 
-      driver.povN.whileHeld(new SetClimberSpeed(0.5));
-      driver.povS.whileHeld(new SetClimberSpeed(-0.5));
+      driver.povN.pressToStartReleaseToStop(new SetClimberSpeed(0.5), new SetClimberSpeed(0));
+      driver.povS.pressToStartReleaseToStop(new SetClimberSpeed(-0.5), new SetClimberSpeed(0));
 
-      driver.povE.whileHeld(new SetFootDriveSpeed(0.5));
-      driver.povW.whileHeld(new SetFootDriveSpeed(-0.5));
+      driver.povE.pressToStartReleaseToStop(new SetFootDriveSpeed(0.5), new SetFootDriveSpeed(0));
+      driver.povW.pressToStartReleaseToStop(new SetFootDriveSpeed(-0.5), new SetFootDriveSpeed(0));
     } else {
       driver.start.resetMappings();
       driver.menu.resetMappings();

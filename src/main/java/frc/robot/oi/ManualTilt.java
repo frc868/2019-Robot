@@ -20,11 +20,6 @@ public class ManualTilt extends Command {
     }
 
     @Override
-    protected void interrupted() { // does not do anything on interupt since whileHeld will interupt it
-        
-    }
-
-    @Override
     protected boolean isFinished() {
         return false;
     }
