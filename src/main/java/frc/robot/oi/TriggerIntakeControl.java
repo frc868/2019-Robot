@@ -13,7 +13,6 @@ public class TriggerIntakeControl extends Command {
     @Override
     protected void execute() {
         double power = OI.operator.getRT() - OI.operator.getLT() + OI.driver.getRT() - OI.driver.getLT();
-        SmartDashboard.putNumber("trigger", power);
         Robot.ballIntake.setSpeed(power);
     }
 

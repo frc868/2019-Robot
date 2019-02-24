@@ -72,7 +72,6 @@ public class ProfileRunner extends Command {
     PIDOutput leftOutput = new PIDOutput(){
         @Override
         public void pidWrite(double output) {
-            SmartDashboard.putNumber("Left PID Out", output);
             Robot.drivetrain.setLeftSpeed((output + pair.getLeft()[i].velocity * V + pair.getLeft()[i].acceleration * A));
         }
     };
@@ -81,7 +80,6 @@ public class ProfileRunner extends Command {
     
         @Override
         public void pidWrite(double output) {
-            SmartDashboard.putNumber("Right PID Out", output);
             Robot.drivetrain.setRightSpeed((output + pair.getRight()[i].velocity * V + pair.getRight()[i].acceleration * A));
         }
     };
@@ -125,15 +123,7 @@ public class ProfileRunner extends Command {
         if(System.currentTimeMillis() - lastTime > 50) {
             i++;
             lastTime = System.currentTimeMillis();
-            SmartDashboard.putNumber("i", i);
         }
-        SmartDashboard.putNumber("Left PID", left.get());
-        SmartDashboard.putNumber("Right PID", right.get());
-
-        SmartDashboard.putNumber("Right Source", rightSource.pidGet());
-        SmartDashboard.putNumber("Left Source", leftSource.pidGet());
-        SmartDashboard.putNumber("Angle Source", angleSource.pidGet());
-        SmartDashboard.putNumber("i", i);
     }
 
     @Override

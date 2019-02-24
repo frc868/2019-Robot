@@ -154,8 +154,6 @@ public class PowerPack extends SubsystemManagerChild {
     SmartDashboard.putNumber("Powerpack Position", getEncPosition());
     SmartDashboard.putBoolean("Top Limit", getTopLimitSwitch());
     SmartDashboard.putBoolean("Bottom Limit", getBottomLimitSwitch());
-    SmartDashboard.putNumber("Primary Ele Current", primary.getOutputCurrent());
-    SmartDashboard.putNumber("Secondary Ele Current", primary.getOutputCurrent());
   }
   
 }
