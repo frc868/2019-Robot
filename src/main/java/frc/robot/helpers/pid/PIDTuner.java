@@ -5,13 +5,18 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class PIDTuner extends Command {
     public PIDCommandPlus command;
-    public double P = 0, I = 0, D = 0;
+    public double P, I, D;
 
     public PIDTuner(PIDCommandPlus command) {
+        this.command = command;
+
+        P = command.getP();
+        I = command.getI();
+        D = command.getD();
+
         SmartDashboard.putNumber("P", P);
         SmartDashboard.putNumber("I", I);
         SmartDashboard.putNumber("D", D);
-        this.command = command;
     }
 
     @Override

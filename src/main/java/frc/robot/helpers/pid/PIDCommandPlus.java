@@ -50,4 +50,16 @@ public abstract class PIDCommandPlus extends PIDCommand {
         this.D = D;
         getPIDController().setD(D);
     }
+
+    public double getP() {
+        return P;
+    }
+
+    public double getI() {
+        return I;
+    }
+
+    public double getD() {
+        return D;
+    }
 }
