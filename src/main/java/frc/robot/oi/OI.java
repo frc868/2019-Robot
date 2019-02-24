@@ -42,8 +42,8 @@ public class OI {
     operator.lb.whenPressed(new ToggleClaw());
 
     // driver.a.whileHeld(new FollowVision());
-    driver.b.whileHeld(new GrabWhenDetected());
-    driver.x.whileHeld(new IntakeUntilBallDetected());
+    driver.b.pressToStartReleaseToStop(new GrabWhenDetected());
+    driver.x.pressToStartReleaseToStop(new IntakeUntilBallDetected());
 
     operator.lstk.pressToStartReleaseToStop(new ManualElevator(), new SetElevatorSpeed(0));
     operator.rstk.pressToStartReleaseToStop(new ManualTilt(), new SetTiltSpeed(0));

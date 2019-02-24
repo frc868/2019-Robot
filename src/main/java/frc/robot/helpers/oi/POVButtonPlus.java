@@ -3,6 +3,7 @@ package frc.robot.helpers.oi;
 import edu.wpi.first.wpilibj.buttons.POVButton;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.helpers.commands.EmptyCommand;
+import frc.robot.helpers.commands.StopCommand;
 
 public class POVButtonPlus extends POVButton {
 
@@ -20,6 +21,10 @@ public class POVButtonPlus extends POVButton {
         cancelWhenPressed(new EmptyCommand());
         toggleWhenActive(new EmptyCommand());
         toggleWhenPressed(new EmptyCommand());
+    }
+
+    public void pressToStartReleaseToStop(Command command) {
+        pressToStartReleaseToStop(command, new StopCommand(command));
     }
 
     public void pressToStartReleaseToStop(Command startCommand, Command stopCommand) {
