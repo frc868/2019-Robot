@@ -43,7 +43,6 @@ public class OI {
     driver.b.whileHeld(new GrabWhenDetected());
     driver.x.whileHeld(new IntakeUntilBallDetected());
 
-
     operator.lstk.whileHeld(new ManualElevator());
     operator.rstk.whileHeld(new ManualTilt());
 
@@ -57,7 +56,7 @@ public class OI {
     operator.menu.whenPressed(new GiveToClaw());
   }
 
-  public static void update() { //TODO mappings for POV buttons on driver/operator
+  public static void update() {
     if (driver.rb.get()) {
       driver.start.whenPressed(new DeployForks());
       driver.menu.whenPressed(new DeployRamps());

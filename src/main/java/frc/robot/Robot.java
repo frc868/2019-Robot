@@ -8,9 +8,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import frc.robot.carriage.ballintake.BallIntake;
 import frc.robot.carriage.groundpickup.GroundPickup;
 import frc.robot.carriage.hatchclaw.HatchClaw;
@@ -32,7 +30,6 @@ public class Robot extends TimedRobot {
   public static Tilt tilt = new Tilt();
 
   public static Drivetrain drivetrain = new Drivetrain();
-  // public static DrivetrainNEO drivetrain = new DrivetrainNEO();
 
   public static FootDrive footDrive = new FootDrive();
   public static Forks forks = new Forks();
@@ -40,8 +37,6 @@ public class Robot extends TimedRobot {
   public static Ramps climberRamps = new Ramps();
 
   // public static Camera camera = new Camera();
-
-  SendableChooser<Command> m_chooser = new SendableChooser<>();
 
   @Override
   public void robotInit() {
@@ -84,6 +79,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void testPeriodic() {
-    
+    Scheduler.getInstance().run();
+
   }
 }

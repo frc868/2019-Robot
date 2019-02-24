@@ -3,28 +3,40 @@ package frc.robot.helpers.subsystems;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public abstract class SubsystemManagerChild extends Subsystem {
-    public SubsystemManagerChild() {
-      SubsystemManager.subsystems.add(this);
+  private boolean debug = false; 
+  
+  public SubsystemManagerChild() {
+    SubsystemManager.subsystems.add(this);
+  }
+
+  public void debugOn() {
+    debug = true;
+  }
+
+  public void init() {
+
+  }
+
+  public void initSD() {
+
+  }
+
+  public void update() {
+
+  }
+
+  public void updateSD() {
+    if (debug) {
+      debug();
     }
+  }
 
-    public void init() {
+  public void debug() {
 
-    }
+  }
 
-    public void initSD() {
+  @Override
+  public void initDefaultCommand() {
 
-    }
-
-    public void update() {
-
-    }
-
-    public void updateSD() {
-      
-    }
-
-    @Override
-    public void initDefaultCommand() {
-
-    }
+  }
 }
