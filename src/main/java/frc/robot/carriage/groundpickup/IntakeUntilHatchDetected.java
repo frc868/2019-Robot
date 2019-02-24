@@ -2,7 +2,7 @@ package frc.robot.carriage.groundpickup;
 
 import frc.robot.Robot;
 
-public class IntakeUntilHatchDetected extends SetHatchPickupIntakeSpeed {
+public class IntakeUntilHatchDetected extends SetGroundPickupIntakeSpeed {
     private int counts = 0;
     private final int COUNTS_NEEDED = 5;
 

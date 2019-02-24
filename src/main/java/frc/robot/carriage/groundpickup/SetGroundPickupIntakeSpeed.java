@@ -3,15 +3,15 @@ package frc.robot.carriage.groundpickup;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class SetHatchPickupIntakeSpeed extends Command {
+public class SetGroundPickupIntakeSpeed extends Command {
     private double power;
     private static final double DEFAULT_POWER = 1.0;
 
-    public SetHatchPickupIntakeSpeed() {
+    public SetGroundPickupIntakeSpeed() {
         this(DEFAULT_POWER);
     }
     
-    public SetHatchPickupIntakeSpeed(double power) {
+    public SetGroundPickupIntakeSpeed(double power) {
         requires(Robot.groundPickup);
         this.power = power;
     }
