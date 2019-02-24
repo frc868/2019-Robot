@@ -1,5 +1,7 @@
 package frc.robot.drivetrain.commands;
 
+import frc.robot.Robot;
+
 public class TurnByAngleGyro extends TurnToAngleGyro {
 	public TurnByAngleGyro(double angleChange) {
 		super(angleChange);
@@ -7,7 +9,6 @@ public class TurnByAngleGyro extends TurnToAngleGyro {
 
 	@Override
 	protected void initialize() {
-		super.initialize();
-		setSetpointRelative(super.initialAngle);
+		setSetpointRelative(Robot.drivetrain.getGyroAngle());
 	}
 }

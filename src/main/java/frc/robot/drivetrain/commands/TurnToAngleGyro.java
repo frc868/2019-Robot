@@ -1,20 +1,13 @@
 package frc.robot.drivetrain.commands;
 
-import edu.wpi.first.wpilibj.command.PIDCommand;
 import frc.robot.Robot;
+import frc.robot.helpers.pid.PIDCommandPlus;
 
-public class TurnToAngleGyro extends PIDCommand {
+public class TurnToAngleGyro extends PIDCommandPlus {
 	public static final double P = 0.05, I = 0.0, D = 0.0;
-	protected double initialAngle;
 
 	public TurnToAngleGyro(double angle) {
-		super("TurnToAngleGyro", P, I, D);
-		setSetpoint(angle);
-	}
-
-	@Override
-	protected void initialize() {
-		initialAngle = Robot.drivetrain.getGyroAngle();
+		super(P, I, D, angle);
 	}
 
 	@Override
@@ -24,12 +17,6 @@ public class TurnToAngleGyro extends PIDCommand {
 
 	@Override
 	protected void usePIDOutput(double output) {
-		Robot.drivetrain.setSpeed(output, -output); //does it need to be -output if we've inverted right motors?
+		Robot.drivetrain.setSpeed(output, -output);
 	}
-
-	@Override
-	protected boolean isFinished() {
-		return false; //TODO fix this
-	}
-	
 }
