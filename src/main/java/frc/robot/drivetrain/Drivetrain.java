@@ -171,7 +171,7 @@ public class Drivetrain extends SubsystemManagerChild {
      * 
      * @return angle from gyro in radians
      */
-    public double getGyroAngleRadians() {
+    public double getGyroRestrictedAngleRadians() {
         return Math.abs(Math.toRadians(getGyroAngle())%(2*Math.PI));
     }
 

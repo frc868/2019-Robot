@@ -15,10 +15,8 @@ import frc.robot.helpers.motionprofiling.TrajectoryPair;
 public class ProfileRunner extends Command {
     private TrajectoryPair pair;
     private final double P = 0.03, I = 0.00, D = 0.5, V = 0.3, A = 0.0; // constants for position keeping pids at max vel of 1.0
-    //p = 0.025, d = 0.45
     private final double Pa = .0048, Ia = 0.0, Da = 0.05; // constants for angle keeping pids
-
-
+    
     private int i = 0;
     private long lastTime;
     private double initialAngle;
@@ -62,7 +60,7 @@ public class ProfileRunner extends Command {
     
         @Override
         public double pidGet() {
-            return Helper.angleDiff(pair.getAvgAngle(i), (Robot.drivetrain.getGyroAngleRadians()-initialAngle));
+            return Helper.angleDiff(pair.getAvgAngle(i), (Robot.drivetrain.getGyroRestrictedAngleRadians()-initialAngle));
         }
     
         @Override
@@ -111,7 +109,7 @@ public class ProfileRunner extends Command {
         i = 0;
         try {
             pair = new TrajectoryPair("rightTurn");
-            initialAngle = Robot.drivetrain.getGyroAngleRadians();
+            initialAngle = Robot.drivetrain.getGyroRestrictedAngleRadians();
             Robot.drivetrain.resetEncoders();
             left.enable();
             right.enable();
@@ -120,7 +118,6 @@ public class ProfileRunner extends Command {
             e.printStackTrace();
           } 
         lastTime = System.currentTimeMillis();
-        SmartDashboard.putBoolean("Done", false);
     }
 
     @Override
@@ -145,7 +142,6 @@ public class ProfileRunner extends Command {
         right.disable();
         angle.disable();
         Robot.drivetrain.stop();
-        SmartDashboard.putBoolean("Done", true);
     }
 
     @Override
