@@ -12,7 +12,7 @@ import frc.robot.helpers.Helper;
 import frc.robot.Robot;
 import frc.robot.helpers.motionprofiling.TrajectoryPair;
 
-public class ProfileRunner extends Command {
+public class RunProfile extends Command {
     private TrajectoryPair pair;
     private final double P = 0.03, I = 0.00, D = 0.5, V = 0.3, A = 0.0; // constants for position keeping pids at max vel of 1.0
     private final double Pa = .0048, Ia = 0.0, Da = 0.05; // constants for angle keeping pids
@@ -98,23 +98,20 @@ public class ProfileRunner extends Command {
         angle = new PIDController(Pa, Ia, Da, angleSource, angleOutput);
 
 
-    public ProfileRunner() {
+    public RunProfile(String filename) {
         requires(Robot.drivetrain);
+        pair = new TrajectoryPair(filename);
     }
     
     @Override
     protected void initialize() {
-        i = 0;
-        try {
-            pair = new TrajectoryPair("rightTurn");
-            initialAngle = Robot.drivetrain.getGyroRestrictedAngleRadians();
-            Robot.drivetrain.resetEncoders();
-            left.enable();
-            right.enable();
-            angle.enable();
-          } catch (FileNotFoundException e) {
-            e.printStackTrace();
-          } 
+        initialAngle = Robot.drivetrain.getGyroRestrictedAngleRadians();
+        Robot.drivetrain.resetEncoders();
+        
+        left.enable();
+        right.enable();
+        angle.enable();
+         
         lastTime = System.currentTimeMillis();
     }
 
@@ -132,11 +129,6 @@ public class ProfileRunner extends Command {
         right.disable();
         angle.disable();
         Robot.drivetrain.stop();
-    }
-
-    @Override
-    protected void interrupted() {
-        end();
     }
 
     @Override
