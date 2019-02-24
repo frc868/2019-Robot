@@ -20,8 +20,8 @@ import frc.robot.climberelevator.ramps.Ramps;
 import frc.robot.drivetrain.Drivetrain;
 import frc.robot.helpers.subsystems.SubsystemManager;
 import frc.robot.oi.OI;
-
-// import frc.robot.sensors.camera.*;
+import frc.robot.sensors.camera.Camera;
+import frc.robot.sensors.ultrasonic.UltrasonicArray;
 
 public class Robot extends TimedRobot {
   public static BallIntake ballIntake = new BallIntake();
@@ -36,7 +36,8 @@ public class Robot extends TimedRobot {
   public static PowerPack powerPack = new PowerPack();
   public static Ramps climberRamps = new Ramps();
 
-  // public static Camera camera = new Camera();
+  public static Camera camera = new Camera();
+  public static UltrasonicArray ultrasonic = new UltrasonicArray();
 
   @Override
   public void robotInit() {

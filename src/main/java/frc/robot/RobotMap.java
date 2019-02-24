@@ -1,5 +1,7 @@
 package frc.robot;
 
+import edu.wpi.first.wpilibj.SerialPort;
+
 public class RobotMap {
 
   public static final int PCM = 16; // TESTED
@@ -69,7 +71,18 @@ public class RobotMap {
     }
   }
 
-  public class Controls{
+  public static class Sensors {
+    public static class Camera {
+      public static final SerialPort.Port PORT = SerialPort.Port.kUSB1;
+    }
+
+    public static class Ultrasonic {
+      public static final int FRONT_TRIGGER = 0;
+      public static final int FRONT_ECHO = 1;
+    }
+  }
+
+  public static class Controls{
     public static final int DRIVER = 0;
     public static final int OPERATOR = 1;
   }

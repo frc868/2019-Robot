@@ -56,7 +56,6 @@ public class TrajectoryPair {
         this.right = new Trajectory.Segment[segmentsRight.size()];
 
         for (int i = 0; i < left.length; i++) {
-            SmartDashboard.putNumber("i", i);
             left[i] = segmentsLeft.get(i);
             right[i] = segmentsRight.get(i);
         }
