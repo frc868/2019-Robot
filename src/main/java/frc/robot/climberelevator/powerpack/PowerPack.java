@@ -38,9 +38,7 @@ public class PowerPack extends SubsystemManagerChild {
     * @param speed percentage power from -1 to 1, will not work if limits are tripped
     */
   public void setSpeed(double speed) {
-    if (!getLimits()) {
-      primary.set(Helper.boundValue(speed));
-    }
+    primary.set(Helper.boundValue(speed));
   }
 
   /**
