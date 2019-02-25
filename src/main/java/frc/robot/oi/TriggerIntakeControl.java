@@ -1,7 +1,6 @@
 package frc.robot.oi;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.*;
 
 public class TriggerIntakeControl extends Command {

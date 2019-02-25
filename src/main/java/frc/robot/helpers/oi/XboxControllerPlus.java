@@ -1,7 +1,6 @@
 package frc.robot.helpers.oi;
 
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.buttons.POVButton;
 
 public class XboxControllerPlus extends XboxController {
     private static class Bindings {
