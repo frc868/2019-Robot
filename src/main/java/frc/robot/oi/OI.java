@@ -49,39 +49,24 @@ public class OI {
 
     operator.start.whenPressed(new OpenAndIntake());
     operator.menu.whenPressed(new GiveToClaw());
+
+    driver.rb.and(driver.start).whenPressed(new DeployForks());
+    driver.rb.and(driver.menu).whenPressed(new DeployRamps());
+    driver.rb.and(driver.y).whenPressed(new ThirdLevelClimb(false));
+
+    driver.rb.and(driver.povN).pressToStartReleaseToStop(new SetClimberSpeed(0.5), new SetClimberSpeed(0));
+    driver.rb.and(driver.povS).pressToStartReleaseToStop(new SetClimberSpeed(-0.5), new SetClimberSpeed(0));
+
+    driver.rb.and(driver.povE).pressToStartReleaseToStop(new SetFootDriveSpeed(0.5), new SetFootDriveSpeed(0));
+    driver.rb.and(driver.povW).pressToStartReleaseToStop(new SetFootDriveSpeed(-0.5), new SetFootDriveSpeed(0));
+  
+    operator.rb.and(operator.a).whenPressed(new AutoElevatorTilt(AutoElevatorTilt.State.ballLower));
+    operator.rb.and(operator.b).whenPressed(new AutoElevatorTilt(AutoElevatorTilt.State.ballMiddle));
+    operator.rb.and(operator.y).whenPressed(new AutoElevatorTilt(AutoElevatorTilt.State.ballUpper));
   }
 
   public static void update() {
-    if (driver.rb.get()) {
-      driver.start.whenPressed(new DeployForks());
-      driver.menu.whenPressed(new DeployRamps());
-      driver.y.whenPressed(new ThirdLevelClimb(false));
 
-      driver.povN.pressToStartReleaseToStop(new SetClimberSpeed(0.5), new SetClimberSpeed(0));
-      driver.povS.pressToStartReleaseToStop(new SetClimberSpeed(-0.5), new SetClimberSpeed(0));
-
-      driver.povE.pressToStartReleaseToStop(new SetFootDriveSpeed(0.5), new SetFootDriveSpeed(0));
-      driver.povW.pressToStartReleaseToStop(new SetFootDriveSpeed(-0.5), new SetFootDriveSpeed(0));
-    } else {
-      driver.start.resetMappings();
-      driver.menu.resetMappings();
-      driver.y.resetMappings();
-
-      driver.povN.resetMappings();
-      driver.povS.resetMappings();
-      driver.povE.resetMappings();
-      driver.povW.resetMappings();
-    }
-
-    if (operator.rb.get()) {
-      operator.a.whenPressed(new AutoElevatorTilt(AutoElevatorTilt.State.ballLower));
-      operator.b.whenPressed(new AutoElevatorTilt(AutoElevatorTilt.State.ballMiddle));
-      operator.y.whenPressed(new AutoElevatorTilt(AutoElevatorTilt.State.ballUpper));
-    } else {
-      operator.a.whenPressed(new AutoElevatorTilt(AutoElevatorTilt.State.hatchLower));
-      operator.b.whenPressed(new AutoElevatorTilt(AutoElevatorTilt.State.hatchMiddle));
-      operator.y.whenPressed(new AutoElevatorTilt(AutoElevatorTilt.State.hatchUpper));
-    }
   }
 
 }

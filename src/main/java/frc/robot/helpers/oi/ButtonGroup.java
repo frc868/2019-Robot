@@ -1,16 +1,21 @@
 package frc.robot.helpers.oi;
 
 import edu.wpi.first.wpilibj.buttons.Button;
-import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.helpers.commands.EmptyCommand;
 import frc.robot.helpers.commands.StopCommand;
-import frc.robot.helpers.oi.ButtonGroup;
 
-public class ButtonPlus extends JoystickButton {
+public class ButtonGroup extends Button {
+    Button a, b;
 
-    public ButtonPlus(XboxControllerPlus controller, int id) {
-        super(controller, id);
+    public ButtonGroup(Button a, Button b) {
+        this.a = a;
+        this.b = b;
+    }
+
+    @Override
+    public boolean get() {
+        return a.get() && b.get();
     }
 
     public void resetMappings() {
@@ -23,6 +28,8 @@ public class ButtonPlus extends JoystickButton {
         cancelWhenPressed(new EmptyCommand());
         toggleWhenActive(new EmptyCommand());
         toggleWhenPressed(new EmptyCommand());
+        pressToStartReleaseToStop(new EmptyCommand());
+        pressToStartReleaseToStop(new EmptyCommand(), new EmptyCommand());
     }
 
     public void pressToStartReleaseToStop(Command command) {
@@ -33,9 +40,4 @@ public class ButtonPlus extends JoystickButton {
         whenPressed(startCommand);
         whenReleased(stopCommand);
     }
-
-    public ButtonGroup and(Button otherButton) {
-        return new ButtonGroup(this, otherButton);
-    }
-
 }
