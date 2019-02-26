@@ -7,14 +7,14 @@ import frc.robot.helpers.oi.XboxControllerPlus;
 public class ArcadeDrive extends Command {
 
     public ArcadeDrive() {
-        requires(Robot.drivetrain);
+        requires(Robot.drivetrainNEO);
     }
 
     @Override
     protected void execute() {
         double y = XboxControllerPlus.cube(OI.driver.getLY());
         double x = XboxControllerPlus.cube(OI.driver.getRX());
-        Robot.drivetrain.setSpeed(-y + x, y + x);
+        Robot.drivetrainNEO.setSpeed(-y + x, y + x);
     }
 
     @Override

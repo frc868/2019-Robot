@@ -9,7 +9,7 @@ public class FollowUltrasonic extends PIDCommandPlus {
 
     public FollowUltrasonic() {
         super(P, I, D, TARGET_DISTANCE);
-        requires(Robot.drivetrain);
+        requires(Robot.drivetrainNEO);
         requires(Robot.ultrasonic);
     }
 
@@ -20,6 +20,6 @@ public class FollowUltrasonic extends PIDCommandPlus {
 
     @Override
     protected void usePIDOutput(double output) {
-        Robot.drivetrain.setSpeed(output, output);
+        Robot.drivetrainNEO.setSpeed(output, output);
     }
 }

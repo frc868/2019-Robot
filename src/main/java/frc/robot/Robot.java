@@ -29,7 +29,7 @@ public class Robot extends TimedRobot {
   public static GroundPickup groundPickup = new GroundPickup();
   public static Tilt tilt = new Tilt();
 
-  public static Drivetrain drivetrain = new Drivetrain();
+  public static DrivetrainNEO drivetrainNEO = new DrivetrainNEO();
 
   public static FootDrive footDrive = new FootDrive();
   public static Forks forks = new Forks();

@@ -12,11 +12,11 @@ public class TurnToAngleGyro extends PIDCommandPlus {
 
 	@Override
 	protected double returnPIDInput() {
-		return Robot.drivetrain.getGyroAngle();
+		return Robot.drivetrainNEO.getGyroAngle();
 	}
 
 	@Override
 	protected void usePIDOutput(double output) {
-		Robot.drivetrain.setSpeed(output, -output);
+		Robot.drivetrainNEO.setSpeed(output, -output);
 	}
 }

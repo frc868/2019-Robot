@@ -22,24 +22,24 @@ public class DriveStraight extends PIDCommandPlus {
 
     @Override
     protected void initialize() {
-        setSetpointRelative(Robot.drivetrain.getGyroAngle());
-        initialDistance = Robot.drivetrain.getAvgScaledDistance();
+        setSetpointRelative(Robot.drivetrainNEO.getGyroAngle());
+        initialDistance = Robot.drivetrainNEO.getAvgScaledDistance();
     }
 
     @Override
     protected double returnPIDInput() {
-        return Robot.drivetrain.getGyroAngle();
+        return Robot.drivetrainNEO.getGyroAngle();
     }
 
     @Override
     protected void usePIDOutput(double output) {
         double left = targetPower + output;
         double right = targetPower - output;
-        Robot.drivetrain.setSpeed(Helper.boundValue(left), Helper.boundValue(right));
+        Robot.drivetrainNEO.setSpeed(Helper.boundValue(left), Helper.boundValue(right));
     }
 
     @Override
     protected void end() {
-        Robot.drivetrain.stop();
+        Robot.drivetrainNEO.stop();
     }
 }
