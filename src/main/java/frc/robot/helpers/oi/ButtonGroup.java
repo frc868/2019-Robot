@@ -19,15 +19,18 @@ public class ButtonGroup extends Button {
     }
 
     public void resetMappings() {
-        whenActive(new EmptyCommand());
-        whenInactive(new EmptyCommand());
         whenPressed(new EmptyCommand());
-        whenReleased(new EmptyCommand());
         whileHeld(new EmptyCommand());
-        cancelWhenActive(new EmptyCommand());
-        cancelWhenPressed(new EmptyCommand());
-        toggleWhenActive(new EmptyCommand());
+        whenReleased(new EmptyCommand());
         toggleWhenPressed(new EmptyCommand());
+        cancelWhenPressed(new EmptyCommand());
+
+        whenActive(new EmptyCommand());
+        whileActive(new EmptyCommand());
+        whenInactive(new EmptyCommand());
+        toggleWhenActive(new EmptyCommand());
+        cancelWhenActive(new EmptyCommand());
+
         pressToStartReleaseToStop(new EmptyCommand());
         pressToStartReleaseToStop(new EmptyCommand(), new EmptyCommand());
     }
