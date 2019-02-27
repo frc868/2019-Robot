@@ -20,7 +20,7 @@ public class Camera extends SubsystemManagerChild {
   private boolean vision_mode;
 
   public Camera() {
-    super();
+    super("Camera");
     port = new SerialPort(115200, RobotMap.Sensors.Camera.PORT);
   }
 

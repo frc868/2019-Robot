@@ -9,6 +9,7 @@ public class UltrasonicArray extends SubsystemManagerChild {
     private final double MAX_DISTANCE = 100;
 
     public UltrasonicArray() {
+        super("Ultrasonic");
         ultrasonic = new Ultrasonic(RobotMap.Sensors.Ultrasonic.FRONT_TRIGGER, RobotMap.Sensors.Ultrasonic.FRONT_ECHO);
     }
 
