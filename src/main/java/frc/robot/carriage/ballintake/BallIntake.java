@@ -7,6 +7,7 @@ import frc.robot.RobotMap;
 import frc.robot.helpers.Helper;
 import frc.robot.helpers.subsystems.SubsystemManagerChild;
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 
 
 public class BallIntake extends SubsystemManagerChild {
@@ -14,6 +15,7 @@ public class BallIntake extends SubsystemManagerChild {
   private DigitalInput detection_limit;
 
   public BallIntake() {
+    super("BallIntake");
     motor = new WPI_TalonSRX(RobotMap.Carriage.BallIntake.MOTOR);
     detection_limit = new DigitalInput(RobotMap.Carriage.BallIntake.DETECTION_LIMIT);
   }
@@ -49,8 +51,23 @@ public class BallIntake extends SubsystemManagerChild {
 
   @Override
   public void updateSD() {
-    SmartDashboard.putNumber("Ball Intake Speed", getSpeed());
     SmartDashboard.putBoolean("Is Ball Detected", isBallDetected());
+  }
+
+  @Override
+  public void initDebug() {
+    addDebug("Is Ball Detected", detection_limit);
+  }
+
+  @Override
+  public void initTab() {
+    addTab("Motor", motor);
+    addTab("Is Ball Detected", detection_limit);
+  }
+
+  @Override
+  public void updateTab() {
+    addTab("Current", motor.getOutputCurrent());
   }
   
 }

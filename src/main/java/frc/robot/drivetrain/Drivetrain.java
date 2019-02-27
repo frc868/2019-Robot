@@ -15,6 +15,7 @@ public class Drivetrain extends SubsystemManagerChild {
     private double angleOffset = 0;
 
     public Drivetrain() {
+        super("Drivetrain");
         leftPrimary = new CANSparkMaxPlus(RobotMap.Drivetrain.LEFT_PRIMARY);
         leftSecondary = new CANSparkMaxPlus(RobotMap.Drivetrain.LEFT_SECONDARY);
         leftTertiary = new CANSparkMaxPlus(RobotMap.Drivetrain.LEFT_TERTIARY);
@@ -189,10 +190,22 @@ public class Drivetrain extends SubsystemManagerChild {
 
     @Override
     public void updateSD() {
-        SmartDashboard.putNumber("Left Speed", getLeftSpeed());
-        SmartDashboard.putNumber("Right Speed", getRightSpeed());
         SmartDashboard.putNumber("Left Position", getLeftEncPosition());
         SmartDashboard.putNumber("Right Position", getRightEncPosition());
         SmartDashboard.putNumber("Angle", getGyroAngle());
+    }
+
+    @Override
+    public void initDebug() {
+        addDebug("Left Encoder", leftPrimary.getEncoder());
+        addDebug("Right Encoder", rightPrimary.getEncoder());
+        addDebug("Gyro", gyro);
+    }
+
+    @Override
+    public void initTab() {
+        addTab("Left Encoder", leftPrimary.getEncoder());
+        addTab("Right Encoder", rightPrimary.getEncoder());
+        addTab("Gyro", gyro);
     }
 }

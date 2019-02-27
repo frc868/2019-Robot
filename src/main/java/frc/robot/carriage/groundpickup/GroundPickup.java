@@ -4,6 +4,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import frc.robot.helpers.Helper;
@@ -16,6 +17,7 @@ public class GroundPickup extends SubsystemManagerChild {
     public static final double STORED = 0, GIVE_HATCH = 1, INTAKE_HATCH = 2;
 
     public GroundPickup() {
+        super("GroundPickup");
         intake = new WPI_TalonSRX(RobotMap.Carriage.GroundPickup.INTAKE);
         wrist = new WPI_TalonSRX(RobotMap.Carriage.GroundPickup.WRIST);
         encoder = new Encoder(RobotMap.Carriage.GroundPickup.WRIST_ENCODER_A, RobotMap.Carriage.GroundPickup.WRIST_ENCODER_B);
@@ -88,8 +90,28 @@ public class GroundPickup extends SubsystemManagerChild {
 
     @Override
     public void updateSD() {
-        SmartDashboard.putNumber("Hatch Pickup Intake Speed", getIntakeSpeed());
-        SmartDashboard.putNumber("Hatch Pickup Wrist Speed", getWristSpeed());
-        SmartDashboard.putNumber("Hatch Pickup Wrist Position", getWristEncPosition());
+        SmartDashboard.putBoolean("Is Hatch Detected", isHatchDetected());
+    }
+
+    @Override
+    public void initDebug() {
+        addDebug("Wrist", wrist);
+        addDebug("Intake", intake);
+        addDebug("Wrist Encoder", encoder);
+        addDebug("Is Hatch Detected", detection_limit);
+    }
+
+    @Override
+    public void initTab() {
+        addTab("Wrist", wrist);
+        addTab("Intake", intake);
+        addTab("Wrist Encoder", encoder);
+        addTab("Is Hatch Detected", detection_limit);
+    }
+
+    @Override
+    public void updateTab() {
+        addTab("Wrist Current", wrist.getOutputCurrent());
+        addTab("Intake Current", intake.getOutputCurrent());
     }
 }

@@ -3,6 +3,7 @@ package frc.robot.carriage.tilt;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import frc.robot.helpers.Helper;
@@ -15,6 +16,7 @@ public class Tilt extends SubsystemManagerChild {
   public static final double REVERSE_LIMIT = 0, LOWER = 0, MIDDLE = 1, UPPER = 2, FORWARD_LIMIT = 0;
 
   public Tilt() {
+    super("Tilt");
     motor = new WPI_TalonSRX(RobotMap.Carriage.Tilt.MOTOR);
     potentiometer = new AnalogPotentiometer(RobotMap.Carriage.Tilt.POTENTIOMETER);
     motor.setInverted(true);
@@ -80,10 +82,21 @@ public class Tilt extends SubsystemManagerChild {
   }
 
   @Override
-  public void updateSD() {
-    SmartDashboard.putNumber("Tilt Speed", getSpeed());
-    SmartDashboard.putNumber("Tilt Position", getPotPosition());
-    SmartDashboard.putBoolean("Tilt Forward Limit", getForwardLimit());
-    SmartDashboard.putBoolean("Tilt Reverse Limit", getReverseLimit());
+  public void initDebug() {
+    addDebug("Motor", motor);
+    addDebug("Potentiometer", potentiometer);
   }
+
+  @Override
+  public void initTab() {
+    addTab("Motor", motor);
+    addTab("Potentiometer", potentiometer);
+  }
+
+  @Override
+  public void updateTab() {
+    addTab("Current", motor.getOutputCurrent());
+    addTab("Forward Limit", getForwardLimit());
+    addTab("Reverse Limit", getReverseLimit());
+  } 
 }

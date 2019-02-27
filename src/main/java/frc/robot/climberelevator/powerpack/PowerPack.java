@@ -6,6 +6,8 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.Spark;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import frc.robot.helpers.Helper;
@@ -24,6 +26,7 @@ public class PowerPack extends SubsystemManagerChild {
         UPPER_HATCH = 5, UPPER_BALL = 6;
 
   public PowerPack() {
+    super("PowerPack");
     primary = new CANSparkMax(RobotMap.ClimberElevator.Powerpack.PRIMARY, MotorType.kBrushless);
     secondary = new CANSparkMax(RobotMap.ClimberElevator.Powerpack.SECONDARY, MotorType.kBrushless);
 
@@ -154,16 +157,33 @@ public class PowerPack extends SubsystemManagerChild {
     return getBrakeMode() == BRAKE_MODE;
   }
 
+  @Override
+  public void initDebug() {
+    addDebug("Primary", primary);
+    addDebug("Elevator Top Limit", brake);
+    addDebug("Elevator Bottom Limit", brake);
+    addDebug("Climber Top Limit", brake);
+    addDebug("Climber Bottom Limit", brake);
+    addDebug("Encoder", primary.getEncoder());
+  }
 
   @Override
-  public void updateSD() {
-    SmartDashboard.putBoolean("Elevator Mode", isElevatorMode());
-    SmartDashboard.putNumber("Powerpack Speed", getSpeed());
-    SmartDashboard.putNumber("Powerpack Position", getEncPosition());
-    SmartDashboard.putBoolean("Elevator Top Limit", getElevatorTopLimitSwitch());
-    SmartDashboard.putBoolean("Elevator Bottom Limit", getElevatorBottomLimitSwitch());
-    SmartDashboard.putBoolean("Climber Top Limit", getClimberTopLimitSwitch());
-    SmartDashboard.putBoolean("Climber Bottom Limit", getClimberBottomLimitSwitch());
+  public void initTab() {
+    addTab("Primary", primary);
+    addTab("Secondary", secondary);
+    addTab("Switcher", switcher);
+    addTab("Brake", brake);
+    addTab("Elevator Top Limit", brake);
+    addTab("Elevator Bottom Limit", brake);
+    addTab("Climber Top Limit", brake);
+    addTab("Climber Bottom Limit", brake);
+    addTab("Encoder", primary.getEncoder());
+  }
+
+  @Override
+  public void updateTab() {
+    addTab("Primary Current", primary.getOutputCurrent());
+    addTab("Secondary Current", secondary.getOutputCurrent());
   }
   
 }
