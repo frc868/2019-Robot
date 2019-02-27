@@ -3,29 +3,31 @@ package frc.robot.carriage.groundpickup;
 import frc.robot.Robot;
 
 public class IntakeUntilHatchDetected extends SetGroundPickupIntakeSpeed {
-    private int counts = 0;
-    private final int COUNTS_NEEDED = 5;
+    private static final double DEFAULT_POWER = -1.0;
+    
+    private int countsDetected = 0;
+    private final int COUNTS_NEEDED = 5; // the counts needed to determine that the hatch is indeed detected
 
-    public IntakeUntilHatchDetected() {
-        super();
+    public IntakeUntilHatchDetected(double power) {
+        super(power);
     }
 
-    public IntakeUntilHatchDetected(double speed) {
-        super(speed);
+    public IntakeUntilHatchDetected() {
+        super(DEFAULT_POWER);
     }
 
     @Override
     protected void execute() {
-        if (Robot.groundPickup.isHatchDetected()) {
-            counts++;
-        } else {
-            counts = 0;
+        if (Robot.groundPickup.isHatchDetected()) { // if the hatch is detected, add to counts detected
+            countsDetected++;
+        } else { // else reset counts detected
+            countsDetected = 0;
         }
     }
 
     @Override
     protected boolean isFinished() {
-        return counts >= COUNTS_NEEDED;
+        // return true if the hatch has been detected for the counts needed to determine the intake has the hatch
+        return countsDetected >= COUNTS_NEEDED;  
     }
-
 }

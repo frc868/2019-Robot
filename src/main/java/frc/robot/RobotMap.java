@@ -24,8 +24,10 @@ public class RobotMap {
       public static final int SECONDARY = 12; // TESTED
       public static final int SWITCHER = 0;
       public static final int BRAKE = 1;
-      public static final int TOP_LIMIT = 0;
-      public static final int BOTTOM_LIMIT = 1;
+      public static final int ELEVATOR_TOP_LIMIT = 0;
+      public static final int ELEVATOR_BOTTOM_LIMIT = 1;
+      public static final int CLIMBER_TOP_LIMIT = 5;
+      public static final int CLIMBER_BOTTOM_LIMIT = 6;
     }
 
     public static class FootDrive {
@@ -33,11 +35,11 @@ public class RobotMap {
     }
 
     public static class Ramps {
-      public static final int RAMPS = 7; 
+      public static final int ACTUATOR = 7; 
     }
 
     public static class Forks {
-      public static final int FORKS = 2; // idk
+      public static final int RELEASE = 2; // idk
       //public static final int LEFT = 2;
       //public static final int RIGHT = 3;
     }
@@ -46,11 +48,12 @@ public class RobotMap {
   public static class Carriage {
     public static class Tilt {
       public static final int MOTOR = 5; // TESTED
+      public static final int POTENTIOMETER = 0;
     }
 
     public static class BallIntake {
       public static final int MOTOR = 4; // TESTED
-      public static final int DETECTION_LIMIT = 0;
+      public static final int DETECTION_LIMIT = 4;
     }
 
     public static class HatchClaw {
@@ -65,9 +68,7 @@ public class RobotMap {
       public static final int INTAKE = 14;
       public static final int WRIST_ENCODER_A = 0;
       public static final int WRIST_ENCODER_B = 1;
-      // public static final int FORWARD_LIMIT = 0; 
-      // public static final int REVERSE_LIMIT = 0; 
-      // public static final int DETECTION_LIMIT = 0; 
+      public static final int DETECTION_LIMIT = 0; 
     }
   }
 

@@ -1,27 +1,28 @@
 package frc.robot.drivetrain;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import frc.robot.helpers.Helper;
+import frc.robot.helpers.motorcontrollers.CANSparkMaxPlus;
 import frc.robot.helpers.subsystems.SubsystemManagerChild;
 
 public class Drivetrain extends SubsystemManagerChild {
-    private WPI_TalonSRX leftPrimary, leftSecondary, leftTertiary, rightPrimary, rightSecondary, rightTertiary;
+    private CANSparkMaxPlus leftPrimary, leftSecondary, leftTertiary, rightPrimary, rightSecondary, rightTertiary;
     private AnalogGyro gyro;
     private final double INCHES_PER_TICK = 0.0045998; 
     private final double DEGREES_PER_LOOP = 0.1;
     private double angleOffset = 0;
 
     public Drivetrain() {
-        leftPrimary = new WPI_TalonSRX(RobotMap.Drivetrain.LEFT_PRIMARY);
-        leftSecondary = new WPI_TalonSRX(RobotMap.Drivetrain.LEFT_SECONDARY);
-        leftTertiary = new WPI_TalonSRX(RobotMap.Drivetrain.LEFT_TERTIARY);
+        super("Drivetrain");
+        leftPrimary = new CANSparkMaxPlus(RobotMap.Drivetrain.LEFT_PRIMARY);
+        leftSecondary = new CANSparkMaxPlus(RobotMap.Drivetrain.LEFT_SECONDARY);
+        leftTertiary = new CANSparkMaxPlus(RobotMap.Drivetrain.LEFT_TERTIARY);
 
-        rightPrimary = new WPI_TalonSRX(RobotMap.Drivetrain.RIGHT_PRIMARY);
-        rightSecondary = new WPI_TalonSRX(RobotMap.Drivetrain.RIGHT_SECONDARY);
-        rightTertiary = new WPI_TalonSRX(RobotMap.Drivetrain.RIGHT_TERTIARY);
+        rightPrimary = new CANSparkMaxPlus(RobotMap.Drivetrain.RIGHT_PRIMARY);
+        rightSecondary = new CANSparkMaxPlus(RobotMap.Drivetrain.RIGHT_SECONDARY);
+        rightTertiary = new CANSparkMaxPlus(RobotMap.Drivetrain.RIGHT_TERTIARY);
 
         leftSecondary.follow(leftPrimary);
         leftTertiary.follow(leftPrimary);
@@ -110,7 +111,7 @@ public class Drivetrain extends SubsystemManagerChild {
      * @return position of left motor according to encoder
      */
     public double getLeftEncPosition() {
-        return leftPrimary.getSelectedSensorPosition();
+        return leftPrimary.getEncoder().getPosition();
     }
 
     /**
@@ -125,7 +126,7 @@ public class Drivetrain extends SubsystemManagerChild {
      * @return position of right motor according to encoder
      */
     public double getRightEncPosition() {
-        return rightPrimary.getSelectedSensorPosition();
+        return rightPrimary.getEncoder().getPosition();
     }
 
     /**
@@ -155,8 +156,8 @@ public class Drivetrain extends SubsystemManagerChild {
      * resets encoder counts on gyros
      */
     public void resetEncoders(){
-        leftPrimary.setSelectedSensorPosition(0);
-        rightPrimary.setSelectedSensorPosition(0);
+        leftPrimary.getEncoder().setPosition(0);
+        rightPrimary.getEncoder().setPosition(0);
     }
 
     /**
@@ -189,10 +190,22 @@ public class Drivetrain extends SubsystemManagerChild {
 
     @Override
     public void updateSD() {
-        SmartDashboard.putNumber("Left Speed", getLeftSpeed());
-        SmartDashboard.putNumber("Right Speed", getRightSpeed());
         SmartDashboard.putNumber("Left Position", getLeftEncPosition());
         SmartDashboard.putNumber("Right Position", getRightEncPosition());
         SmartDashboard.putNumber("Angle", getGyroAngle());
+    }
+
+    @Override
+    public void initDebug() {
+        addDebug("Left Encoder", leftPrimary.getEncoder());
+        addDebug("Right Encoder", rightPrimary.getEncoder());
+        addDebug("Gyro", gyro);
+    }
+
+    @Override
+    public void initTab() {
+        addTab("Left Encoder", leftPrimary.getEncoder());
+        addTab("Right Encoder", rightPrimary.getEncoder());
+        addTab("Gyro", gyro);
     }
 }

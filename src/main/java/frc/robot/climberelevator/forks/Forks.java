@@ -1,22 +1,25 @@
 package frc.robot.climberelevator.forks;
 
 import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import frc.robot.helpers.subsystems.SubsystemManagerChild;
 
 public class Forks extends SubsystemManagerChild {
-    private Solenoid forks;
+    private Solenoid release;
     private final boolean OPEN_MODE = true;
 
     public Forks() {
-        forks = new Solenoid(RobotMap.PCM, RobotMap.ClimberElevator.Forks.FORKS);
+        super("Forks");
+        release = new Solenoid(RobotMap.PCM, RobotMap.ClimberElevator.Forks.RELEASE);
     }
 
     /**
      * @param state which state to set the forks to
      */
     public void setState(boolean state) {
-        forks.set(state);
+        release.set(state);
     }
 
     /**
@@ -37,6 +40,16 @@ public class Forks extends SubsystemManagerChild {
      * @return true if forks are open
      */
     public boolean isOpen() {
-        return forks.get() == OPEN_MODE;
+        return release.get() == OPEN_MODE;
+    }
+
+    @Override
+    public void initDebug() {
+        addDebug("Forks", release);
+    }
+
+    @Override
+    public void initTab() {
+        addTab("Release", release);
     }
 }

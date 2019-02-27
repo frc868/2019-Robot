@@ -20,7 +20,7 @@ public class FollowVision extends Command {
   public static double k_hratio =  0.005;
  
   public FollowVision() {
-    requires(Robot.drivetrainNEO);
+    requires(Robot.drivetrain);
     requires(Robot.camera);
   }
 
@@ -44,7 +44,7 @@ public class FollowVision extends Command {
       double left = (distValue + posValue + hRatioValue) / 10.0;
       double right = (distValue - posValue - hRatioValue) / 10.0;
 
-      Robot.drivetrainNEO.setSpeed(left, -right);
+      Robot.drivetrain.setSpeed(left, -right);
 
       counts = 0;
     } else {
@@ -59,6 +59,6 @@ public class FollowVision extends Command {
 
   @Override
   protected void end() {
-    Robot.drivetrainNEO.stop();
+    Robot.drivetrain.stop();
   }
 }

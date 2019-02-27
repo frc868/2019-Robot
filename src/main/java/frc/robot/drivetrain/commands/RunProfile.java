@@ -25,7 +25,7 @@ public class RunProfile extends Command {
     
         @Override
         public double pidGet() {
-            return pair.getLeft()[i].position - Robot.drivetrainNEO.getScaledLeftDistance();
+            return pair.getLeft()[i].position - Robot.drivetrain.getScaledLeftDistance();
         }
     
         @Override
@@ -41,7 +41,7 @@ public class RunProfile extends Command {
     
         @Override
         public double pidGet() {
-            return pair.getRight()[i].position - Robot.drivetrainNEO.getScaledRightDistance();
+            return pair.getRight()[i].position - Robot.drivetrain.getScaledRightDistance();
         }
     
         @Override
@@ -57,7 +57,7 @@ public class RunProfile extends Command {
     
         @Override
         public double pidGet() {
-            return Helper.angleDiff(pair.getAvgAngle(i), (Robot.drivetrainNEO.getGyroRestrictedAngleRadians()-initialAngle));
+            return Helper.angleDiff(pair.getAvgAngle(i), (Robot.drivetrain.getGyroRestrictedAngleRadians()-initialAngle));
         }
     
         @Override
@@ -69,7 +69,7 @@ public class RunProfile extends Command {
     PIDOutput leftOutput = new PIDOutput(){
         @Override
         public void pidWrite(double output) {
-            Robot.drivetrainNEO.setLeftSpeed((output + pair.getLeft()[i].velocity * V + pair.getLeft()[i].acceleration * A));
+            Robot.drivetrain.setLeftSpeed((output + pair.getLeft()[i].velocity * V + pair.getLeft()[i].acceleration * A));
         }
     };
 
@@ -77,7 +77,7 @@ public class RunProfile extends Command {
     
         @Override
         public void pidWrite(double output) {
-            Robot.drivetrainNEO.setRightSpeed((output + pair.getRight()[i].velocity * V + pair.getRight()[i].acceleration * A));
+            Robot.drivetrain.setRightSpeed((output + pair.getRight()[i].velocity * V + pair.getRight()[i].acceleration * A));
         }
     };
 
@@ -85,7 +85,7 @@ public class RunProfile extends Command {
     
         @Override
         public void pidWrite(double output) {
-            Robot.drivetrainNEO.adjustSpeed(output, -output);
+            Robot.drivetrain.adjustSpeed(output, -output);
         }
     };
 
@@ -96,14 +96,14 @@ public class RunProfile extends Command {
 
 
     public RunProfile(String filename) {
-        requires(Robot.drivetrainNEO);
+        requires(Robot.drivetrain);
         pair = new TrajectoryPair(filename);
     }
     
     @Override
     protected void initialize() {
-        initialAngle = Robot.drivetrainNEO.getGyroRestrictedAngleRadians();
-        Robot.drivetrainNEO.resetEncoders();
+        initialAngle = Robot.drivetrain.getGyroRestrictedAngleRadians();
+        Robot.drivetrain.resetEncoders();
         
         left.enable();
         right.enable();
@@ -125,7 +125,7 @@ public class RunProfile extends Command {
         left.disable();
         right.disable();
         angle.disable();
-        Robot.drivetrainNEO.stop();
+        Robot.drivetrain.stop();
     }
 
     @Override
