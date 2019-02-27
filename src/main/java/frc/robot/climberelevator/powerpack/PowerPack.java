@@ -18,6 +18,11 @@ public class PowerPack extends SubsystemManagerChild {
   private DigitalInput elevator_top_limit, elevator_bottom_limit, climber_top_limit, climber_bottom_limit;
   private final boolean ELEVATOR_MODE = true, BRAKE_MODE = true;
 
+  public static final double INTAKE_BALL = 0, GET_FROM_GROUND_PICKUP = 0,
+        LOWER_HATCH = 1, LOWER_BALL = 2, 
+        MIDDLE_HATCH = 3, MIDDLE_BALL = 4, 
+        UPPER_HATCH = 5, UPPER_BALL = 6;
+
   public PowerPack() {
     primary = new CANSparkMax(RobotMap.ClimberElevator.Powerpack.PRIMARY, MotorType.kBrushless);
     secondary = new CANSparkMax(RobotMap.ClimberElevator.Powerpack.SECONDARY, MotorType.kBrushless);

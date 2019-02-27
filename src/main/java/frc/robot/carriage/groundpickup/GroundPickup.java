@@ -13,6 +13,7 @@ public class GroundPickup extends SubsystemManagerChild {
     private WPI_TalonSRX intake, wrist;
     private Encoder encoder;
     private DigitalInput detection_limit;
+    public static final double STORED = 0, GIVE_HATCH = 1, INTAKE_HATCH = 2;
 
     public GroundPickup() {
         intake = new WPI_TalonSRX(RobotMap.Carriage.GroundPickup.INTAKE);
@@ -45,7 +46,7 @@ public class GroundPickup extends SubsystemManagerChild {
     /**
      * @return state of detection limit
      */
-    public boolean getDetectionLimit() {
+    public boolean isHatchDetected() {
         return detection_limit.get();
     }
 
@@ -75,6 +76,14 @@ public class GroundPickup extends SubsystemManagerChild {
      */
     public double getWristEncPosition() {
         return encoder.get();
+    }
+
+    public boolean getWristForwardLimit() {
+        return getWristEncPosition() > INTAKE_HATCH;
+    }
+
+    public boolean getWristReverseLimit() {
+        return getWristEncPosition() < STORED;
     }
 
     @Override
