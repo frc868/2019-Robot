@@ -9,6 +9,6 @@ public class TurnByAngleGyro extends TurnToAngleGyro {
 
 	@Override
 	protected void initialize() {
-		setSetpointRelative(Robot.drivetrainNEO.getGyroAngle());
+		setSetpointRelative(Robot.drivetrain.getGyroAngle());
 	}
 }

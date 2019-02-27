@@ -22,7 +22,7 @@ public class DriveStraightRamp extends DriveStraight {
     }
 
     protected double distanceToTarget() {
-        return Math.abs(targetDistance) - Math.abs(Robot.drivetrainNEO.getAvgScaledDistance() - initialDistance);
+        return Math.abs(targetDistance) - Math.abs(Robot.drivetrain.getAvgScaledDistance() - initialDistance);
     }
 
 }
