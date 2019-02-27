@@ -17,10 +17,7 @@ import frc.robot.climberelevator.footdrive.FootDrive;
 import frc.robot.climberelevator.forks.Forks;
 import frc.robot.climberelevator.powerpack.PowerPack;
 import frc.robot.climberelevator.ramps.Ramps;
-<<<<<<< HEAD
 import frc.robot.drivetrain.DrivetrainNEO;
-=======
->>>>>>> c00f8c152cc8d392f341233bbfd0508ad7c60235
 import frc.robot.helpers.subsystems.SubsystemManager;
 import frc.robot.oi.OI;
 import frc.robot.sensors.camera.Camera;
