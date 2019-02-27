@@ -29,7 +29,7 @@ public class OI {
 
     SmartDashboard.putBoolean("has OI", true);
     (new ArcadeDrive()).start();
-    (new TriggerIntakeControl()).start();
+    (new ManualIntake()).start();
 
     driver.lb.whenPressed(new ToggleClaw());
     operator.lb.whenPressed(new ToggleClaw());

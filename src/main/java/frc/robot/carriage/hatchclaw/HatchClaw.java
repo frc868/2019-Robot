@@ -11,7 +11,6 @@ public class HatchClaw extends SubsystemManagerChild {
   private DigitalInput left_limit, right_limit;
 
   public HatchClaw() {
-
     grab_solenoid = new Solenoid(RobotMap.PCM, RobotMap.Carriage.HatchClaw.GRAB_SOLENOID);
     release_solenoid = new Solenoid(RobotMap.PCM, RobotMap.Carriage.HatchClaw.RELEASE_SOLENOID);
     left_limit = new DigitalInput(RobotMap.Carriage.HatchClaw.LEFT_LIMIT);

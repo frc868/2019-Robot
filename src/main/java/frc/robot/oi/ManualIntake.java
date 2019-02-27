@@ -3,9 +3,9 @@ package frc.robot.oi;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.*;
 
-public class TriggerIntakeControl extends Command {
+public class ManualIntake extends Command {
 
-    public TriggerIntakeControl() {
+    public ManualIntake() {
         requires(Robot.ballIntake);
     }
 
