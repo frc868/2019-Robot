@@ -12,16 +12,9 @@ public class PIDTuner extends Command {
         PKey = name + " " + PKey;
         IKey = name + " " + IKey;
         DKey = name + " " + DKey;
-        this.command = command;
-        setup();
-    }
 
-    public PIDTuner(PIDCommandPlus command) {
         this.command = command;
-        setup();   
-    }
 
-    private void setup() {
         P = command.getP();
         I = command.getI();
         D = command.getD();
@@ -29,6 +22,10 @@ public class PIDTuner extends Command {
         SmartDashboard.putNumber(PKey, P);
         SmartDashboard.putNumber(IKey, I);
         SmartDashboard.putNumber(DKey, D);
+    }
+
+    public PIDTuner(PIDCommandPlus command) {
+        this("", command); 
     }
 
     @Override
