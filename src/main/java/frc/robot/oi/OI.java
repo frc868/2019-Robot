@@ -11,10 +11,10 @@ import frc.robot.carriage.tilt.SetTiltPosition;
 import frc.robot.carriage.tilt.SetTiltSpeed;
 import frc.robot.climberelevator.footdrive.SetFootDriveSpeed;
 import frc.robot.climberelevator.forks.DeployForks;
+import frc.robot.climberelevator.powerpack.AutoClimb;
 import frc.robot.climberelevator.powerpack.AutoElevatorTilt;
 import frc.robot.climberelevator.powerpack.SetClimberSpeed;
 import frc.robot.climberelevator.powerpack.SetElevatorSpeed;
-import frc.robot.climberelevator.powerpack.ThirdLevelClimb;
 import frc.robot.climberelevator.ramps.DeployRamps;
 import frc.robot.helpers.oi.XboxControllerPlus;
 
@@ -52,7 +52,7 @@ public class OI {
 
     driver.rb.and(driver.start).whenPressed(new DeployForks());
     driver.rb.and(driver.menu).whenPressed(new DeployRamps());
-    driver.rb.and(driver.y).whenPressed(new ThirdLevelClimb(false));
+    driver.rb.and(driver.y).whenPressed(new AutoClimb(true));
 
     driver.rb.and(driver.povN).pressToStartReleaseToStop(new SetClimberSpeed(0.5), new SetClimberSpeed(0));
     driver.rb.and(driver.povS).pressToStartReleaseToStop(new SetClimberSpeed(-0.5), new SetClimberSpeed(0));
