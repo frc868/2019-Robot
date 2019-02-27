@@ -22,7 +22,7 @@ public class SetTiltPosition extends PIDCommandPlus {
 
     @Override
     protected double returnPIDInput() {
-        return Robot.tilt.getEncPosition();
+        return Robot.tilt.getPotPosition();
     }
 
     @Override

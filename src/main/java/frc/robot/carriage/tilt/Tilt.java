@@ -2,6 +2,7 @@ package frc.robot.carriage.tilt;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
+import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import frc.robot.helpers.Helper;
@@ -10,10 +11,12 @@ import frc.robot.helpers.subsystems.SubsystemManagerChild;
 
 public class Tilt extends SubsystemManagerChild {
   private WPI_TalonSRX motor; 
-  // private final double CLAW_CLOSED_THRESHOLD = 10; 
+  private AnalogPotentiometer potentiometer;
+  private final double FORWARD_LIMIT = 0, REVERSE_LIMIT = 0;
 
   public Tilt() {
     motor = new WPI_TalonSRX(RobotMap.Carriage.Tilt.MOTOR);
+    potentiometer = new AnalogPotentiometer(RobotMap.Carriage.Tilt.POTENTIOMETER);
     motor.setInverted(true);
   }
 
@@ -44,8 +47,8 @@ public class Tilt extends SubsystemManagerChild {
    * 
    * @return position of motor according to encoder
    */
-  public double getEncPosition() {
-    return motor.getSelectedSensorPosition();
+  public double getPotPosition() {
+    return potentiometer.get();
   }
 
   /**
@@ -53,14 +56,14 @@ public class Tilt extends SubsystemManagerChild {
    * @return if forward limit is tripped
    */
   public boolean getForwardLimit() {
-    return motor.getSensorCollection().isFwdLimitSwitchClosed();
+    return getPotPosition() > FORWARD_LIMIT;
   }
 
   /**
    * @return if reverse limit is tripped
    */
   public boolean getReverseLimit() {
-    return motor.getSensorCollection().isRevLimitSwitchClosed();
+    return getPotPosition() < REVERSE_LIMIT;
   }
 
   /**
@@ -74,16 +77,12 @@ public class Tilt extends SubsystemManagerChild {
     if (getLimits()) {
       stop();
     }
-
-    // if (getEncPosition() < CLAW_CLOSED_THRESHOLD) {
-    //   Robot.hatchClaw.grab();
-    // }
   }
 
   @Override
   public void updateSD() {
     SmartDashboard.putNumber("Tilt Speed", getSpeed());
-    SmartDashboard.putNumber("Tilt Position", getEncPosition());
+    SmartDashboard.putNumber("Tilt Position", getPotPosition());
     SmartDashboard.putBoolean("Tilt Forward Limit", getForwardLimit());
     SmartDashboard.putBoolean("Tilt Reverse Limit", getReverseLimit());
   }

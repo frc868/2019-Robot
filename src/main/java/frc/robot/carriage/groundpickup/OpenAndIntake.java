@@ -12,6 +12,6 @@ public class OpenAndIntake extends CommandGroup {
             addSequential(new SetElevatorPosition(SetElevatorPosition.MIDDLE_HATCH));
         }
         addSequential(new SetGroundPickupTiltPosition(SetGroundPickupTiltPosition.INTAKE_HATCH));
-        addSequential(new IntakeUntilHatchDetected());
+        addSequential(new SetGroundPickupIntakeSpeed());
     }
 }
