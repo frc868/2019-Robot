@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.DigitalInput;
 public class BallIntake extends SubsystemManagerChild {
   private WPI_TalonSRX motor;
   private DigitalInput detection_limit;
+  private final boolean BALL_DETECTED_STATE = true;
 
   public BallIntake() {
     super("BallIntake");
@@ -39,12 +40,19 @@ public class BallIntake extends SubsystemManagerChild {
   public double getSpeed() {
     return motor.get();
   }
+
+  /**
+   * @return state of ball detection limit switch
+   */
+  public boolean getBallDetectionLimit() {
+    return detection_limit.get();
+  }
   
   /**
    * @return true if ball is detected, else false
    */
   public boolean isBallDetected() {
-    return detection_limit.get();
+    return getBallDetectionLimit() == BALL_DETECTED_STATE;
   }
 
   @Override

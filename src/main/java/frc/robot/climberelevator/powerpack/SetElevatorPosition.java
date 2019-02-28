@@ -15,7 +15,7 @@ public class SetElevatorPosition extends PIDCommandPlus {
     protected void initialize() {
         super.initialize();
         Robot.powerPack.switchToElevator();
-        Robot.powerPack.brakesOff();
+        Robot.powerPack.elevatorBrakeOff();
     }
 
     @Override
@@ -31,6 +31,6 @@ public class SetElevatorPosition extends PIDCommandPlus {
     @Override
     protected void end() {
         Robot.powerPack.stop();
-        Robot.powerPack.brakesOn();
+        Robot.powerPack.elevatorBrakeOn();
     }
 }

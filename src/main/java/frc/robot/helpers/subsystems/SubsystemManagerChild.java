@@ -17,6 +17,14 @@ public abstract class SubsystemManagerChild extends Subsystem {
 
   }
 
+  public void initDisabled() {
+
+  }
+
+  public void initEnabled() {
+
+  } 
+
   public void initSD() {
 
   }
@@ -32,6 +40,14 @@ public abstract class SubsystemManagerChild extends Subsystem {
   public void update() {
 
   }
+
+  public void updateDisabled() {
+
+  }
+
+  public void updateEnabled() {
+    
+  } 
 
   public void updateSD() {
  
@@ -54,11 +70,11 @@ public abstract class SubsystemManagerChild extends Subsystem {
   }
 
   protected void addDebug(String name, Sendable sendable) {
-    Shuffleboard.getTab(DEBUG).add(name, sendable);
+    Shuffleboard.getTab(DEBUG).add(DEBUG + ": " + name, sendable);
   }
 
   protected void addDebug(String name, Object value) {
-    Shuffleboard.getTab(DEBUG).add(name, value);
+    Shuffleboard.getTab(DEBUG).add(DEBUG + ": " + name, value);
   }
 
   @Override

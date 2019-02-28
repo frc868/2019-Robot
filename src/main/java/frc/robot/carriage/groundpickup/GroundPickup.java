@@ -15,6 +15,7 @@ public class GroundPickup extends SubsystemManagerChild {
     private Encoder encoder;
     private DigitalInput detection_limit;
     public static final double STORED = 0, GIVE_HATCH = 1, INTAKE_HATCH = 2;
+    private final boolean HATCH_DETECTED_STATE = true;
 
     public GroundPickup() {
         super("GroundPickup");
@@ -48,8 +49,15 @@ public class GroundPickup extends SubsystemManagerChild {
     /**
      * @return state of detection limit
      */
-    public boolean isHatchDetected() {
+    public boolean getDetectionLimit() {
         return detection_limit.get();
+    }
+
+    /**
+     * @return state of detection limit
+     */
+    public boolean isHatchDetected() {
+        return getDetectionLimit() == HATCH_DETECTED_STATE;
     }
 
     /**
@@ -80,10 +88,16 @@ public class GroundPickup extends SubsystemManagerChild {
         return encoder.get();
     }
 
+    /**
+     * @return true if wrist is past forward limit
+     */
     public boolean getWristForwardLimit() {
         return getWristEncPosition() > INTAKE_HATCH;
     }
 
+    /**
+     * @return false if wrist is before reverse limit
+     */
     public boolean getWristReverseLimit() {
         return getWristEncPosition() < STORED;
     }

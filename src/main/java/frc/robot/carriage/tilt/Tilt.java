@@ -3,8 +3,6 @@ package frc.robot.carriage.tilt;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import frc.robot.helpers.Helper;
 import frc.robot.helpers.subsystems.SubsystemManagerChild;
@@ -66,19 +64,6 @@ public class Tilt extends SubsystemManagerChild {
    */
   public boolean getReverseLimit() {
     return getPotPosition() < REVERSE_LIMIT;
-  }
-
-  /**
-   * @return if one of the limits are tripped
-   */
-  public boolean getLimits() {
-    return getForwardLimit() || getReverseLimit();
-  }
-  
-  public void update() {
-    if (getLimits()) {
-      stop();
-    }
   }
 
   @Override

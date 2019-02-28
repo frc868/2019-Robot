@@ -30,6 +30,18 @@ public abstract class SubsystemManager {
     }
   }
 
+  public static void initDisabled() {
+    for (SubsystemManagerChild sys : subsystems) {
+      sys.initDisabled();
+    }
+  }
+
+  public static void initEnabled() {
+    for (SubsystemManagerChild sys : subsystems) {
+      sys.initEnabled();
+    }
+  }
+
   public static void initTab() {
     for (SubsystemManagerChild sys : subsystems) {
       sys.initTab();
@@ -45,6 +57,18 @@ public abstract class SubsystemManager {
   public static void update() {
     for (SubsystemManagerChild sys : subsystems) {
       sys.update();
+    }
+  }
+
+  public static void updateDisabled() {
+    for (SubsystemManagerChild sys : subsystems) {
+      sys.updateDisabled();
+    }
+  }
+
+  public static void updateEnabled() {
+    for (SubsystemManagerChild sys : subsystems) {
+      sys.updateEnabled();
     }
   }
 

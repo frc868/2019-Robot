@@ -9,6 +9,8 @@ import frc.robot.helpers.subsystems.SubsystemManagerChild;
 public class HatchClaw extends SubsystemManagerChild {
   private Solenoid actuator;
   private DigitalInput left_limit, right_limit;
+  private final boolean GRABBED_STATE = true;
+  private final boolean HATCH_DETECTED_STATE = true;
 
   public HatchClaw() {
     super("HatchClaw");
@@ -18,10 +20,17 @@ public class HatchClaw extends SubsystemManagerChild {
   }
 
   /**
+   * @param state state to set actuator to
+   */
+  public void setState(boolean state) {
+    actuator.set(true);
+  }
+
+  /**
    * opens claw
    */
   public void grab() {
-    actuator.set(true);
+    setState(GRABBED_STATE);
   }
 
 
@@ -29,14 +38,21 @@ public class HatchClaw extends SubsystemManagerChild {
    * closes claw
    */
   public void release() {
-    actuator.set(false);
+    setState(!GRABBED_STATE);
+  }
+
+  /**
+   * @return state of actuator
+   */
+  public boolean getState() {
+    return actuator.get();
   }
 
   /**
    * @return whether the claw is grabbed or not
    */
   public boolean isGrabbed() {
-    return actuator.get();
+    return getState() == GRABBED_STATE;
   }
 
   /**
@@ -55,14 +71,14 @@ public class HatchClaw extends SubsystemManagerChild {
   }
 
   /**
-   * @return true if both limits are triggered
+   * @return true if both limits detect a hatch
    */
   public boolean isHatchDetected() {
-    return getLeftLimit() && getRightLimit();
+    return (getLeftLimit() == HATCH_DETECTED_STATE) && (getRightLimit() == HATCH_DETECTED_STATE);
   }
 
   @Override
-  public void init() {
+  public void initEnabled() {
     release();
   }
 

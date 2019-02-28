@@ -1,8 +1,6 @@
 package frc.robot.climberelevator.forks;
 
 import edu.wpi.first.wpilibj.Solenoid;
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import frc.robot.helpers.subsystems.SubsystemManagerChild;
 
@@ -37,10 +35,17 @@ public class Forks extends SubsystemManagerChild {
     }
 
     /**
+     * @return state of release
+     */
+    public boolean getState() {
+        return release.get();
+    }
+
+    /**
      * @return true if forks are open
      */
     public boolean isOpen() {
-        return release.get() == OPEN_MODE;
+        return getState() == OPEN_MODE;
     }
 
     @Override

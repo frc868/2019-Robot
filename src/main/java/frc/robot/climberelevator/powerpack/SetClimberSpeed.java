@@ -14,14 +14,14 @@ public class SetClimberSpeed extends Command {
     @Override
     protected void initialize() {
         Robot.powerPack.switchToClimber();
-        Robot.powerPack.brakesOff();
+        Robot.powerPack.climberBrakeOff();
         Robot.powerPack.setSpeed(targetSpeed);
     }
 
     @Override
     protected void end() {
         Robot.powerPack.stop();
-        Robot.powerPack.brakesOn();
+        Robot.powerPack.climberBrakeOn();
     }
 
     @Override

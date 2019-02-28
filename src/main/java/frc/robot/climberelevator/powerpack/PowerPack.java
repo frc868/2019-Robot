@@ -137,24 +137,36 @@ public class PowerPack extends SubsystemManagerChild {
   /**
    * turns brake on
    */
-  public void brakesOn() {
+  public void elevatorBrakeOn() {
     elevator_brake.set(BRAKE_MODE);
+  }
+
+  /**
+   * turns brake off
+   */
+  public void elevatorBrakeOff() {
+    elevator_brake.set(!BRAKE_MODE);
+  }
+
+  /**
+   * returns brake solenoid state
+   */
+  public boolean getClimberBrake() {
+    return climber_brake.get();
+  }
+
+  /**
+   * turns brake on
+   */
+  public void climberBrakeOn() {
     climber_brake.set(BRAKE_MODE);
   }
 
   /**
    * turns brake off
    */
-  public void brakesOff() {
-    elevator_brake.set(!BRAKE_MODE);
+  public void climberBrakeOff() {
     climber_brake.set(!BRAKE_MODE);
-  }
-
-  /**
-   * returns brake solenoid state
-   */
-  public boolean getBrakes() {
-    return elevator_brake.get();
   }
 
   @Override

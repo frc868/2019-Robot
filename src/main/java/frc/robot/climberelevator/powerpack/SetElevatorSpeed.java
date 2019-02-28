@@ -15,11 +15,13 @@ public class SetElevatorSpeed extends Command {
     protected void initialize() {
         Robot.powerPack.switchToElevator();
         Robot.powerPack.setSpeed(targetSpeed);
+        Robot.powerPack.elevatorBrakeOff();
     }
 
     @Override
     protected void end() {
         Robot.powerPack.stop();
+        Robot.powerPack.elevatorBrakeOn();
     }
 
     @Override
