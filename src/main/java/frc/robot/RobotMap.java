@@ -4,26 +4,29 @@ import edu.wpi.first.wpilibj.SerialPort;
 
 public class RobotMap {
 
-  public static final int PCM = 16; // TESTED
+  public static final int PCM = 0; // TESTED
 
   public static class Drivetrain {
-    public static final int LEFT_PRIMARY = 13; // SEMITESTED: the robot moves but we don't know if all these motors are properly mapped
-    public static final int LEFT_SECONDARY = 14; // SEMITESTED: ^^^
-    public static final int LEFT_TERTIARY = 15; // SEMITESTED: ^^^
+    public static final int LEFT_PRIMARY = 23; // SEMITESTED: the robot moves but we don't know if all these motors are properly mapped
+    public static final int LEFT_SECONDARY = 24; // SEMITESTED: ^^^
+    public static final int LEFT_TERTIARY = 25; // SEMITESTED: ^^^
 
-    public static final int RIGHT_PRIMARY = 0; // SEMITESTED: ^^^
-    public static final int RIGHT_SECONDARY = 1; // SEMITESTED: ^^^
-    public static final int RIGHT_TERTIARY = 2; // SEMITESTED: ^^^
+    public static final int RIGHT_PRIMARY = 10; // SEMITESTED: ^^^
+    public static final int RIGHT_SECONDARY = 11; // SEMITESTED: ^^^
+    public static final int RIGHT_TERTIARY = 12; // SEMITESTED: ^^^
 
     public static final int GYRO = 1; // TESTED
   }
 
   public static class ClimberElevator {
     public static class Powerpack {
-      public static final int PRIMARY = 3; // TESTED
-      public static final int SECONDARY = 12; // TESTED
-      public static final int SWITCHER = 0;
-      public static final int BRAKE = 1;
+      public static final int PRIMARY = 13; // TESTED
+      public static final int SECONDARY = 22; // TESTED
+
+      public static final int SWITCHER = 2;
+      public static final int ELEVATOR_BRAKE = 3;
+      public static final int CLIMBER_BRAKE = 4;
+      
       public static final int ELEVATOR_TOP_LIMIT = 0;
       public static final int ELEVATOR_BOTTOM_LIMIT = 1;
       public static final int CLIMBER_TOP_LIMIT = 5;
@@ -47,18 +50,17 @@ public class RobotMap {
   
   public static class Carriage {
     public static class Tilt {
-      public static final int MOTOR = 5; // TESTED
+      public static final int MOTOR = 15; // TESTED
       public static final int POTENTIOMETER = 0;
     }
 
     public static class BallIntake {
-      public static final int MOTOR = 4; // TESTED
+      public static final int MOTOR = 14; // TESTED
       public static final int DETECTION_LIMIT = 4;
     }
 
     public static class HatchClaw {
-      public static final int GRAB_SOLENOID = 4; // SEMITESTED: the two are 4 and 3 however, we don't know which is which
-      public static final int RELEASE_SOLENOID = 3; // SEMITESTED: ^^^
+      public static final int ACTUATOR = 1;
       public static final int LEFT_LIMIT = 2;
       public static final int RIGHT_LIMIT = 3;
     }

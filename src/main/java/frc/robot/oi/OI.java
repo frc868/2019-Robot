@@ -3,8 +3,6 @@ package frc.robot.oi;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import frc.robot.carriage.ballintake.IntakeUntilBallDetected;
-import frc.robot.carriage.groundpickup.GiveToClaw;
-import frc.robot.carriage.groundpickup.OpenAndIntake;
 import frc.robot.carriage.hatchclaw.GrabWhenDetected;
 import frc.robot.carriage.hatchclaw.ToggleClaw;
 import frc.robot.carriage.tilt.SetTiltPosition;
@@ -31,6 +29,8 @@ public class OI {
     SmartDashboard.putBoolean("has OI", true);
     (new ArcadeDrive()).start();
     (new ManualIntake()).start();
+    (new ManualTilt()).start();
+    (new ManualElevator()).start();
 
     driver.lb.whenPressed(new ToggleClaw());
     operator.lb.whenPressed(new ToggleClaw());
@@ -39,8 +39,8 @@ public class OI {
     driver.b.pressToStartReleaseToStop(new GrabWhenDetected());
     driver.x.pressToStartReleaseToStop(new IntakeUntilBallDetected());
 
-    operator.lstk.pressToStartReleaseToStop(new ManualElevator(), new SetElevatorSpeed(0));
-    operator.rstk.pressToStartReleaseToStop(new ManualTilt(), new SetTiltSpeed(0));
+    // operator.lstk.pressToStartReleaseToStop(new ManualElevator(), new SetElevatorSpeed(0));
+    // operator.rstk.pressToStartReleaseToStop(new ManualTilt(), new SetTiltSpeed(0));
 
     operator.x.whenPressed(new AutoElevatorTilt(AutoElevatorTilt.State.intakeBall));
 
@@ -48,8 +48,8 @@ public class OI {
     operator.povE.whenPressed(new SetTiltPosition(Tilt.MIDDLE));
     operator.povS.whenPressed(new SetTiltPosition(Tilt.LOWER));
 
-    operator.start.whenPressed(new OpenAndIntake());
-    operator.menu.whenPressed(new GiveToClaw());
+    // operator.start.whenPressed(new OpenAndIntake());
+    // operator.menu.whenPressed(new GiveToClaw());
 
     driver.rb.and(driver.start).whenPressed(new DeployForks());
     driver.rb.and(driver.menu).whenPressed(new DeployRamps());

@@ -7,8 +7,6 @@ import frc.robot.RobotMap;
 import frc.robot.helpers.Helper;
 import frc.robot.helpers.subsystems.SubsystemManagerChild;
 import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
-
 
 public class BallIntake extends SubsystemManagerChild {
   private WPI_TalonSRX motor;
@@ -52,6 +50,7 @@ public class BallIntake extends SubsystemManagerChild {
   @Override
   public void updateSD() {
     SmartDashboard.putBoolean("Is Ball Detected", isBallDetected());
+    SmartDashboard.putNumber("Ball Intake Speed", getSpeed());
   }
 
   @Override

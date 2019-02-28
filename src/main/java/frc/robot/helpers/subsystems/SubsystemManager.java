@@ -36,6 +36,12 @@ public abstract class SubsystemManager {
     }
   }
 
+  public static void initDebug() {
+    for (SubsystemManagerChild sys : subsystems) {
+      sys.initDebug();
+    }
+  }
+
   public static void update() {
     for (SubsystemManagerChild sys : subsystems) {
       sys.update();
@@ -51,6 +57,12 @@ public abstract class SubsystemManager {
   public static void updateTab() {
     for (SubsystemManagerChild sys : subsystems) {
       sys.updateTab();
+    }
+  }
+
+  public static void updateDebug() {
+    for (SubsystemManagerChild sys : subsystems) {
+      sys.updateDebug();
     }
   }
 }

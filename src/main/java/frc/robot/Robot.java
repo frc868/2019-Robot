@@ -7,26 +7,26 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.carriage.ballintake.BallIntake;
-import frc.robot.carriage.groundpickup.GroundPickup;
 import frc.robot.carriage.hatchclaw.HatchClaw;
 import frc.robot.carriage.tilt.Tilt;
 import frc.robot.climberelevator.footdrive.FootDrive;
 import frc.robot.climberelevator.forks.Forks;
 import frc.robot.climberelevator.powerpack.PowerPack;
 import frc.robot.climberelevator.ramps.Ramps;
+import frc.robot.drivetrain.Drivetrain;
 import frc.robot.helpers.subsystems.SubsystemManager;
 import frc.robot.oi.OI;
 import frc.robot.sensors.camera.Camera;
-import frc.robot.sensors.ultrasonic.UltrasonicArray;
-import frc.robot.drivetrain.Drivetrain;
 
 public class Robot extends TimedRobot {
   public static BallIntake ballIntake = new BallIntake();
   public static HatchClaw hatchClaw = new HatchClaw();
-  public static GroundPickup groundPickup = new GroundPickup();
+  // public static GroundPickup groundPickup = new GroundPickup();
   public static Tilt tilt = new Tilt();
 
   public static Drivetrain drivetrain = new Drivetrain();
@@ -37,18 +37,29 @@ public class Robot extends TimedRobot {
   public static Ramps climberRamps = new Ramps();
 
   public static Camera camera = new Camera();
-  public static UltrasonicArray ultrasonic = new UltrasonicArray();
+  public static Compressor compressor = new Compressor();
+  // public static UltrasonicArray ultrasonic = new UltrasonicArray();
 
   @Override
   public void robotInit() {
     SubsystemManager.init();
     SubsystemManager.initSD();
+    // SubsystemManager.initDebug();
+    // SubsystemManager.initTab();
+    compressor.setClosedLoopControl(true);
   }
 
   @Override
   public void robotPeriodic() {
     SubsystemManager.update();
     SubsystemManager.updateSD();
+    // SubsystemManager.updateDebug();
+    // SubsystemManager.updateTab();
+  }
+  
+  @Override
+  public void disabledInit() {
+    drivetrain.brakeOff();
   }
 
   @Override
@@ -70,6 +81,7 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopInit() {
     OI.init();
+    camera.switchToCamera();
   }
 
   @Override

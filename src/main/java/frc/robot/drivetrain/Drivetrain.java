@@ -1,5 +1,7 @@
 package frc.robot.drivetrain;
 
+import com.revrobotics.CANSparkMax.IdleMode;
+
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
@@ -30,9 +32,33 @@ public class Drivetrain extends SubsystemManagerChild {
         rightTertiary.follow(rightPrimary);
 
         leftPrimary.setInverted(false);
+        leftSecondary.setInverted(false);
+        leftTertiary.setInverted(false);
         rightPrimary.setInverted(true);
+        rightSecondary.setInverted(true);
+        rightTertiary.setInverted(true);
+
+        brakeOn();
 
         gyro = new AnalogGyro(RobotMap.Drivetrain.GYRO);
+     }
+
+    public void brakeOff() {
+        leftPrimary.setIdleMode(IdleMode.kCoast);
+        leftSecondary.setIdleMode(IdleMode.kCoast);
+        leftTertiary.setIdleMode(IdleMode.kCoast);
+        rightPrimary.setIdleMode(IdleMode.kCoast);
+        rightSecondary.setIdleMode(IdleMode.kCoast);
+        rightTertiary.setIdleMode(IdleMode.kCoast);
+     }
+
+     public void brakeOn() {
+        leftPrimary.setIdleMode(IdleMode.kBrake);
+        leftSecondary.setIdleMode(IdleMode.kBrake);
+        leftTertiary.setIdleMode(IdleMode.kBrake);
+        rightPrimary.setIdleMode(IdleMode.kBrake);
+        rightSecondary.setIdleMode(IdleMode.kBrake);
+        rightTertiary.setIdleMode(IdleMode.kBrake);
      }
 
     /**
@@ -197,15 +223,23 @@ public class Drivetrain extends SubsystemManagerChild {
 
     @Override
     public void initDebug() {
-        addDebug("Left Encoder", leftPrimary.getEncoder());
-        addDebug("Right Encoder", rightPrimary.getEncoder());
         addDebug("Gyro", gyro);
     }
 
     @Override
+    public void updateDebug() {
+        addDebug("Drivetrain Right Position", getRightEncPosition());
+        addDebug("Drivetrain Left Position", getLeftEncPosition());
+    }
+
+    @Override
     public void initTab() {
-        addTab("Left Encoder", leftPrimary.getEncoder());
-        addTab("Right Encoder", rightPrimary.getEncoder());
         addTab("Gyro", gyro);
+    }
+
+    @Override
+    public void updateTab() {
+        addTab("Drivetrain Right Position", getRightEncPosition());
+        addTab("Drivetrain Left Position", getLeftEncPosition());
     }
 }

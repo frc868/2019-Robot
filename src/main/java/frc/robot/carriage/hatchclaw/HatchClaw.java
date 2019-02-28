@@ -2,19 +2,17 @@ package frc.robot.carriage.hatchclaw;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Solenoid;
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import frc.robot.helpers.subsystems.SubsystemManagerChild;
 
 public class HatchClaw extends SubsystemManagerChild {
-  private Solenoid grab_solenoid, release_solenoid;
+  private Solenoid actuator;
   private DigitalInput left_limit, right_limit;
 
   public HatchClaw() {
     super("HatchClaw");
-    grab_solenoid = new Solenoid(RobotMap.PCM, RobotMap.Carriage.HatchClaw.GRAB_SOLENOID);
-    release_solenoid = new Solenoid(RobotMap.PCM, RobotMap.Carriage.HatchClaw.RELEASE_SOLENOID);
+    actuator = new Solenoid(RobotMap.PCM, RobotMap.Carriage.HatchClaw.ACTUATOR);
     left_limit = new DigitalInput(RobotMap.Carriage.HatchClaw.LEFT_LIMIT);
     right_limit = new DigitalInput(RobotMap.Carriage.HatchClaw.RIGHT_LIMIT);
   }
@@ -23,8 +21,7 @@ public class HatchClaw extends SubsystemManagerChild {
    * opens claw
    */
   public void grab() {
-    grab_solenoid.set(true);
-    release_solenoid.set(false);
+    actuator.set(true);
   }
 
 
@@ -32,15 +29,14 @@ public class HatchClaw extends SubsystemManagerChild {
    * closes claw
    */
   public void release() {
-    grab_solenoid.set(false);
-    release_solenoid.set(true);
+    actuator.set(false);
   }
 
   /**
    * @return whether the claw is grabbed or not
    */
   public boolean isGrabbed() {
-    return grab_solenoid.get();
+    return actuator.get();
   }
 
   /**
@@ -74,6 +70,8 @@ public class HatchClaw extends SubsystemManagerChild {
   public void updateSD() {
     SmartDashboard.putBoolean("Hatch Claw Grabbed", isGrabbed());
     SmartDashboard.putBoolean("Hatch Claw Hatch Detected", isHatchDetected());
+    SmartDashboard.putBoolean("Hatch Claw Left", getLeftLimit());
+    SmartDashboard.putBoolean("Hatch Claw Right", getRightLimit());
   }
 
   @Override
@@ -92,8 +90,7 @@ public class HatchClaw extends SubsystemManagerChild {
   public void initTab() {
     addTab("Left Limit", left_limit);
     addTab("Right Limit", right_limit);
-    addTab("Grab Solenoid", grab_solenoid);
-    addTab("Release Solenoid", grab_solenoid);
+    addTab("Hatch Actuator", actuator);
   }
 
   @Override

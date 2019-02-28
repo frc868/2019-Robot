@@ -6,9 +6,6 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Solenoid;
-import edu.wpi.first.wpilibj.Spark;
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import frc.robot.helpers.Helper;
 import frc.robot.helpers.subsystems.SubsystemManagerChild;
@@ -16,9 +13,9 @@ import frc.robot.helpers.subsystems.SubsystemManagerChild;
 
 public class PowerPack extends SubsystemManagerChild {
   private CANSparkMax primary, secondary;
-  private Solenoid switcher, brake;
+  private Solenoid switcher, elevator_brake, climber_brake;
   private DigitalInput elevator_top_limit, elevator_bottom_limit, climber_top_limit, climber_bottom_limit;
-  private final boolean ELEVATOR_MODE = true, BRAKE_MODE = true;
+  private final boolean ELEVATOR_MODE = true, BRAKE_MODE = false;
 
   public static final double INTAKE_BALL = 0, GET_FROM_GROUND_PICKUP = 0,
         LOWER_HATCH = 1, LOWER_BALL = 2, 
@@ -36,7 +33,8 @@ public class PowerPack extends SubsystemManagerChild {
     secondary.follow(primary);
 
     switcher = new Solenoid(RobotMap.PCM, RobotMap.ClimberElevator.Powerpack.SWITCHER);
-    brake = new Solenoid(RobotMap.PCM, RobotMap.ClimberElevator.Powerpack.BRAKE);
+    elevator_brake = new Solenoid(RobotMap.PCM, RobotMap.ClimberElevator.Powerpack.ELEVATOR_BRAKE);
+    climber_brake = new Solenoid(RobotMap.PCM, RobotMap.ClimberElevator.Powerpack.CLIMBER_BRAKE);
 
     elevator_top_limit = new DigitalInput(RobotMap.ClimberElevator.Powerpack.ELEVATOR_TOP_LIMIT);
     elevator_bottom_limit = new DigitalInput(RobotMap.ClimberElevator.Powerpack.ELEVATOR_BOTTOM_LIMIT);
@@ -130,41 +128,38 @@ public class PowerPack extends SubsystemManagerChild {
   }
 
   /**
+   * returns brake solenoid state
+   */
+  public boolean getElevatorBrake() {
+    return elevator_brake.get();
+  }
+
+  /**
    * turns brake on
    */
-  public void brakeOn() {
-    brake.set(BRAKE_MODE);
+  public void brakesOn() {
+    elevator_brake.set(BRAKE_MODE);
+    climber_brake.set(BRAKE_MODE);
   }
 
   /**
    * turns brake off
    */
-  public void brakeOff() {
-    brake.set(!BRAKE_MODE);
+  public void brakesOff() {
+    elevator_brake.set(!BRAKE_MODE);
+    climber_brake.set(!BRAKE_MODE);
   }
 
   /**
    * returns brake solenoid state
    */
-  public boolean getBrakeMode() {
-    return brake.get();
-  }
-
-  /**
-   * returns true if breaking, false if not
-   */
-  public boolean isBrakeMode() {
-    return getBrakeMode() == BRAKE_MODE;
+  public boolean getBrakes() {
+    return elevator_brake.get();
   }
 
   @Override
   public void initDebug() {
     addDebug("Primary", primary);
-    addDebug("Elevator Top Limit", brake);
-    addDebug("Elevator Bottom Limit", brake);
-    addDebug("Climber Top Limit", brake);
-    addDebug("Climber Bottom Limit", brake);
-    addDebug("Encoder", primary.getEncoder());
   }
 
   @Override
@@ -172,12 +167,6 @@ public class PowerPack extends SubsystemManagerChild {
     addTab("Primary", primary);
     addTab("Secondary", secondary);
     addTab("Switcher", switcher);
-    addTab("Brake", brake);
-    addTab("Elevator Top Limit", brake);
-    addTab("Elevator Bottom Limit", brake);
-    addTab("Climber Top Limit", brake);
-    addTab("Climber Bottom Limit", brake);
-    addTab("Encoder", primary.getEncoder());
   }
 
   @Override
