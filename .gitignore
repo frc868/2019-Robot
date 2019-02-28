@@ -103,6 +103,7 @@ Temporary Items
 .apdisk
 
 ### VisualStudioCode ###
+settings.json
 .vscode/*
 .vscode/settings.json
 .vscode/tasks.json
