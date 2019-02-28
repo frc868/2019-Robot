@@ -6,6 +6,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import frc.robot.helpers.Helper;
 import frc.robot.helpers.subsystems.SubsystemManagerChild;
@@ -121,10 +122,17 @@ public class PowerPack extends SubsystemManagerChild {
 
   /**
    * 
+   */
+  public boolean getSwitcher() {
+    return switcher.get();
+  }
+
+  /**
+   * 
    * @return true if powerpack is on elevator mode
    */
   public boolean isElevatorMode() {
-    return switcher.get() == ELEVATOR_MODE;
+    return getSwitcher() == ELEVATOR_MODE;
   }
 
   /**
@@ -132,6 +140,13 @@ public class PowerPack extends SubsystemManagerChild {
    */
   public boolean getElevatorBrake() {
     return elevator_brake.get();
+  }
+
+  /**
+   * @return true if elevator is braking
+   */
+  public boolean isElevatorBraked() {
+    return getElevatorBrake() == BRAKE_MODE;
   }
 
   /**
@@ -156,6 +171,13 @@ public class PowerPack extends SubsystemManagerChild {
   }
 
   /**
+   * @return true if climber is braking
+   */
+  public boolean isClimberBraked() {
+    return getClimberBrake() == BRAKE_MODE;
+  }
+
+  /**
    * turns brake on
    */
   public void climberBrakeOn() {
@@ -170,21 +192,15 @@ public class PowerPack extends SubsystemManagerChild {
   }
 
   @Override
-  public void initDebug() {
-    addDebug("Primary", primary);
+  public void updateSD() {
+    SmartDashboard.putNumber("PowerPack: Speed", getSpeed());
+    SmartDashboard.putNumber("PowerPack: Position", getEncPosition());
+    SmartDashboard.putBoolean("PowerPack: Elevator Mode?", isElevatorMode());
+    SmartDashboard.putBoolean("PowerPack: Elevator Brake?", isElevatorBraked());
+    SmartDashboard.putBoolean("PowerPack: Climber Brake?", isClimberBraked());
+    SmartDashboard.putBoolean("PowerPack: Elevator Top Limit?", getElevatorTopLimitSwitch());
+    SmartDashboard.putBoolean("PowerPack: Elevator Bottom Limit?", getElevatorBottomLimitSwitch());
+    SmartDashboard.putBoolean("PowerPack: Climber Top Limit?", getClimberTopLimitSwitch());
+    SmartDashboard.putBoolean("PowerPack: Climber Bottom Limit?", getClimberBottomLimitSwitch());
   }
-
-  @Override
-  public void initTab() {
-    addTab("Primary", primary);
-    addTab("Secondary", secondary);
-    addTab("Switcher", switcher);
-  }
-
-  @Override
-  public void updateTab() {
-    addTab("Primary Current", primary.getOutputCurrent());
-    addTab("Secondary Current", secondary.getOutputCurrent());
-  }
-  
 }

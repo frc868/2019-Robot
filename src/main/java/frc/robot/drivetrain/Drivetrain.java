@@ -216,30 +216,10 @@ public class Drivetrain extends SubsystemManagerChild {
 
     @Override
     public void updateSD() {
-        SmartDashboard.putNumber("Left Position", getLeftEncPosition());
-        SmartDashboard.putNumber("Right Position", getRightEncPosition());
-        SmartDashboard.putNumber("Angle", getGyroAngle());
-    }
-
-    @Override
-    public void initDebug() {
-        addDebug("Gyro", gyro);
-    }
-
-    @Override
-    public void updateDebug() {
-        addDebug("Drivetrain Right Position", getRightEncPosition());
-        addDebug("Drivetrain Left Position", getLeftEncPosition());
-    }
-
-    @Override
-    public void initTab() {
-        addTab("Gyro", gyro);
-    }
-
-    @Override
-    public void updateTab() {
-        addTab("Drivetrain Right Position", getRightEncPosition());
-        addTab("Drivetrain Left Position", getLeftEncPosition());
+        SmartDashboard.putNumber("Drivetrain: Left Speed", getLeftSpeed());
+        SmartDashboard.putNumber("Drivetrain: Right Speed", getRightSpeed());
+        SmartDashboard.putNumber("Drivetrain: Left Position", getLeftEncPosition());
+        SmartDashboard.putNumber("Drivetrain: Right Position", getRightEncPosition());
+        SmartDashboard.putNumber("Drivetrain: Angle", getGyroAngle());
     }
 }

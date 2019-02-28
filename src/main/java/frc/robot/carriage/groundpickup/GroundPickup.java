@@ -104,28 +104,9 @@ public class GroundPickup extends SubsystemManagerChild {
 
     @Override
     public void updateSD() {
-        SmartDashboard.putBoolean("Is Hatch Detected", isHatchDetected());
-    }
-
-    @Override
-    public void initDebug() {
-        addDebug("Wrist", wrist);
-        addDebug("Intake", intake);
-        addDebug("Wrist Encoder", encoder);
-        addDebug("Is Hatch Detected", detection_limit);
-    }
-
-    @Override
-    public void initTab() {
-        addTab("Wrist", wrist);
-        addTab("Intake", intake);
-        addTab("Wrist Encoder", encoder);
-        addTab("Is Hatch Detected", detection_limit);
-    }
-
-    @Override
-    public void updateTab() {
-        addTab("Wrist Current", wrist.getOutputCurrent());
-        addTab("Intake Current", intake.getOutputCurrent());
+        SmartDashboard.putNumber("Ground Pickup: Intake Speed", getIntakeSpeed());
+        SmartDashboard.putNumber("Ground Pickup: Wrist Speed", getWristSpeed());
+        SmartDashboard.putNumber("Ground Pickup: Wrist Position", getWristEncPosition());
+        SmartDashboard.putBoolean("Ground Pickup: Is Hatch Detected", isHatchDetected());
     }
 }

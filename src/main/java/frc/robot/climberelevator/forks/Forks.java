@@ -1,6 +1,7 @@
 package frc.robot.climberelevator.forks;
 
 import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import frc.robot.helpers.subsystems.SubsystemManagerChild;
 
@@ -49,12 +50,7 @@ public class Forks extends SubsystemManagerChild {
     }
 
     @Override
-    public void initDebug() {
-        addDebug("Forks", release);
-    }
-
-    @Override
-    public void initTab() {
-        addTab("Release", release);
+    public void updateSD() {
+        SmartDashboard.putBoolean("Forks: Open?", isOpen());
     }
 }

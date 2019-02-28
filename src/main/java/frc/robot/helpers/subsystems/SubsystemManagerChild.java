@@ -29,14 +29,6 @@ public abstract class SubsystemManagerChild extends Subsystem {
 
   }
 
-  public void initTab() {
-    
-  }
-
-  public void initDebug() {
-
-  }
-
   public void update() {
 
   }
@@ -51,14 +43,6 @@ public abstract class SubsystemManagerChild extends Subsystem {
 
   public void updateSD() {
  
-  }
-
-  public void updateTab() {
-
-  }
-
-  public void updateDebug() {
-
   }
 
   protected void addTab(String name, Sendable sendable) {

@@ -84,35 +84,9 @@ public class HatchClaw extends SubsystemManagerChild {
 
   @Override
   public void updateSD() {
-    SmartDashboard.putBoolean("Hatch Claw Grabbed", isGrabbed());
-    SmartDashboard.putBoolean("Hatch Claw Hatch Detected", isHatchDetected());
-    SmartDashboard.putBoolean("Hatch Claw Left", getLeftLimit());
-    SmartDashboard.putBoolean("Hatch Claw Right", getRightLimit());
+    SmartDashboard.putBoolean("Hatch Claw: Grabbed?", isGrabbed());
+    SmartDashboard.putBoolean("Hatch Claw: Detected?", isHatchDetected());
+    SmartDashboard.putBoolean("Hatch Claw: Left?", getLeftLimit());
+    SmartDashboard.putBoolean("Hatch Claw: Right?", getRightLimit());
   }
-
-  @Override
-  public void initDebug() {
-    addDebug("Left Limit", left_limit);
-    addDebug("Right Limit", right_limit);
-  }
-
-  @Override
-  public void updateDebug() {
-    addDebug("Grabbed", isGrabbed());
-    addDebug("Hatch Detected", isHatchDetected());
-  }
-
-  @Override
-  public void initTab() {
-    addTab("Left Limit", left_limit);
-    addTab("Right Limit", right_limit);
-    addTab("Hatch Actuator", actuator);
-  }
-
-  @Override
-  public void updateTab() {
-    addTab("Grabbed", isGrabbed());
-    addTab("Hatch Detected", isHatchDetected());
-  }
-
 }

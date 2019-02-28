@@ -7,7 +7,7 @@ import frc.robot.helpers.subsystems.SubsystemManagerChild;
 
 public class Ramps extends SubsystemManagerChild {
     private Solenoid actuator;
-    private final boolean RAMPS_MODE = true;
+    private final boolean DEPLOYED_STATE = true;
 
     public Ramps() {
         super("Ramps");
@@ -15,10 +15,17 @@ public class Ramps extends SubsystemManagerChild {
     }
 
     /**
+     * @param state state to set actuator to
+     */
+    public void setState(boolean state) {
+        actuator.set(state);
+    }
+
+    /**
      * opens ramp
      */
     public void open() {
-        actuator.set(RAMPS_MODE);
+       setState(DEPLOYED_STATE);
     }
 
 
@@ -26,7 +33,14 @@ public class Ramps extends SubsystemManagerChild {
      * closes ramp
      */
     public void close() {
-        actuator.set(!RAMPS_MODE);
+        setState(!DEPLOYED_STATE);
+    }
+
+    /**
+     * @return state of ramps
+     */
+    public boolean getState() {
+        return actuator.get();
     }
 
     /**
@@ -34,21 +48,11 @@ public class Ramps extends SubsystemManagerChild {
      * @return true if ramps are open
      */
     public boolean isOpen() {
-        return actuator.get() == RAMPS_MODE;
+        return getState() == DEPLOYED_STATE;
     }
 
     @Override
     public void updateSD() {
-        SmartDashboard.putBoolean("Ramps Open", isOpen());
-    }
-
-    @Override
-    public void initDebug() {
-        addDebug("Ramps", actuator);
-    }
-
-    @Override
-    public void initTab() {
-        addDebug("Actuator", actuator);
+        SmartDashboard.putBoolean("Ramps: Open?", isOpen());
     }
 }

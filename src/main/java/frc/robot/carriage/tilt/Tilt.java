@@ -3,6 +3,7 @@ package frc.robot.carriage.tilt;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import frc.robot.helpers.Helper;
 import frc.robot.helpers.subsystems.SubsystemManagerChild;
@@ -67,21 +68,8 @@ public class Tilt extends SubsystemManagerChild {
   }
 
   @Override
-  public void initDebug() {
-    addDebug("Motor", motor);
-    addDebug("Potentiometer", potentiometer);
+  public void updateSD() {
+    SmartDashboard.putNumber("Tilt: Speed", getSpeed());
+    SmartDashboard.putNumber("Tilt: Position", getPotPosition());
   }
-
-  @Override
-  public void initTab() {
-    addTab("Motor", motor);
-    addTab("Potentiometer", potentiometer);
-  }
-
-  @Override
-  public void updateTab() {
-    addTab("Current", motor.getOutputCurrent());
-    addTab("Forward Limit", getForwardLimit());
-    addTab("Reverse Limit", getReverseLimit());
-  } 
 }

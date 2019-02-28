@@ -2,6 +2,7 @@ package frc.robot.climberelevator.footdrive;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import frc.robot.helpers.Helper;
 import frc.robot.helpers.subsystems.SubsystemManagerChild;
@@ -39,17 +40,7 @@ public class FootDrive extends SubsystemManagerChild {
   }
 
   @Override
-  public void initDebug() {
-    addDebug("Motor", motor);
-  }
-
-  @Override
-  public void initTab() {
-    addTab("Motor", motor);
-  }
-
-  @Override
-  public void updateTab() {
-    addTab("Current", motor.getOutputCurrent());
+  public void updateSD() {
+    SmartDashboard.putNumber("Foot Drive: Speed", getSpeed());
   }
 }
