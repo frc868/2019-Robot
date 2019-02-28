@@ -192,6 +192,19 @@ public class PowerPack extends SubsystemManagerChild {
   }
 
   @Override
+  public void initEnabled() {
+    switchToElevator();
+    climberBrakeOn();
+    elevatorBrakeOn();
+  }
+
+  @Override
+  public void initDisabled() {
+    climberBrakeOn();
+    elevatorBrakeOn();
+  }
+
+  @Override
   public void updateSD() {
     SmartDashboard.putNumber("PowerPack: Speed", getSpeed());
     SmartDashboard.putNumber("PowerPack: Position", getEncPosition());

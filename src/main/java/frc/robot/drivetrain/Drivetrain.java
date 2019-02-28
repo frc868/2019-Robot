@@ -38,8 +38,6 @@ public class Drivetrain extends SubsystemManagerChild {
         rightSecondary.setInverted(true);
         rightTertiary.setInverted(true);
 
-        brakeOn();
-
         gyro = new AnalogGyro(RobotMap.Drivetrain.GYRO);
      }
 
@@ -212,6 +210,16 @@ public class Drivetrain extends SubsystemManagerChild {
     @Override
     public void update() {
         angleOffset += DEGREES_PER_LOOP;
+    }
+
+    @Override
+    public void initDisabled() {
+        brakeOff();
+    }
+
+    @Override
+    public void initEnabled() {
+        brakeOn();
     }
 
     @Override

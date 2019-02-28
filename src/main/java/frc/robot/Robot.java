@@ -10,7 +10,6 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.carriage.ballintake.BallIntake;
 import frc.robot.carriage.hatchclaw.HatchClaw;
 import frc.robot.carriage.tilt.Tilt;
@@ -44,8 +43,6 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     SubsystemManager.init();
     SubsystemManager.initSD();
-    // SubsystemManager.initDebug();
-    // SubsystemManager.initTab();
     compressor.setClosedLoopControl(true);
   }
 
@@ -53,13 +50,11 @@ public class Robot extends TimedRobot {
   public void robotPeriodic() {
     SubsystemManager.update();
     SubsystemManager.updateSD();
-    // SubsystemManager.updateDebug();
-    // SubsystemManager.updateTab();
   }
   
   @Override
   public void disabledInit() {
-    drivetrain.brakeOff();
+    SubsystemManager.initDisabled();
   }
 
   @Override
@@ -70,7 +65,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousInit() {
-
+    SubsystemManager.initEnabled();
   }
 
   @Override
@@ -81,13 +76,18 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopInit() {
     OI.init();
-    camera.switchToCamera();
+    SubsystemManager.initEnabled();
   }
 
   @Override
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
     OI.update();
+  }
+
+  @Override
+  public void testInit() {
+    SubsystemManager.initEnabled();
   }
 
   @Override

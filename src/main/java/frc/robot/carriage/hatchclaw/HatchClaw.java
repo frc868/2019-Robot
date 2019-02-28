@@ -79,7 +79,7 @@ public class HatchClaw extends SubsystemManagerChild {
 
   @Override
   public void initEnabled() {
-    release();
+    grab();
   }
 
   @Override
