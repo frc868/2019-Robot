@@ -23,7 +23,7 @@ public class HatchClaw extends SubsystemManagerChild {
    * @param state state to set actuator to
    */
   public void setState(boolean state) {
-    actuator.set(true);
+    actuator.set(state);
   }
 
   /**

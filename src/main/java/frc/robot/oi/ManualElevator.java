@@ -17,10 +17,10 @@ public class ManualElevator extends Command {
 
     @Override
     protected void execute() {
-        if(-0.1 < -OI.operator.getLY() > 0.1) {
+        if( (-0.1 < OI.operator.getLY()) && (OI.operator.getLY() > 0.1)) {     //create deadzone & brake in deadzone
             Robot.powerPack.setSpeed(0);
             Robot.powerPack.elevatorBrakeOn();
-        }   else    {
+        }   else    {                               //normal elevator movement
             Robot.powerPack.elevatorBrakeOff();
             Robot.powerPack.setSpeed(-OI.operator.getLY());
         }
