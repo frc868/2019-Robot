@@ -17,7 +17,13 @@ public class ManualElevator extends Command {
 
     @Override
     protected void execute() {
-        Robot.powerPack.setSpeed(-OI.operator.getLY());
+        if(-0.1 < -OI.operator.getLY() > 0.1) {
+            Robot.powerPack.setSpeed(0);
+            Robot.powerPack.elevatorBrakeOn();
+        }   else    {
+            Robot.powerPack.elevatorBrakeOff();
+            Robot.powerPack.setSpeed(-OI.operator.getLY());
+        }
     }
 
     @Override

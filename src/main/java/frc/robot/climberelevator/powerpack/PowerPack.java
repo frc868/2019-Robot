@@ -16,7 +16,7 @@ public class PowerPack extends SubsystemManagerChild {
   private CANSparkMax primary, secondary;
   private Solenoid switcher, elevator_brake, climber_brake;
   private DigitalInput elevator_top_limit, elevator_bottom_limit, climber_top_limit, climber_bottom_limit;
-  private final boolean ELEVATOR_MODE = true, BRAKE_MODE = false;
+  private final boolean ELEVATOR_MODE = false, BRAKE_MODE = false;
 
   public static final double INTAKE_BALL = 0, GET_FROM_GROUND_PICKUP = 0,
         LOWER_HATCH = 1, LOWER_BALL = 2, 

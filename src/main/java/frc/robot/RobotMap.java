@@ -34,7 +34,7 @@ public class RobotMap {
     }
 
     public static class FootDrive {
-      public static final int MOTOR = 14;//6;
+      public static final int MOTOR = 16;//6;
     }
 
     public static class Ramps {
@@ -42,7 +42,7 @@ public class RobotMap {
     }
 
     public static class Forks {
-      public static final int RELEASE = 2; // idk
+      public static final int RELEASE = 5; // idk
       //public static final int LEFT = 2;
       //public static final int RIGHT = 3;
     }
