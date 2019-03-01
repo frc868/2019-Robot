@@ -13,6 +13,7 @@ import frc.robot.climberelevator.powerpack.AutoClimb;
 import frc.robot.climberelevator.powerpack.AutoElevatorTilt;
 import frc.robot.climberelevator.powerpack.SetClimberSpeed;
 import frc.robot.climberelevator.powerpack.SetElevatorSpeed;
+import frc.robot.climberelevator.powerpack.SetElevatorPosition;
 import frc.robot.climberelevator.ramps.DeployRamps;
 import frc.robot.helpers.oi.XboxControllerPlus;
 import frc.robot.carriage.tilt.Tilt;
@@ -47,6 +48,8 @@ public class OI {
     operator.povN.whenPressed(new SetTiltPosition(Tilt.UPPER));
     operator.povE.whenPressed(new SetTiltPosition(Tilt.MIDDLE));
     operator.povS.whenPressed(new SetTiltPosition(Tilt.LOWER));
+    
+    operator.b.whenPressed(new SetElevatorPosition(19.9));
 
     // operator.start.whenPressed(new OpenAndIntake());
     // operator.menu.whenPressed(new GiveToClaw());

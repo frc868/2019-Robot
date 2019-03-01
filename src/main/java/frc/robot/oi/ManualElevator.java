@@ -12,12 +12,12 @@ public class ManualElevator extends Command {
     @Override
     protected void initialize() {
         Robot.powerPack.switchToElevator();
-        Robot.powerPack.elevatorBrakeOff();
+        // Robot.powerPack.elevatorBrakeOff();
     }
 
     @Override
     protected void execute() {
-        if( (-0.1 < OI.operator.getLY()) && (OI.operator.getLY() > 0.1)) {     //create deadzone & brake in deadzone
+        if( (-0.1 < OI.operator.getLY()) && (OI.operator.getLY() < 0.1)) {     //create deadzone & brake in deadzone
             Robot.powerPack.setSpeed(0);
             Robot.powerPack.elevatorBrakeOn();
         }   else    {                               //normal elevator movement
@@ -29,7 +29,6 @@ public class ManualElevator extends Command {
     @Override
     protected void end() {
         Robot.powerPack.stop();
-        Robot.powerPack.elevatorBrakeOn();
     }
 
     @Override
