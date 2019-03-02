@@ -18,10 +18,8 @@ public class PowerPack extends SubsystemManagerChild {
   private DigitalInput elevator_top_limit, elevator_bottom_limit, climber_top_limit, climber_bottom_limit;
   private final boolean ELEVATOR_MODE = false, BRAKE_MODE = false;
 
-  public static final double INTAKE_BALL = 0, GET_FROM_GROUND_PICKUP = 0,
-        LOWER_HATCH = 1, LOWER_BALL = 2, 
-        MIDDLE_HATCH = 19.9, MIDDLE_BALL = 4, 
-        UPPER_HATCH = 5, UPPER_BALL = 6;
+  public static final double INTAKE_BALL = 0, GET_FROM_GROUND_PICKUP = 0, 
+    LOWER = 6.69, MIDDLE = 22.428, UPPER = 35.952;
 
   public PowerPack() {
     super("PowerPack");

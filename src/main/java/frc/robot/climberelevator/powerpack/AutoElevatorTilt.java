@@ -22,18 +22,12 @@ public class AutoElevatorTilt extends CommandGroup {
         
         if (state == State.intakeBall) {
             addSequential(new SetElevatorPosition(PowerPack.INTAKE_BALL));
-        } else if (state == State.hatchLower) {
-            addSequential(new SetElevatorPosition(PowerPack.LOWER_HATCH));
-        } else if (state == State.ballLower) {
-            addSequential(new SetElevatorPosition(PowerPack.LOWER_BALL)); 
-        } else if (state == State.hatchMiddle) {
-            addSequential(new SetElevatorPosition(PowerPack.MIDDLE_HATCH));   
-        } else if (state == State.ballMiddle) {
-            addSequential(new SetElevatorPosition(PowerPack.MIDDLE_BALL));   
-        } else if (state == State.hatchUpper) {
-            addSequential(new SetElevatorPosition(PowerPack.UPPER_HATCH));   
-        } else if (state == State.ballUpper) {
-            addSequential(new SetElevatorPosition(PowerPack.UPPER_BALL));   
+        } else if (state == State.hatchLower || state == State.ballLower) {
+            addSequential(new SetElevatorPosition(PowerPack.LOWER));
+        } else if (state == State.ballMiddle || state == State.hatchMiddle) {
+            addSequential(new SetElevatorPosition(PowerPack.MIDDLE)); 
+        } else if (state == State.ballUpper || state == State.hatchUpper) {
+            addSequential(new SetElevatorPosition(PowerPack.UPPER));   
         }
     }
 }

@@ -11,5 +11,5 @@
     ".project": true
   },
   // "wpilib.online": true,
-  "java.home": "C:\\Program Files\\Java\\jdk1.8.0_201"
+  "java.home": "/Users/armaangoel/Desktop/WPILib_Mac-2019.1.1/jdk",
 }
