@@ -18,7 +18,7 @@ public class ManualElevator extends Command {
 
     @Override
     protected void execute() {
-        double input = Helper.deadzone(OI.operator.getLY(), 0.05);
+        double input = Helper.deadzone(-OI.operator.getLY(), 0.05);
         Robot.powerPack.setSpeed(input);
 
         if(input == 0) { 

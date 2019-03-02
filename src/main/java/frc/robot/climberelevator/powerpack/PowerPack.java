@@ -48,12 +48,20 @@ public class PowerPack extends SubsystemManagerChild {
   public void setSpeed(double speed) {
     speed = Helper.boundValue(speed);
 
-    if (getElevatorBottomLimitSwitch()) {
-      speed = Helper.boundValue(speed, 0, 1);
-    } else {
-      speed = Helper.boundValue(speed, -1, 0);
-    }
-    
+    // if (isElevatorMode()) {
+    //   if (getElevatorBottomLimitSwitch()) {
+    //     speed = Helper.boundValue(speed, 0, 1);
+    //   } else if (getElevatorTopLimitSwitch()) {
+    //     speed = Helper.boundValue(speed, -1, 0);
+    //   }
+    // } else {
+    //   if (getClimberBottomLimitSwitch()) {
+    //     speed = Helper.boundValue(speed, 0, 1);
+    //   } else if (getClimberTopLimitSwitch()) {
+    //     speed = Helper.boundValue(speed, -1, 0);
+    //   }
+    // }
+
     primary.set(speed);
   }
 
