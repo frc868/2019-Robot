@@ -7,7 +7,7 @@ import frc.robot.helpers.subsystems.SubsystemManagerChild;
 
 public class Forks extends SubsystemManagerChild {
     private Solenoid release;
-    private final boolean OPEN_MODE = false;
+    private final boolean OPEN_MODE = true;
 
     public Forks() {
         super("Forks");

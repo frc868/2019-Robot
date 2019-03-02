@@ -20,7 +20,7 @@ public class PowerPack extends SubsystemManagerChild {
 
   public static final double INTAKE_BALL = 0, GET_FROM_GROUND_PICKUP = 0,
         LOWER_HATCH = 1, LOWER_BALL = 2, 
-        MIDDLE_HATCH = 3, MIDDLE_BALL = 4, 
+        MIDDLE_HATCH = 19.9, MIDDLE_BALL = 4, 
         UPPER_HATCH = 5, UPPER_BALL = 6;
 
   public PowerPack() {

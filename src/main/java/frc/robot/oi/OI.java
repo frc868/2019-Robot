@@ -48,9 +48,7 @@ public class OI {
     operator.povN.whenPressed(new SetTiltPosition(Tilt.UPPER));
     operator.povE.whenPressed(new SetTiltPosition(Tilt.MIDDLE));
     operator.povS.whenPressed(new SetTiltPosition(Tilt.LOWER));
-    
-    operator.b.whenPressed(new SetElevatorPosition(19.9));
-
+  
     // operator.start.whenPressed(new OpenAndIntake());
     // operator.menu.whenPressed(new GiveToClaw());
 
@@ -64,9 +62,9 @@ public class OI {
     driver.rb.and(driver.povE).pressToStartReleaseToStop(new SetFootDriveSpeed(0.5), new SetFootDriveSpeed(0));
     driver.rb.and(driver.povW).pressToStartReleaseToStop(new SetFootDriveSpeed(-0.5), new SetFootDriveSpeed(0));
   
-    operator.rb.and(operator.a).whenPressed(new AutoElevatorTilt(AutoElevatorTilt.State.ballLower));
-    operator.rb.and(operator.b).whenPressed(new AutoElevatorTilt(AutoElevatorTilt.State.ballMiddle));
-    operator.rb.and(operator.y).whenPressed(new AutoElevatorTilt(AutoElevatorTilt.State.ballUpper));
+    operator.a.whenPressed(new AutoElevatorTilt(AutoElevatorTilt.State.hatchLower));
+    operator.b.whenPressed(new AutoElevatorTilt(AutoElevatorTilt.State.hatchMiddle));
+    operator.y.whenPressed(new AutoElevatorTilt(AutoElevatorTilt.State.hatchUpper));
   }
 
   public static void update() {

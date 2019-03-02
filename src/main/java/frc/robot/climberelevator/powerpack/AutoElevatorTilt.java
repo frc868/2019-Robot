@@ -12,13 +12,13 @@ public class AutoElevatorTilt extends CommandGroup {
     }
     
     public AutoElevatorTilt(State state) {
-        if (state == State.ballUpper) {
-            addSequential(new SetTiltPosition(Tilt.UPPER));
-        } else if (state == State.intakeBall) {
-            addSequential(new SetTiltPosition(Tilt.LOWER));
-        } else {
-            addSequential(new SetTiltPosition(Tilt.MIDDLE));
-        }
+        // if (state == State.ballUpper) {
+        //     addSequential(new SetTiltPosition(Tilt.UPPER));
+        // } else if (state == State.intakeBall) {
+        //     addSequential(new SetTiltPosition(Tilt.LOWER));
+        // } else {
+        //     addSequential(new SetTiltPosition(Tilt.MIDDLE));
+        // }
         
         if (state == State.intakeBall) {
             addSequential(new SetElevatorPosition(PowerPack.INTAKE_BALL));
