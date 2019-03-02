@@ -6,13 +6,12 @@ import frc.robot.carriage.ballintake.IntakeUntilBallDetected;
 import frc.robot.carriage.hatchclaw.GrabWhenDetected;
 import frc.robot.carriage.hatchclaw.ToggleClaw;
 import frc.robot.carriage.tilt.SetTiltPosition;
-import frc.robot.carriage.tilt.SetTiltSpeed;
 import frc.robot.climberelevator.footdrive.SetFootDriveSpeed;
 import frc.robot.climberelevator.forks.DeployForks;
 import frc.robot.climberelevator.powerpack.AutoClimb;
 import frc.robot.climberelevator.powerpack.AutoElevatorTilt;
+import frc.robot.climberelevator.powerpack.PowerPack;
 import frc.robot.climberelevator.powerpack.SetClimberSpeed;
-import frc.robot.climberelevator.powerpack.SetElevatorSpeed;
 import frc.robot.climberelevator.powerpack.SetElevatorPosition;
 import frc.robot.climberelevator.ramps.DeployRamps;
 import frc.robot.helpers.oi.XboxControllerPlus;
@@ -43,8 +42,6 @@ public class OI {
     // operator.lstk.pressToStartReleaseToStop(new ManualElevator(), new SetElevatorSpeed(0));
     // operator.rstk.pressToStartReleaseToStop(new ManualTilt(), new SetTiltSpeed(0));
 
-    operator.x.whenPressed(new AutoElevatorTilt(AutoElevatorTilt.State.intakeBall));
-
     operator.povN.whenPressed(new SetTiltPosition(Tilt.UPPER));
     operator.povE.whenPressed(new SetTiltPosition(Tilt.MIDDLE));
     operator.povS.whenPressed(new SetTiltPosition(Tilt.LOWER));
@@ -62,9 +59,10 @@ public class OI {
     driver.rb.and(driver.povE).pressToStartReleaseToStop(new SetFootDriveSpeed(0.5), new SetFootDriveSpeed(0));
     driver.rb.and(driver.povW).pressToStartReleaseToStop(new SetFootDriveSpeed(-0.5), new SetFootDriveSpeed(0));
   
-    operator.a.whenPressed(new AutoElevatorTilt(AutoElevatorTilt.State.hatchLower));
-    operator.b.whenPressed(new AutoElevatorTilt(AutoElevatorTilt.State.hatchMiddle));
-    operator.y.whenPressed(new AutoElevatorTilt(AutoElevatorTilt.State.hatchUpper));
+    operator.a.whenPressed(new SetElevatorPosition(PowerPack.LOWER));
+    operator.b.whenPressed(new SetElevatorPosition(PowerPack.MIDDLE));
+    operator.x.whenPressed(new SetElevatorPosition(PowerPack.INTAKE_BALL));
+    operator.y.whenPressed(new SetElevatorPosition(PowerPack.UPPER));
   }
 
   public static void update() {

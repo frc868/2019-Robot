@@ -5,18 +5,19 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import frc.robot.helpers.Helper;
+import frc.robot.helpers.sensors.IRLimit;
 import frc.robot.helpers.subsystems.SubsystemManagerChild;
 import edu.wpi.first.wpilibj.DigitalInput;
 
 public class BallIntake extends SubsystemManagerChild {
   private WPI_TalonSRX motor;
-  private DigitalInput detection_limit;
+  private IRLimit detection_limit;
   private final boolean BALL_DETECTED_STATE = true;
 
   public BallIntake() {
     super("BallIntake");
     motor = new WPI_TalonSRX(RobotMap.Carriage.BallIntake.MOTOR);
-    detection_limit = new DigitalInput(RobotMap.Carriage.BallIntake.DETECTION_LIMIT);
+    detection_limit = new IRLimit(RobotMap.Carriage.BallIntake.DETECTION_LIMIT);
   }
 
   /**

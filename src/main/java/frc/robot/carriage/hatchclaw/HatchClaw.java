@@ -1,22 +1,22 @@
 package frc.robot.carriage.hatchclaw;
 
-import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
+import frc.robot.helpers.sensors.IRLimit;
 import frc.robot.helpers.subsystems.SubsystemManagerChild;
 
 public class HatchClaw extends SubsystemManagerChild {
   private Solenoid actuator;
-  private DigitalInput left_limit, right_limit;
+  private IRLimit left_limit, right_limit;
   private final boolean GRABBED_STATE = true;
   private final boolean HATCH_DETECTED_STATE = true;
 
   public HatchClaw() {
     super("HatchClaw");
     actuator = new Solenoid(RobotMap.PCM, RobotMap.Carriage.HatchClaw.ACTUATOR);
-    left_limit = new DigitalInput(RobotMap.Carriage.HatchClaw.LEFT_LIMIT);
-    right_limit = new DigitalInput(RobotMap.Carriage.HatchClaw.RIGHT_LIMIT);
+    left_limit = new IRLimit(RobotMap.Carriage.HatchClaw.LEFT_LIMIT);
+    right_limit = new IRLimit(RobotMap.Carriage.HatchClaw.RIGHT_LIMIT);
   }
 
   /**

@@ -2,17 +2,17 @@ package frc.robot.carriage.groundpickup;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
-import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import frc.robot.helpers.Helper;
+import frc.robot.helpers.sensors.IRLimit;
 import frc.robot.helpers.subsystems.SubsystemManagerChild;
 
 public class GroundPickup extends SubsystemManagerChild {
     private WPI_TalonSRX intake, wrist;
     private Encoder encoder;
-    private DigitalInput detection_limit;
+    private IRLimit detection_limit;
     public static final double STORED = 0, GIVE_HATCH = 1, INTAKE_HATCH = 2;
     private final boolean HATCH_DETECTED_STATE = true;
 
@@ -21,7 +21,7 @@ public class GroundPickup extends SubsystemManagerChild {
         intake = new WPI_TalonSRX(RobotMap.Carriage.GroundPickup.INTAKE);
         wrist = new WPI_TalonSRX(RobotMap.Carriage.GroundPickup.WRIST);
         encoder = new Encoder(RobotMap.Carriage.GroundPickup.WRIST_ENCODER_A, RobotMap.Carriage.GroundPickup.WRIST_ENCODER_B);
-        detection_limit = new DigitalInput(RobotMap.Carriage.GroundPickup.DETECTION_LIMIT);
+        detection_limit = new IRLimit(RobotMap.Carriage.GroundPickup.DETECTION_LIMIT);
     }
     
     /**

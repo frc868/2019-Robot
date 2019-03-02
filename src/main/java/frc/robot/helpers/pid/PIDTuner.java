@@ -6,9 +6,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class PIDTuner extends Command {
     private PIDCommandPlus command;
     private double P, I, D;
-    private String PKey = "P", IKey = "I", DKey = "D";
+    private String name, PKey = "P", IKey = "I", DKey = "D";
 
     public PIDTuner(String name, PIDCommandPlus command) {
+        this.name = name;
+
         PKey = name + " " + PKey;
         IKey = name + " " + IKey;
         DKey = name + " " + DKey;
@@ -39,6 +41,11 @@ public class PIDTuner extends Command {
         command.setD(D);
 
         command.start();
+    }
+
+    @Override
+    protected void execute() {
+        SmartDashboard.putNumber(name + " Error", command.getError());
     }
 
     @Override

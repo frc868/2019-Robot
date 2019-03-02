@@ -1,22 +1,29 @@
 package frc.robot.climberelevator.powerpack;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
+import frc.robot.helpers.Helper;
 import frc.robot.helpers.pid.PIDCommandPlus;
 
 public class SetElevatorPosition extends PIDCommandPlus {
-    public static final double P = .05, I = 0.0, D = 0.0;
+
+    public static final double P = .3, I = 0.00, D = 0.0, tolerance = 1;
 
     public SetElevatorPosition(double setpoint) {
-        super(P, I, D, setpoint);
+        super(P, I, D, setpoint, tolerance);
         requires(Robot.powerPack);
     }
     
     @Override
     protected void initialize() {
         super.initialize();
-        getPIDController().setPercentTolerance(0.1);
         Robot.powerPack.switchToElevator();
         Robot.powerPack.elevatorBrakeOff();
+    }
+
+    @Override
+    protected void execute() {
+        SmartDashboard.putNumber("Error", getError());
     }
 
     @Override
@@ -27,11 +34,6 @@ public class SetElevatorPosition extends PIDCommandPlus {
     @Override
     protected void usePIDOutput(double output) {
         Robot.powerPack.setSpeed(output);
-    }
-
-    @Override
-    protected boolean isFinished() {
-        return getPIDController().onTarget();
     }
 
     @Override

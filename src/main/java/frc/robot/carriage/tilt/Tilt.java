@@ -12,7 +12,7 @@ import frc.robot.helpers.subsystems.SubsystemManagerChild;
 public class Tilt extends SubsystemManagerChild {
   private WPI_TalonSRX motor; 
   private AnalogPotentiometer potentiometer;
-  public static final double REVERSE_LIMIT = 0, LOWER = 0, MIDDLE = 1, UPPER = 2, FORWARD_LIMIT = 0;
+  public static final double REVERSE_LIMIT = 0, LOWER = 0, MIDDLE = 0.28, UPPER = 2, FORWARD_LIMIT = 0;
 
   public Tilt() {
     super("Tilt");

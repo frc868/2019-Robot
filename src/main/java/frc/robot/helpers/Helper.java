@@ -33,12 +33,11 @@ public class Helper {
      * If a value is between the lower max and upper min, it will output zero. 
      * If a value is outside this range, the original value will be outputted.
      * @param value value to deadzone
-     * @param lowerMinimum the lower maximum value
-     * @param upperMinimum the uppper minimum value
+     * @param size the size of the deadzone
      * @return the "deadzoned" version of the input value
      */
-    public static double deadzone(double value, double lowerMaximum, double upperMinimum) {
-        if (value > lowerMaximum && value < upperMinimum) {
+    public static double deadzone(double value, double size) {
+        if (Math.abs(value) < Math.abs(size)) {
             return 0;
         } else {
             return value;

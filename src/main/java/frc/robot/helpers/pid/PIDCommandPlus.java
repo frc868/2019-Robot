@@ -4,7 +4,14 @@ import edu.wpi.first.wpilibj.command.PIDCommand;
 
 public abstract class PIDCommandPlus extends PIDCommand {
     private boolean forward;
-    private double P, I, D;
+    private double P, I, D, tolerance;
+    private boolean toleranceMode = false;
+
+    public PIDCommandPlus(double P, double I, double D, double setpoint, double tolerance) {
+        this(P, I, D, setpoint);
+        toleranceMode = true;
+        this.tolerance = tolerance;
+    }
 
     public PIDCommandPlus(double P, double I, double D, double setpoint) {
         super(P, I, D);
@@ -33,7 +40,12 @@ public abstract class PIDCommandPlus extends PIDCommand {
 
     @Override
     protected boolean isFinished() {
-        return forward ? getError() < 0 : getError() > 0;
+        if (toleranceMode) {
+            System.out.println(Math.abs(getError()) < tolerance);
+            return Math.abs(getError()) < tolerance;
+        } else {
+            return forward ? getError() < 0 : getError() > 0;
+        }
     }
 
     public void setP(double P) {

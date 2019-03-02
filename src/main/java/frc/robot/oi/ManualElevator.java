@@ -2,6 +2,7 @@ package frc.robot.oi;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.*;
+import frc.robot.helpers.Helper;
 
 public class ManualElevator extends Command {
 
@@ -12,23 +13,25 @@ public class ManualElevator extends Command {
     @Override
     protected void initialize() {
         Robot.powerPack.switchToElevator();
-        // Robot.powerPack.elevatorBrakeOff();
+        Robot.powerPack.elevatorBrakeOff();
     }
 
     @Override
     protected void execute() {
-        if( (-0.05 < OI.operator.getLY()) && (OI.operator.getLY() < 0.05)) {     //create deadzone & brake in deadzone
-            Robot.powerPack.setSpeed(0);
+        double input = Helper.deadzone(OI.operator.getLY(), 0.05);
+        Robot.powerPack.setSpeed(input);
+
+        if(input == 0) { 
             Robot.powerPack.elevatorBrakeOn();
-        }   else    {                               //normal elevator movement
+        } else {
             Robot.powerPack.elevatorBrakeOff();
-            Robot.powerPack.setSpeed(-OI.operator.getLY());
         }
     }
 
     @Override
     protected void end() {
         Robot.powerPack.stop();
+        Robot.powerPack.elevatorBrakeOn();
     }
 
     @Override
