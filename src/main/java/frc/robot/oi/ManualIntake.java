@@ -14,7 +14,6 @@ public class ManualIntake extends Command {
     protected void execute() {
         double power = OI.operator.getLT() - OI.operator.getRT();
         Robot.ballIntake.setSpeed(power);
-        SmartDashboard.putNumber("INTAKE", power);
     }
 
     @Override

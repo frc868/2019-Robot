@@ -86,7 +86,6 @@ public class Robot extends TimedRobot {
     Scheduler.getInstance().run();
     OI.update();
     SubsystemManager.updateEnabled();
-    System.out.println(Robot.powerPack.getSpeed());
   }
 
   @Override
