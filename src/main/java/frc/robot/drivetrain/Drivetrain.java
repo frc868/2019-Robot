@@ -13,7 +13,7 @@ public class Drivetrain extends SubsystemManagerChild {
     private CANSparkMaxPlus leftPrimary, leftSecondary, leftTertiary, rightPrimary, rightSecondary, rightTertiary;
     private AnalogGyro gyro;
     private final double INCHES_PER_TICK = 0.0045998; 
-    private final double DEGREES_PER_LOOP = 0.1;
+    private final double DEGREES_PER_LOOP = 0;
     private double angleOffset = 0;
 
     public Drivetrain() {
@@ -189,7 +189,7 @@ public class Drivetrain extends SubsystemManagerChild {
      * @return angle given by the gyro
      */
     public double getGyroAngle() {
-        return gyro.getAngle() + angleOffset;
+        return gyro.getAngle() - angleOffset;
     }
 
     /**
