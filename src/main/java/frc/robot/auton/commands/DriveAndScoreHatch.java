@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.carriage.hatchclaw.Release;
 import frc.robot.climberelevator.powerpack.AutoElevatorTilt;
 import frc.robot.drivetrain.commands.RunProfile;
-import frc.robot.sensors.FollowVisionAndUltrasonic;
+// import frc.robot.sensors.FollowVisionAndUltrasonic;
 
 public class DriveAndScoreHatch extends CommandGroup {
 
@@ -14,7 +14,7 @@ public class DriveAndScoreHatch extends CommandGroup {
 
     public DriveAndScoreHatch(String filename, Height height) {
         addSequential(new RunProfile(filename));
-        addSequential(new FollowVisionAndUltrasonic());
+        // addSequential(new FollowVisionAndUltrasonic());
         
         if (height == Height.lower) {
             addSequential(new AutoElevatorTilt(AutoElevatorTilt.State.hatchLower));

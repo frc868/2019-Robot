@@ -54,7 +54,7 @@ public class Camera extends SubsystemManagerChild {
 
   @Override 
   public void initSD() {
-    SmartDashboard.putData("Toggle Camera", new ToggleCamera());
+    // SmartDashboard.putData("Toggle Camera", new ToggleCamera());
   }
 
   @Override

@@ -14,8 +14,7 @@ public class SetElevatorPosition extends PIDCommandPlus {
     @Override
     protected void initialize() {
         super.initialize();
-        getPIDController().setPercentTolerance(0.01);
-        getPIDController().setToleranceBuffer(50);
+        getPIDController().setPercentTolerance(0.1);
         Robot.powerPack.switchToElevator();
         Robot.powerPack.elevatorBrakeOff();
     }

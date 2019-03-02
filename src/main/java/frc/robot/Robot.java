@@ -35,7 +35,7 @@ public class Robot extends TimedRobot {
   public static PowerPack powerPack = new PowerPack();
   public static Ramps climberRamps = new Ramps();
 
-  public static Camera camera = new Camera();
+  // public static Camera camera = new Camera();
   public static Compressor compressor = new Compressor();
   // public static UltrasonicArray ultrasonic = new UltrasonicArray();
 
@@ -50,6 +50,7 @@ public class Robot extends TimedRobot {
   public void robotPeriodic() {
     SubsystemManager.update();
     SubsystemManager.updateSD();
+    Runtime.getRuntime().gc();
   }
   
   @Override
