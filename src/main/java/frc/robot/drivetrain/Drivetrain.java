@@ -230,10 +230,10 @@ public class Drivetrain extends SubsystemManagerChild {
 
     @Override
     public void updateSD() {
-        SmartDashboard.putNumber("Drivetrain: Left Speed", getLeftSpeed());
-        SmartDashboard.putNumber("Drivetrain: Right Speed", getRightSpeed());
-        SmartDashboard.putNumber("Drivetrain: Left Position", getLeftEncPosition());
-        SmartDashboard.putNumber("Drivetrain: Right Position", getRightEncPosition());
-        SmartDashboard.putNumber("Drivetrain: Angle", getGyroAngle());
+        SmartDashboard.putNumber("DT Left Speed", getLeftSpeed());
+        SmartDashboard.putNumber("DT Right Speed", getRightSpeed());
+        SmartDashboard.putNumber("DT Left Position", getLeftEncPosition());
+        SmartDashboard.putNumber("DT Right Position", getRightEncPosition());
+        SmartDashboard.putNumber("DT Angle", getGyroAngle());
     }
 }
