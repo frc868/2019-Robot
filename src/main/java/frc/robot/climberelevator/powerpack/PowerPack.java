@@ -211,17 +211,16 @@ public class PowerPack extends SubsystemManagerChild {
   public void climberBrakeOff() {
     climber_brake.set(!BRAKE_MODE);
   }
-
-  @Override
-  public void init() {
-    resetEncPosition();
-  }
-
+  
   @Override
   public void initEnabled() {
     switchToElevator();
     climberBrakeOn();
     elevatorBrakeOn();
+
+    if (getElevatorBottomLimitSwitch()) {
+      resetEncPosition();
+    }
   }
 
   @Override
