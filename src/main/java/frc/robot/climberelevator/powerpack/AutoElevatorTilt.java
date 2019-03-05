@@ -8,25 +8,23 @@ import frc.robot.carriage.tilt.Tilt;
 public class AutoElevatorTilt extends CommandGroup {
 
     public enum State {
-        intakeBall, hatchLower, ballLower, hatchMiddle, ballMiddle, hatchUpper, ballUpper;
+        intakeBall, lower, middle, upper;
     }
     
     public AutoElevatorTilt(State state) {
-        // if (state == State.ballUpper) {
-        //     addSequential(new SetTiltPosition(Tilt.UPPER));
-        // } else if (state == State.intakeBall) {
-        //     addSequential(new SetTiltPosition(Tilt.LOWER));
-        // } else {
-        //     addSequential(new SetTiltPosition(Tilt.MIDDLE));
-        // }
+        if (state == State.upper) {
+            addSequential(new SetTiltPosition(Tilt.UPPER));
+        } else {
+            addSequential(new SetTiltPosition(Tilt.MIDDLE));
+        }
         
         if (state == State.intakeBall) {
             addSequential(new SetElevatorPosition(PowerPack.INTAKE_BALL));
-        } else if (state == State.hatchLower || state == State.ballLower) {
+        } else if (state == State.lower) {
             addSequential(new SetElevatorPosition(PowerPack.LOWER));
-        } else if (state == State.ballMiddle || state == State.hatchMiddle) {
+        } else if (state == State.middle) {
             addSequential(new SetElevatorPosition(PowerPack.MIDDLE)); 
-        } else if (state == State.ballUpper || state == State.hatchUpper) {
+        } else if (state == State.upper) {
             addSequential(new SetElevatorPosition(PowerPack.UPPER));   
         }
     }

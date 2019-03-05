@@ -11,7 +11,7 @@ public class DriveAndGrabHatch extends CommandGroup {
     public DriveAndGrabHatch(String filename) {
         addSequential(new RunProfile(filename));
         // addSequential(new FollowVisionAndUltrasonic());
-        addSequential(new AutoElevatorTilt(AutoElevatorTilt.State.hatchLower));
+        addSequential(new AutoElevatorTilt(AutoElevatorTilt.State.lower));
         addSequential(new Grab());
     }
 }

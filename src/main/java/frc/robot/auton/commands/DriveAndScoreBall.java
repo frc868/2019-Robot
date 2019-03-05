@@ -17,11 +17,11 @@ public class DriveAndScoreBall extends CommandGroup {
         // addSequential(new FollowVisionAndUltrasonic());
         
         if (height == Height.lower) {
-            addSequential(new AutoElevatorTilt(AutoElevatorTilt.State.ballLower));
+            addSequential(new AutoElevatorTilt(AutoElevatorTilt.State.lower));
         } else if (height == Height.middle) {
-            addSequential(new AutoElevatorTilt(AutoElevatorTilt.State.ballMiddle));
+            addSequential(new AutoElevatorTilt(AutoElevatorTilt.State.middle));
         } else if (height == Height.upper) {
-            addSequential(new AutoElevatorTilt(AutoElevatorTilt.State.ballUpper));
+            addSequential(new AutoElevatorTilt(AutoElevatorTilt.State.upper));
         }
 
         addSequential(new SetBallIntakeSpeed());

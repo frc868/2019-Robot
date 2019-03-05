@@ -17,11 +17,11 @@ public class DriveAndScoreHatch extends CommandGroup {
         // addSequential(new FollowVisionAndUltrasonic());
         
         if (height == Height.lower) {
-            addSequential(new AutoElevatorTilt(AutoElevatorTilt.State.hatchLower));
+            addSequential(new AutoElevatorTilt(AutoElevatorTilt.State.lower));
         } else if (height == Height.middle) {
-            addSequential(new AutoElevatorTilt(AutoElevatorTilt.State.hatchMiddle));
+            addSequential(new AutoElevatorTilt(AutoElevatorTilt.State.middle));
         } else if (height == Height.upper) {
-            addSequential(new AutoElevatorTilt(AutoElevatorTilt.State.hatchUpper));
+            addSequential(new AutoElevatorTilt(AutoElevatorTilt.State.upper));
         }
 
         addSequential(new Release());
