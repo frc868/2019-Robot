@@ -64,7 +64,7 @@ public class BallIntake extends SubsystemManagerChild {
 
   @Override
   public void updateSD() {
-    SmartDashboard.putBoolean("Ball Intake: Detected?", isBallDetected());
-    SmartDashboard.putNumber("Ball Intake: Speed", getSpeed());
+    SmartDashboard.putBoolean("Ball Detected?", isBallDetected());
+    SmartDashboard.putNumber("Intake Speed", getSpeed());
   }
 }

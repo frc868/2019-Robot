@@ -80,8 +80,9 @@ public class RobotMap {
     }
 
     public static class Ultrasonic {
-      public static final int FRONT_TRIGGER = 0;
-      public static final int FRONT_ECHO = 1;
+      //public static final int FRONT_TRIGGER = 0;
+      //public static final int FRONT_ECHO = 1;
+      public static final int ANALOG_PORT = 0;
     }
   }
 
