@@ -73,6 +73,12 @@ public class Tilt extends SubsystemManagerChild {
   }
 
   @Override
+  public void init() {
+    addTab("Motor", motor);
+    addTab("Potentiometer", potentiometer);
+  }
+
+  @Override
   public void updateSD() {
     SmartDashboard.putNumber("Tilt: Speed", getSpeed());
     SmartDashboard.putNumber("Tilt: Position", getPotPosition());

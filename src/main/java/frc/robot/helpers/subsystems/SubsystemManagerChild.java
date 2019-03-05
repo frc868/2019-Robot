@@ -46,11 +46,11 @@ public abstract class SubsystemManagerChild extends Subsystem {
   }
 
   protected void addTab(String name, Sendable sendable) {
-    Shuffleboard.getTab(subsystemName).add(name, sendable);
+    Shuffleboard.getTab(subsystemName).add(subsystemName + ": " + name, sendable);
   }
 
   protected void addTab(String name, Object value) {
-    Shuffleboard.getTab(subsystemName).add(name, value);
+    Shuffleboard.getTab(subsystemName).add(subsystemName + ": " + name, value);
   }
 
   protected void addDebug(String name, Sendable sendable) {

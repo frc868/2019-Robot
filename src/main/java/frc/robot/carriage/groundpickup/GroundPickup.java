@@ -107,6 +107,14 @@ public class GroundPickup extends SubsystemManagerChild {
     }
 
     @Override
+    public void initSD() {
+        addTab("Intake Motor", intake);
+        addTab("Wrist Motor", wrist);
+        addTab("Encoder", encoder);
+        addTab("Detection Limit", detection_limit);
+    }
+
+    @Override
     public void updateSD() {
         SmartDashboard.putNumber("Ground Pickup: Intake Speed", getIntakeSpeed());
         SmartDashboard.putNumber("Ground Pickup: Wrist Speed", getWristSpeed());

@@ -57,6 +57,11 @@ public class Ramps extends SubsystemManagerChild {
     }
 
     @Override
+    public void initSD() {
+        addTab("Actuator", actuator);
+    }
+
+    @Override
     public void updateSD() {
         SmartDashboard.putBoolean("Ramps: Open?", isOpen());
     }

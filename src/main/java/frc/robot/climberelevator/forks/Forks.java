@@ -55,6 +55,11 @@ public class Forks extends SubsystemManagerChild {
     }
 
     @Override
+    public void initSD() {
+        addTab("Release", release);
+    }
+
+    @Override
     public void updateSD() {
         SmartDashboard.putBoolean("Forks: Open?", isOpen());
     }

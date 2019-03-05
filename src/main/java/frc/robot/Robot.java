@@ -24,7 +24,7 @@ import frc.robot.helpers.sensors.ElevatorReset;
 import frc.robot.helpers.subsystems.SubsystemManager;
 import frc.robot.oi.OI;
 import frc.robot.sensors.camera.Camera;
-import frc.robot.sensors.ultrasonic.UltrasonicArray;
+// import frc.robot.sensors.ultrasonic.UltrasonicArray;
 
 public class Robot extends TimedRobot {
   public static BallIntake ballIntake = new BallIntake();
@@ -41,7 +41,7 @@ public class Robot extends TimedRobot {
 
   public static Camera camera = new Camera();
   public static Compressor compressor = new Compressor();
-  public static UltrasonicArray ultrasonic = new UltrasonicArray();
+  // public static UltrasonicArray ultrasonic = new UltrasonicArray();
 
   public Trigger resetElevEnc = new ElevatorReset();
 

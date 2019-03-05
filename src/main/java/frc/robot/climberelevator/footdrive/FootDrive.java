@@ -40,6 +40,11 @@ public class FootDrive extends SubsystemManagerChild {
   }
 
   @Override
+  public void initSD() {
+    addTab("Motor", motor);
+  }
+  
+  @Override
   public void updateSD() {
     SmartDashboard.putNumber("Foot Drive: Speed", getSpeed());
   }

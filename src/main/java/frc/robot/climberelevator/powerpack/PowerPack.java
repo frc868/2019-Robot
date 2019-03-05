@@ -231,6 +231,22 @@ public class PowerPack extends SubsystemManagerChild {
   }
 
   @Override
+  public void initSD() {
+    addTab("Primary", (CANSparkMax) primary);
+    addTab("Switcher", switcher);
+    addTab("Elevator Brake", elevator_brake);
+    addTab("Climber Brake", climber_brake);
+
+    addTab("Elevator Bottom Limit", elevator_bottom_limit);
+    addTab("Elevator Top Limit", elevator_top_limit);
+
+    addTab("Climber Bottom Limit", climber_bottom_limit);
+    addTab("Climber Top Limit", climber_top_limit);
+  }
+
+
+
+  @Override
   public void updateSD() {
     SmartDashboard.putNumber("PowerPack: Speed", getSpeed());
     SmartDashboard.putNumber("PowerPack: Position", getEncPosition());

@@ -1,5 +1,6 @@
 package frc.robot.drivetrain;
 
+import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMax.IdleMode;
 
 import edu.wpi.first.wpilibj.AnalogGyro;
@@ -226,6 +227,14 @@ public class Drivetrain extends SubsystemManagerChild {
     @Override
     public void initEnabled() {
         brakeOn();
+    }
+
+    @Override
+    public void initSD() {
+        addTab("Left Motors", (CANSparkMax) leftPrimary);
+        addTab("Right Motors", (CANSparkMax) rightPrimary);
+        addTab("Gyro", gyro);
+
     }
 
     @Override
