@@ -103,7 +103,7 @@ public class RunProfile extends Command {
     @Override
     protected void initialize() {
         initialAngle = Robot.drivetrain.getGyroRestrictedAngleRadians();
-        Robot.drivetrain.resetEncoders();
+        Robot.drivetrain.resetEncPositions();
         
         left.enable();
         right.enable();

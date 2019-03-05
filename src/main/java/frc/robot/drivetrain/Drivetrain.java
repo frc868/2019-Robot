@@ -180,7 +180,7 @@ public class Drivetrain extends SubsystemManagerChild {
     /**
      * resets encoder counts on gyros
      */
-    public void resetEncoders(){
+    public void resetEncPositions(){
         leftPrimary.getEncoder().setPosition(0);
         rightPrimary.getEncoder().setPosition(0);
     }
@@ -206,6 +206,11 @@ public class Drivetrain extends SubsystemManagerChild {
      */
     public void resetGyro() {
         gyro.reset();
+    }
+
+    @Override
+    public void init() {
+        resetEncPositions();
     }
 
     @Override

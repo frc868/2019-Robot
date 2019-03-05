@@ -88,6 +88,13 @@ public class PowerPack extends SubsystemManagerChild {
     return primary.getEncoder().getPosition();
   }
 
+  /**
+   * 
+   */
+  public void resetEncPosition() {
+    primary.getEncoder().setPosition(0);
+  }
+
   /** 
    * 
    * @return state of forward limit switch
@@ -203,6 +210,11 @@ public class PowerPack extends SubsystemManagerChild {
    */
   public void climberBrakeOff() {
     climber_brake.set(!BRAKE_MODE);
+  }
+
+  @Override
+  public void init() {
+    resetEncPosition();
   }
 
   @Override
