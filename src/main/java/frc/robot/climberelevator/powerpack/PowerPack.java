@@ -6,6 +6,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import frc.robot.RobotMap;
 import frc.robot.helpers.Helper;
 import frc.robot.helpers.sensors.IRLimit;
@@ -48,19 +49,19 @@ public class PowerPack extends SubsystemManagerChild {
   public void setSpeed(double speed) {
     speed = Helper.boundValue(speed);
 
-    // if (isElevatorMode()) {
-    //   if (getElevatorBottomLimitSwitch()) {
-    //     speed = Helper.boundValue(speed, 0, 1);
-    //   } else if (getElevatorTopLimitSwitch()) {
-    //     speed = Helper.boundValue(speed, -1, 0);
-    //   }
-    // } else {
-    //   if (getClimberBottomLimitSwitch()) {
-    //     speed = Helper.boundValue(speed, 0, 1);
-    //   } else if (getClimberTopLimitSwitch()) {
-    //     speed = Helper.boundValue(speed, -1, 0);
-    //   }
-    // }
+    if (isElevatorMode()) {
+      if (getElevatorBottomLimitSwitch()) {
+        speed = Helper.boundValue(speed, 0, 1);
+      } else if (getElevatorTopLimitSwitch()) {
+        speed = Helper.boundValue(speed, -1, 0);
+      }
+    } else {
+      if (getClimberBottomLimitSwitch()) {
+        speed = Helper.boundValue(speed, 0, 1);
+      } else if (getClimberTopLimitSwitch()) {
+        speed = Helper.boundValue(speed, -1, 0);
+      }
+    }
 
     primary.set(speed);
   }
@@ -212,9 +213,16 @@ public class PowerPack extends SubsystemManagerChild {
     climber_brake.set(!BRAKE_MODE);
   }
 
+  // @Override
+  // public void update() {
+  //   if(getElevatorBottomLimitSwitch()){
+  //     resetEncPosition();
+  //   }
+  // }
+
   @Override
   public void init() {
-    resetEncPosition();
+    // resetEncPosition();
   }
 
   @Override
