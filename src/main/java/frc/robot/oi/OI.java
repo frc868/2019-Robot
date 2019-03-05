@@ -61,7 +61,7 @@ public class OI {
   
     operator.a.whenPressed(new SetElevatorPosition(PowerPack.LOWER));
     operator.b.whenPressed(new SetElevatorPosition(PowerPack.MIDDLE));
-    operator.x.whenPressed(new SetElevatorPosition(PowerPack.INTAKE_BALL));
+    // operator.x.whenPressed(new SetElevatorPosition(PowerPack.INTAKE_BALL));
     operator.y.whenPressed(new SetElevatorPosition(PowerPack.UPPER));
   }
 

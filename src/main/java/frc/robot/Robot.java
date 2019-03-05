@@ -54,7 +54,6 @@ public class Robot extends TimedRobot {
   public void robotPeriodic() {
     SubsystemManager.update();
     SubsystemManager.updateSD();
-    Runtime.getRuntime().gc();
   }
   
   @Override

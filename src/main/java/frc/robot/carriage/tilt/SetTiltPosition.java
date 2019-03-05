@@ -1,22 +1,27 @@
 package frc.robot.carriage.tilt;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 import frc.robot.helpers.pid.PIDCommandPlus;
 
 public class SetTiltPosition extends PIDCommandPlus {
-    private static final double P = 1.0, I = 0.0, D = 0.0;
+    private static final double P = 5, I = 0.01, D = 0.0;
 
     public SetTiltPosition(double setpoint) {
         super(P, I, D, setpoint);
         requires(Robot.tilt);
-        requires(Robot.hatchClaw);
     }
     
     @Override
     protected void initialize() {
-        if (getSetpoint() < Tilt.MIDDLE) {
+        if (getSetpoint() > Tilt.MIDDLE) {
             Robot.hatchClaw.grab();
         }
+    }
+
+    @Override
+    protected void execute() {
+        SmartDashboard.putNumber("Erorr", getError());
     }
 
     @Override
@@ -26,6 +31,16 @@ public class SetTiltPosition extends PIDCommandPlus {
 
     @Override
     protected void usePIDOutput(double output) {
-        Robot.tilt.setSpeed(output);
-    }   
+        Robot.tilt.setSpeed(-output);
+    } 
+
+    @Override
+    protected void end() {
+        Robot.tilt.setSpeed(0);
+    }
+    
+    @Override
+    protected boolean isFinished() {
+        return false;
+    }
 }

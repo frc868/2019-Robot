@@ -12,9 +12,9 @@ public class ArcadeDrive extends Command {
 
     @Override
     protected void execute() {
-        double y = XboxControllerPlus.cube(OI.driver.getLY());
-        double x = XboxControllerPlus.cube(OI.driver.getRX());
-        Robot.drivetrain.setSpeed(-y + x, -y - x);
+        double y = -OI.driver.getLY();
+        double x = OI.driver.getRX();
+        Robot.drivetrain.setSpeed(y - x, y + x);
     }
 
     @Override

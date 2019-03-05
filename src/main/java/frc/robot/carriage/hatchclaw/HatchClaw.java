@@ -78,11 +78,6 @@ public class HatchClaw extends SubsystemManagerChild {
   }
 
   @Override
-  public void initEnabled() {
-    grab();
-  }
-
-  @Override
   public void updateSD() {
     SmartDashboard.putBoolean("Hatch Claw: Grabbed?", isGrabbed());
     SmartDashboard.putBoolean("Hatch Claw: Detected?", isHatchDetected());

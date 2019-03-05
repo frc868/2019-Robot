@@ -38,6 +38,7 @@ public class Drivetrain extends SubsystemManagerChild {
         rightSecondary.setInverted(true);
         rightTertiary.setInverted(true);
 
+
         gyro = new AnalogGyro(RobotMap.Drivetrain.GYRO);
      }
 
