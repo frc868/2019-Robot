@@ -6,6 +6,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import frc.robot.RobotMap;
 import frc.robot.helpers.Helper;
 import frc.robot.helpers.sensors.IRLimit;
@@ -212,9 +213,16 @@ public class PowerPack extends SubsystemManagerChild {
     climber_brake.set(!BRAKE_MODE);
   }
 
+  // @Override
+  // public void update() {
+  //   if(getElevatorBottomLimitSwitch()){
+  //     resetEncPosition();
+  //   }
+  // }
+
   @Override
   public void init() {
-    resetEncPosition();
+    // resetEncPosition();
   }
 
   @Override

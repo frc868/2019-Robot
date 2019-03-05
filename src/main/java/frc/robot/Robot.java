@@ -9,22 +9,20 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.buttons.Trigger;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.carriage.ballintake.BallIntake;
 import frc.robot.carriage.hatchclaw.HatchClaw;
 import frc.robot.carriage.tilt.Tilt;
 import frc.robot.climberelevator.footdrive.FootDrive;
 import frc.robot.climberelevator.forks.Forks;
-import frc.robot.climberelevator.powerpack.AutoElevatorTilt;
 import frc.robot.climberelevator.powerpack.PowerPack;
-import frc.robot.climberelevator.powerpack.SetElevatorPosition;
+import frc.robot.climberelevator.powerpack.ResetEncoder;
 import frc.robot.climberelevator.ramps.Ramps;
 import frc.robot.drivetrain.Drivetrain;
-import frc.robot.helpers.pid.PIDTuner;
+import frc.robot.helpers.sensors.ElevatorReset;
 import frc.robot.helpers.subsystems.SubsystemManager;
 import frc.robot.oi.OI;
-import frc.robot.sensors.camera.Camera;
 
 public class Robot extends TimedRobot {
   public static BallIntake ballIntake = new BallIntake();
@@ -43,10 +41,13 @@ public class Robot extends TimedRobot {
   public static Compressor compressor = new Compressor();
   // public static UltrasonicArray ultrasonic = new UltrasonicArray();
 
+  public Trigger resetElevEnc = new ElevatorReset();
+
   @Override
   public void robotInit() {
     SubsystemManager.init();
     SubsystemManager.initSD();
+    resetElevEnc.whenActive(new ResetEncoder());
     compressor.setClosedLoopControl(true);
   }
 
