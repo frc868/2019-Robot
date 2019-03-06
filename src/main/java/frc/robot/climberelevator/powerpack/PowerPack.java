@@ -1,21 +1,20 @@
 package frc.robot.climberelevator.powerpack;
 
-import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMax.IdleMode;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
 import frc.robot.RobotMap;
 import frc.robot.helpers.Helper;
-import frc.robot.helpers.sensors.ElevatorReset;
+import frc.robot.helpers.commands.ResetEncoder;
+import frc.robot.helpers.commands.StopMotor;
+import frc.robot.helpers.motorcontrollers.CANSparkMaxPlus;
 import frc.robot.helpers.sensors.IRLimit;
 import frc.robot.helpers.subsystems.SubsystemManagerChild;
 
 
 public class PowerPack extends SubsystemManagerChild {
-  private CANSparkMax primary, secondary;
+  private CANSparkMaxPlus primary, secondary;
   private Solenoid switcher, elevator_brake, climber_brake;
   private IRLimit elevator_top_limit, elevator_bottom_limit, climber_top_limit, climber_bottom_limit;
   private final boolean ELEVATOR_MODE = false, BRAKE_MODE = false;
@@ -25,8 +24,8 @@ public class PowerPack extends SubsystemManagerChild {
 
   public PowerPack() {
     super("PowerPack");
-    primary = new CANSparkMax(RobotMap.ClimberElevator.Powerpack.PRIMARY, MotorType.kBrushless);
-    secondary = new CANSparkMax(RobotMap.ClimberElevator.Powerpack.SECONDARY, MotorType.kBrushless);
+    primary = new CANSparkMaxPlus(RobotMap.ClimberElevator.Powerpack.PRIMARY);
+    secondary = new CANSparkMaxPlus(RobotMap.ClimberElevator.Powerpack.SECONDARY);
 
     primary.setIdleMode(IdleMode.kCoast);
     secondary.setIdleMode(IdleMode.kCoast);
@@ -130,17 +129,6 @@ public class PowerPack extends SubsystemManagerChild {
   }
 
   /**
-   * @return state of limits
-   */
-  public boolean getLimits() {
-    if (isElevatorMode()) {
-      return getElevatorBottomLimitSwitch() || getElevatorTopLimitSwitch();
-    } else {
-      return getClimberBottomLimitSwitch() || getClimberTopLimitSwitch();
-    }
-  }
-
-  /**
    * switches powerpack to elevator mode
    */
   public void switchToElevator() {
@@ -227,14 +215,11 @@ public class PowerPack extends SubsystemManagerChild {
 
   @Override
   public void init() {
-    (new ElevatorReset()).whenActive(new ResetEncoder());
-  }
-
-  @Override
-  public void update() {
-    if (getLimits()) {
-      setSpeed(getSpeed());
-    }
+    elevator_bottom_limit.getTrigger().whenActive(new ResetEncoder(primary));
+    elevator_bottom_limit.getTrigger().whenActive(new StopMotor(primary));
+    elevator_top_limit.getTrigger().whenActive(new StopMotor(primary));
+    climber_bottom_limit.getTrigger().whenActive(new StopMotor(primary));
+    climber_top_limit.getTrigger().whenActive(new StopMotor(primary));
   }
   
   @Override
@@ -262,8 +247,6 @@ public class PowerPack extends SubsystemManagerChild {
     addTab("Climber Bottom Limit", climber_bottom_limit);
     addTab("Climber Top Limit", climber_top_limit);
   }
-
-
 
   @Override
   public void updateSD() {

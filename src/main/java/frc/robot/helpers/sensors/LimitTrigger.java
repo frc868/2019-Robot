@@ -7,16 +7,27 @@
 
 package frc.robot.helpers.sensors;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.buttons.Trigger;
-import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.Robot;
 
-/**
- * Add your docs here.
- */
-public class ElevatorReset extends Trigger {
+public class LimitTrigger extends Trigger {
+  private DigitalInput digitalLimit;
+  private PotentiometerLimit potentiometerLimit;
+  
+  public LimitTrigger(DigitalInput digitalInput) {
+    this.digitalLimit = digitalInput;
+  }
+
+  public LimitTrigger(PotentiometerLimit potentiometerLimit) {
+    this.potentiometerLimit = potentiometerLimit;
+  }
+
   @Override
   public boolean get() {
-    return Robot.powerPack.getClimberBottomLimitSwitch();
+    if (digitalLimit != null) {
+      return digitalLimit.get();
+    } else {
+      return potentiometerLimit.get();
+    }
   }
 }

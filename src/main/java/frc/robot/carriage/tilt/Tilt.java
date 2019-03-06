@@ -6,18 +6,22 @@ import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import frc.robot.helpers.Helper;
+import frc.robot.helpers.commands.StopMotor;
+import frc.robot.helpers.sensors.PotentiometerLimit;
 import frc.robot.helpers.subsystems.SubsystemManagerChild;
 
 
 public class Tilt extends SubsystemManagerChild {
   private WPI_TalonSRX motor; 
   private AnalogPotentiometer potentiometer;
+  private PotentiometerLimit limit;
   public static final double LOWER = .310, MIDDLE = 0.195, UPPER = .145;
 
   public Tilt() {
     super("Tilt");
     motor = new WPI_TalonSRX(RobotMap.Carriage.Tilt.MOTOR);
     potentiometer = new AnalogPotentiometer(RobotMap.Carriage.Tilt.POTENTIOMETER);
+    limit = new PotentiometerLimit(potentiometer, LOWER, UPPER);
     motor.setInverted(true);
   }
 
@@ -63,22 +67,14 @@ public class Tilt extends SubsystemManagerChild {
    * @return if forward limit is tripped
    */
   public boolean getTopLimit() {
-    return getPotPosition() < UPPER;
+    return limit.getReverseLimit();
   }
 
   /**
    * @return if reverse limit is tripped
    */
   public boolean getBottomLimit() {
-    return getPotPosition() > LOWER;
-  }
-
-  /**
-   * 
-   * @return state of limits
-   */
-  public boolean getLimits() {
-    return getTopLimit() || getBottomLimit();
+    return limit.getForwardLimit();
   }
 
   @Override
@@ -94,9 +90,7 @@ public class Tilt extends SubsystemManagerChild {
 
   @Override
   public void update() {
-    if (getLimits()) {
-      setSpeed(getSpeed());
-    }
+    limit.getTrigger().whenActive(new StopMotor(motor));
   }
 
   @Override
