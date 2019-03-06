@@ -8,7 +8,7 @@ public class SetTiltPosition extends PIDCommandPlus {
     private static final double P = 5, I = 0.01, D = 0.0;
 
     public SetTiltPosition(double setpoint) {
-        super(P, I, D, setpoint);
+        super(P, I, D, setpoint, .005);
         requires(Robot.tilt);
     }
     
@@ -32,15 +32,5 @@ public class SetTiltPosition extends PIDCommandPlus {
     @Override
     protected void usePIDOutput(double output) {
         Robot.tilt.setSpeed(-output);
-    } 
-
-    @Override
-    protected void end() {
-        Robot.tilt.setSpeed(0);
-    }
-    
-    @Override
-    protected boolean isFinished() {
-        return false;
     }
 }
