@@ -1,7 +1,7 @@
 package frc.robot.oi;
 
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.*;
+import frc.robot.Robot;
 import frc.robot.helpers.Helper;
 
 public class ManualElevator extends Command {
@@ -37,5 +37,11 @@ public class ManualElevator extends Command {
     @Override
     protected boolean isFinished() {
         return false;
+    }
+
+    public static void checkOverride() {
+        if (Helper.deadzone(-OI.operator.getLY(), 0.1) != 0) {
+            (new ManualElevator()).start();
+        }
     }
 }

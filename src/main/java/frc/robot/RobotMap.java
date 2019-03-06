@@ -61,8 +61,8 @@ public class RobotMap {
 
     public static class HatchClaw {
       public static final int ACTUATOR = 1;
-      public static final int LEFT_LIMIT = 2;
-      public static final int RIGHT_LIMIT = 3;
+      public static final int LEFT_LIMIT = 3;
+      public static final int RIGHT_LIMIT = 2;
     }
    
     public static class GroundPickup {

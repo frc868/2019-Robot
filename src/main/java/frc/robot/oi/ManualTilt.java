@@ -1,7 +1,7 @@
 package frc.robot.oi;
 
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.*;
+import frc.robot.Robot;
 import frc.robot.helpers.Helper;
 
 public class ManualTilt extends Command {
@@ -24,5 +24,11 @@ public class ManualTilt extends Command {
     @Override
     protected boolean isFinished() {
         return false;
+    }
+
+    public static void checkOverride() {
+        if (Helper.deadzone(-OI.operator.getRY(), 0.1) != 0) {
+            (new ManualTilt()).start();
+        }
     }
 }

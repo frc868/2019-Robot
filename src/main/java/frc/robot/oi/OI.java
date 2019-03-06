@@ -9,7 +9,6 @@ import frc.robot.carriage.tilt.SetTiltPosition;
 import frc.robot.climberelevator.footdrive.SetFootDriveSpeed;
 import frc.robot.climberelevator.forks.DeployForks;
 import frc.robot.climberelevator.powerpack.AutoClimb;
-import frc.robot.climberelevator.powerpack.AutoElevatorTilt;
 import frc.robot.climberelevator.powerpack.PowerPack;
 import frc.robot.climberelevator.powerpack.SetClimberSpeed;
 import frc.robot.climberelevator.powerpack.SetElevatorPosition;
@@ -66,7 +65,9 @@ public class OI {
   }
 
   public static void update() {
-
+    ManualElevator.checkOverride();
+    ManualTilt.checkOverride();
+    ManualElevator.checkOverride();
   }
 
 }

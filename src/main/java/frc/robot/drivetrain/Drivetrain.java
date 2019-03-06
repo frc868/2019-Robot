@@ -4,6 +4,7 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMax.IdleMode;
 
 import edu.wpi.first.wpilibj.AnalogGyro;
+import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import frc.robot.helpers.Helper;
@@ -14,7 +15,7 @@ public class Drivetrain extends SubsystemManagerChild {
     private CANSparkMaxPlus leftPrimary, leftSecondary, leftTertiary, rightPrimary, rightSecondary, rightTertiary;
     private AnalogGyro gyro;
     private final double INCHES_PER_TICK = 0.0045998; 
-    private final double DEGREES_PER_LOOP = 0;
+    private final double DEGREES_PER_LOOP = -0.0018;
     private double angleOffset = 0;
 
     public Drivetrain() {
@@ -231,8 +232,6 @@ public class Drivetrain extends SubsystemManagerChild {
 
     @Override
     public void initSD() {
-        addTab("Left Motors", (CANSparkMax) leftPrimary);
-        addTab("Right Motors", (CANSparkMax) rightPrimary);
         addTab("Gyro", gyro);
 
     }

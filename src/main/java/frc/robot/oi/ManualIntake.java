@@ -1,8 +1,8 @@
 package frc.robot.oi;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.*;
+import frc.robot.Robot;
+import frc.robot.helpers.Helper;
 
 public class ManualIntake extends Command {
 
@@ -19,5 +19,11 @@ public class ManualIntake extends Command {
     @Override
     protected boolean isFinished() {
         return false;
+    }
+
+    public void checkOverride() {
+        if (Helper.deadzone(OI.operator.getLT() - OI.operator.getRT(), 0.1) != 0) {
+            (new ManualIntake()).start();
+        }
     }
 }

@@ -2,11 +2,13 @@ package frc.robot.climberelevator.powerpack;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
+import frc.robot.carriage.tilt.SetTiltPosition;
+import frc.robot.carriage.tilt.Tilt;
 import frc.robot.helpers.pid.PIDCommandPlus;
 
 public class SetElevatorPosition extends PIDCommandPlus {
 
-    public static final double P = .07, I = 0.00, D = 0.001, tolerance = 1;
+    public static final double P = .07, I = 0.001, D = 0.001, tolerance = 1;
 
     public SetElevatorPosition(double setpoint) {
         super(P, I, D, setpoint, tolerance);
@@ -18,6 +20,7 @@ public class SetElevatorPosition extends PIDCommandPlus {
         super.initialize();
         Robot.powerPack.switchToElevator();
         Robot.powerPack.elevatorBrakeOff();
+        (new SetTiltPosition(Tilt.MIDDLE)).start();
     }
 
     @Override
