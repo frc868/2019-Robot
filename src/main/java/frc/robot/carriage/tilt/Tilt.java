@@ -12,7 +12,7 @@ import frc.robot.helpers.subsystems.SubsystemManagerChild;
 public class Tilt extends SubsystemManagerChild {
   private WPI_TalonSRX motor; 
   private AnalogPotentiometer potentiometer;
-  public static final double REVERSE_LIMIT = 0, LOWER = .310, MIDDLE = 0.195, UPPER = .145, FORWARD_LIMIT = 0;
+  public static final double LOWER = .310, MIDDLE = 0.195, UPPER = .145;
 
   public Tilt() {
     super("Tilt");
@@ -26,6 +26,12 @@ public class Tilt extends SubsystemManagerChild {
    * @param speed percentage power from -1 to 1, will not work if limits are tripped
    */
   public void setSpeed(double speed) {
+    if (getTopLimit()) {
+      speed = Helper.boundValue(speed, -1, 0);
+    } else if (getBottomLimit()) {
+      speed = Helper.boundValue(speed, 0, 1);
+    }
+
     motor.set(Helper.boundValue(speed)); 
   }
 
@@ -56,15 +62,23 @@ public class Tilt extends SubsystemManagerChild {
    * 
    * @return if forward limit is tripped
    */
-  public boolean getForwardLimit() {
-    return getPotPosition() > FORWARD_LIMIT;
+  public boolean getTopLimit() {
+    return getPotPosition() < UPPER;
   }
 
   /**
    * @return if reverse limit is tripped
    */
-  public boolean getReverseLimit() {
-    return getPotPosition() < REVERSE_LIMIT;
+  public boolean getBottomLimit() {
+    return getPotPosition() > LOWER;
+  }
+
+  /**
+   * 
+   * @return state of limits
+   */
+  public boolean getLimits() {
+    return getTopLimit() || getBottomLimit();
   }
 
   @Override
@@ -76,6 +90,13 @@ public class Tilt extends SubsystemManagerChild {
   public void init() {
     addTab("Motor", motor);
     addTab("Potentiometer", potentiometer);
+  }
+
+  @Override
+  public void update() {
+    if (getLimits()) {
+      setSpeed(getSpeed());
+    }
   }
 
   @Override

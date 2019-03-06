@@ -130,6 +130,17 @@ public class PowerPack extends SubsystemManagerChild {
   }
 
   /**
+   * @return state of limits
+   */
+  public boolean getLimits() {
+    if (isElevatorMode()) {
+      return getElevatorBottomLimitSwitch() || getElevatorTopLimitSwitch();
+    } else {
+      return getClimberBottomLimitSwitch() || getClimberTopLimitSwitch();
+    }
+  }
+
+  /**
    * switches powerpack to elevator mode
    */
   public void switchToElevator() {
@@ -219,6 +230,10 @@ public class PowerPack extends SubsystemManagerChild {
     // if (getElevatorBottomLimitSwitch()) {
     //   resetEncPosition();
     // }
+
+    if (getLimits()) {
+      setSpeed(getSpeed());
+    }
   }
   
   @Override
