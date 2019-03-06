@@ -247,8 +247,8 @@ public class PowerPack extends SubsystemManagerChild {
     addTab("Climber Bottom Limit", climber_bottom_limit);
     addTab("Climber Top Limit", climber_top_limit);
 
-    addTab("Motors", primary);
-    addTab("Encoder", primary.getEncoder());
+    // addTab("Motors", primary);
+    // addTab("Encoder", primary.getEncoder());
   }
 
   @Override

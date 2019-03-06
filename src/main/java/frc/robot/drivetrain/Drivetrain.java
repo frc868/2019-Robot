@@ -233,10 +233,10 @@ public class Drivetrain extends SubsystemManagerChild {
     @Override
     public void initSD() {
         addTab("Gyro", gyro);
-        addTab("Left Motors", leftPrimary);
-        addTab("Right Motors", rightPrimary);
-        addTab("Left Encoder", leftPrimary.getEncoder());
-        addTab("Left Encoder", rightPrimary.getEncoder());
+        // addTab("Left Motors", leftPrimary);
+        // addTab("Right Motors", rightPrimary);
+        // addTab("Left Encoder", leftPrimary.getEncoder());
+        // addTab("Left Encoder", rightPrimary.getEncoder());
     }
 
     @Override
