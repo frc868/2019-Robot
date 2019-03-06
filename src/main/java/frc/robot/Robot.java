@@ -42,14 +42,10 @@ public class Robot extends TimedRobot {
   public static Camera camera = new Camera();
   public static Compressor compressor = new Compressor();
   // public static UltrasonicArray ultrasonic = new UltrasonicArray();
-
-  public Trigger resetElevEnc = new ElevatorReset();
-
   @Override
   public void robotInit() {
     SubsystemManager.init();
     SubsystemManager.initSD();
-    resetElevEnc.whenActive(new ResetEncoder());
     compressor.setClosedLoopControl(true);
   }
 
@@ -86,7 +82,6 @@ public class Robot extends TimedRobot {
   public void teleopInit() {
     OI.init();
     SubsystemManager.initEnabled();
-    // SmartDashboard.putData("Elevator Middle PID", new PIDTuner(new SetElevatorPosition(PowerPack.MIDDLE)));
   }
 
   @Override

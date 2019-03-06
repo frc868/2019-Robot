@@ -5,11 +5,11 @@ import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.Solenoid;
-import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import frc.robot.RobotMap;
 import frc.robot.helpers.Helper;
+import frc.robot.helpers.sensors.ElevatorReset;
 import frc.robot.helpers.sensors.IRLimit;
 import frc.robot.helpers.subsystems.SubsystemManagerChild;
 
@@ -226,11 +226,12 @@ public class PowerPack extends SubsystemManagerChild {
   }
 
   @Override
-  public void update() {
-    // if (getElevatorBottomLimitSwitch()) {
-    //   resetEncPosition();
-    // }
+  public void init() {
+    (new ElevatorReset()).whenActive(new ResetEncoder());
+  }
 
+  @Override
+  public void update() {
     if (getLimits()) {
       setSpeed(getSpeed());
     }
