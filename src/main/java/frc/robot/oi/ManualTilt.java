@@ -27,7 +27,7 @@ public class ManualTilt extends Command {
     }
 
     public static void checkOverride() {
-        if (Helper.deadzone(-OI.operator.getRY(), 0.1) != 0) {
+        if (Helper.deadzone(-OI.operator.getRY(), 0.05) != 0) {
             (new ManualTilt()).start();
         }
     }
