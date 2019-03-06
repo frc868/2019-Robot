@@ -38,10 +38,4 @@ public class ManualElevator extends Command {
     protected boolean isFinished() {
         return false;
     }
-
-    public static void checkOverride() {
-        if (Helper.deadzone(-OI.operator.getLY(), 0.1) != 0) {
-            (new ManualElevator()).start();
-        }
-    }
 }

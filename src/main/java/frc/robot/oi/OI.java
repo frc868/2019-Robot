@@ -1,6 +1,7 @@
 package frc.robot.oi;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.carriage.ballintake.IntakeUntilBallDetected;
 import frc.robot.carriage.hatchclaw.GrabWhenDetected;
@@ -25,11 +26,10 @@ public class OI {
     driver = new XboxControllerPlus(RobotMap.Controls.DRIVER);
     operator = new XboxControllerPlus(RobotMap.Controls.OPERATOR); 
 
-    SmartDashboard.putBoolean("has OI", true);
-    (new ArcadeDrive()).start();
-    (new ManualIntake()).start();
-    (new ManualTilt()).start();
-    (new ManualElevator()).start();
+    Robot.drivetrain.setDefaultCommand(new ArcadeDrive());
+    Robot.ballIntake.setDefaultCommand(new ManualIntake());
+    Robot.tilt.setDefaultCommand(new ManualTilt());
+    Robot.powerPack.setDefaultCommand(new ManualElevator());
 
     driver.lb.whenPressed(new ToggleClaw());
     operator.lb.whenPressed(new ToggleClaw());
@@ -65,9 +65,6 @@ public class OI {
   }
 
   public static void update() {
-    ManualElevator.checkOverride();
-    ManualTilt.checkOverride();
-    ManualElevator.checkOverride();
   }
 
 }

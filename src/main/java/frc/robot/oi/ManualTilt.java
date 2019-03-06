@@ -25,10 +25,4 @@ public class ManualTilt extends Command {
     protected boolean isFinished() {
         return false;
     }
-
-    public static void checkOverride() {
-        if (Helper.deadzone(-OI.operator.getRY(), 0.05) != 0) {
-            (new ManualTilt()).start();
-        }
-    }
 }

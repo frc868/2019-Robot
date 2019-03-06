@@ -20,10 +20,4 @@ public class ManualIntake extends Command {
     protected boolean isFinished() {
         return false;
     }
-
-    public void checkOverride() {
-        if (Helper.deadzone(OI.operator.getLT() - OI.operator.getRT(), 0.1) != 0) {
-            (new ManualIntake()).start();
-        }
-    }
 }
