@@ -8,14 +8,23 @@ import frc.robot.helpers.oi.XboxControllerPlus;
 
 public class ArcadeDrive extends Command {
 
+    public boolean isSlow;
+
     public ArcadeDrive() {
+        this.isSlow = false;
         requires(Robot.drivetrain);
+    }
+
+    public ArcadeDrive(boolean isSlow){
+        this.isSlow = isSlow;
     }
 
     @Override
     protected void execute() {
-        double y = Math.pow(Helper.deadzone(-OI.driver.getLY(),0.1),3);
-        double x = Math.pow(Helper.deadzone(0.75*(-OI.driver.getRX()),0.1),3);
+        double y = -OI.driver.getLY();
+        double x = -OI.driver.getRX();
+        y = isSlow ? (y * 0.25) : y;
+        x = isSlow ? (x * 0.25) : x;
         Robot.drivetrain.setSpeed(y - x, y + x);
     }
 
