@@ -7,9 +7,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import frc.robot.helpers.Helper;
 import frc.robot.helpers.sensors.IRLimit;
-import frc.robot.helpers.subsystems.SubsystemManagerChild;
+// import frc.robot.helpers.subsystems.SubsystemManagerChild;
 
-public class GroundPickup extends SubsystemManagerChild {
+public class GroundPickup { //extends SubsystemManagerChild {
     private WPI_TalonSRX intake, wrist;
     private Encoder encoder;
     private IRLimit detection_limit;
@@ -17,7 +17,7 @@ public class GroundPickup extends SubsystemManagerChild {
     private final boolean HATCH_DETECTED_STATE = true;
 
     public GroundPickup() {
-        super("GroundPickup");
+        // super("GroundPickup");
         intake = new WPI_TalonSRX(RobotMap.Carriage.GroundPickup.INTAKE);
         wrist = new WPI_TalonSRX(RobotMap.Carriage.GroundPickup.WRIST);
         encoder = new Encoder(RobotMap.Carriage.GroundPickup.WRIST_ENCODER_A, RobotMap.Carriage.GroundPickup.WRIST_ENCODER_B);
@@ -101,24 +101,24 @@ public class GroundPickup extends SubsystemManagerChild {
         return getWristEncPosition() < STORED;
     }
 
-    @Override
-    public void init() {
-        encoder.reset();
-    }
+    // @Override
+    // public void init() {
+    //     encoder.reset();
+    // }
 
-    @Override
-    public void initSD() {
-        addTab("Intake Motor", intake);
-        addTab("Wrist Motor", wrist);
-        addTab("Encoder", encoder);
-        addTab("Detection Limit", detection_limit);
-    }
+    // @Override
+    // public void initSD() {
+    //     addTab("Intake Motor", intake);
+    //     addTab("Wrist Motor", wrist);
+    //     addTab("Encoder", encoder);
+    //     addTab("Detection Limit", detection_limit);
+    // }
 
-    @Override
-    public void updateSD() {
-        SmartDashboard.putNumber("Ground Pickup: Intake Speed", getIntakeSpeed());
-        SmartDashboard.putNumber("Ground Pickup: Wrist Speed", getWristSpeed());
-        SmartDashboard.putNumber("Ground Pickup: Wrist Position", getWristEncPosition());
-        SmartDashboard.putBoolean("Ground Pickup: Is Hatch Detected", isHatchDetected());
-    }
+    // @Override
+    // public void updateSD() {
+    //     SmartDashboard.putNumber("Ground Pickup: Intake Speed", getIntakeSpeed());
+    //     SmartDashboard.putNumber("Ground Pickup: Wrist Speed", getWristSpeed());
+    //     SmartDashboard.putNumber("Ground Pickup: Wrist Position", getWristEncPosition());
+    //     SmartDashboard.putBoolean("Ground Pickup: Is Hatch Detected", isHatchDetected());
+    // }
 }
