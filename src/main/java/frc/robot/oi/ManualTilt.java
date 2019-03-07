@@ -12,7 +12,8 @@ public class ManualTilt extends Command {
 
     @Override
     protected void execute() {
-        double input = Helper.deadzone(-OI.operator.getRY(), 0.05);
+        // double input = Helper.deadzone(-OI.operator.getRY(), 0.05);
+        double input = 0;
         Robot.tilt.setSpeed(input);
     }
 
