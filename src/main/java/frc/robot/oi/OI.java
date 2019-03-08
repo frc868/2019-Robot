@@ -57,7 +57,6 @@ public class OI {
     driver.menu.whenPressed(new SetFootDriveSpeed(0));
     driver.menu.whenPressed(new SetTiltPosition(Tilt.UPPER));
     driver.menu.whenPressed(new Grab());
-    driver.menu.whenPressed(new ArcadeDrive(true));
     driver.rb.and(driver.y).whenPressed(new AutoClimb(true));
 
     // driver.rb.and(driver.povN).pressToStartReleaseToStop(new SetClimberSpeed(0.5), new SetClimberSpeed(0));
