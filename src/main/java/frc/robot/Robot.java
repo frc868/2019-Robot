@@ -1,15 +1,7 @@
-/*----------------------------------------------------------------------------*/
-/* Copyright (c) 2017-2018 FIRST. All Rights Reserved.                        */
-/* Open Source Software - may be modified and shared by FRC teams. The code   */
-/* must be accompanied by the FIRST BSD license file in the root directory of */
-/* the project.                                                               */
-/*----------------------------------------------------------------------------*/
-
 package frc.robot;
 
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.buttons.Trigger;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import frc.robot.carriage.ballintake.BallIntake;
 import frc.robot.carriage.hatchclaw.HatchClaw;
@@ -40,6 +32,7 @@ public class Robot extends TimedRobot {
   public static Camera camera = new Camera();
   public static Compressor compressor = new Compressor();
   // public static UltrasonicArray ultrasonic = new UltrasonicArray();
+  
   @Override
   public void robotInit() {
     SubsystemManager.init();
@@ -78,15 +71,16 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
-    OI.init();
     SubsystemManager.initEnabled();
+    OI.init();
+
   }
 
   @Override
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
-    OI.update();
     SubsystemManager.updateEnabled();
+    OI.update();
   }
 
   @Override

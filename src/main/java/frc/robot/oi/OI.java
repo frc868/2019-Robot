@@ -14,7 +14,6 @@ import frc.robot.climberelevator.powerpack.AutoClimb;
 import frc.robot.climberelevator.powerpack.PowerPack;
 import frc.robot.climberelevator.powerpack.SetClimberSpeed;
 import frc.robot.climberelevator.powerpack.SetElevatorPosition;
-import frc.robot.climberelevator.powerpack.TogglePowerpackMode;
 import frc.robot.climberelevator.ramps.DeployRamps;
 import frc.robot.helpers.oi.XboxControllerPlus;
 import frc.robot.carriage.tilt.Tilt;
@@ -52,10 +51,6 @@ public class OI {
     //ENDGAME
     driver.start.whenPressed(new DeployForks());
     driver.menu.whenPressed(new DeployRamps());
-    driver.menu.whenPressed(new SetFootDriveSpeed(0));
-    driver.menu.whenPressed(new SetTiltPosition(Tilt.UPPER));
-    driver.menu.whenPressed(new Grab());
-    // driver.menu.whenPressed(new SwitchToClimber());
     driver.rb.and(driver.y).whenPressed(new AutoClimb(true));
 
 
@@ -64,12 +59,6 @@ public class OI {
     // operator.start.whenPressed(new OpenAndIntake());
     // operator.menu.whenPressed(new GiveToClaw());
 
-    // operator.lstk.pressToStartReleaseToStop(new ManualElevator(), new SetElevatorSpeed(0));
-    // operator.rstk.pressToStartReleaseToStop(new ManualTilt(), new SetTiltSpeed(0));
-
-    //Toggle powerpack mode, use for debug only
-    // operator.rb.whenPressed(new TogglePowerpackMode());
-    
     // driver.a.whileHeld(new FollowVision());
     // driver.b.pressToStartReleaseToStop(new GrabWhenDetected());
     // driver.x.pressToStartReleaseToStop(new IntakeUntilBallDetected());
