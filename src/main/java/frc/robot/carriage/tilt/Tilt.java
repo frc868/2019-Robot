@@ -86,10 +86,6 @@ public class Tilt extends SubsystemManagerChild {
   public void init() {
     addTab("Motor", motor);
     addTab("Potentiometer", potentiometer);
-  }
-
-  @Override
-  public void update() {
     limit.getTrigger().whenActive(new StopMotor(motor));
   }
 
