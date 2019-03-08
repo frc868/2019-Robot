@@ -44,8 +44,8 @@ public class Robot extends TimedRobot {
     drivetrain.init();
     powerPack.init();
     camera.init();
+    tilt.init();
     compressor.setClosedLoopControl(true);
-
   }
 
   @Override

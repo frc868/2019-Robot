@@ -1,6 +1,8 @@
 package frc.robot.climberelevator.powerpack;
 
+import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMax.IdleMode;
+import com.revrobotics.CANSparkMaxLowLevel;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -8,12 +10,11 @@ import frc.robot.RobotMap;
 import frc.robot.helpers.Helper;
 import frc.robot.helpers.commands.ResetEncoder;
 import frc.robot.helpers.commands.StopMotor;
-import frc.robot.helpers.motorcontrollers.CANSparkMaxPlus;
 import frc.robot.helpers.sensors.IRLimit;
 
 
 public class PowerPack extends Subsystem {
-  private CANSparkMaxPlus primary, secondary;
+  private CANSparkMax primary, secondary;
   private Solenoid switcher, elevator_brake, climber_brake;
   private IRLimit elevator_top_limit, elevator_bottom_limit, climber_top_limit, climber_bottom_limit;
   private final boolean ELEVATOR_MODE = false, BRAKE_MODE = false;
@@ -23,8 +24,8 @@ public class PowerPack extends Subsystem {
 
   public PowerPack() {
     super("PowerPack");
-    primary = new CANSparkMaxPlus(RobotMap.ClimberElevator.Powerpack.PRIMARY);
-    secondary = new CANSparkMaxPlus(RobotMap.ClimberElevator.Powerpack.SECONDARY);
+    primary = new CANSparkMax(RobotMap.ClimberElevator.Powerpack.PRIMARY, CANSparkMaxLowLevel.MotorType.kBrushless);
+    secondary = new CANSparkMax(RobotMap.ClimberElevator.Powerpack.SECONDARY, CANSparkMaxLowLevel.MotorType.kBrushless);
 
     primary.setIdleMode(IdleMode.kCoast);
     secondary.setIdleMode(IdleMode.kCoast);

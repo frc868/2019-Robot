@@ -1,15 +1,16 @@
 package frc.robot.drivetrain;
 
+import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMax.IdleMode;
+import com.revrobotics.CANSparkMaxLowLevel;
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import frc.robot.helpers.Helper;
-import frc.robot.helpers.motorcontrollers.CANSparkMaxPlus;
 
 public class Drivetrain extends Subsystem {
-    private CANSparkMaxPlus leftPrimary, leftSecondary, leftTertiary, rightPrimary, rightSecondary, rightTertiary;
+    private CANSparkMax leftPrimary, leftSecondary, leftTertiary, rightPrimary, rightSecondary, rightTertiary;
     private AnalogGyro gyro;
     private final double INCHES_PER_TICK = 0.0045998; 
     private final double DEGREES_PER_LOOP = -0.0018;
@@ -17,13 +18,13 @@ public class Drivetrain extends Subsystem {
 
     public Drivetrain() {
         super("Drivetrain");
-        leftPrimary = new CANSparkMaxPlus(RobotMap.Drivetrain.LEFT_PRIMARY);
-        leftSecondary = new CANSparkMaxPlus(RobotMap.Drivetrain.LEFT_SECONDARY);
-        leftTertiary = new CANSparkMaxPlus(RobotMap.Drivetrain.LEFT_TERTIARY);
+        leftPrimary = new CANSparkMax(RobotMap.Drivetrain.LEFT_PRIMARY, CANSparkMaxLowLevel.MotorType.kBrushless);
+        leftSecondary = new CANSparkMax(RobotMap.Drivetrain.LEFT_SECONDARY, CANSparkMaxLowLevel.MotorType.kBrushless);
+        leftTertiary = new CANSparkMax(RobotMap.Drivetrain.LEFT_TERTIARY, CANSparkMaxLowLevel.MotorType.kBrushless);
 
-        rightPrimary = new CANSparkMaxPlus(RobotMap.Drivetrain.RIGHT_PRIMARY);
-        rightSecondary = new CANSparkMaxPlus(RobotMap.Drivetrain.RIGHT_SECONDARY);
-        rightTertiary = new CANSparkMaxPlus(RobotMap.Drivetrain.RIGHT_TERTIARY);
+        rightPrimary = new CANSparkMax(RobotMap.Drivetrain.RIGHT_PRIMARY, CANSparkMaxLowLevel.MotorType.kBrushless);
+        rightSecondary = new CANSparkMax(RobotMap.Drivetrain.RIGHT_SECONDARY, CANSparkMaxLowLevel.MotorType.kBrushless);
+        rightTertiary = new CANSparkMax(RobotMap.Drivetrain.RIGHT_TERTIARY, CANSparkMaxLowLevel.MotorType.kBrushless);
 
         leftSecondary.follow(leftPrimary);
         leftTertiary.follow(leftPrimary);

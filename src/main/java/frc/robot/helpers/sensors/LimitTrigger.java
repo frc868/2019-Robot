@@ -26,8 +26,10 @@ public class LimitTrigger extends Trigger {
   public boolean get() {
     if (digitalLimit != null) {
       return digitalLimit.get();
-    } else {
+    } else if (potentiometerLimit != null){
       return potentiometerLimit.get();
+    } else {
+      return false;
     }
   }
 }

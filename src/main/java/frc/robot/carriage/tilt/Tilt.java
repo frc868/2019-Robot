@@ -81,18 +81,10 @@ public class Tilt extends Subsystem {
     return limit.getForwardLimit();
   }
 
-  public void initEnabled() {
-    // SmartDashboard.putData("Tilt Up", new SetTiltPosition(Tilt.MIDDLE));
-  }
-
   public void init() {
 //    addTab("Motor", motor);
 //    addTab("Potentiometer", potentiometer);
     limit.getTrigger().whenActive(new StopMotor(motor));
-  }
-
-  public void update() {
-
   }
 
   public void updateSD() {
