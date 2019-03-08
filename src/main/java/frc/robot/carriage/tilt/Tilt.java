@@ -88,10 +88,11 @@ public class Tilt extends Subsystem {
   public void init() {
 //    addTab("Motor", motor);
 //    addTab("Potentiometer", potentiometer);
+    limit.getTrigger().whenActive(new StopMotor(motor));
   }
 
   public void update() {
-    limit.getTrigger().whenActive(new StopMotor(motor));
+
   }
 
   public void updateSD() {

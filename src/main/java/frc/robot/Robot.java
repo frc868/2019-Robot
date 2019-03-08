@@ -40,16 +40,25 @@ public class Robot extends TimedRobot {
   // public static UltrasonicArray ultrasonic = new UltrasonicArray();
   @Override
   public void robotInit() {
+    drivetrain.resetGyro();
+    drivetrain.init();
+    powerPack.init();
+    camera.init();
     compressor.setClosedLoopControl(true);
+
   }
 
   @Override
   public void robotPeriodic() {
+    drivetrain.update();
+    camera.update();
     // SubsystemManager.updateSD();
   }
   
   @Override
   public void disabledInit() {
+    drivetrain.initDisabled();
+    powerPack.initDisabled();
   }
 
   @Override
@@ -60,6 +69,10 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousInit() {
+    forks.initEnabled();
+    drivetrain.initEnabled();
+    powerPack.initEnabled();
+    climberRamps.initEnabled();
   }
 
   @Override
@@ -69,6 +82,10 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
+    forks.initEnabled();
+    drivetrain.initEnabled();
+    powerPack.initEnabled();
+    climberRamps.initEnabled();
     OI.init();
   }
 
