@@ -1,15 +1,13 @@
 package frc.robot.carriage.ballintake;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-
+import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import frc.robot.helpers.Helper;
 import frc.robot.helpers.sensors.IRLimit;
-import frc.robot.helpers.subsystems.SubsystemManagerChild;
-import edu.wpi.first.wpilibj.DigitalInput;
 
-public class BallIntake extends SubsystemManagerChild {
+public class BallIntake extends Subsystem {
   private WPI_TalonSRX motor;
   private IRLimit detection_limit;
   private final boolean BALL_DETECTED_STATE = true;
@@ -18,6 +16,11 @@ public class BallIntake extends SubsystemManagerChild {
     super("BallIntake");
     motor = new WPI_TalonSRX(RobotMap.Carriage.BallIntake.MOTOR);
     detection_limit = new IRLimit(RobotMap.Carriage.BallIntake.DETECTION_LIMIT);
+  }
+
+  @Override
+  protected void initDefaultCommand() {
+
   }
 
   /**
@@ -56,13 +59,11 @@ public class BallIntake extends SubsystemManagerChild {
     return getBallDetectionLimit() == BALL_DETECTED_STATE;
   }
 
-  @Override
   public void initSD() {
-    addTab("Motor", motor);
-    addTab("Detection Limit", detection_limit);
+    //addTab("Motor", motor);
+    //addTab("Detection Limit", detection_limit);
   }
 
-  @Override
   public void updateSD() {
     SmartDashboard.putBoolean("Ball Detected?", isBallDetected());
     SmartDashboard.putNumber("Intake Speed", getSpeed());

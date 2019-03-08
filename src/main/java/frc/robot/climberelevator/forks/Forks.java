@@ -1,17 +1,22 @@
 package frc.robot.climberelevator.forks;
 
 import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
-import frc.robot.helpers.subsystems.SubsystemManagerChild;
 
-public class Forks extends SubsystemManagerChild {
+public class Forks extends Subsystem {
     private Solenoid release;
     private final boolean OPEN_MODE = true;
 
     public Forks() {
         super("Forks");
         release = new Solenoid(RobotMap.PCM, RobotMap.ClimberElevator.Forks.RELEASE);
+    }
+
+    @Override
+    protected void initDefaultCommand() {
+
     }
 
     /**
@@ -49,17 +54,14 @@ public class Forks extends SubsystemManagerChild {
         return getState() == OPEN_MODE;
     }
 
-    @Override
     public void initEnabled() {
         close();
     }
 
-    @Override
     public void initSD() {
-        addTab("Release", release);
+        //addTab("Release", release);
     }
 
-    @Override
     public void updateSD() {
         SmartDashboard.putBoolean("Forks: Open?", isOpen());
     }

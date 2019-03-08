@@ -1,17 +1,14 @@
 package frc.robot.drivetrain;
 
-import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMax.IdleMode;
-
 import edu.wpi.first.wpilibj.AnalogGyro;
-import edu.wpi.first.wpilibj.SpeedController;
+import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import frc.robot.helpers.Helper;
 import frc.robot.helpers.motorcontrollers.CANSparkMaxPlus;
-import frc.robot.helpers.subsystems.SubsystemManagerChild;
 
-public class Drivetrain extends SubsystemManagerChild {
+public class Drivetrain extends Subsystem {
     private CANSparkMaxPlus leftPrimary, leftSecondary, leftTertiary, rightPrimary, rightSecondary, rightTertiary;
     private AnalogGyro gyro;
     private final double INCHES_PER_TICK = 0.0045998; 
@@ -43,6 +40,11 @@ public class Drivetrain extends SubsystemManagerChild {
 
         gyro = new AnalogGyro(RobotMap.Drivetrain.GYRO);
      }
+
+    @Override
+    protected void initDefaultCommand() {
+
+    }
 
     public void brakeOff() {
         leftPrimary.setIdleMode(IdleMode.kCoast);
@@ -95,7 +97,7 @@ public class Drivetrain extends SubsystemManagerChild {
      /**
      * sets  motors' speed
      * @param leftSpeed left's percentage power from -1 to 1
-     * @param rigthSpeed right's percentage power from -1 to 1
+     * @param rightSpeed right's percentage power from -1 to 1
      */
     public void setSpeed(double leftSpeed, double rightSpeed) {
         setLeftSpeed(leftSpeed);
@@ -210,36 +212,30 @@ public class Drivetrain extends SubsystemManagerChild {
         gyro.reset();
     }
 
-    @Override
     public void init() {
         resetEncPositions();
     }
 
-    @Override
     public void update() {
         angleOffset += DEGREES_PER_LOOP;
     }
 
-    @Override
     public void initDisabled() {
         brakeOff();
     }
 
-    @Override
     public void initEnabled() {
         brakeOn();
     }
 
-    @Override
     public void initSD() {
-        addTab("Gyro", gyro);
+        //addTab("Gyro", gyro);
         // addTab("Left Motors", leftPrimary);
         // addTab("Right Motors", rightPrimary);
         // addTab("Left Encoder", leftPrimary.getEncoder());
         // addTab("Left Encoder", rightPrimary.getEncoder());
     }
 
-    @Override
     public void updateSD() {
         SmartDashboard.putNumber("DT Left Speed", getLeftSpeed());
         SmartDashboard.putNumber("DT Right Speed", getRightSpeed());

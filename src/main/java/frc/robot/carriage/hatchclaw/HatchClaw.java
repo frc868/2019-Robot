@@ -1,12 +1,12 @@
 package frc.robot.carriage.hatchclaw;
 
 import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import frc.robot.helpers.sensors.IRLimit;
-import frc.robot.helpers.subsystems.SubsystemManagerChild;
 
-public class HatchClaw extends SubsystemManagerChild {
+public class HatchClaw extends Subsystem {
   private Solenoid actuator;
   private IRLimit left_limit, right_limit;
   private final boolean GRABBED_STATE = true;
@@ -17,6 +17,11 @@ public class HatchClaw extends SubsystemManagerChild {
     actuator = new Solenoid(RobotMap.PCM, RobotMap.Carriage.HatchClaw.ACTUATOR);
     left_limit = new IRLimit(RobotMap.Carriage.HatchClaw.LEFT_LIMIT);
     right_limit = new IRLimit(RobotMap.Carriage.HatchClaw.RIGHT_LIMIT);
+  }
+
+  @Override
+  protected void initDefaultCommand() {
+
   }
 
   /**
@@ -77,14 +82,12 @@ public class HatchClaw extends SubsystemManagerChild {
     return (getLeftLimit() == HATCH_DETECTED_STATE) && (getRightLimit() == HATCH_DETECTED_STATE);
   }
 
-  @Override
   public void initSD() {
-    addTab("Actuator", actuator);
-    addTab("Left Limit", left_limit);
-    addTab("Right Limit", right_limit);
+//    addTab("Actuator", actuator);
+//    addTab("Left Limit", left_limit);
+//    addTab("Right Limit", right_limit);
   }
 
-  @Override
   public void updateSD() {
     SmartDashboard.putBoolean("Hatch Grabbed?", isGrabbed());
     SmartDashboard.putBoolean("Hatch Detected?", isHatchDetected());

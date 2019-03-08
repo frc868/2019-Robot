@@ -3,11 +3,11 @@ package frc.robot.sensors.camera;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.SerialPort;
+import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
-import frc.robot.helpers.subsystems.SubsystemManagerChild;
 
-public class Camera extends SubsystemManagerChild {
+public class Camera extends Subsystem {
   private SerialPort port;
   private UsbCamera jevois;
   private String raw;
@@ -25,13 +25,16 @@ public class Camera extends SubsystemManagerChild {
   }
 
   @Override
+  protected void initDefaultCommand() {
+
+  }
+
   public void init() {
     jevois = CameraServer.getInstance().startAutomaticCapture();
     jevois.setResolution(RES_WIDTH, RES_HEIGHT);
     switchToVision();
   }
 
-  @Override
   public void update() {
     try {
       String newData = port.readString();
@@ -52,12 +55,10 @@ public class Camera extends SubsystemManagerChild {
     } catch (Exception e) {}
   }
 
-  @Override 
   public void initSD() {
     // SmartDashboard.putData("Toggle Camera", new ToggleCamera());
   }
 
-  @Override
   public void updateSD() {
     SmartDashboard.putBoolean("Has Target", hasTarget());
     SmartDashboard.putString("Raw Data", getRawData());

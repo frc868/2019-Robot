@@ -1,17 +1,22 @@
 package frc.robot.climberelevator.ramps;
 
 import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
-import frc.robot.helpers.subsystems.SubsystemManagerChild;
 
-public class Ramps extends SubsystemManagerChild {
+public class Ramps extends Subsystem {
     private Solenoid actuator;
     private final boolean DEPLOYED_STATE = true;
 
     public Ramps() {
         super("Ramps");
         actuator = new Solenoid(RobotMap.PCM, RobotMap.ClimberElevator.Ramps.ACTUATOR);
+    }
+
+    @Override
+    protected void initDefaultCommand() {
+
     }
 
     /**
@@ -51,17 +56,14 @@ public class Ramps extends SubsystemManagerChild {
         return getState() == DEPLOYED_STATE;
     }
 
-    @Override
     public void initEnabled() {
         close();
     }
 
-    @Override
     public void initSD() {
-        addTab("Actuator", actuator);
+        //addTab("Actuator", actuator);
     }
 
-    @Override
     public void updateSD() {
         SmartDashboard.putBoolean("Ramps: Open?", isOpen());
     }

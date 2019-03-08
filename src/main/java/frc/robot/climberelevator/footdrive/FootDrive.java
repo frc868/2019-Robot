@@ -1,19 +1,23 @@
 package frc.robot.climberelevator.footdrive;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-
+import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import frc.robot.helpers.Helper;
-import frc.robot.helpers.subsystems.SubsystemManagerChild;
 
 
-public class FootDrive extends SubsystemManagerChild {
+public class FootDrive extends Subsystem {
   private WPI_TalonSRX motor;
 
   public FootDrive() {
     super("FootDrive");
     motor = new WPI_TalonSRX(RobotMap.ClimberElevator.FootDrive.MOTOR);
+  }
+
+  @Override
+  protected void initDefaultCommand() {
+
   }
 
   /**
@@ -39,12 +43,10 @@ public class FootDrive extends SubsystemManagerChild {
     return motor.get();
   }
 
-  @Override
   public void initSD() {
-    addTab("Motor", motor);
+    //addTab("Motor", motor);
   }
   
-  @Override
   public void updateSD() {
     SmartDashboard.putNumber("Foot Drive: Speed", getSpeed());
   }

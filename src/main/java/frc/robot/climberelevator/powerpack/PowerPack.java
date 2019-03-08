@@ -1,8 +1,8 @@
 package frc.robot.climberelevator.powerpack;
 
 import com.revrobotics.CANSparkMax.IdleMode;
-
 import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import frc.robot.helpers.Helper;
@@ -10,10 +10,9 @@ import frc.robot.helpers.commands.ResetEncoder;
 import frc.robot.helpers.commands.StopMotor;
 import frc.robot.helpers.motorcontrollers.CANSparkMaxPlus;
 import frc.robot.helpers.sensors.IRLimit;
-import frc.robot.helpers.subsystems.SubsystemManagerChild;
 
 
-public class PowerPack extends SubsystemManagerChild {
+public class PowerPack extends Subsystem {
   private CANSparkMaxPlus primary, secondary;
   private Solenoid switcher, elevator_brake, climber_brake;
   private IRLimit elevator_top_limit, elevator_bottom_limit, climber_top_limit, climber_bottom_limit;
@@ -40,6 +39,11 @@ public class PowerPack extends SubsystemManagerChild {
     elevator_bottom_limit = new IRLimit(RobotMap.ClimberElevator.Powerpack.ELEVATOR_BOTTOM_LIMIT);
     climber_top_limit = new IRLimit(RobotMap.ClimberElevator.Powerpack.CLIMBER_TOP_LIMIT);
     climber_bottom_limit = new IRLimit(RobotMap.ClimberElevator.Powerpack.CLIMBER_BOTTOM_LIMIT);
+  }
+
+  @Override
+  protected void initDefaultCommand() {
+
   }
 
   /**
@@ -213,7 +217,6 @@ public class PowerPack extends SubsystemManagerChild {
     climber_brake.set(!BRAKE_MODE);
   }
 
-  @Override
   public void init() {
     elevator_bottom_limit.getTrigger().whenActive(new ResetEncoder(primary));
     elevator_bottom_limit.getTrigger().whenActive(new StopMotor(primary));
@@ -222,36 +225,32 @@ public class PowerPack extends SubsystemManagerChild {
     climber_top_limit.getTrigger().whenActive(new StopMotor(primary));
   }
   
-  @Override
   public void initEnabled() {
     switchToElevator();
     climberBrakeOn();
     elevatorBrakeOn();
   }
 
-  @Override
   public void initDisabled() {
     climberBrakeOn();
     elevatorBrakeOn();
   }
 
-  @Override
   public void initSD() {
-    addTab("Switcher", switcher);
-    addTab("Elevator Brake", elevator_brake);
-    addTab("Climber Brake", climber_brake);
-
-    addTab("Elevator Bottom Limit", elevator_bottom_limit);
-    addTab("Elevator Top Limit", elevator_top_limit);
-
-    addTab("Climber Bottom Limit", climber_bottom_limit);
-    addTab("Climber Top Limit", climber_top_limit);
-
+//    addTab("Switcher", switcher);
+//    addTab("Elevator Brake", elevator_brake);
+//    addTab("Climber Brake", climber_brake);
+//
+//    addTab("Elevator Bottom Limit", elevator_bottom_limit);
+//    addTab("Elevator Top Limit", elevator_top_limit);
+//
+//    addTab("Climber Bottom Limit", climber_bottom_limit);
+//    addTab("Climber Top Limit", climber_top_limit);
+//
     // addTab("Motors", primary);
     // addTab("Encoder", primary.getEncoder());
   }
 
-  @Override
   public void updateSD() {
     SmartDashboard.putNumber("PowerPack: Speed", getSpeed());
     SmartDashboard.putNumber("PowerPack: Secondary Speed", secondary.get());
