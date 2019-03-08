@@ -14,7 +14,6 @@ import frc.robot.climberelevator.powerpack.AutoClimb;
 import frc.robot.climberelevator.powerpack.PowerPack;
 import frc.robot.climberelevator.powerpack.SetClimberSpeed;
 import frc.robot.climberelevator.powerpack.SetElevatorPosition;
-import frc.robot.climberelevator.powerpack.SwitchToClimber;
 import frc.robot.climberelevator.powerpack.TogglePowerpackMode;
 import frc.robot.climberelevator.ramps.DeployRamps;
 import frc.robot.helpers.oi.XboxControllerPlus;

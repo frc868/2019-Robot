@@ -15,9 +15,11 @@ public class FollowVision extends Command {
   private int counts = 0;
   private final int COUNTS_NEEDED = 5;
 
-  public static double k_dist   = -0.028; // this is negative as a larger value means we are closer to the target 
-  public static double k_pos    =  0.012;
-  public static double k_hratio =  0.005;
+  private double k_dist   = -0.028; // this is negative as a larger value means we are closer to the target 
+  private double k_pos    =  0.012;
+  private double k_angle =  0.005;
+
+  private VisionData data;
  
   public FollowVision() {
     requires(Robot.drivetrain);
@@ -31,18 +33,20 @@ public class FollowVision extends Command {
 
   @Override
   protected void execute() {
-    if (Robot.camera.hasTarget()) {
-      double distError = Robot.camera.getDistance() - VISION_TARGET;
+    data = Robot.camera.getData();
+
+    if (data.hasTarget()) {
+      double distError = data.getDistance() - VISION_TARGET;
       double distValue = distError * k_dist;
 
-      double posError = Robot.camera.getPosition();
+      double posError = data.getPosition();
       double posValue = posError * k_pos;
 
-      double hRatioError = Robot.camera.getHeightRatio();
-      double hRatioValue = hRatioError * k_hratio;
+      double angleError = data.getAngle();
+      double angleValue = angleError * k_angle;
 
-      double left = (distValue + posValue + hRatioValue) / 10.0;
-      double right = (distValue - posValue - hRatioValue) / 10.0;
+      double left = (distValue + posValue + angleValue) / 10.0;
+      double right = (distValue - posValue - angleValue) / 10.0;
 
       Robot.drivetrain.setSpeed(left, -right);
 
