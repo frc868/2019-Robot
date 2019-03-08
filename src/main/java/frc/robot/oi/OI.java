@@ -14,6 +14,7 @@ import frc.robot.climberelevator.powerpack.AutoClimb;
 import frc.robot.climberelevator.powerpack.PowerPack;
 import frc.robot.climberelevator.powerpack.SetClimberSpeed;
 import frc.robot.climberelevator.powerpack.SetElevatorPosition;
+import frc.robot.climberelevator.powerpack.SwitchToClimber;
 import frc.robot.climberelevator.powerpack.TogglePowerpackMode;
 import frc.robot.climberelevator.ramps.DeployRamps;
 import frc.robot.helpers.oi.XboxControllerPlus;
@@ -28,48 +29,52 @@ public class OI {
     driver = new XboxControllerPlus(RobotMap.Controls.DRIVER);
     operator = new XboxControllerPlus(RobotMap.Controls.OPERATOR); 
 
+    //commands involving manual control and variable input
     Robot.drivetrain.setDefaultCommand(new ArcadeDrive());
-    Robot.ballIntake.setDefaultCommand(new ManualIntake());
+    Robot.ballIntake.setDefaultCommand(new ManualIntake());   
     Robot.tilt.setDefaultCommand(new ManualTilt());
-    Robot.powerPack.setDefaultCommand(new ManualPowerpack());  //powerpack so we can toggle elevator vs climber
+    Robot.powerPack.setDefaultCommand(new ManualPowerpack());  //powerpack so we can toggle elevator vs climber instead of just ManualElevator
 
-    operator.rb.whenPressed(new TogglePowerpackMode());
-    
-    driver.lb.whenPressed(new ToggleClaw());
-    operator.lb.whenPressed(new ToggleClaw());
 
-    // driver.a.whileHeld(new FollowVision());
-    driver.b.pressToStartReleaseToStop(new GrabWhenDetected());
-    driver.x.pressToStartReleaseToStop(new IntakeUntilBallDetected());
 
-    // operator.lstk.pressToStartReleaseToStop(new ManualElevator(), new SetElevatorSpeed(0));
-    // operator.rstk.pressToStartReleaseToStop(new ManualTilt(), new SetTiltSpeed(0));
-
+    //MAIN OPERATOR CONTROLS
     operator.povN.whenPressed(new SetTiltPosition(Tilt.UPPER));
     operator.povE.whenPressed(new SetTiltPosition(Tilt.MIDDLE));
     operator.povS.whenPressed(new SetTiltPosition(Tilt.LOWER));
+    
+    operator.a.whenPressed(new SetElevatorPosition(PowerPack.LOWER));
+    operator.b.whenPressed(new SetElevatorPosition(PowerPack.MIDDLE));
+    // operator.x.whenPressed(new SetElevatorPosition(PowerPack.INTAKE_BALL));  //TODO: fix PID so it doesn't slam into the bottom
+    operator.y.whenPressed(new SetElevatorPosition(PowerPack.UPPER));
+    
+    operator.lb.whenPressed(new ToggleClaw());
   
-    // operator.start.whenPressed(new OpenAndIntake());
-    // operator.menu.whenPressed(new GiveToClaw());
 
+    //ENDGAME
     driver.start.whenPressed(new DeployForks());
     driver.menu.whenPressed(new DeployRamps());
     driver.menu.whenPressed(new SetFootDriveSpeed(0));
     driver.menu.whenPressed(new SetTiltPosition(Tilt.UPPER));
     driver.menu.whenPressed(new Grab());
+    // driver.menu.whenPressed(new SwitchToClimber());
     driver.rb.and(driver.y).whenPressed(new AutoClimb(true));
 
-    // driver.rb.and(driver.povN).pressToStartReleaseToStop(new SetClimberSpeed(0.5), new SetClimberSpeed(0));
-    // driver.rb.and(driver.povS).pressToStartReleaseToStop(new SetClimberSpeed(-0.5), new SetClimberSpeed(0));
 
-    //driver.rb.and(driver.povE).pressToStartReleaseToStop(new SetFootDriveSpeed(0.3), new SetFootDriveSpeed(0));
-    //driver.rb.and(driver.povW).pressToStartReleaseToStop(new SetFootDriveSpeed(-0.5), new SetFootDriveSpeed(0));
+    // STUFF WE'RE NOT USING RIGHT NOW
+    // Operator GrountHatch control, not implemented on robot
+    // operator.start.whenPressed(new OpenAndIntake());
+    // operator.menu.whenPressed(new GiveToClaw());
+
+    // operator.lstk.pressToStartReleaseToStop(new ManualElevator(), new SetElevatorSpeed(0));
+    // operator.rstk.pressToStartReleaseToStop(new ManualTilt(), new SetTiltSpeed(0));
+
+    //Toggle powerpack mode, use for debug only
+    // operator.rb.whenPressed(new TogglePowerpackMode());
     
+    // driver.a.whileHeld(new FollowVision());
+    // driver.b.pressToStartReleaseToStop(new GrabWhenDetected());
+    // driver.x.pressToStartReleaseToStop(new IntakeUntilBallDetected());
 
-    operator.a.whenPressed(new SetElevatorPosition(PowerPack.LOWER));
-    operator.b.whenPressed(new SetElevatorPosition(PowerPack.MIDDLE));
-    // operator.x.whenPressed(new SetElevatorPosition(PowerPack.INTAKE_BALL));
-    operator.y.whenPressed(new SetElevatorPosition(PowerPack.UPPER));
   }
 
   public static void update() {
