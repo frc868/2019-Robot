@@ -215,8 +215,8 @@ public class PowerPack extends SubsystemManagerChild {
     @Override
     public void init() {
         elevator_bottom_limit.getTrigger().whenActive(new ResetEncoder(primary));
-        elevator_bottom_limit.getTrigger().whenActive(new StopMotor(primary));
-        elevator_top_limit.getTrigger().whenActive(new StopMotor(primary));
+//        elevator_bottom_limit.getTrigger().whenActive(new StopMotor(primary));
+//        elevator_top_limit.getTrigger().whenActive(new StopMotor(primary));
 //        elevator_bottom_limit.getTrigger().whenActive(new StopMotor(primary, elevator_brake, BRAKE_MODE));
 //        elevator_top_limit.getTrigger().whenActive(new StopMotor(primary, elevator_brake, BRAKE_MODE));
         climber_bottom_limit.getTrigger().whenActive(new StopMotor(primary));
