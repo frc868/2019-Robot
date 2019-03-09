@@ -27,6 +27,9 @@ private SpeedController[] controllers;
   @Override
   protected void initialize() {
     if (controller != null) {
+        if(sol != null) {
+            sol.set(solSet);
+        }
         controller.set(0);
     } else {
         for (SpeedController controllerObject : controllers) {
