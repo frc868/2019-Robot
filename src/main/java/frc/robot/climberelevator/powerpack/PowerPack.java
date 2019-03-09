@@ -11,7 +11,6 @@ import frc.robot.helpers.motorcontrollers.CANSparkMaxPlus;
 import frc.robot.helpers.sensors.IRLimit;
 import frc.robot.helpers.subsystems.SubsystemManagerChild;
 
-
 public class PowerPack extends SubsystemManagerChild {
     private CANSparkMaxPlus primary, secondary;
     private Solenoid switcher, elevator_brake, climber_brake;
