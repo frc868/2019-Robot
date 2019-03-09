@@ -2,9 +2,11 @@ package frc.robot.oi;
 
 import frc.robot.Robot;
 import frc.robot.RobotMap;
+import frc.robot.carriage.hatchclaw.Grab;
 import frc.robot.carriage.hatchclaw.ToggleClaw;
 import frc.robot.carriage.tilt.SetTiltPosition;
 import frc.robot.carriage.tilt.Tilt;
+import frc.robot.climberelevator.footdrive.SetFootDriveSpeed;
 import frc.robot.climberelevator.forks.DeployForks;
 import frc.robot.climberelevator.powerpack.AutoClimb;
 import frc.robot.climberelevator.powerpack.PowerPack;
@@ -45,6 +47,9 @@ public class OI {
         //ENDGAME
         driver.start.whenPressed(new DeployForks());
         driver.menu.whenPressed(new DeployRamps());
+        driver.menu.whenPressed(new SetFootDriveSpeed(0));
+        driver.menu.whenPressed(new SetTiltPosition(Tilt.UPPER));
+        driver.menu.whenPressed(new Grab());
         driver.rb.and(driver.y).whenPressed(new AutoClimb(true));
 
 

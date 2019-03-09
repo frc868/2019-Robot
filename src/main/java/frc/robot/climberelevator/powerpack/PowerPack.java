@@ -25,8 +25,8 @@ public class PowerPack extends SubsystemManagerChild {
         primary = new CANSparkMaxPlus(RobotMap.ClimberElevator.Powerpack.PRIMARY);
         secondary = new CANSparkMaxPlus(RobotMap.ClimberElevator.Powerpack.SECONDARY);
 
-        primary.setIdleMode(IdleMode.kCoast);
-        secondary.setIdleMode(IdleMode.kCoast);
+        primary.setIdleMode(IdleMode.kBrake);
+        secondary.setIdleMode(IdleMode.kBrake);
 
         secondary.follow(primary);
 
