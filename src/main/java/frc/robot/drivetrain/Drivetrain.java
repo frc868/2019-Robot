@@ -1,10 +1,7 @@
 package frc.robot.drivetrain;
 
-import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMax.IdleMode;
 
-import edu.wpi.first.wpilibj.AnalogGyro;
-import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import frc.robot.helpers.Helper;
@@ -13,7 +10,6 @@ import frc.robot.helpers.subsystems.SubsystemManagerChild;
 
 public class Drivetrain extends SubsystemManagerChild {
     private CANSparkMaxPlus leftPrimary, leftSecondary, leftTertiary, rightPrimary, rightSecondary, rightTertiary;
-    private AnalogGyro gyro;
     private final double INCHES_PER_TICK = 0.0045998; 
     private final double DEGREES_PER_LOOP = -0.0018;
     private double angleOffset = 0;
@@ -39,9 +35,6 @@ public class Drivetrain extends SubsystemManagerChild {
         rightPrimary.setInverted(true);
         rightSecondary.setInverted(true);
         rightTertiary.setInverted(true);
-
-
-        gyro = new AnalogGyro(RobotMap.Drivetrain.GYRO);
      }
 
     public void brakeOff() {
@@ -187,29 +180,6 @@ public class Drivetrain extends SubsystemManagerChild {
         rightPrimary.getEncoder().setPosition(0);
     }
 
-    /**
-     * 
-     * @return angle given by the gyro
-     */
-    public double getGyroAngle() {
-        return gyro.getAngle() - angleOffset;
-    }
-
-    /**
-     * 
-     * @return angle from gyro in radians
-     */
-    public double getGyroRestrictedAngleRadians() {
-        return Math.abs(Math.toRadians(getGyroAngle())%(2*Math.PI));
-    }
-
-    /**
-     * resets gyro angle
-     */
-    public void resetGyro() {
-        gyro.reset();
-    }
-
     @Override
     public void init() {
         resetEncPositions();
@@ -232,7 +202,6 @@ public class Drivetrain extends SubsystemManagerChild {
 
     @Override
     public void initSD() {
-        addTab("Gyro", gyro);
         // addTab("Left Motors", leftPrimary);
         // addTab("Right Motors", rightPrimary);
         // addTab("Left Encoder", leftPrimary.getEncoder());
@@ -245,6 +214,5 @@ public class Drivetrain extends SubsystemManagerChild {
         SmartDashboard.putNumber("DT Right Speed", getRightSpeed());
         SmartDashboard.putNumber("DT Left Position", getLeftEncPosition());
         SmartDashboard.putNumber("DT Right Position", getRightEncPosition());
-        SmartDashboard.putNumber("DT Angle", getGyroAngle());
     }
 }

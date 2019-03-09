@@ -12,7 +12,7 @@ public class TurnToAngleGyro extends PIDCommandPlus {
 
 	@Override
 	protected double returnPIDInput() {
-		return Robot.drivetrain.getGyroAngle();
+		return Robot.gyro.getYaw();
 	}
 
 	@Override

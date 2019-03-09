@@ -14,6 +14,7 @@ import frc.robot.drivetrain.Drivetrain;
 import frc.robot.helpers.subsystems.SubsystemManager;
 import frc.robot.oi.OI;
 import frc.robot.sensors.camera.Camera;
+import frc.robot.sensors.gyro.Gyro;
 // import frc.robot.sensors.ultrasonic.UltrasonicArray;
 
 public class Robot extends TimedRobot {
@@ -31,6 +32,7 @@ public class Robot extends TimedRobot {
 
   public static Camera camera = new Camera();
   public static Compressor compressor = new Compressor();
+  public static Gyro gyro = new Gyro();
   // public static UltrasonicArray ultrasonic = new UltrasonicArray();
   
   @Override

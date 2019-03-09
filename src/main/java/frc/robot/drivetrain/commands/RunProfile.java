@@ -57,7 +57,7 @@ public class RunProfile extends Command {
     
         @Override
         public double pidGet() {
-            return Helper.angleDiff(pair.getAvgAngle(i), (Robot.drivetrain.getGyroRestrictedAngleRadians()-initialAngle));
+            return Helper.angleDiff(pair.getAvgAngle(i), (Robot.gyro.getRestrictedAngleRadians()-initialAngle));
         }
     
         @Override
@@ -102,7 +102,7 @@ public class RunProfile extends Command {
     
     @Override
     protected void initialize() {
-        initialAngle = Robot.drivetrain.getGyroRestrictedAngleRadians();
+        initialAngle = Robot.gyro.getRestrictedAngleRadians();
         Robot.drivetrain.resetEncPositions();
         
         left.enable();
