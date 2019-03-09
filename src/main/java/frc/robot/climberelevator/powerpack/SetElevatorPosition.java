@@ -8,7 +8,7 @@ import frc.robot.helpers.pid.PIDCommandPlus;
 
 public class SetElevatorPosition extends PIDCommandPlus {
 
-    public static final double P = .07, I = 0.001, D = 0.001;
+    public static final double P = 0.04, I = 0.0005, D = 0.000;
 
     public SetElevatorPosition(double setpoint) {
         super(P, I, D, setpoint);
