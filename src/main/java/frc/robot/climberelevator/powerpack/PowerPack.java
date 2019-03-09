@@ -221,6 +221,14 @@ public class PowerPack extends SubsystemManagerChild {
     climber_bottom_limit.getTrigger().whenActive(new StopMotor(primary));
     climber_top_limit.getTrigger().whenActive(new StopMotor(primary));
   }
+
+  @Override
+  public void periodic() {
+    super.periodic();
+    if(primary.get() == 0){
+      elevatorBrakeOn();
+    }
+  }
   
   @Override
   public void initEnabled() {

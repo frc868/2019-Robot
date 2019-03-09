@@ -50,7 +50,7 @@ public class Robot extends TimedRobot {
   @Override
   public void robotPeriodic() {
     SubsystemManager.update();
-    // SubsystemManager.updateSD();
+    SubsystemManager.updateSD();
   }
   
   @Override
