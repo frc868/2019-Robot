@@ -8,10 +8,10 @@ import frc.robot.helpers.pid.PIDCommandPlus;
 
 public class SetElevatorPosition extends PIDCommandPlus {
 
-    public static final double P = .07, I = 0.001, D = 0.001, tolerance = 1;
+    public static final double P = .07, I = 0.001, D = 0.001;
 
     public SetElevatorPosition(double setpoint) {
-        super(P, I, D, setpoint, tolerance);
+        super(P, I, D, setpoint);
         requires(Robot.powerPack);
     }
     
