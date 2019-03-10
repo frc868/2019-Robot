@@ -22,13 +22,13 @@ public class DriveStraight extends PIDCommandPlus {
 
     @Override
     protected void initialize() {
-        setSetpointRelative(Robot.gyro.getYaw());
+        setSetpointRelative(Robot.gyro.getAngle());
         initialDistance = Robot.drivetrain.getAvgScaledDistance();
     }
 
     @Override
     protected double returnPIDInput() {
-        return Robot.gyro.getYaw();
+        return Robot.gyro.getAngle();
     }
 
     @Override

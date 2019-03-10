@@ -9,6 +9,6 @@ public class TurnByAngleGyro extends TurnToAngleGyro {
 
 	@Override
 	protected void initialize() {
-		setSetpointRelative(Robot.gyro.getYaw());
+		setSetpointRelative(Robot.gyro.getAngle());
 	}
 }

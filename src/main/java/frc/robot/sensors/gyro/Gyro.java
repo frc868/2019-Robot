@@ -15,15 +15,19 @@ public class Gyro extends SubsystemManagerChild {
     }
 
     public double getRestrictedAngleRadians() {
-        return Math.abs(Math.toRadians(getPitch())%(2*Math.PI));
+        return Math.abs(Math.toRadians(getAngle())%(2*Math.PI));
+    }
+
+    public double getAngle() {
+        return gyro.getAngle();
     }
 
     public double getYaw() {
-        return gyro.getPitch(); // due to vertical mouning
+        return gyro.getYaw();
     }
 
     public double getPitch() {
-        return gyro.getYaw(); // due to veritical mounting
+        return gyro.getPitch();
     }
 
     public double getRoll() {
