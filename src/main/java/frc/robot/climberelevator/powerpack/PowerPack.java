@@ -20,6 +20,8 @@ public class PowerPack extends SubsystemManagerChild {
     public static final double INTAKE_BALL = 0, GET_FROM_GROUND_PICKUP = 0,
             LOWER = 6.69, MIDDLE = 25.33, UPPER = 35.952;
 
+    private final double ELEVATOR_LOWER_SPEED = -1;
+
     public PowerPack() {
         super("PowerPack");
         primary = new CANSparkMaxPlus(RobotMap.ClimberElevator.Powerpack.PRIMARY);
@@ -48,6 +50,8 @@ public class PowerPack extends SubsystemManagerChild {
         speed = Helper.boundValue(speed);
 
         if (isElevatorMode()) {
+            speed = Helper.boundValue(speed, ELEVATOR_LOWER_SPEED, 1); // if we are in elevator mode, the lowest possible speed is ELEVATOR_LOWER_SPEED
+
             if (getElevatorBottomLimitSwitch()) {
                 speed = Helper.boundValue(speed, 0, 1);
             } else if (getElevatorTopLimitSwitch()) {
