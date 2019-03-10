@@ -31,10 +31,12 @@ public class Camera extends SubsystemManagerChild {
   }
 
   public void switchToVision() {
+    sendData("setmapping2 MJPG 320 240 10 TechHOUNDS DeepSpace");
     vision_mode = true;
   }
 
   public void switchToCamera() {
+    sendData("setmapping2 MJPG 320 240 10 TechHOUNDS868 Trash2019");
     vision_mode = false;
   }
 
