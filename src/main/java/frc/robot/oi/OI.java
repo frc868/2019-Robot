@@ -48,7 +48,7 @@ public class OI {
 
         operator.lb.whenPressed(new ToggleClaw());
         operator.rb.whenPressed(new ManualTilt());
-        operator.rb.whenPressed(new ManualPowerpack());
+        operator.rb.whenPressed(new ManualElevator());
 
         operator.povN.whenPressed(new SetTiltPosition(Tilt.UPPER));
         operator.povE.whenPressed(new SetTiltPosition(Tilt.MIDDLE));
