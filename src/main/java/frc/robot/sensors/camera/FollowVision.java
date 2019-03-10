@@ -15,8 +15,8 @@ public class FollowVision extends Command {
   private int counts = 0;
   private final int COUNTS_NEEDED = 5;
 
-  private double k_dist   = -0.028; // this is negative as a larger value means we are closer to the target 
-  private double k_pos    =  0.012;
+  private double k_dist = -0.028; // this is negative as a larger value means we are closer to the target 
+  private double k_pos =  0.012;
   private double k_angle =  0.005;
 
   private VisionData data;
