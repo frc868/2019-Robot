@@ -23,9 +23,9 @@ public class ManualClimber extends Command {
         Robot.powerPack.setSpeed(input);
 
         if(input == 0) { 
-            Robot.powerPack.elevatorBrakeOn();
+            Robot.powerPack.climberBrakeOn();
         } else {
-            Robot.powerPack.elevatorBrakeOff();
+            Robot.powerPack.climberBrakeOff();
         }
 
         Robot.footDrive.setSpeed(-OI.driver.getRY());
