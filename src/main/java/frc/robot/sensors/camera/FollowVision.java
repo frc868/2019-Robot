@@ -1,10 +1,3 @@
-/*----------------------------------------------------------------------------*/
-/* Copyright (c) 2018 FIRST. All Rights Reserved.                             */
-/* Open Source Software - may be modified and shared by FRC teams. The code   */
-/* must be accompanied by the FIRST BSD license file in the root directory of */
-/* the project.                                                               */
-/*----------------------------------------------------------------------------*/
-
 package frc.robot.sensors.camera;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -15,9 +8,9 @@ public class FollowVision extends Command {
   private int counts = 0;
   private final int COUNTS_NEEDED = 5;
 
-  private double k_dist = -0.028; // this is negative as a larger value means we are closer to the target 
-  private double k_pos =  0.012;
-  private double k_angle =  0.005;
+  protected double k_dist = -0.028; // this is negative as a larger value means we are closer to the target 
+  protected double k_pos =  0.012;
+  protected double k_angle =  0.005;
 
   private VisionData data;
  
