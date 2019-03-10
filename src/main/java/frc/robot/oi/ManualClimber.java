@@ -19,7 +19,7 @@ public class ManualClimber extends Command {
 
     @Override
     protected void execute() {
-        double input = Helper.deadzone(-OI.operator.getLY(), 0.1);
+        double input = Helper.deadzone(-OI.driver.getLY(), 0.1);
         Robot.powerPack.setSpeed(input);
 
         if(input == 0) { 
@@ -28,7 +28,7 @@ public class ManualClimber extends Command {
             Robot.powerPack.elevatorBrakeOff();
         }
 
-        Robot.footDrive.setSpeed(-OI.operator.getRY());
+        Robot.footDrive.setSpeed(-OI.driver.getRY());
     }
 
     @Override
