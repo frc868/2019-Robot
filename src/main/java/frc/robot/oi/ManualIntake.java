@@ -2,7 +2,6 @@ package frc.robot.oi;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
-import frc.robot.helpers.Helper;
 
 public class ManualIntake extends Command {
 
@@ -12,7 +11,7 @@ public class ManualIntake extends Command {
 
     @Override
     protected void execute() {
-        double power = OI.operator.getLT() - OI.operator.getRT();
+        double power = OI.operator.getLT() - OI.operator.getRT() + OI.driver.getLT() - OI.driver.getRT();
         Robot.ballIntake.setSpeed(power);
     }
 
