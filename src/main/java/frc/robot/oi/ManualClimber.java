@@ -19,7 +19,7 @@ public class ManualClimber extends Command {
 
     @Override
     protected void execute() {
-        double input = Helper.deadzone(-OI.driver.getLY(), 0.1);
+        double input = Helper.deadzone(-OI.driver.getLY(), 0.1);        //deadzone so the brake knows when to enable
         Robot.powerPack.setSpeed(input);
 
         if(input == 0) { 

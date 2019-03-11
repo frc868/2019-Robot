@@ -24,33 +24,33 @@ public class OI {
         operator = new XboxControllerPlus(RobotMap.Controls.OPERATOR);
 
         // MANUAL CONTROLS
-        Robot.drivetrain.setDefaultCommand(new ArcadeDrive());
-        Robot.ballIntake.setDefaultCommand(new ManualIntake());
+        Robot.drivetrain.setDefaultCommand(new ArcadeDrive());      //driving controls
+        Robot.ballIntake.setDefaultCommand(new ManualIntake());     //ball intake
 
         // DRIVER CONTROLS 
         driver.a.whileHeld(new FollowVision());
-        driver.b.pressToStartReleaseToStop(new GrabWhenDetected());
-        driver.x.pressToStartReleaseToStop(new IntakeUntilBallDetected());
-        driver.y.and(driver.rb).whenPressed(new AutoClimb(true));
+        driver.b.pressToStartReleaseToStop(new GrabWhenDetected());     //grabs hatch when detected by both sensors
+        driver.x.pressToStartReleaseToStop(new IntakeUntilBallDetected());  //runs intake until ball is detected
+        driver.y.and(driver.rb).whenPressed(new AutoClimb(true));       //automatic climbing, UNTESTED
 
-        driver.rb.whenPressed(new ManualClimber());
-        driver.lb.whenPressed(new ToggleClaw());
+        driver.rb.whenPressed(new ManualClimber());     //switches to climber for endgame
+        driver.lb.whenPressed(new ToggleClaw());        //toggles hatch manipulator
 
-        driver.start.whenPressed(new DeployForks());
-        driver.menu.whenPressed(new DeployRamps());
+        driver.start.whenPressed(new DeployForks());    //deploys forks for endgame use
+        driver.menu.whenPressed(new DeployRamps());     //deploys ramps for endgame use
 
 
         // OPERATOR CONTROLS
-        operator.a.whenPressed(new SetElevatorPosition(PowerPack.LOWER));
+        operator.a.whenPressed(new SetElevatorPosition(PowerPack.LOWER));       //Elevator height
         operator.b.whenPressed(new SetElevatorPosition(PowerPack.MIDDLE));
         // operator.x.whenPressed(new SetElevatorPosition(PowerPack.INTAKE_BALL));  //TODO: fix PID so it doesn't slam into the bottom
         operator.y.whenPressed(new SetElevatorPosition(PowerPack.UPPER));
 
-        operator.lb.whenPressed(new ToggleClaw());
-        operator.rb.whenPressed(new ManualTilt());
-        operator.rb.whenPressed(new ManualElevator());
+        operator.lb.whenPressed(new ToggleClaw());      //toggles hatch manipulator
+        operator.rb.whenPressed(new ManualTilt());      //take over manual tilt control
+        operator.rb.whenPressed(new ManualElevator());  //take over manual elevator control
 
-        operator.povN.whenPressed(new SetTiltPosition(Tilt.UPPER));
+        operator.povN.whenPressed(new SetTiltPosition(Tilt.UPPER));     //Carriage tilt
         operator.povE.whenPressed(new SetTiltPosition(Tilt.MIDDLE));
         operator.povS.whenPressed(new SetTiltPosition(Tilt.LOWER));
 
