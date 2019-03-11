@@ -19,7 +19,7 @@ public class Camera extends SubsystemManagerChild {
   @Override
   public void init() {
     jevois = CameraServer.getInstance().startAutomaticCapture();
-    switchToVision();
+    switchToCamera();
   }
 
   public VisionData getData() {
@@ -32,11 +32,15 @@ public class Camera extends SubsystemManagerChild {
 
   public void switchToVision() {
     sendData("setmapping2 MJPG 320 240 10 TechHOUNDS DeepSpace");
+    sendData("streamon");
+    jevois.setFPS(10);
     vision_mode = true;
   }
 
   public void switchToCamera() {
-    sendData("setmapping2 MJPG 320 240 10 TechHOUNDS868 Trash2019");
+    sendData("setmapping2 MJPG 320 240 15 TechHOUNDS868 Trash2019");
+    sendData("streamon");
+    jevois.setFPS(15);
     vision_mode = false;
   }
 
