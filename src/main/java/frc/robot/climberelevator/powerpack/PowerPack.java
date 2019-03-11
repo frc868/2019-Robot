@@ -18,9 +18,9 @@ public class PowerPack extends SubsystemManagerChild {
     private final boolean ELEVATOR_MODE = false, BRAKE_MODE = false;
 
     public static final double INTAKE_BALL = 0, GET_FROM_GROUND_PICKUP = 0,
-            LOWER = 6.69, MIDDLE = 25.33, UPPER = 35.952;
+            LOWER = 7.7, MIDDLE = 25.33, UPPER = 35.952;
 
-    private final double ELEVATOR_LOWER_SPEED = -1;
+    private final double ELEVATOR_LOWER_SPEED = -.25;
 
     public PowerPack() {
         super("PowerPack");

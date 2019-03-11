@@ -45,9 +45,10 @@ public class OI {
         operator.b.whenPressed(new SetElevatorPosition(PowerPack.MIDDLE));
         // operator.x.whenPressed(new SetElevatorPosition(PowerPack.INTAKE_BALL));  //TODO: fix PID so it doesn't slam into the bottom
         operator.y.whenPressed(new SetElevatorPosition(PowerPack.UPPER));
+        // operator.y.whenPressed(new SetTiltPosition(Tilt.MIDDLE));
 
         operator.lb.whenPressed(new ToggleClaw());      //toggles hatch manipulator
-        operator.rb.whenPressed(new ManualTilt());      //take over manual tilt control
+        // operator.rb.whenPressed(new ManualTilt());      //take over manual tilt control
         operator.rb.whenPressed(new ManualElevator());  //take over manual elevator control
 
         operator.povN.whenPressed(new SetTiltPosition(Tilt.UPPER));     //Carriage tilt
