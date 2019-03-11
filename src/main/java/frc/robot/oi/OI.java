@@ -3,14 +3,17 @@ package frc.robot.oi;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.carriage.ballintake.IntakeUntilBallDetected;
+import frc.robot.carriage.hatchclaw.Grab;
 import frc.robot.carriage.hatchclaw.GrabWhenDetected;
 import frc.robot.carriage.hatchclaw.ToggleClaw;
 import frc.robot.carriage.tilt.SetTiltPosition;
 import frc.robot.carriage.tilt.Tilt;
+import frc.robot.climberelevator.footdrive.SetFootDriveSpeed;
 import frc.robot.climberelevator.forks.DeployForks;
 import frc.robot.climberelevator.powerpack.AutoClimb;
 import frc.robot.climberelevator.powerpack.PowerPack;
 import frc.robot.climberelevator.powerpack.SetElevatorPosition;
+import frc.robot.climberelevator.powerpack.SwitchToClimber;
 import frc.robot.climberelevator.ramps.DeployRamps;
 import frc.robot.helpers.oi.XboxControllerPlus;
 import frc.robot.sensors.camera.FollowVision;
@@ -38,6 +41,11 @@ public class OI {
 
         driver.start.whenPressed(new DeployForks());    //deploys forks for endgame use
         driver.menu.whenPressed(new DeployRamps());     //deploys ramps for endgame use
+        driver.menu.whenPressed(new SetFootDriveSpeed(0));      //TODO: TEMP FIX FOR CLIMBING
+        driver.menu.whenPressed(new SetTiltPosition(Tilt.UPPER));       //TODO: TEMP FIX FOR CLIMBING
+        driver.menu.whenPressed(new Grab());        //TODO: TEMP FIX FOR CLIMBING
+        driver.menu.whenPressed(new SwitchToClimber());     //TODO: TEMP FIX FOR CLIMBING
+        driver.rb.and(driver.y).whenPressed(new AutoClimb(true));       //TODO: TEMP FIX FOR CLIMBING
 
 
         // OPERATOR CONTROLS
@@ -49,7 +57,7 @@ public class OI {
 
         operator.lb.whenPressed(new ToggleClaw());      //toggles hatch manipulator
         // operator.rb.whenPressed(new ManualTilt());      //take over manual tilt control
-        operator.rb.whenPressed(new ManualElevator());  //take over manual elevator control
+        operator.rb.whenPressed(new ManualPowerpack());  //TODO: TEMP FIX FOR CLIMBING
 
         operator.povN.whenPressed(new SetTiltPosition(Tilt.UPPER));     //Carriage tilt
         operator.povE.whenPressed(new SetTiltPosition(Tilt.MIDDLE));
