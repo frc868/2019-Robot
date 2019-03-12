@@ -3,6 +3,7 @@ package frc.robot.sensors.camera;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.SerialPort;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import frc.robot.helpers.subsystems.SubsystemManagerChild;
 
@@ -20,6 +21,8 @@ public class Camera extends SubsystemManagerChild {
   public void init() {
     jevois = CameraServer.getInstance().startAutomaticCapture();
     switchToCamera();
+
+    SmartDashboard.putData("Toggle Camera", new ToggleCamera());
   }
 
   public VisionData getData() {
@@ -31,6 +34,7 @@ public class Camera extends SubsystemManagerChild {
   }
 
   public void switchToVision() {
+    SmartDashboard.putBoolean("Vision Mode", true);
     sendData("setmapping2 MJPG 320 240 10 TechHOUNDS DeepSpace");
     sendData("streamon");
     jevois.setFPS(10);
@@ -38,6 +42,7 @@ public class Camera extends SubsystemManagerChild {
   }
 
   public void switchToCamera() {
+    SmartDashboard.putBoolean("Vision Mode", false);
     sendData("setmapping2 MJPG 320 240 15 TechHOUNDS868 Trash2019");
     sendData("streamon");
     jevois.setFPS(15);

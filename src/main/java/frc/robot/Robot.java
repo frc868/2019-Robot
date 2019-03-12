@@ -1,8 +1,11 @@
 package frc.robot;
 
+import javax.swing.text.StyleContext.SmallAttributeSet;
+
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.carriage.ballintake.BallIntake;
 import frc.robot.carriage.hatchclaw.HatchClaw;
 import frc.robot.carriage.tilt.Tilt;
@@ -33,6 +36,9 @@ public class Robot extends TimedRobot {
   public static Camera camera = new Camera();
   public static Compressor compressor = new Compressor();
   public static Gyro gyro = new Gyro();
+
+  // public static PDP
+
   // public static UltrasonicArray ultrasonic = new UltrasonicArray();
   
   @Override
@@ -46,6 +52,8 @@ public class Robot extends TimedRobot {
   public void robotPeriodic() {
     SubsystemManager.update();
     SubsystemManager.updateSD();
+
+    // SmartDashboard.putNumber("key", )
   }
   
   @Override

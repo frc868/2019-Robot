@@ -54,7 +54,9 @@ public class OI {
         // OPERATOR CONTROLS
         operator.a.whenPressed(new SetElevatorPosition(PowerPack.LOWER));       //Elevator height
         operator.b.whenPressed(new SetElevatorPosition(PowerPack.MIDDLE));
-        // operator.x.whenPressed(new SetElevatorPosition(PowerPack.INTAKE_BALL));  //TODO: fix PID so it doesn't slam into the bottom
+        operator.x.whenPressed(new SetElevatorPosition(PowerPack.INTAKE_BALL));  //TODO: fix PID so it doesn't slam into the bottom
+        // operator.x.whenPressed(new Grab());
+        // operator.x.whenReleased(new SetTiltPosition(Tilt.LOWER));
         operator.y.whenPressed(new SetElevatorPosition(PowerPack.UPPER));
         // operator.y.whenPressed(new SetTiltPosition(Tilt.MIDDLE));
 
