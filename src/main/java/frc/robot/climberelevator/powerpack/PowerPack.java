@@ -265,18 +265,18 @@ public class PowerPack extends SubsystemManagerChild {
 
     @Override
     public void updateSD() {
-        SmartDashboard.putNumber("PowerPack: Speed", getSpeed());
-        SmartDashboard.putNumber("PowerPack: Secondary Speed", secondary.get());
-        SmartDashboard.putNumber("PowerPack: Position", getEncPosition());
-        SmartDashboard.putBoolean("PowerPack: Elevator Mode?", isElevatorMode());
-        SmartDashboard.putBoolean("PowerPack: Elevator Brake?", isElevatorBraked());
-        SmartDashboard.putBoolean("PowerPack: Climber Brake?", isClimberBraked());
-        SmartDashboard.putBoolean("PowerPack: Elevator Top Limit?", getElevatorTopLimitSwitch());
-        SmartDashboard.putBoolean("PowerPack: Elevator Bottom Limit?", getElevatorBottomLimitSwitch());
-        SmartDashboard.putBoolean("PowerPack: Climber Top Limit?", getClimberTopLimitSwitch());
-        SmartDashboard.putBoolean("PowerPack: Climber Bottom Limit?", getClimberBottomLimitSwitch());
+        SmartDashboard.putNumber("PowerPack Speed", getSpeed());
+        // SmartDashboard.putNumber("PowerPack Secondary Speed", secondary.get());
+        SmartDashboard.putNumber("PowerPack Position", getEncPosition());
+        SmartDashboard.putBoolean("Elevator Mode?", isElevatorMode());
+        SmartDashboard.putBoolean("Elevator Brake?", isElevatorBraked());
+        SmartDashboard.putBoolean("Climber Brake?", isClimberBraked());
+        SmartDashboard.putBoolean("Elevator Top Limit?", getElevatorTopLimitSwitch());
+        SmartDashboard.putBoolean("Elevator Bottom Limit?", getElevatorBottomLimitSwitch());
+        SmartDashboard.putBoolean("Climber Top Limit?", getClimberTopLimitSwitch());
+        SmartDashboard.putBoolean("Climber Bottom Limit?", getClimberBottomLimitSwitch());
 
-        SmartDashboard.putNumber("PowerPack: Current", primary.getOutputCurrent());
-        SmartDashboard.putNumber("PowerPack: Secondary Current", secondary.getOutputCurrent());
+        SmartDashboard.putNumber("PowerPack Current", primary.getOutputCurrent());
+        // SmartDashboard.putNumber("PowerPack Secondary Current", secondary.getOutputCurrent());
     }
 }

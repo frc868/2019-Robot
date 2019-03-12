@@ -90,7 +90,7 @@ public class Tilt extends SubsystemManagerChild {
 
     @Override
     public void updateSD() {
-        SmartDashboard.putNumber("Tilt: Speed", getSpeed());
-        SmartDashboard.putNumber("Tilt: Position", getPotPosition());
+        SmartDashboard.putNumber("Tilt Speed", getSpeed());
+        SmartDashboard.putNumber("Tilt Position", getPotPosition());
     }
 }
