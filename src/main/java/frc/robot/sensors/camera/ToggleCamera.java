@@ -5,16 +5,16 @@ import frc.robot.Robot;
 
 public class ToggleCamera extends Command {
     public ToggleCamera() {
-        // requires(Robot.camera);
+        requires(Robot.camera);
     }
 
     @Override
     protected void initialize() {
-        // if (Robot.camera.isVisionMode()) {
-        //     Robot.camera.switchToCamera();
-        // } else {
-        //     Robot.camera.switchToVision();
-        // }
+        if (Robot.camera.isVisionMode()) {
+            Robot.camera.switchToCamera();
+        } else {
+            Robot.camera.switchToVision();
+        }
     }
 
     @Override

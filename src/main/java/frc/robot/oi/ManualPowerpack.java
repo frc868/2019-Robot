@@ -24,7 +24,7 @@ public class ManualPowerpack extends Command {
     }
 
     Robot.powerPack.setSpeed(input);
-    SmartDashboard.putNumber("Climber Speed", input);
+    // SmartDashboard.putNumber("Climber Speed", input);
 
     if(input == 0) {    //enables pneumatic brake based on deadzone and powerpack mode
       if(Robot.powerPack.isElevatorMode())  {

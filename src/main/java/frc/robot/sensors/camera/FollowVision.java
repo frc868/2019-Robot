@@ -16,17 +16,17 @@ public class FollowVision extends Command {
  
   public FollowVision() {
     requires(Robot.drivetrain);
-    // requires(Robot.camera);
+    requires(Robot.camera);
   }
 
   @Override
   protected void initialize() {
-    // Robot.camera.switchToVision();
+    Robot.camera.switchToVision();
   }
 
   @Override
   protected void execute() {
-    // data = Robot.camera.getData();
+    data = Robot.camera.getData();
 
     if (data.hasTarget()) {
       double distError = data.getDistance() - VISION_TARGET;

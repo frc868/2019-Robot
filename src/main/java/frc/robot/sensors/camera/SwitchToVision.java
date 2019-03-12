@@ -5,12 +5,12 @@ import frc.robot.Robot;
 
 public class SwitchToVision extends Command {
   public SwitchToVision() {
-    // requires(Robot.camera);
+    requires(Robot.camera);
   }
 
   @Override
   protected void initialize() {
-    // Robot.camera.switchToVision();
+    Robot.camera.switchToVision();
   }
 
   @Override

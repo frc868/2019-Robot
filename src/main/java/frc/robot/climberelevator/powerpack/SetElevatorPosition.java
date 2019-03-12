@@ -45,7 +45,9 @@ public class SetElevatorPosition extends PIDCommandPlus {
     @Override
     protected void end() {
         if(setpoint == Robot.powerPack.UPPER){
-            new SetTiltPosition(Robot.tilt.UPPER);
+            (new SetTiltPosition(Robot.tilt.UPPER)).start();
+        } else if (setpoint == Robot.powerPack.INTAKE_BALL) {
+            (new SetTiltPosition(Robot.tilt.LOWER)).start();
         }
         Robot.powerPack.stop();
         Robot.powerPack.elevatorBrakeOn();
