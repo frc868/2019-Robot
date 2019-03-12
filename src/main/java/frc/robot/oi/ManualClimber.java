@@ -7,7 +7,7 @@ import frc.robot.helpers.Helper;
 public class ManualClimber extends Command {
 
     public ManualClimber() {
-        requires(Robot.powerPack);
+        // requires(Robot.powerPack);
         requires(Robot.drivetrain);
     }
 

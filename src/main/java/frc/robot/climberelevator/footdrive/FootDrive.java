@@ -21,7 +21,7 @@ public class FootDrive extends SubsystemManagerChild {
    * @param speed percentage power from 0 to 1 (Can't drive backwards)
    */
   public void setSpeed(double speed) {
-    motor.set(Helper.boundValue(speed, 0, 1));
+    motor.set(Helper.boundValue(speed, -1, 0));
   }
 
   /**

@@ -14,6 +14,7 @@ import frc.robot.climberelevator.powerpack.AutoClimb;
 import frc.robot.climberelevator.powerpack.PowerPack;
 import frc.robot.climberelevator.powerpack.SetElevatorPosition;
 import frc.robot.climberelevator.powerpack.SwitchToClimber;
+import frc.robot.climberelevator.powerpack.TogglePowerpackMode;
 import frc.robot.climberelevator.ramps.DeployRamps;
 import frc.robot.helpers.oi.XboxControllerPlus;
 import frc.robot.sensors.camera.FollowVision;
@@ -30,13 +31,15 @@ public class OI {
         Robot.drivetrain.setDefaultCommand(new ArcadeDrive());      //driving controls
         Robot.ballIntake.setDefaultCommand(new ManualIntake());     //ball intake
 
+        Robot.powerPack.setDefaultCommand(new ManualPowerpack());
+
         // DRIVER CONTROLS 
         driver.a.whileHeld(new FollowVision());
         driver.b.pressToStartReleaseToStop(new GrabWhenDetected());     //grabs hatch when detected by both sensors
         driver.x.pressToStartReleaseToStop(new IntakeUntilBallDetected());  //runs intake until ball is detected
-        driver.y.and(driver.rb).whenPressed(new AutoClimb(true));       //automatic climbing, UNTESTED
+        // driver.y.and(driver.rb).whenPressed(new AutoClimb(true));       //automatic climbing, UNTESTED
 
-        driver.rb.whenPressed(new ManualClimber());     //switches to climber for endgame
+        // driver.rb.whenPressed(new ManualClimber());     //switches to climber for endgame
         driver.lb.whenPressed(new ToggleClaw());        //toggles hatch manipulator
 
         driver.start.whenPressed(new DeployForks());    //deploys forks for endgame use
@@ -45,7 +48,7 @@ public class OI {
         driver.menu.whenPressed(new SetTiltPosition(Tilt.UPPER));       //TODO: TEMP FIX FOR CLIMBING
         driver.menu.whenPressed(new Grab());        //TODO: TEMP FIX FOR CLIMBING
         driver.menu.whenPressed(new SwitchToClimber());     //TODO: TEMP FIX FOR CLIMBING
-        driver.rb.and(driver.y).whenPressed(new AutoClimb(true));       //TODO: TEMP FIX FOR CLIMBING
+        // driver.rb.and(driver.y).whenPressed(new AutoClimb(true));       //TODO: TEMP FIX FOR CLIMBING
 
 
         // OPERATOR CONTROLS
@@ -59,7 +62,7 @@ public class OI {
 
         operator.lb.whenPressed(new ToggleClaw());      //toggles hatch manipulator
         // operator.rb.whenPressed(new ManualTilt());      //take over manual tilt control
-        operator.rb.whenPressed(new ManualPowerpack());  //TODO: TEMP FIX FOR CLIMBING
+        operator.rb.whenPressed(new TogglePowerpackMode());  //TODO: TEMP FIX FOR CLIMBING
 
         operator.povN.whenPressed(new SetTiltPosition(Tilt.UPPER));     //Carriage tilt
         operator.povE.whenPressed(new SetTiltPosition(Tilt.MIDDLE));
