@@ -20,7 +20,7 @@ public class SetFootDriveSpeed extends Command {
 
     @Override
     protected void execute() {
-        double input = -OI.operator.getRY();
+        double input = (1.5*-OI.operator.getLY()) + OI.operator.getRY();
         Robot.footDrive.setSpeed(input);
         SmartDashboard.putNumber("Foot Speed", input);
         
