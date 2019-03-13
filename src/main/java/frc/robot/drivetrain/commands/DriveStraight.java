@@ -5,7 +5,7 @@ import frc.robot.helpers.Helper;
 import frc.robot.helpers.pid.PIDCommandPlus;
 
 public class DriveStraight extends PIDCommandPlus {
-    private static final double P = 0.0001, I = 0.0, D = 0.0; //TODO: tune these constants
+    private static final double P = 0.01, I = 0.0, D = 0.0; //TODO: tune these constants
     public double initialDistance;
     public double targetDistance, targetPower, targetAngleChange;
 

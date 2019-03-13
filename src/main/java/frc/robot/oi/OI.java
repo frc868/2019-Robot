@@ -18,6 +18,7 @@ import frc.robot.climberelevator.powerpack.TogglePowerpackMode;
 import frc.robot.climberelevator.ramps.DeployRamps;
 import frc.robot.helpers.oi.XboxControllerPlus;
 import frc.robot.sensors.camera.FollowVision;
+import frc.robot.drivetrain.commands.DriveStraight;
 
 public class OI {
     public static XboxControllerPlus driver;
@@ -49,6 +50,8 @@ public class OI {
         driver.menu.whenPressed(new Grab());        //TODO: TEMP FIX FOR CLIMBING
         driver.menu.whenPressed(new SwitchToClimber());     //TODO: TEMP FIX FOR CLIMBING
         // driver.rb.and(driver.y).whenPressed(new AutoClimb(true));       //TODO: TEMP FIX FOR CLIMBING
+
+        driver.a.and(driver.b).whenPressed(new DriveStraight(24,0.5)); //TODO: delete this at some point it's just for testing
 
 
         // OPERATOR CONTROLS
