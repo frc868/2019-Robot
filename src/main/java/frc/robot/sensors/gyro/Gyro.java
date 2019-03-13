@@ -19,55 +19,35 @@ public class Gyro extends SubsystemManagerChild {
      * @return the angle, in radians restricted from 0 to 2pi
      */
     public double getRestrictedAngleRadians() {
-        if (isCalibrating()) {
-            return -1;
-        } else {
-            return Math.abs(Math.toRadians(getAngle())%(2*Math.PI));
-        }
+        return Math.abs(Math.toRadians(getAngle())%(2*Math.PI));
     }
 
     /**
      * @return the yaw angle
      */
     public double getAngle() {
-        if (isCalibrating()) {
-            return -1;
-        } else {
-            return gyro.getAngle();
-        }
+        return gyro.getAngle();
     }
 
     /**
      * @return yaw, or horizontal rotation of the bot
      */
     public double getYaw() {
-        if (isCalibrating()) {
-            return -1;
-        } else {
-            return gyro.getYaw();
-        }
+        return gyro.getYaw();
     }
 
     /**
      * @return pitch, or forward/backward tipping of the bot
      */
     public double getPitch() {
-        if (isCalibrating()) {
-            return -1;
-        } else {
-            return gyro.getPitch();
-        }
+        return gyro.getPitch();
     }
 
     /**
      * @return roll, or left/right tipping of the bot
      */
     public double getRoll() {
-        if (isCalibrating()) {
-            return -1;
-        } else {
-            return gyro.getRoll();
-        }
+        return gyro.getRoll();   
     }
 
     /**
@@ -94,5 +74,6 @@ public class Gyro extends SubsystemManagerChild {
         SmartDashboard.putNumber("Angle", getAngle());
         SmartDashboard.putNumber("Pitch", getPitch());
         SmartDashboard.putNumber("Roll", getRoll());
+        SmartDashboard.putBoolean("Is Calibrating", isCalibrating());
     }
 }
