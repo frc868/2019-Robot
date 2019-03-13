@@ -1,6 +1,8 @@
 package frc.robot;
 
+import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.SerialPort;
+import edu.wpi.first.wpilibj.SPI.Port;
 
 public class RobotMap {
 
@@ -14,8 +16,6 @@ public class RobotMap {
     public static final int RIGHT_PRIMARY = 10; // SEMITESTED: ^^^
     public static final int RIGHT_SECONDARY = 11; // SEMITESTED: ^^^
     public static final int RIGHT_TERTIARY = 12; // SEMITESTED: ^^^
-
-    public static final int GYRO = 1; // TESTED
   }
 
   public static class ClimberElevator {
@@ -83,6 +83,11 @@ public class RobotMap {
       //public static final int FRONT_TRIGGER = 0;
       //public static final int FRONT_ECHO = 1;
       public static final int ANALOG_PORT = 0;
+    }
+
+    public static class Gyro {
+      public static final Port GYRO = SPI.Port.kMXP;
+      public static final int OLD_GYRO = 1;
     }
   }
 
