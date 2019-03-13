@@ -58,8 +58,7 @@ public class BallIntake extends SubsystemManagerChild {
 
     @Override
     public void init() {
-        detection_limit.getTrigger().whenActive(new Rumble(true));
-        detection_limit.getTrigger().whenInactive(new Rumble(false));
+        detection_limit.getTrigger().whenActive(new Rumble());
     }
 
     @Override

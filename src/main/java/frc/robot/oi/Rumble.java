@@ -1,22 +1,27 @@
 package frc.robot.oi;
 
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.TimedCommand;
 
-public class Rumble extends Command {
-    private boolean state;
+public class Rumble extends TimedCommand {
+    protected static final double DEFAULT_TIME = 2.0;
 
-    public Rumble(boolean state) {
-        this.state = state;
+    public Rumble() {
+        this(DEFAULT_TIME);
+    }
+
+    public Rumble(double time) {
+        super(time);
     }
 
     @Override
     protected void initialize() {
-        OI.driver.setRumble(state);
-        OI.operator.setRumble(state);
+        OI.driver.setRumble(true);
+        OI.operator.setRumble(true);
     }
 
     @Override
-    protected boolean isFinished() {
-        return true;
+    protected void end() {
+        OI.driver.setRumble(false);
+        OI.operator.setRumble(false);
     }
 }

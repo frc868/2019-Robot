@@ -80,8 +80,7 @@ public class HatchClaw extends SubsystemManagerChild {
 
   @Override
   public void init() {
-    left_limit.getTrigger().and(right_limit.getTrigger()).whenActive(new Rumble(true));
-    left_limit.getTrigger().and(right_limit.getTrigger()).whenInactive(new Rumble(false));
+    left_limit.getTrigger().and(right_limit.getTrigger()).whenActive(new Rumble());
   }
 
   @Override
