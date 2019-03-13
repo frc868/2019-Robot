@@ -17,7 +17,7 @@ import frc.robot.climberelevator.powerpack.SwitchToClimber;
 import frc.robot.climberelevator.powerpack.TogglePowerpackMode;
 import frc.robot.climberelevator.ramps.DeployRamps;
 import frc.robot.helpers.oi.XboxControllerPlus;
-import frc.robot.sensors.camera.FollowVision;
+// import frc.robot.sensors.camera.FollowVision;
 import frc.robot.drivetrain.commands.DriveStraight;
 
 public class OI {
@@ -35,7 +35,7 @@ public class OI {
         Robot.powerPack.setDefaultCommand(new ManualPowerpack());
 
         // DRIVER CONTROLS 
-        driver.a.whileHeld(new FollowVision());
+        // driver.a.whileHeld(new FollowVision());
         driver.b.pressToStartReleaseToStop(new GrabWhenDetected());     //grabs hatch when detected by both sensors
         driver.x.pressToStartReleaseToStop(new IntakeUntilBallDetected());  //runs intake until ball is detected
         // driver.y.and(driver.rb).whenPressed(new AutoClimb(true));       //automatic climbing, UNTESTED
