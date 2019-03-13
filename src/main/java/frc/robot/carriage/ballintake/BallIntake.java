@@ -6,6 +6,7 @@ import frc.robot.RobotMap;
 import frc.robot.helpers.Helper;
 import frc.robot.helpers.sensors.IRLimit;
 import frc.robot.helpers.subsystems.SubsystemManagerChild;
+import frc.robot.oi.Rumble;
 
 public class BallIntake extends SubsystemManagerChild {
     private WPI_TalonSRX motor;
@@ -47,11 +48,18 @@ public class BallIntake extends SubsystemManagerChild {
         return detection_limit.get();
     }
 
+
     /**
      * @return true if ball is detected, else false
      */
     public boolean isBallDetected() {
         return getBallDetectionLimit() == BALL_DETECTED_STATE;
+    }
+
+    @Override
+    public void init() {
+        detection_limit.getTrigger().whenActive(new Rumble(true));
+        detection_limit.getTrigger().whenInactive(new Rumble(false));
     }
 
     @Override

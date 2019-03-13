@@ -5,7 +5,7 @@ import frc.robot.Robot;
 import frc.robot.helpers.pid.PIDCommandPlus;
 
 public class SetTiltPosition extends PIDCommandPlus {
-    private static final double P = 5, I = 0.01, D = 0.0;
+    private static final double P = 0, I = 0.0, D = 0.0;
 
     public SetTiltPosition(double setpoint) {
         super(P, I, D, setpoint, .00000005);

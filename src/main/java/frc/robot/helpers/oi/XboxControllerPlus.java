@@ -84,4 +84,10 @@ public class XboxControllerPlus extends XboxController {
     public boolean getLSTK() {
         return getStickButtonPressed(Hand.kLeft);
     }
+
+    public void setRumble(boolean state) {
+        int value = state ? 1 : 0;
+        setRumble(RumbleType.kLeftRumble, value);
+        setRumble(RumbleType.kLeftRumble, value);
+    }
 }

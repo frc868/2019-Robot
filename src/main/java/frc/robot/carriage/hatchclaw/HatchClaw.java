@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import frc.robot.helpers.sensors.IRLimit;
 import frc.robot.helpers.subsystems.SubsystemManagerChild;
+import frc.robot.oi.Rumble;
 
 public class HatchClaw extends SubsystemManagerChild {
   private Solenoid actuator;
@@ -75,6 +76,12 @@ public class HatchClaw extends SubsystemManagerChild {
    */
   public boolean isHatchDetected() {
     return (getLeftLimit() == HATCH_DETECTED_STATE) && (getRightLimit() == HATCH_DETECTED_STATE);
+  }
+
+  @Override
+  public void init() {
+    left_limit.getTrigger().and(right_limit.getTrigger()).whenActive(new Rumble(true));
+    left_limit.getTrigger().and(right_limit.getTrigger()).whenInactive(new Rumble(false));
   }
 
   @Override
