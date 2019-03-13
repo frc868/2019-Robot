@@ -10,7 +10,7 @@ import frc.robot.helpers.subsystems.SubsystemManagerChild;
 public class BallIntake extends SubsystemManagerChild {
     private WPI_TalonSRX motor;
     private IRLimit detection_limit;
-    private final boolean BALL_DETECTED_STATE = true;
+    private final boolean BALL_DETECTED_STATE = true; // state the the IR will be set to if the ball is detected
 
     public BallIntake() {
         super("BallIntake");
