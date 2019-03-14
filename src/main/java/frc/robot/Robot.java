@@ -38,7 +38,6 @@ public class Robot extends TimedRobot {
   // public static Camera camera = new Camera();
   public static Compressor compressor = new Compressor();
   public static Gyro gyro = new Gyro();
-  public static UsbCamera JankCamera;
 
   // public static PDP
 
@@ -48,8 +47,9 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     SubsystemManager.init();
     SubsystemManager.initSD();
-    JankCamera = CameraServer.getInstance().startAutomaticCapture();
-    
+    CameraServer.getInstance().startAutomaticCapture(0);
+    CameraServer.getInstance().startAutomaticCapture(1);
+
     compressor.setClosedLoopControl(true);
   }
 
