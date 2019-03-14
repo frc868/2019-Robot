@@ -53,7 +53,7 @@ public class OI {
         // driver.rb.and(driver.y).whenPressed(new AutoClimb(true));       //TODO: TEMP FIX FOR CLIMBING
 
         // driver.a.and(driver.b).whenPressed(new DriveStraight(24,0.5)); //TODO: delete this at some point it's just for testing
-        driver.a.and(driver.b.and(driver.rb)).whenPressed(new RunProfile("StartToRightFrontShip.pf1")); //for testing 3/14/19
+        driver.a.and(driver.lb).whenPressed(new RunProfile("StartToRightFrontShip.pf1")); //for testing 3/14/19
 
 
         // OPERATOR CONTROLS
