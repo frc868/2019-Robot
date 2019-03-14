@@ -13,7 +13,7 @@ public class TrajectoryPair {
 
     public TrajectoryPair(String fileName) {
         try {
-            String path = "home/lvuser/deploy/" + fileName + ".csv";
+            String path = "home/lvuser/deploy/output" + fileName + ".csv";
             File file = new File(path);
             Scanner inputStream = new Scanner(file);
 
