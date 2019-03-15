@@ -34,9 +34,9 @@ public class OI {
 
         driver.lb.whenPressed(new ToggleClaw());
 
-        operator.start.whenPressed(new DeployForks());
-        operator.menu.whenPressed(new DeployRamps());
-        operator.menu.whenPressed(new ManualClimber());
+        driver.start.whenPressed(new DeployForks());
+        driver.menu.whenPressed(new DeployRamps());
+        driver.menu.whenPressed(new ManualClimber());
 
         // OPERATOR CONTROLS
         operator.a.whenPressed(new SmartSetElevatorPosition(SmartSetElevatorPosition.Height.lower));
