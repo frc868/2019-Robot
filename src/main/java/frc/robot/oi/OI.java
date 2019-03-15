@@ -20,6 +20,7 @@ import frc.robot.climberelevator.ramps.DeployRamps;
 import frc.robot.helpers.oi.XboxControllerPlus;
 // import frc.robot.sensors.camera.FollowVision;
 import frc.robot.drivetrain.commands.DriveStraight;
+import frc.robot.drivetrain.commands.RunProfile;
 
 public class OI {
     public static XboxControllerPlus driver;
@@ -52,7 +53,8 @@ public class OI {
         driver.menu.whenPressed(new SwitchToClimber());     //TODO: TEMP FIX FOR CLIMBING
         // driver.rb.and(driver.y).whenPressed(new AutoClimb(true));       //TODO: TEMP FIX FOR CLIMBING
 
-        driver.a.and(driver.b).whenPressed(new DriveStraight(24,0.5)); //TODO: delete this at some point it's just for testing
+        // driver.a.and(driver.b).whenPressed(new DriveStraight(24,0.5)); //TODO: delete this at some point it's just for testing
+        driver.a.and(driver.lb).whenPressed(new RunProfile("StartToRightFrontShip.pf1")); //for testing 3/14/19
 
 
         // OPERATOR CONTROLS
