@@ -7,9 +7,7 @@ import frc.robot.carriage.tilt.Tilt;
 import frc.robot.helpers.pid.PIDCommandPlus;
 
 public class SetElevatorPosition extends PIDCommandPlus {
-
     public static final double P = 0.08 , I = 0.000, D = 0.00;
-
     private double setpoint;
 
     public SetElevatorPosition(double setpoint) {
@@ -44,7 +42,7 @@ public class SetElevatorPosition extends PIDCommandPlus {
 
     @Override
     protected void end() {
-        if(setpoint == Robot.powerPack.UPPER){
+        if(setpoint == Robot.powerPack.UPPER_BALL){
             (new SetTiltPosition(Robot.tilt.UPPER)).start();
         } else if (setpoint == Robot.powerPack.INTAKE_BALL) {
             (new SetTiltPosition(Robot.tilt.LOWER)).start();

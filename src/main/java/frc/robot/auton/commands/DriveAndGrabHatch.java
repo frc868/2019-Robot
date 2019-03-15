@@ -17,7 +17,7 @@ public class DriveAndGrabHatch extends CommandGroup {
     public DriveAndGrabHatch(Command driveCommand) {
         addSequential(driveCommand); // drive
         // addSequential(new FollowVisionAndUltrasonic()); // line up using auton
-        addSequential(new SetElevatorPosition(PowerPack.LOWER)); // lower elevator
+        addSequential(new SetElevatorPosition(PowerPack.LOWER_BALL)); // lower elevator
         addSequential(new Grab()); // grab hatch
     }
 

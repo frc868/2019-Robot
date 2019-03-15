@@ -17,8 +17,10 @@ public class PowerPack extends SubsystemManagerChild {
     private IRLimit elevator_top_limit, elevator_bottom_limit, climber_top_limit, climber_bottom_limit;
     private final boolean ELEVATOR_MODE = false, BRAKE_MODE = false;
 
-    public static final double INTAKE_BALL = 0, GET_FROM_GROUND_PICKUP = 0,
-            LOWER = 7.7, MIDDLE = 25.33, UPPER = 38;
+    public static final double INTAKE_BALL = 2.54, 
+        LOWER_BALL = 8.83, LOWER_HATCH = 1.85, 
+        MIDDLE_BALL = 25.4, MIDDLE_HATCH = 19.66, 
+        UPPER_BALL = 39, UPPER_HATCH = 37.69;
 
     private final double ELEVATOR_LOWER_SPEED = -.25;
 

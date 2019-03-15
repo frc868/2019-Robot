@@ -13,6 +13,7 @@ import frc.robot.climberelevator.forks.DeployForks;
 import frc.robot.climberelevator.powerpack.AutoClimb;
 import frc.robot.climberelevator.powerpack.PowerPack;
 import frc.robot.climberelevator.powerpack.SetElevatorPosition;
+import frc.robot.climberelevator.powerpack.SmartSetElevatorPosition;
 import frc.robot.climberelevator.powerpack.SwitchToClimber;
 import frc.robot.climberelevator.powerpack.TogglePowerpackMode;
 import frc.robot.climberelevator.ramps.DeployRamps;
@@ -55,17 +56,16 @@ public class OI {
 
 
         // OPERATOR CONTROLS
-        operator.a.whenPressed(new SetElevatorPosition(PowerPack.LOWER));       //Elevator height
-        operator.b.whenPressed(new SetElevatorPosition(PowerPack.MIDDLE));
-        operator.x.whenPressed(new SetElevatorPosition(PowerPack.INTAKE_BALL));  //TODO: fix PID so it doesn't slam into the bottom
+        operator.a.whenPressed(new SmartSetElevatorPosition(SmartSetElevatorPosition.Height.lower));
+        operator.b.whenPressed(new SmartSetElevatorPosition(SmartSetElevatorPosition.Height.middle));
+        operator.x.whenPressed(new SmartSetElevatorPosition(SmartSetElevatorPosition.Height.ballIntake));
+        operator.y.whenPressed(new SmartSetElevatorPosition(SmartSetElevatorPosition.Height.upper));
         // operator.x.whenPressed(new Grab());
         // operator.x.whenReleased(new SetTiltPosition(Tilt.LOWER));
-        operator.y.whenPressed(new SetElevatorPosition(PowerPack.UPPER));
         // operator.y.whenPressed(new SetTiltPosition(Tilt.MIDDLE));
 
         operator.lb.whenPressed(new ToggleClaw());      //toggles hatch manipulator
-        // operator.rb.whenPressed(new ManualTilt());      //take over manual tilt control
-        operator.rb.whenPressed(new TogglePowerpackMode());  //TODO: TEMP FIX FOR CLIMBING
+        operator.rb.whenPressed(new ManualTilt());      //take over manual tilt control
 
         operator.povN.whenPressed(new SetTiltPosition(Tilt.UPPER));     //Carriage tilt
         operator.povE.whenPressed(new SetTiltPosition(Tilt.MIDDLE));
