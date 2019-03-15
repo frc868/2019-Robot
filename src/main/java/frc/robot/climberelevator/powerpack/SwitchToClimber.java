@@ -1,21 +1,23 @@
-package frc.robot.climberelevator.powerpack;
+// TODO: DO NOT USE ANYMORE!!!
 
-import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.Robot;
+// package frc.robot.climberelevator.powerpack;
 
-public class SwitchToClimber extends Command {
-  public SwitchToClimber() {
-    requires(Robot.powerPack);
-  }
+// import edu.wpi.first.wpilibj.command.Command;
+// import frc.robot.Robot;
 
-  @Override
-  protected void initialize() {
-    Robot.powerPack.switchToClimber();
-  }
+// public class SwitchToClimber extends Command {
+//   public SwitchToClimber() {
+//     requires(Robot.powerPack);
+//   }
+
+//   @Override
+//   protected void initialize() {
+//     Robot.powerPack.switchToClimber();
+//   }
 
 
-  @Override
-  protected boolean isFinished() {
-    return true;
-  }
-}
+//   @Override
+//   protected boolean isFinished() {
+//     return true;
+//   }
+// }

@@ -1,58 +1,60 @@
 
-package frc.robot.oi;
+// TODO: DO NOT USE ANYMORE!!!
 
-import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.Robot;
-import frc.robot.helpers.Helper;
+// package frc.robot.oi;
 
-public class ManualPowerpack extends Command {
-  public ManualPowerpack() {
-    requires(Robot.powerPack);
-  }
+// import edu.wpi.first.wpilibj.command.Command;
+// import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+// import frc.robot.Robot;
+// import frc.robot.helpers.Helper;
 
-  @Override
-  protected void initialize() {
+// public class ManualPowerpack extends Command {
+//   public ManualPowerpack() {
+//     requires(Robot.powerPack);
+//   }
 
-  }
+//   @Override
+//   protected void initialize() {
 
-  @Override
-  protected void execute() {
-    double input = Helper.deadzone(OI.operator.getLY(), 0.1); //the correct input for climber mode (derek's preference)
-    if(Robot.powerPack.isElevatorMode())  {
-      input = -input;  //stick up = elevator up (when in elevator position)
-    }
+//   }
 
-    Robot.powerPack.setSpeed(input);
-    // SmartDashboard.putNumber("Climber Speed", input);
+//   @Override
+//   protected void execute() {
+//     double input = Helper.deadzone(OI.operator.getLY(), 0.1); //the correct input for climber mode (derek's preference)
+//     if(Robot.powerPack.isElevatorMode())  {
+//       input = -input;  //stick up = elevator up (when in elevator position)
+//     }
 
-    if(input == 0) {    //enables pneumatic brake based on deadzone and powerpack mode
-      if(Robot.powerPack.isElevatorMode())  {
-        Robot.powerPack.elevatorBrakeOn();
-      } else{
-        Robot.powerPack.climberBrakeOn();
-      }
-    } else {
-      if(Robot.powerPack.isElevatorMode())  {
-        Robot.powerPack.elevatorBrakeOff();
-      } else{
-        Robot.powerPack.climberBrakeOff();
-      }
-    }
-  }
+//     Robot.powerPack.setSpeed(input);
+//     // SmartDashboard.putNumber("Climber Speed", input);
 
-  @Override
-  protected boolean isFinished() {
-    return false;
-  }
+//     if(input == 0) {    //enables pneumatic brake based on deadzone and powerpack mode
+//       if(Robot.powerPack.isElevatorMode())  {
+//         Robot.powerPack.elevatorBrakeOn();
+//       } else{
+//         Robot.powerPack.climberBrakeOn();
+//       }
+//     } else {
+//       if(Robot.powerPack.isElevatorMode())  {
+//         Robot.powerPack.elevatorBrakeOff();
+//       } else{
+//         Robot.powerPack.climberBrakeOff();
+//       }
+//     }
+//   }
 
-  @Override
-  protected void end() {
-    Robot.powerPack.stop();
-    Robot.powerPack.climberBrakeOn();
-  }
+//   @Override
+//   protected boolean isFinished() {
+//     return false;
+//   }
 
-  @Override
-  protected void interrupted() {
-  }
-}
+//   @Override
+//   protected void end() {
+//     Robot.powerPack.stop();
+//     Robot.powerPack.climberBrakeOn();
+//   }
+
+//   @Override
+//   protected void interrupted() {
+//   }
+// }

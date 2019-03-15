@@ -13,7 +13,6 @@ public class ManualElevator extends Command {
     @Override
     protected void initialize() {
         Robot.powerPack.switchToElevator();
-        Robot.powerPack.elevatorBrakeOff();
     }
 
     @Override
