@@ -16,10 +16,14 @@ public class ArcadeDrive extends Command {
     @Override
     protected void execute() {
         double y = Helper.deadzone(-OI.driver.getLY(), .03);
-        double x = Helper.deadzone(XboxControllerPlus.cube(-OI.driver.getRX()), .03);
-        if(!Robot.powerPack.isElevatorMode())   {
+        double x = Helper.deadzone(-OI.driver.getRX(), .03);
+        if(!Robot.powerPack.isElevatorMode())   {       //slow for climbing
             y = y*.25;
             x = x*.25;
+        }
+
+        if(OI.driver.rb.get())   {      //Josh's sniper button
+            x = x*.5;
         }
         
         Robot.drivetrain.setSpeed(y - x, y + x);
