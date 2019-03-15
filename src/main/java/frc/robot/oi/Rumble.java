@@ -3,7 +3,7 @@ package frc.robot.oi;
 import edu.wpi.first.wpilibj.command.TimedCommand;
 
 public class Rumble extends TimedCommand {
-    protected static final double DEFAULT_TIME = 2.0;
+    protected static final double DEFAULT_TIME = 0.5;
 
     public Rumble() {
         this(DEFAULT_TIME);
