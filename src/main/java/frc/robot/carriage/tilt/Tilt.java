@@ -14,7 +14,7 @@ public class Tilt extends SubsystemManagerChild {
     private WPI_TalonSRX motor;
     private AnalogPotentiometer potentiometer;
     private PotentiometerLimit limit;
-    public static final double LOWER = .211, MIDDLE = 0.179, UPPER = .104;
+    public static final double LOWER = .237, MIDDLE = 0.179, UPPER = .104;
 
     public Tilt() {
         super("Tilt");
