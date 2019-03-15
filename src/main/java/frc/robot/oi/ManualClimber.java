@@ -11,7 +11,7 @@ public class ManualClimber extends Command {
 
     public ManualClimber() {
         requires(Robot.powerPack);
-        requires(Robot.drivetrain);
+        requires(Robot.footDrive);
     }
 
     @Override
@@ -23,7 +23,7 @@ public class ManualClimber extends Command {
 
     @Override
     protected void execute() {
-        double input = Helper.deadzone(-OI.driver.getLY(), 0.1); //deadzone so the brake knows when to enable
+        double input = Helper.deadzone(-OI.operator.getLY(), 0.1); //deadzone so the brake knows when to enable
         Robot.powerPack.setSpeed(input);
 
         if(input == 0) { 
@@ -32,7 +32,7 @@ public class ManualClimber extends Command {
             Robot.powerPack.climberBrakeOff();
         }
 
-        Robot.footDrive.setSpeed(-OI.driver.getRY());
+        Robot.footDrive.setSpeed(-OI.operator.getRY());
     }
 
     @Override
