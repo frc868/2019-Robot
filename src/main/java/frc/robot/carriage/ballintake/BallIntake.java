@@ -17,6 +17,8 @@ public class BallIntake extends SubsystemManagerChild {
         super("BallIntake");
         motor = new WPI_TalonSRX(RobotMap.Carriage.BallIntake.MOTOR);
         detection_limit = new IRLimit(RobotMap.Carriage.BallIntake.DETECTION_LIMIT);
+
+        motor.setInverted(true);
     }
 
     /**
