@@ -2,6 +2,7 @@ package frc.robot.oi;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.carriage.tilt.BrakeTilt;
 import frc.robot.carriage.tilt.SetTiltPosition;
 import frc.robot.helpers.Helper;
 
@@ -20,7 +21,7 @@ public class ManualTilt extends Command {
     @Override
     protected void end() {
         Robot.tilt.stop();
-        (new SetTiltPosition(Robot.tilt.getPotPosition())).start(); // maintain current position
+        (new BrakeTilt()).start(); // maintain current position
     }
 
     @Override
