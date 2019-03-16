@@ -1,29 +1,29 @@
-// package frc.robot.sensors.camera;
+package frc.robot.sensors.camera;
 
-// import edu.wpi.cscore.UsbCamera;
-// import edu.wpi.first.cameraserver.CameraServer;
-// import edu.wpi.first.wpilibj.SerialPort;
-// import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-// import frc.robot.RobotMap;
-// import frc.robot.helpers.subsystems.SubsystemManagerChild;
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.wpilibj.SerialPort;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.RobotMap;
+import frc.robot.helpers.subsystems.SubsystemManagerChild;
 
-// public class Camera extends SubsystemManagerChild {
+public class Camera extends SubsystemManagerChild {
 //   private SerialPort port;
-//   private UsbCamera jevois;
+  private UsbCamera jevois;
 //   private boolean vision_mode;
 
-//   public Camera() {
-//     super("Camera");
-//     port = new SerialPort(115200, RobotMap.Sensors.Camera.PORT);
-//   }
+  public Camera() {
+    super("Camera");
+    // port = new SerialPort(115200, RobotMap.Sensors.Camera.PORT);
+  }
 
-//   @Override
-//   public void init() {
-//     jevois = CameraServer.getInstance().startAutomaticCapture();
-//     switchToCamera();
+  @Override
+  public void init() {
+    jevois = CameraServer.getInstance().startAutomaticCapture();
+    // switchToCamera();
 
-//     // SmartDashboard.putData("Toggle Camera", new ToggleCamera());
-//   }
+    // SmartDashboard.putData("Toggle Camera", new ToggleCamera());
+  }
 
 //   public VisionData getData() {
 //     return new VisionData(port.readString());
@@ -52,4 +52,4 @@
 //   public boolean isVisionMode() {
 //     return vision_mode;
 //   }
-// }
+}
