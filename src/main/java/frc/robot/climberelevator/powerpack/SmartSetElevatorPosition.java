@@ -26,7 +26,6 @@ public class SmartSetElevatorPosition extends CommandGroup {
             if (Robot.ballIntake.isBallDetected()) {
                 addSequential(new SetElevatorPosition(PowerPack.MIDDLE_BALL));
                 addSequential(new SetTiltPosition(Tilt.UPPER));
-                
             } else {
                 addSequential(new SetElevatorPosition(PowerPack.MIDDLE_HATCH));
             }
