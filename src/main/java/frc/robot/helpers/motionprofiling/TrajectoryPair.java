@@ -4,87 +4,78 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
-
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import jaci.pathfinder.Trajectory;
 
 public class TrajectoryPair {
-    private Trajectory.Segment[] left, right;
+    private ArrayList<Trajectory.Segment> left, right;
 
-    public TrajectoryPair(String fileName) {
+    public TrajectoryPair(String path) {
         try {
-            String path = "home/lvuser/deploy/output" + fileName + ".csv";
-            File file = new File(path);
-            Scanner inputStream = new Scanner(file);
+            String leftpath = "home/lvuser/deploy/output" + path + ".left.pf1.csv";
+            String rightpath = "home/lvuser/deploy/output" + path + ".right.pf1.csv";
+
+            File left = new File(leftpath), right = new File(rightpath);
+            Scanner leftStream = new Scanner(left), rightStream = new Scanner(right);
 
             ArrayList<Trajectory.Segment> segmentsLeft = new ArrayList<Trajectory.Segment>();
             ArrayList<Trajectory.Segment> segmentsRight = new ArrayList<Trajectory.Segment>();
 
-            inputStream.nextLine(); // skip header
+            // skip header
+            leftStream.nextLine(); 
+            rightStream.nextLine();
+
             // fill segment array lists w/ csv data
-            while (inputStream.hasNext()) {
-                String line = inputStream.nextLine();
-                String[] lineSplit = line.split(",");
+            while (leftStream.hasNext()) {
+                String leftLine = leftStream.nextLine();
+                String rightLine = rightStream.nextLine();
+                String[] leftLineSplit = leftLine.split(",");
+                String[] rightLineSplit = rightLine.split(",");
 
-                double dt = Double.parseDouble(lineSplit[0]);
+                double dt = Double.parseDouble(leftLineSplit[0]);
 
-                double xLeft = Double.parseDouble(lineSplit[1]);
-                double yLeft = Double.parseDouble(lineSplit[2]);
-                double positionLeft = Double.parseDouble(lineSplit[3]);
-                double velocityLeft = Double.parseDouble(lineSplit[4]);
-                double accelerationLeft = Double.parseDouble(lineSplit[5]);
-                double jerkLeft = Double.parseDouble(lineSplit[6]);
-                double headingLeft = Double.parseDouble(lineSplit[7]);
+                double xLeft = Double.parseDouble(leftLineSplit[1]);
+                double yLeft = Double.parseDouble(leftLineSplit[2]);
+                double positionLeft = Double.parseDouble(leftLineSplit[3]);
+                double velocityLeft = Double.parseDouble(leftLineSplit[4]);
+                double accelerationLeft = Double.parseDouble(leftLineSplit[5]);
+                double jerkLeft = Double.parseDouble(leftLineSplit[6]);
+                double headingLeft = Double.parseDouble(leftLineSplit[7]);
 
-                double xRight = Double.parseDouble(lineSplit[8]);
-                double yRight = Double.parseDouble(lineSplit[9]);
-                double positionRight = Double.parseDouble(lineSplit[10]);
-                double velocityRight = Double.parseDouble(lineSplit[11]);
-                double accelerationRight = Double.parseDouble(lineSplit[12]);
-                double jerkRight = Double.parseDouble(lineSplit[13]);
-                double headingRight = Double.parseDouble(lineSplit[14]);
+                double xRight = Double.parseDouble(rightLineSplit[1]);
+                double yRight = Double.parseDouble(rightLineSplit[2]);
+                double positionRight = Double.parseDouble(rightLineSplit[3]);
+                double velocityRight = Double.parseDouble(rightLineSplit[4]);
+                double accelerationRight = Double.parseDouble(rightLineSplit[5]);
+                double jerkRight = Double.parseDouble(rightLineSplit[6]);
+                double headingRight = Double.parseDouble(rightLineSplit[7]);
 
-                segmentsLeft.add(new Trajectory.Segment(dt, xLeft, yLeft, positionLeft, velocityLeft, accelerationLeft,
-                        jerkLeft, headingLeft));
-                segmentsRight.add(new Trajectory.Segment(dt, xRight, yRight, positionRight, velocityRight,
-                        accelerationRight, jerkRight, headingRight));
+                segmentsLeft.add(new Trajectory.Segment(dt, xLeft, yLeft, positionLeft, velocityLeft, accelerationLeft, jerkLeft, headingLeft));
+                segmentsRight.add(new Trajectory.Segment(dt, xRight, yRight, positionRight, velocityRight, accelerationRight, jerkRight, headingRight));
             }
 
-            inputStream.close();
-
-            // turn array lists in to arrays
-            this.left = new Trajectory.Segment[segmentsLeft.size()];
-            this.right = new Trajectory.Segment[segmentsRight.size()];
-
-            for (int i = 0; i < left.length; i++) {
-                left[i] = segmentsLeft.get(i);
-                right[i] = segmentsRight.get(i);
-            }
-        } catch (FileNotFoundException e) {
-            
-        }
+            leftStream.close();
+            rightStream.close();
+        } catch (FileNotFoundException e) {}
     }
 
-    public TrajectoryPair(Trajectory.Segment[] left, Trajectory.Segment[] right) {
+    public TrajectoryPair(ArrayList<Trajectory.Segment> left, ArrayList<Trajectory.Segment> right) {
         this.left = left;
         this.right = right;
     }
 
     public int getLength() {
-        SmartDashboard.putNumber("Left length", getLeft().length);
-        return getLeft().length;
+        return getLeft().size();
     }
 
-    public Trajectory.Segment[] getLeft() {
-        SmartDashboard.putBoolean("getLeft()", true);
+    public ArrayList<Trajectory.Segment> getLeft() {
         return left;
     }
 
-    public Trajectory.Segment[] getRight() {
+    public ArrayList<Trajectory.Segment> getRight() {
         return right;
     }
 
     public double getAvgAngle(int i) {
-        return (left[i].heading + right[i].heading) / 2;
+        return (left.get(i).heading + right.get(i).heading) / 2;
     }
 }

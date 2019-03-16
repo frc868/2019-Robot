@@ -25,7 +25,7 @@ public class RunProfile extends Command {
     
         @Override
         public double pidGet() {
-            return pair.getLeft()[i].position - Robot.drivetrain.getScaledLeftDistance();
+            return pair.getLeft().get(i).position - Robot.drivetrain.getScaledLeftDistance();
         }
     
         @Override
@@ -41,7 +41,7 @@ public class RunProfile extends Command {
     
         @Override
         public double pidGet() {
-            return pair.getRight()[i].position - Robot.drivetrain.getScaledRightDistance();
+            return pair.getRight().get(i).position - Robot.drivetrain.getScaledRightDistance();
         }
     
         @Override
@@ -69,7 +69,7 @@ public class RunProfile extends Command {
     PIDOutput leftOutput = new PIDOutput(){
         @Override
         public void pidWrite(double output) {
-            Robot.drivetrain.setLeftSpeed((output + pair.getLeft()[i].velocity * V + pair.getLeft()[i].acceleration * A));
+            Robot.drivetrain.setLeftSpeed((output + pair.getLeft().get(i).velocity * V + pair.getLeft().get(i).acceleration * A));
         }
     };
 
@@ -77,7 +77,7 @@ public class RunProfile extends Command {
     
         @Override
         public void pidWrite(double output) {
-            Robot.drivetrain.setRightSpeed((output + pair.getRight()[i].velocity * V + pair.getRight()[i].acceleration * A));
+            Robot.drivetrain.setRightSpeed((output + pair.getRight().get(i).velocity * V + pair.getRight().get(i).acceleration * A));
         }
     };
 
