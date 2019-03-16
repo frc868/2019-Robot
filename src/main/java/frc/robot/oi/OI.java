@@ -52,7 +52,7 @@ public class OI {
         operator.menu.whenPressed(new DeployRamps());
         operator.menu.whenPressed(new ManualClimber());
 
-        operator.povN.whenPressed(new SetTiltPosition(Tilt.UPPER));
+        // operator.povN.whenPressed(new SetTiltPosition(Tilt.UPPER));
         operator.povE.whenPressed(new SetTiltPosition(Tilt.MIDDLE));
         operator.povS.whenPressed(new SetTiltPosition(Tilt.LOWER));
 
