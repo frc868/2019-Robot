@@ -14,7 +14,8 @@ public class Tilt extends SubsystemManagerChild {
     private WPI_TalonSRX motor;
     private AnalogPotentiometer potentiometer;
     private PotentiometerLimit limit;
-    public static final double LOWER = .237, MIDDLE = 0.165, UPPER = .104;
+    public static final double LOWER = .265, MIDDLE = 0.248, UPPER = .134;
+    public static final double TILT_LOWER_SPEED = -0.1;
 
     public Tilt() {
         super("Tilt");
@@ -35,7 +36,7 @@ public class Tilt extends SubsystemManagerChild {
             speed = Helper.boundValue(speed, 0, 1);
         }
 
-        motor.set(Helper.boundValue(speed));
+        motor.set(Helper.boundValue(speed, TILT_LOWER_SPEED, 1));
     }
 
     /**
