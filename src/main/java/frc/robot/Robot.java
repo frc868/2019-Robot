@@ -11,6 +11,7 @@ import frc.robot.climberelevator.forks.Forks;
 import frc.robot.climberelevator.powerpack.PowerPack;
 import frc.robot.climberelevator.ramps.Ramps;
 import frc.robot.drivetrain.Drivetrain;
+import frc.robot.drivetrain.commands.RunProfile;
 import frc.robot.helpers.subsystems.SubsystemManager;
 import frc.robot.oi.OI;
 import frc.robot.sensors.camera.Camera;
@@ -67,6 +68,8 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
     SubsystemManager.initEnabled();
+
+    Scheduler.getInstance().add(new RunProfile("StartToRightFrontShip"));
   }
 
   @Override
