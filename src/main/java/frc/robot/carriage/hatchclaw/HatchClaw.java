@@ -10,7 +10,7 @@ import frc.robot.oi.Rumble;
 public class HatchClaw extends SubsystemManagerChild {
   private Solenoid actuator;
   private IRLimit left_limit, right_limit;
-  private final boolean GRABBED_STATE = true;
+  private final boolean GRABBED_STATE = false;
   private final boolean HATCH_DETECTED_STATE = true;
 
   public HatchClaw() {
