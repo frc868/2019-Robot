@@ -8,21 +8,17 @@ import frc.robot.helpers.pid.PIDCommandPlus;
 
 public class SetElevatorPosition extends PIDCommandPlus {
     public static final double P = 0.08 , I = 0.000, D = 0.00;
-    private double setpoint;
 
     public SetElevatorPosition(double setpoint) {
-        super(P, I, D, setpoint);
+        super(P, I, D, setpoint, .1);
         requires(Robot.powerPack);
-        this.setpoint = setpoint;
     }
     
     @Override
     protected void initialize() {
-        super.initialize();
-        getPIDController().setAbsoluteTolerance(.1);
+        (new SetTiltPosition(Tilt.MIDDLE)).start();
         Robot.powerPack.switchToElevator();
         Robot.powerPack.elevatorBrakeOff();
-        (new SetTiltPosition(Tilt.MIDDLE)).start();
     }
 
     @Override
@@ -44,11 +40,5 @@ public class SetElevatorPosition extends PIDCommandPlus {
     protected void end() {
         Robot.powerPack.stop();
         Robot.powerPack.elevatorBrakeOn();
-
-        if(setpoint == Robot.powerPack.UPPER_BALL){
-            (new SetTiltPosition(Robot.tilt.UPPER)).start();
-        } else if (setpoint == Robot.powerPack.INTAKE_BALL) {
-            (new SetTiltPosition(Robot.tilt.LOWER)).start();
-        }
     }
 }
