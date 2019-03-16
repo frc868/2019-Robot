@@ -9,10 +9,10 @@ import jaci.pathfinder.Trajectory;
 public class TrajectoryPair {
     private ArrayList<Trajectory.Segment> left, right;
 
-    public TrajectoryPair(String path) {
+    public TrajectoryPair(String filename) {
         try {
-            String leftpath = "home/lvuser/deploy/output" + path + ".left.pf1.csv";
-            String rightpath = "home/lvuser/deploy/output" + path + ".right.pf1.csv";
+            String leftpath = "home/lvuser/deploy/output/" + filename + ".left.pf1.csv";
+            String rightpath = "home/lvuser/deploy/output/" + filename + ".right.pf1.csv";
 
             File left = new File(leftpath), right = new File(rightpath);
             Scanner leftStream = new Scanner(left), rightStream = new Scanner(right);
