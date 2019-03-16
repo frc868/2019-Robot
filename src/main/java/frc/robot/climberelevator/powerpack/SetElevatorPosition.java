@@ -27,7 +27,7 @@ public class SetElevatorPosition extends PIDCommandPlus {
 
     @Override
     protected void execute() {
-        SmartDashboard.putNumber("Error", getError());
+        SmartDashboard.putNumber("Elevator Error", getError());
     }
 
     @Override
@@ -42,12 +42,13 @@ public class SetElevatorPosition extends PIDCommandPlus {
 
     @Override
     protected void end() {
+        Robot.powerPack.stop();
+        Robot.powerPack.elevatorBrakeOn();
+
         if(setpoint == Robot.powerPack.UPPER_BALL){
             (new SetTiltPosition(Robot.tilt.UPPER)).start();
         } else if (setpoint == Robot.powerPack.INTAKE_BALL) {
             (new SetTiltPosition(Robot.tilt.LOWER)).start();
         }
-        Robot.powerPack.stop();
-        Robot.powerPack.elevatorBrakeOn();
     }
 }
