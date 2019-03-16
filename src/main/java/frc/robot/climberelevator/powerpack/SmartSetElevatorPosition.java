@@ -7,11 +7,17 @@ import frc.robot.carriage.tilt.Tilt;
 
 public class SmartSetElevatorPosition extends CommandGroup {
 
+    private Height height;
     public static enum Height {
         ballIntake, lower, middle, upper;
     }
 
     public SmartSetElevatorPosition(Height height) {
+        this.height = height;
+    }
+
+    @Override
+    protected void initialize() {
         if (height == Height.ballIntake) {
             addSequential(new SetElevatorPosition(PowerPack.INTAKE_BALL));
             addSequential(new SetTiltPosition(Tilt.LOWER));
