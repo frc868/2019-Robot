@@ -45,8 +45,8 @@ public class OI {
         operator.x.whenPressed(new SmartSetElevatorPosition(SmartSetElevatorPosition.Height.ballIntake));
 
         operator.lb.whenPressed(new ToggleClaw());
+        operator.rb.pressToStartReleaseToStop(new ManualElevator());
         operator.start.pressToStartReleaseToStop(new ManualTilt());
-        operator.menu.pressToStartReleaseToStop(new ManualElevator());
 
         // operator.start.whenPressed(new DeployForks());
         // operator.menu.whenPressed(new DeployRamps());
