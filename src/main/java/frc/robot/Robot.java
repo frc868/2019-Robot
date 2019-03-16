@@ -70,6 +70,9 @@ public class Robot extends TimedRobot {
     SubsystemManager.initEnabled();
 
     Scheduler.getInstance().add(new RunProfile("StartToRightFrontShip"));
+    // Scheduler.getInstance().add(new RunProfile("StartToRightFrontRocket"));
+    // Scheduler.getInstance().add(new RunProfile("StartToRightMiddleRocket"));
+    // Scheduler.getInstance().add(new RunProfile("StartToRightFarRocket"));
   }
 
   @Override
