@@ -6,6 +6,9 @@ import frc.robot.helpers.sensors.AnalogDistanceLimit;
 public class AnalogDistanceSensor extends AnalogInput {
     private final double SLOPE, Y_INTERCEPT;
 
+    // Data Source: https://www.pololu.com/product/136
+    // Calculations: https://docs.google.com/spreadsheets/d/1xHcWuo77p9sg5iKscfKN_5hNPehgSpC8CxtGcfqVukk/edit?usp=sharing
+
     public AnalogDistanceSensor(int port) {
         super(port);
         SLOPE = 0.047;
