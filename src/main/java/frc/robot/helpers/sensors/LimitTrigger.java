@@ -6,6 +6,7 @@ import frc.robot.helpers.triggers.TriggerPlus;
 public class LimitTrigger extends TriggerPlus {
   private DigitalInput digitalLimit;
   private PotentiometerLimit potentiometerLimit;
+  private AnalogDistanceLimit analogDistanceLimit;
   
   public LimitTrigger(DigitalInput digitalInput) {
     this.digitalLimit = digitalInput;
@@ -15,12 +16,18 @@ public class LimitTrigger extends TriggerPlus {
     this.potentiometerLimit = potentiometerLimit;
   }
 
+  public LimitTrigger(AnalogDistanceLimit analogDistanceLimit) {
+    this.analogDistanceLimit = analogDistanceLimit;
+  }
+
   @Override
   public boolean get() {
     if (digitalLimit != null) {
       return digitalLimit.get();
-    } else {
+    } else if (potentiometerLimit != null) {
       return potentiometerLimit.get();
+    } else {
+      return analogDistanceLimit.get();
     }
   }
 }
