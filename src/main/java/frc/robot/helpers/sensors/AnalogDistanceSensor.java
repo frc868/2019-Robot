@@ -4,15 +4,13 @@ import edu.wpi.first.wpilibj.AnalogInput;
 import frc.robot.helpers.sensors.AnalogDistanceLimit;
 
 public class AnalogDistanceSensor extends AnalogInput {
-    private final double SLOPE, Y_INTERCEPT;
+    private final double SLOPE = 0.0968, Y_INTERCEPT = -0.0134;
 
-    // Data Source: https://www.pololu.com/product/136
+    // Data Source: https://www.pololu.com/file/0J713/GP2Y0A41SK0F.pdf
     // Calculations: https://docs.google.com/spreadsheets/d/1xHcWuo77p9sg5iKscfKN_5hNPehgSpC8CxtGcfqVukk/edit?usp=sharing
 
     public AnalogDistanceSensor(int port) {
         super(port);
-        SLOPE = 0.047;
-        Y_INTERCEPT = -7.8 * Math.pow(10, -3);
     }
 
     public double getDistance() {
