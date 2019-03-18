@@ -9,7 +9,7 @@ import frc.robot.oi.Rumble;
 
 public class HatchClaw extends SubsystemManagerChild {
   private Solenoid actuator;
-  private AnalogDistanceLimit left_limit, right_limit;
+  private AnalogDistanceLimit detection_limit;
   private final boolean GRABBED_STATE = false;
   private final boolean HATCH_DETECTED_STATE = true;
   private final double ACTIVATION_DISTANCE = 0;
@@ -17,8 +17,7 @@ public class HatchClaw extends SubsystemManagerChild {
   public HatchClaw() {
     super("HatchClaw");
     actuator = new Solenoid(RobotMap.PCM, RobotMap.Carriage.HatchClaw.ACTUATOR);
-    left_limit = new AnalogDistanceLimit(RobotMap.Carriage.HatchClaw.LEFT_LIMIT, ACTIVATION_DISTANCE);
-    right_limit = new AnalogDistanceLimit(RobotMap.Carriage.HatchClaw.LEFT_LIMIT, ACTIVATION_DISTANCE);
+    detection_limit = new AnalogDistanceLimit(RobotMap.Carriage.HatchClaw.DETECTION_LIMIT, ACTIVATION_DISTANCE);
   }
 
   /**
@@ -61,41 +60,30 @@ public class HatchClaw extends SubsystemManagerChild {
    * 
    * @return state of left limit
    */
-  public boolean getLeftLimit() {
-    return left_limit.get();
-  }
-
-  /**
-   * @return state of right limit
-   */
-  public boolean getRightLimit() {
-    return right_limit.get();
+  public boolean getLimit() {
+    return detection_limit.get();
   }
 
   /**
    * @return true if both limits detect a hatch
    */
   public boolean isHatchDetected() {
-    return (getLeftLimit() == HATCH_DETECTED_STATE) && (getRightLimit() == HATCH_DETECTED_STATE);
+    return getLimit() == HATCH_DETECTED_STATE;
   }
 
   @Override
   public void init() {
-    left_limit.getTrigger().and(right_limit.getTrigger()).whenActive(new Rumble());
+    detection_limit.getTrigger().whenActive(new Rumble());
   }
 
   @Override
   public void initSD() {
     addTab("Actuator", actuator);
-    addTab("Left Limit", left_limit);
-    addTab("Right Limit", right_limit);
   }
 
   @Override
   public void updateSD() {
     SmartDashboard.putBoolean("Hatch Grabbed?", isGrabbed());
     SmartDashboard.putBoolean("Hatch Detected?", isHatchDetected());
-    SmartDashboard.putBoolean("Hatch Left?", getLeftLimit());
-    SmartDashboard.putBoolean("Hatch Right?", getRightLimit());
   }
 }
