@@ -3,21 +3,22 @@ package frc.robot.carriage.hatchclaw;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
-import frc.robot.helpers.sensors.IRLimit;
+import frc.robot.helpers.sensors.AnalogDistanceLimit;
 import frc.robot.helpers.subsystems.SubsystemManagerChild;
 import frc.robot.oi.Rumble;
 
 public class HatchClaw extends SubsystemManagerChild {
   private Solenoid actuator;
-  private IRLimit left_limit, right_limit;
+  private AnalogDistanceLimit left_limit, right_limit;
   private final boolean GRABBED_STATE = false;
   private final boolean HATCH_DETECTED_STATE = true;
+  private final double ACTIVATION_DISTANCE = 0;
 
   public HatchClaw() {
     super("HatchClaw");
     actuator = new Solenoid(RobotMap.PCM, RobotMap.Carriage.HatchClaw.ACTUATOR);
-    left_limit = new IRLimit(RobotMap.Carriage.HatchClaw.LEFT_LIMIT);
-    right_limit = new IRLimit(RobotMap.Carriage.HatchClaw.RIGHT_LIMIT);
+    left_limit = new AnalogDistanceLimit(RobotMap.Carriage.HatchClaw.LEFT_LIMIT, ACTIVATION_DISTANCE);
+    right_limit = new AnalogDistanceLimit(RobotMap.Carriage.HatchClaw.LEFT_LIMIT, ACTIVATION_DISTANCE);
   }
 
   /**

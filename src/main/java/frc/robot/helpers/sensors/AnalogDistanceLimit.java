@@ -12,6 +12,10 @@ public class AnalogDistanceLimit {
         limitTrigger = new LimitTrigger(this);
     }
 
+    public AnalogDistanceLimit(int port, double LIMIT) {
+        this(new AnalogDistanceSensor(port), LIMIT);
+    }
+
     public boolean get() {
         return sensor.getDistance() < LIMIT;
     }
