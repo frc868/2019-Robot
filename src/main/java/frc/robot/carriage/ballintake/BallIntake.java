@@ -9,16 +9,19 @@ import frc.robot.helpers.subsystems.SubsystemManagerChild;
 import frc.robot.oi.Rumble;
 
 public class BallIntake extends SubsystemManagerChild {
-    private WPI_TalonSRX motor;
-    private IRLimit detection_limit;
+    private WPI_TalonSRX motor; // motor that will intake/outtake ball
+    private IRLimit detection_limit; // IR limit to detect balls
     private final boolean BALL_DETECTED_STATE = true; // state the the IR will be set to if the ball is detected
 
+    /**
+     * subsytem for ball intaking and outtaking, rides on the elevator
+     */
     public BallIntake() {
         super("BallIntake");
         motor = new WPI_TalonSRX(RobotMap.Carriage.BallIntake.MOTOR);
         detection_limit = new IRLimit(RobotMap.Carriage.BallIntake.DETECTION_LIMIT);
 
-        motor.setInverted(true);
+        motor.setInverted(true); // inverts intake motor
     }
 
     /**
@@ -55,11 +58,13 @@ public class BallIntake extends SubsystemManagerChild {
      * @return true if ball is detected, else false
      */
     public boolean isBallDetected() {
-        return getBallDetectionLimit() == BALL_DETECTED_STATE;
+        // sees if limit state is the same as the state in which a ball is detected
+        return getBallDetectionLimit() == BALL_DETECTED_STATE; 
     }
 
     @Override
     public void init() {
+        // rumbles both controllers when the limit is tripped
         detection_limit.getTrigger().whenActive(new Rumble());
     }
 

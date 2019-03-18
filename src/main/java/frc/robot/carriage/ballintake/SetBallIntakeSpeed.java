@@ -4,9 +4,13 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 public class SetBallIntakeSpeed extends Command {
-    private double speed;
-    private static final double DEFAULT_POWER = 1.0;
+    private double speed; // speed to set the intake to 
+    private static final double DEFAULT_POWER = 1.0; // the default power to set the intake to 
 
+    /**
+     * sets intake to provided power, stops intake when ended
+     * power is default power
+     */
     public SetBallIntakeSpeed() {
         this(DEFAULT_POWER);
     }
