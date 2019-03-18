@@ -9,10 +9,16 @@ public class AnalogDistanceSensor extends AnalogInput {
     // Data Source: https://www.pololu.com/file/0J713/GP2Y0A41SK0F.pdf
     // Calculations: https://docs.google.com/spreadsheets/d/1xHcWuo77p9sg5iKscfKN_5hNPehgSpC8CxtGcfqVukk/edit?usp=sharing
 
+    /**
+     * @param port port of the sensor
+     */
     public AnalogDistanceSensor(int port) {
         super(port);
     }
 
+    /**
+     * @return distance in centimeters
+     */
     public double getDistance() {
         return 1/(getVoltage() * SLOPE + Y_INTERCEPT);
     }
