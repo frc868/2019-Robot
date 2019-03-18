@@ -78,15 +78,19 @@ public class Tilt extends SubsystemManagerChild {
     }
 
     @Override
-    public void initEnabled() {
-        // SmartDashboard.putData("Tilt Up", new SetTiltPosition(Tilt.MIDDLE));
+    public void init() {
+        limit.getTrigger().whenActive(new StopMotor(motor));
     }
 
     @Override
-    public void init() {
+    public void initEnabled() {
+        (new BrakeTilt()).start(); // brake the motor when we enable
+    }
+
+    @Override
+    public void initSD() {
         addTab("Motor", motor);
         addTab("Potentiometer", potentiometer);
-        limit.getTrigger().whenActive(new StopMotor(motor));
     }
 
     @Override

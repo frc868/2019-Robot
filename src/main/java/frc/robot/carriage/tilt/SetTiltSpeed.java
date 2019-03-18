@@ -4,25 +4,32 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 public class SetTiltSpeed extends Command {
-    private double targetSpeed;
+    private double speed; // target speed for tilt
 
-    public SetTiltSpeed(double targetSpeed) {
+    /**
+     * sets tilt to given speed
+     * @param speed to set tilt to 
+     */
+    public SetTiltSpeed(double speed) {
         requires(Robot.tilt);
-        this.targetSpeed = targetSpeed;
+        this.speed = speed;
     }
 
     @Override
     protected void initialize() {
-        Robot.tilt.setSpeed(targetSpeed);
+        // sets tilt to speed
+        Robot.tilt.setSpeed(speed);
     }
 
     @Override
     protected void end() {
+        // stops tilt motor
         Robot.tilt.stop();
     }
 
     @Override
     protected boolean isFinished() {
+        // never end
         return false;
     }
 

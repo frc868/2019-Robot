@@ -8,11 +8,11 @@ import frc.robot.helpers.subsystems.SubsystemManagerChild;
 import frc.robot.oi.Rumble;
 
 public class HatchClaw extends SubsystemManagerChild {
-  private Solenoid actuator;
-  private AnalogDistanceLimit detection_limit;
-  private final boolean GRABBED_STATE = false;
-  private final boolean HATCH_DETECTED_STATE = true;
-  private final double ACTIVATION_DISTANCE = 0;
+  private Solenoid actuator; // solenoid to actuate hatch claw
+  private AnalogDistanceLimit detection_limit; // analog distance sensor limit to detect hatch
+  private final boolean GRABBED_STATE = false; // state of solenoid that equates to grabbed mode
+  private final boolean HATCH_DETECTED_STATE = true; // state of detection limit that equates to having a hatch
+  private final double ACTIVATION_DISTANCE = 0; // distance required to activate analog distance sensor limit
 
   public HatchClaw() {
     super("HatchClaw");
@@ -53,6 +53,7 @@ public class HatchClaw extends SubsystemManagerChild {
    * @return whether the claw is grabbed or not
    */
   public boolean isGrabbed() {
+    // sees if solenoid's state is the same as the state that indicates that the hatch is grabbed
     return getState() == GRABBED_STATE;
   }
 
@@ -68,7 +69,8 @@ public class HatchClaw extends SubsystemManagerChild {
    * @return true if both limits detect a hatch
    */
   public boolean isHatchDetected() {
-    return getLimit() == HATCH_DETECTED_STATE;
+    // sees if limit's state is the same as the state that indicates that a hatch is detected
+    return getLimit() == HATCH_DETECTED_STATE; 
   }
 
   @Override

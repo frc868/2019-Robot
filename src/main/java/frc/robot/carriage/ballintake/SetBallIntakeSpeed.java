@@ -8,13 +8,16 @@ public class SetBallIntakeSpeed extends Command {
     private static final double DEFAULT_POWER = 1.0; // the default power to set the intake to 
 
     /**
-     * sets intake to provided power, stops intake when ended
-     * power is default power
+     * sets intake to default power, stops intake when ended
      */
     public SetBallIntakeSpeed() {
         this(DEFAULT_POWER);
     }
 
+    /**
+     * sets intake to given power, stops intake when ended
+     * @param speeed speed to set intake to
+     */
     public SetBallIntakeSpeed(double speed) {
         requires(Robot.ballIntake);
         this.speed = speed;
@@ -22,16 +25,19 @@ public class SetBallIntakeSpeed extends Command {
 
     @Override
     protected void initialize() {
+        // set the motor to speed
         Robot.ballIntake.setSpeed(speed);
     }
 
     @Override
     protected void end() {
+        // stop the motor
         Robot.ballIntake.stop();
     }
     
     @Override
     protected boolean isFinished() {
+        // never finish
         return false;
     }
 }
