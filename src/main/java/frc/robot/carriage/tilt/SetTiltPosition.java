@@ -6,7 +6,7 @@ import frc.robot.helpers.pid.PIDCommandPlus;
 
 public class SetTiltPosition extends PIDCommandPlus {
     // PID constants
-    private static final double P = 23.0, I = 0.0, D = 0.0;
+    private static final double P = 16.0, I = 0.1, D = 0.9;
 
     /**
      * sets tilt to given position
@@ -15,6 +15,11 @@ public class SetTiltPosition extends PIDCommandPlus {
     public SetTiltPosition(double setpoint) {
         super(P, I, D, setpoint); // sets PID constants and setpoint
         requires(Robot.tilt);
+        if(setpoint == Robot.tilt.UPPER){
+            Robot.tilt.limitPower = true;
+        }else{
+            Robot.tilt.limitPower = false;
+        }
     }
 
     @Override

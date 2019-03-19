@@ -46,13 +46,13 @@ public class OI {
 
         operator.lb.whenPressed(new ToggleClaw());
         operator.rb.pressToStartReleaseToStop(new ManualElevator());
-        operator.start.pressToStartReleaseToStop(new ManualTilt());
+        operator.menu.pressToStartReleaseToStop(new ManualTilt());
 
         // operator.start.whenPressed(new DeployForks());
         // operator.menu.whenPressed(new DeployRamps());
         // operator.menu.whenPressed(new ManualClimber());
 
-        // operator.povN.whenPressed(new SetTiltPosition(Tilt.UPPER));
+        operator.povN.whenPressed(new SetTiltPosition(Tilt.UPPER));
         operator.povE.whenPressed(new SetTiltPosition(Tilt.MIDDLE));
         operator.povS.whenPressed(new SetTiltPosition(Tilt.LOWER));
 

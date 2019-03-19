@@ -23,7 +23,10 @@ public class ArcadeDrive extends Command {
         }
 
         if(OI.driver.rb.get())   {      //Josh's sniper button
-            x = x*.5;
+            if(x > 0)
+            x = Math.abs(Math.pow(x, 0.55555555555555555555));
+            if(x < 0)
+            x = -Math.abs(Math.pow(x, 0.55555555555555555555));
         }
         
         Robot.drivetrain.setSpeed(y - x, y + x);

@@ -18,30 +18,33 @@ public class SmartSetElevatorPosition extends CommandGroup {
 
     @Override
     protected void initialize() {
+        CommandGroup command = new CommandGroup();
         if (height == Height.ballIntake) {
-            addSequential(new SetElevatorPosition(PowerPack.INTAKE_BALL));
-            addSequential(new SetTiltPosition(Tilt.LOWER));
+            command.addSequential(new SetElevatorPosition(PowerPack.INTAKE_BALL));
+            // command.addSequential(new SetTiltPosition(Tilt.LOWER));
         } else if (height == Height.lower) {
             if (Robot.ballIntake.isBallDetected()) {
-                addSequential(new SetElevatorPosition(PowerPack.LOWER_BALL));
-                addSequential(new SetTiltPosition(Tilt.UPPER));
+                command.addSequential(new SetElevatorPosition(PowerPack.LOWER_BALL));
+                // command.addSequential(new SetTiltPosition(Tilt.UPPER));
             } else {
-                addSequential(new SetElevatorPosition(PowerPack.LOWER_HATCH));
+                command.addSequential(new SetElevatorPosition(PowerPack.LOWER_HATCH));
             }
         } else if (height == Height.middle) {
             if (Robot.ballIntake.isBallDetected()) {
-                addSequential(new SetElevatorPosition(PowerPack.MIDDLE_BALL));
-                addSequential(new SetTiltPosition(Tilt.UPPER));
+                command.addSequential(new SetElevatorPosition(PowerPack.MIDDLE_BALL));
+                // command.addSequential(new SetTiltPosition(Tilt.UPPER));
             } else {
-                addSequential(new SetElevatorPosition(PowerPack.MIDDLE_HATCH));
+                command.addSequential(new SetElevatorPosition(PowerPack.MIDDLE_HATCH));
             }
         } else if (height == Height.upper) {
             if (Robot.ballIntake.isBallDetected()) {
-                addSequential(new SetElevatorPosition(PowerPack.UPPER_BALL));
-                addSequential(new SetTiltPosition(Tilt.UPPER));
+                command.addSequential(new SetElevatorPosition(PowerPack.UPPER_BALL));
+                // command.addSequential(new SetTiltPosition(Tilt.UPPER));
             } else {
-                addSequential(new SetElevatorPosition(PowerPack.UPPER_HATCH));
+                command.addSequential(new SetElevatorPosition(PowerPack.UPPER_HATCH));
             }
         }
+
+        command.start();
     }
 }

@@ -1,5 +1,6 @@
 package frc.robot.drivetrain.commands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 import frc.robot.helpers.Helper;
 import frc.robot.helpers.pid.PIDCommandPlus;
@@ -36,6 +37,16 @@ public class DriveStraight extends PIDCommandPlus {
         double left = targetPower + output;
         double right = targetPower - output;
         Robot.drivetrain.setSpeed(Helper.boundValue(left), Helper.boundValue(right));
+    }
+
+    @Override
+    protected void execute() {
+        SmartDashboard.putNumber("Drive Straight Error", getError());
+    }
+    
+    @Override
+    protected boolean isFinished() {
+        return Robot.drivetrain.getAvgScaledDistance() - initialDistance > targetDistance;
     }
 
     @Override

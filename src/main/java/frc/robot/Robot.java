@@ -11,6 +11,7 @@ import frc.robot.climberelevator.forks.Forks;
 import frc.robot.climberelevator.powerpack.PowerPack;
 import frc.robot.climberelevator.ramps.Ramps;
 import frc.robot.drivetrain.Drivetrain;
+import frc.robot.drivetrain.commands.DriveStraight;
 import frc.robot.drivetrain.commands.RunProfile;
 import frc.robot.helpers.subsystems.SubsystemManager;
 import frc.robot.oi.OI;
@@ -69,7 +70,7 @@ public class Robot extends TimedRobot {
   public void autonomousInit() {
     SubsystemManager.initEnabled();
 
-    Scheduler.getInstance().add(new RunProfile("StartToRightFrontShip"));
+    Scheduler.getInstance().add(new DriveStraight(20, 0.5));
     // Scheduler.getInstance().add(new RunProfile("StartToRightFrontRocket"));
     // Scheduler.getInstance().add(new RunProfile("StartToRightMiddleRocket"));
     // Scheduler.getInstance().add(new RunProfile("StartToRightFarRocket"));
