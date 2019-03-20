@@ -19,7 +19,7 @@ public class Camera extends SubsystemManagerChild {
 
   @Override
   public void init() {
-    jevois = CameraServer.getInstance().startAutomaticCapture();
+//    jevois = CameraServer.getInstance().startAutomaticCapture();
     // switchToCamera();
 
     // SmartDashboard.putData("Toggle Camera", new ToggleCamera());

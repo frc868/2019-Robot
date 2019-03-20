@@ -43,7 +43,7 @@ public abstract class PIDCommandPlus extends PIDCommand {
         if (toleranceMode) {
             return super.getPIDController().onTarget();
         } else {
-            return forward ? getError() < 0 : getError() > 0;
+            return forward ? getError() <= 0 : getError() >= 0;
         }
     }
 
