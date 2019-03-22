@@ -2,14 +2,11 @@ package frc.robot.sensors.camera;
 
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.cameraserver.CameraServer;
-import edu.wpi.first.wpilibj.SerialPort;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.RobotMap;
 import frc.robot.helpers.subsystems.SubsystemManagerChild;
 
 public class Camera extends SubsystemManagerChild {
 //   private SerialPort port;
-  private UsbCamera jevois;
+  private UsbCamera camera;
 //   private boolean vision_mode;
 
   public Camera() {
@@ -19,10 +16,24 @@ public class Camera extends SubsystemManagerChild {
 
   @Override
   public void init() {
-//    jevois = CameraServer.getInstance().startAutomaticCapture();
-    // switchToCamera();
+    UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
+    camera.setFPS(15);
 
-    // SmartDashboard.putData("Toggle Camera", new ToggleCamera());
+  //   new Thread(() -> {
+  //     camera = CameraServer.getInstance().startAutomaticCapture();
+  //     camera.setResolution(640, 480);
+      
+  //     CvSink cvSink = CameraServer.getInstance().getVideo();
+  //     CvSource outputStream = CameraServer.getInstance().putVideo("Target", 640, 480);
+      
+  //     Mat source = new Mat();
+      
+  //     if(!Thread.interrupted()) {
+  //         cvSink.grabFrame(source);
+  //         Imgproc.line(source, new Point(640/2, 0), new Point(640/2, 480), new Scalar(0, 255, 0));
+  //         outputStream.putFrame(source);
+  //     }
+  //   }).start();
   }
 
 //   public VisionData getData() {
