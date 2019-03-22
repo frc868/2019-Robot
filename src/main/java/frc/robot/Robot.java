@@ -69,17 +69,14 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
     SubsystemManager.initEnabled();
-
-    Scheduler.getInstance().add(new DriveStraight(20, 0.5));
-    // Scheduler.getInstance().add(new RunProfile("StartToRightFrontRocket"));
-    // Scheduler.getInstance().add(new RunProfile("StartToRightMiddleRocket"));
-    // Scheduler.getInstance().add(new RunProfile("StartToRightFarRocket"));
+    OI.init();
   }
 
   @Override
   public void autonomousPeriodic() {
     Scheduler.getInstance().run();
     SubsystemManager.updateEnabled();
+    OI.update();
   }
 
   @Override
