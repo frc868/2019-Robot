@@ -25,6 +25,11 @@ public class SetTiltPosition extends PIDCommandPlus {
     }
 
     @Override
+    protected void initialize() {
+        // Robot.tilt.brakeOff();
+    }
+
+    @Override
     protected void execute() {
         SmartDashboard.putNumber("Tilt Error", getError());
     }
@@ -43,5 +48,10 @@ public class SetTiltPosition extends PIDCommandPlus {
     protected boolean isFinished()  {
         // never end
         return false;
+    }
+
+    @Override
+    protected void end() {
+        // Robot.tilt.brakeOn();
     }
 }

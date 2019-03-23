@@ -85,6 +85,34 @@ public class Tilt extends SubsystemManagerChild {
         return limit.getForwardLimit();
     }
 
+    /**
+     * returns brake solenoid state
+     */
+    public boolean getBrake() {
+        return brake.get();
+    }
+
+    /**
+     * @return true if elevator is braking
+     */
+    public boolean isBraked() {
+        return getBrake() == BRAKE_MODE;
+    }
+
+     /**
+     * turns brake on
+     */
+    public void brakeOn() {
+        brake.set(BRAKE_MODE);
+    }
+
+    /**
+     * turns brake off
+     */
+    public void brakeOff() {
+        brake.set(!BRAKE_MODE);
+    }
+
     @Override
     public void init() {
         limit.getTrigger().whenActive(new StopMotor(motor));
@@ -106,5 +134,6 @@ public class Tilt extends SubsystemManagerChild {
     public void updateSD() {
         SmartDashboard.putNumber("Tilt Speed", getSpeed());
         SmartDashboard.putNumber("Tilt Position", getPotPosition());
+        SmartDashboard.putBoolean("Tilt Braked?", isBraked());
     }
 }

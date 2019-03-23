@@ -13,6 +13,11 @@ public class ManualTilt extends Command {
     }
 
     @Override
+    protected void initialize() {
+        // Robot.tilt.brakeOff();
+    }
+
+    @Override
     protected void execute() {
         double input = Helper.deadzone(-OI.operator.getRY(), 0.05);
         Robot.tilt.setSpeed(input);
@@ -22,6 +27,7 @@ public class ManualTilt extends Command {
     protected void end() {
         Robot.tilt.stop();
         // (new BrakeTilt()).start(); // maintain current position
+        // Robot.tilt.brakeOn();
     }
 
     @Override
