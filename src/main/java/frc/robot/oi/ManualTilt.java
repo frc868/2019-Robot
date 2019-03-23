@@ -2,8 +2,6 @@ package frc.robot.oi;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
-import frc.robot.carriage.tilt.BrakeTilt;
-import frc.robot.carriage.tilt.SetTiltPosition;
 import frc.robot.helpers.Helper;
 
 public class ManualTilt extends Command {
