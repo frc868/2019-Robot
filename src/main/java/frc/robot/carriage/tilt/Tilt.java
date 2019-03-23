@@ -1,7 +1,9 @@
 package frc.robot.carriage.tilt;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import frc.robot.helpers.Helper;
@@ -13,14 +15,16 @@ import frc.robot.helpers.subsystems.SubsystemManagerChild;
 public class Tilt extends SubsystemManagerChild {
     private WPI_TalonSRX motor;
     private AnalogPotentiometer potentiometer;
+    private Solenoid brake;
     private PotentiometerLimit limit;
     public static final double LOWER = 0.85, MIDDLE = 0.838, UPPER = .708;
-    public static final double TILT_LOWER_SPEED = -1;
+    private final boolean BRAKE_MODE = false;
     public boolean limitPower = false;
 
     public Tilt() {
         super("Tilt");
         motor = new WPI_TalonSRX(RobotMap.Carriage.Tilt.MOTOR);
+        brake = new Solenoid(RobotMap.PCM, RobotMap.Carriage.Tilt.BRAKE);
         potentiometer = new AnalogPotentiometer(RobotMap.Carriage.Tilt.POTENTIOMETER);
         limit = new PotentiometerLimit(potentiometer, LOWER, UPPER);
         motor.setInverted(true);
@@ -40,7 +44,7 @@ public class Tilt extends SubsystemManagerChild {
         //     speed = Helper.boundValue(speed, 0, 1);
         // }
 
-        motor.set(Helper.boundValue(speed, TILT_LOWER_SPEED, 1));
+        motor.set(Helper.boundValue(speed));
     }
 
     /**

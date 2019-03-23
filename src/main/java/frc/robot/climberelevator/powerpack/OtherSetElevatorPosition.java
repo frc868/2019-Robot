@@ -1,25 +1,53 @@
 package frc.robot.climberelevator.powerpack;
 
-import edu.wpi.first.wpilibj.command.PIDCommand;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
+import frc.robot.carriage.hatchclaw.Grab;
 import frc.robot.carriage.tilt.SetTiltPosition;
 import frc.robot.carriage.tilt.Tilt;
+import frc.robot.helpers.pid.PIDCommandPlus;
 
-public class OtherSetElevatorPosition extends PIDCommand {
+public class OtherSetElevatorPosition extends PIDCommandPlus {
     public static final double P = 0.08 , I = 0.000, D = 0.00;
-    private final double setpoint;
+    private final Height height;
 
-    public OtherSetElevatorPosition(double setpoint) {
+    public static enum Height {
+        intake, lower, middle, upper;
+    }
+
+    public OtherSetElevatorPosition(Height height) {
         super(P, I, D);
-        this.setpoint = setpoint;
         requires(Robot.powerPack);
+        this.height = height;
         getPIDController().setAbsoluteTolerance(0.1);
         getPIDController().setOutputRange(-0.35, 1);
     }
     
     @Override
     protected void initialize() {
+        if (height == Height.intake) {
+            setSetpoint(PowerPack.INTAKE_BALL);
+        } else if (height == Height.lower) {
+            if (Robot.ballIntake.isBallDetected()) {
+                setSetpoint(PowerPack.LOWER_BALL);
+            } else {
+                setSetpoint(PowerPack.LOWER_HATCH);
+            }
+        } else if (height == Height.middle) {
+            if (Robot.ballIntake.isBallDetected()) {
+                setSetpoint(PowerPack.MIDDLE_BALL);
+            } else {
+                setSetpoint(PowerPack.MIDDLE_HATCH);
+            }
+        } else if (height == Height.upper) {
+            if (Robot.ballIntake.isBallDetected()) {
+                setSetpoint(PowerPack.UPPER_BALL);
+            } else {
+                setSetpoint(PowerPack.UPPER_HATCH);
+            }
+        }
+
+
         (new SetTiltPosition(Tilt.MIDDLE)).start();
         Robot.powerPack.switchToElevator();
         Robot.powerPack.elevatorBrakeOff();
@@ -42,26 +70,14 @@ public class OtherSetElevatorPosition extends PIDCommand {
 
     @Override
     protected void end() {
-        // if (setpoint == Robot.powerPack.INTAKE_BALL) {
-        //     Robot.hatchClaw.grab();
-        //     // (new Grab()).start();
-        //     // (new SetTiltPosition(Tilt.LOWER)).start();
-        // } 
-        // else if (setpoint == Robot.powerPack.LOWER_BALL || setpoint == Robot.powerPack.MIDDLE_BALL || setpoint == Robot.powerPack.UPPER_BALL) {
-        //     (new SetTiltPosition(Tilt.UPPER)).start();
-        // }
+        if (height == Height.intake) {
+            (new Grab()).start();
+            (new SetTiltPosition(Tilt.LOWER)).start();;
+        } else if (Robot.ballIntake.isBallDetected()) {
+            (new SetTiltPosition(Tilt.UPPER)).start();;
+        } 
+
         Robot.powerPack.stop();
         Robot.powerPack.elevatorBrakeOn();
-
-        // TODO GET RID OF THIS
-        // old way that we did it before match 11 queued 
-        // if (getSetpoint() == Robot.powerPack.INTAKE_BALL) {
-        //     (new SetTiltPosition(Tilt.LOWER)).start();
-        //     (new Grab()).start();
-        
-        // } else if (getSetpoint() == Robot.powerPack.LOWER_BALL || getSetpoint() == Robot.powerPack.MIDDLE_BALL || getSetpoint() == Robot.powerPack.UPPER_BALL) {
-        //     (new SetTiltPosition(Tilt.UPPER)).start();
-        // }
-
     }
 }
