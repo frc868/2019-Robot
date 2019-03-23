@@ -11,7 +11,6 @@ public class ElevatorToBallMiddleHeight extends CommandGroup {
    * Add your docs here.
    */
   public ElevatorToBallMiddleHeight() {
-    addSequential(new SetTiltPosition(Tilt.MIDDLE));
     addSequential(new SetElevatorPosition(Robot.powerPack.MIDDLE_BALL));
     addSequential(new SetTiltPosition(Tilt.UPPER));
   }

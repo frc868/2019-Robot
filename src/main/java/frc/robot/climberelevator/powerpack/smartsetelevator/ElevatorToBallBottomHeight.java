@@ -12,7 +12,6 @@ public class ElevatorToBallBottomHeight extends CommandGroup {
    * Add your docs here.
    */
   public ElevatorToBallBottomHeight() {
-    addSequential(new SetTiltPosition(Tilt.MIDDLE));
     addSequential(new SetElevatorPosition(Robot.powerPack.LOWER_BALL));
     addSequential(new SetTiltPosition(Tilt.UPPER));
   }

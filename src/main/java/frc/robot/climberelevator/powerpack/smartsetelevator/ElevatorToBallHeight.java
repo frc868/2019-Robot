@@ -12,8 +12,8 @@ public class ElevatorToBallHeight extends CommandGroup {
    * Add your docs here.
    */
   public ElevatorToBallHeight() {
-    addSequential(new SetTiltPosition(Tilt.LOWER));
     addSequential(new SetElevatorPosition(Robot.powerPack.INTAKE_BALL));
-    addSequential(new Grab());
+    addSequential(new SetTiltPosition(Tilt.LOWER));
+    addParallel(new Grab());
   }
 }

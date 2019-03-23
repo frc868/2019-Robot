@@ -11,7 +11,6 @@ public class ElevatorToHatchUpperHeight extends CommandGroup {
    * Add your docs here.
    */
   public ElevatorToHatchUpperHeight() {
-    addSequential(new SetTiltPosition(Tilt.MIDDLE));
     addSequential(new SetElevatorPosition(Robot.powerPack.UPPER_HATCH));
 
   }

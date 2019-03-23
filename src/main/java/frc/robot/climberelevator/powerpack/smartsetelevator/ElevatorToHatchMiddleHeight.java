@@ -12,7 +12,6 @@ public class ElevatorToHatchMiddleHeight extends CommandGroup {
    * Add your docs here.
    */
   public ElevatorToHatchMiddleHeight() {
-    addSequential(new SetTiltPosition(Tilt.MIDDLE));
     addSequential(new SetElevatorPosition(Robot.powerPack.MIDDLE_HATCH));
   }
 }

@@ -12,7 +12,6 @@ public class ElevatorToHatchBottomHeight extends CommandGroup {
    * Add your docs here.
    */
   public ElevatorToHatchBottomHeight() {
-    addSequential(new SetTiltPosition(Tilt.MIDDLE));
     addSequential(new SetElevatorPosition(Robot.powerPack.LOWER_HATCH));
 
   }
