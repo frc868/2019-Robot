@@ -34,7 +34,7 @@ public class SetTiltPosition extends PIDCommandPlus {
 
     @Override
     protected void usePIDOutput(double output) {
-        Robot.tilt.setSpeed(-output); // output of PID is negated and set to tilt motor
+        Robot.tilt.setSpeed(output); // output of PID is negated and set to tilt motor
     }
 
     @Override

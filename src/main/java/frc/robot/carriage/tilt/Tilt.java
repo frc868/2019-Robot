@@ -14,8 +14,8 @@ public class Tilt extends SubsystemManagerChild {
     private WPI_TalonSRX motor;
     private AnalogPotentiometer potentiometer;
     private PotentiometerLimit limit;
-    public static final double LOWER = .265, MIDDLE = 0.248, UPPER = .134;
-    public static final double TILT_LOWER_SPEED = -0.1;
+    public static final double LOWER = 0.00125, MIDDLE = 0.248, UPPER = .134;
+    public static final double TILT_LOWER_SPEED = -1;
     public boolean limitPower = false;
 
     public Tilt() {
@@ -31,14 +31,14 @@ public class Tilt extends SubsystemManagerChild {
      * @param speed percentage power from -1 to 1, will not work if limits are tripped
      */
     public void setSpeed(double speed) {
-        if(limitPower){
-            speed = Helper.boundValue(speed, -0.25, 0.25);
-        }
-        if (getTopLimit()) {
-            speed = Helper.boundValue(speed, -1, 0);
-        } else if (getBottomLimit()) {
-            speed = Helper.boundValue(speed, 0, 1);
-        }
+        // if(limitPower){
+        //     speed = Helper.boundValue(speed, -0.25, 0.25);
+        // }
+        // if (getTopLimit()) {
+        //     speed = Helper.boundValue(speed, -1, 0);
+        // } else if (getBottomLimit()) {
+        //     speed = Helper.boundValue(speed, 0, 1);
+        // }
 
         motor.set(Helper.boundValue(speed, TILT_LOWER_SPEED, 1));
     }
@@ -88,7 +88,8 @@ public class Tilt extends SubsystemManagerChild {
 
     @Override
     public void initEnabled() {
-        (new BrakeTilt()).start(); // brake the motor when we enable
+        // (new BrakeTilt())
+        // .start(); // brake the motor when we enable
     }
 
     @Override

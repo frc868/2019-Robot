@@ -1,5 +1,6 @@
 package frc.robot.carriage.ballintake;
 
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
@@ -22,6 +23,7 @@ public class BallIntake extends SubsystemManagerChild {
         detection_limit = new IRLimit(RobotMap.Carriage.BallIntake.DETECTION_LIMIT);
 
         motor.setInverted(true); // inverts intake motor
+        motor.setNeutralMode(NeutralMode.Brake);
     }
 
     /**
