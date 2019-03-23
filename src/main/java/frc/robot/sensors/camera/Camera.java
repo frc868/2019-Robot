@@ -6,7 +6,7 @@ import frc.robot.helpers.subsystems.SubsystemManagerChild;
 
 public class Camera extends SubsystemManagerChild {
 //   private SerialPort port;
-  private UsbCamera camera;
+  private UsbCamera camera0, camera1;
 //   private boolean vision_mode;
 
   public Camera() {
@@ -16,8 +16,12 @@ public class Camera extends SubsystemManagerChild {
 
   @Override
   public void init() {
-    UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
-    camera.setFPS(15);
+    camera0 = CameraServer.getInstance().startAutomaticCapture(0);
+    camera0.setFPS(15);
+
+    camera1 = CameraServer.getInstance().startAutomaticCapture(1);
+    camera1.setFPS(15);
+
 
   //   new Thread(() -> {
   //     camera = CameraServer.getInstance().startAutomaticCapture();
