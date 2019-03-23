@@ -11,7 +11,7 @@ import frc.robot.oi.Rumble;
 
 public class BallIntake extends SubsystemManagerChild {
     private WPI_TalonSRX motor; // motor that will intake/outtake ball
-    private IRLimit detection_limit; // IR limit to detect balls
+    public IRLimit detection_limit; // IR limit to detect balls
     private final boolean BALL_DETECTED_STATE = true; // state the the IR will be set to if the ball is detected
 
     /**

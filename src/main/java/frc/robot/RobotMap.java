@@ -56,7 +56,7 @@ public class RobotMap {
 
     public static class BallIntake {
       public static final int MOTOR = 14; // TESTED
-      public static final int DETECTION_LIMIT = 4;
+      public static final int DETECTION_LIMIT = 2;
     }
 
     public static class HatchClaw {

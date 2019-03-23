@@ -2,13 +2,11 @@ package frc.robot.oi;
 
 import frc.robot.Robot;
 import frc.robot.RobotMap;
-import frc.robot.carriage.ballintake.IntakeUntilBallDetected;
-import frc.robot.carriage.hatchclaw.GrabWhenDetected;
+import frc.robot.carriage.hatchclaw.GrabWhenTiltUp;
 import frc.robot.carriage.hatchclaw.ToggleClaw;
 import frc.robot.carriage.tilt.SetTiltPosition;
 import frc.robot.carriage.tilt.Tilt;
 import frc.robot.climberelevator.forks.DeployForks;
-import frc.robot.climberelevator.powerpack.AutoClimb;
 import frc.robot.climberelevator.powerpack.SmartSetElevatorPosition;
 import frc.robot.climberelevator.ramps.DeployRamps;
 import frc.robot.helpers.oi.XboxControllerPlus;
@@ -28,8 +26,7 @@ public class OI {
 
         // DRIVER CONTROLS 
         // driver.a.whileHeld(new FollowVision());
-        driver.b.pressToStartReleaseToStop(new GrabWhenDetected());
-        driver.x.pressToStartReleaseToStop(new IntakeUntilBallDetected());
+        // driver.x.pressToStartReleaseToStop(new IntakeUntilBallDetected());
         // driver.y.and(driver.rb).whenPressed(new AutoClimb(true));
 
         driver.lb.whenPressed(new ToggleClaw());
@@ -47,7 +44,7 @@ public class OI {
         operator.lb.whenPressed(new ToggleClaw());
         operator.rb.pressToStartReleaseToStop(new ManualElevator());
         operator.menu.pressToStartReleaseToStop(new ManualTilt());
-
+        operator.start.pressToStartReleaseToStop(new GrabWhenTiltUp());
         // operator.start.whenPressed(new DeployForks());
         // operator.menu.whenPressed(new DeployRamps());
         // operator.menu.whenPressed(new ManualClimber());

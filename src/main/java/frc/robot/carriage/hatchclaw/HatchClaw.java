@@ -6,13 +6,14 @@ import frc.robot.RobotMap;
 import frc.robot.helpers.sensors.AnalogDistanceLimit;
 import frc.robot.helpers.subsystems.SubsystemManagerChild;
 import frc.robot.oi.Rumble;
+import frc.robot.Robot;
 
 public class HatchClaw extends SubsystemManagerChild {
   private Solenoid actuator; // solenoid to actuate hatch claw
   private AnalogDistanceLimit detection_limit; // analog distance sensor limit to detect hatch
   private final boolean GRABBED_STATE = false; // state of solenoid that equates to grabbed mode
   private final boolean HATCH_DETECTED_STATE = true; // state of detection limit that equates to having a hatch
-  private final double ACTIVATION_DISTANCE = 0; // distance required to activate analog distance sensor limit
+  private final double ACTIVATION_DISTANCE = 5; // distance required to activate analog distance sensor limit
 
   public HatchClaw() {
     super("HatchClaw");
@@ -84,8 +85,14 @@ public class HatchClaw extends SubsystemManagerChild {
   }
 
   @Override
+  public void initEnabled() {
+    // Robot.ballIntake.detection_limit.getTrigger().whenActive(new Grab());
+  }
+
+  @Override
   public void updateSD() {
     SmartDashboard.putBoolean("Hatch Grabbed?", isGrabbed());
     SmartDashboard.putBoolean("Hatch Detected?", isHatchDetected());
+    SmartDashboard.putNumber("Hatch Distance", detection_limit.getRaw().getDistance());
   }
 }
