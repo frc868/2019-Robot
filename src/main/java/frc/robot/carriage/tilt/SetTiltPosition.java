@@ -2,11 +2,12 @@ package frc.robot.carriage.tilt;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
+import frc.robot.helpers.Helper;
 import frc.robot.helpers.pid.PIDCommandPlus;
 
 public class SetTiltPosition extends PIDCommandPlus {
     // PID constants
-    private static final double P = 20.0, I = 0.2, D = 1;
+    private static final double P = 20.0, I = 0.2, D = 12;
 
     /**
      * sets tilt to given position
@@ -20,8 +21,6 @@ public class SetTiltPosition extends PIDCommandPlus {
         }else{
             Robot.tilt.limitPower = false;
         }
-
-        getPIDController().setOutputRange(-0.3, 0.5);
     }
 
     @Override
@@ -41,7 +40,7 @@ public class SetTiltPosition extends PIDCommandPlus {
 
     @Override
     protected void usePIDOutput(double output) {
-        Robot.tilt.setSpeed(-output); // output of PID is negated and set to tilt motor
+        Robot.tilt.setSpeed(Helper.boundValue(-output, -0.3, 0.5)); // output of PID is negated and set to tilt motor
     }
 
     @Override

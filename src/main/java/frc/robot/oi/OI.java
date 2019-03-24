@@ -40,7 +40,11 @@ public class OI {
         operator.b.whenPressed(new SmartSetElevatorPosition(SmartSetElevatorPosition.Height.middle));
         operator.y.whenPressed(new SmartSetElevatorPosition(SmartSetElevatorPosition.Height.upper));
         operator.x.whenPressed(new SmartSetElevatorPosition(SmartSetElevatorPosition.Height.ballIntake));
-        // operator.a.whenPressed(new BallOrHatch(new ElevatorToHatchBottomHeight(), new ElevatorToBallBottomHeight()));
+        // operator.a.whenPressed(new OtherSetElevatorPosition(OtherSetElevatorPosition.Height.lower));
+        // operator.b.whenPressed(new OtherSetElevatorPosition(OtherSetElevatorPosition.Height.middle));
+        // operator.y.whenPressed(new OtherSetElevatorPosition(OtherSetElevatorPosition.Height.upper));
+        // operator.x.whenPressed(new OtherSetElevatorPosition(OtherSetElevatorPosition.Height.intake));
+        // // operator.a.whenPressed(new BallOrHatch(new ElevatorToHatchBottomHeight(), new ElevatorToBallBottomHeight()));
         // operator.b.whenPressed(new BallOrHatch(new ElevatorToHatchMiddleHeight(), new ElevatorToBallMiddleHeight()));
         // operator.y.whenPressed(new BallOrHatch(new ElevatorToHatchUpperHeight(), new ElevatorToBallUpperHeight()));
         // operator.x.whenPressed(new ElevatorToBallHeight());
