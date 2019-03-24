@@ -22,7 +22,7 @@ public class PowerPack extends SubsystemManagerChild {
     public static final double INTAKE_BALL = 2.54, 
         LOWER_BALL = 5.02, LOWER_HATCH = 1.85, 
         MIDDLE_BALL = 22.023, MIDDLE_HATCH = 19.66, 
-        UPPER_BALL = 39, UPPER_HATCH = 37.69;
+        UPPER_BALL = 39, UPPER_HATCH = 36.38;
 
     public PowerPack() {
         super("PowerPack");
