@@ -11,7 +11,10 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 public class SetTiltPositionFeedback extends Command {
+  private double setpoint;
+
   public SetTiltPositionFeedback(double setpoint) {
+		this.setpoint = setpoint;
     requires(Robot.tilt);
   }
 
@@ -23,6 +26,113 @@ public class SetTiltPositionFeedback extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    double error = -(setpoint - Robot.tilt.getPotPosition());  //positive error means need to go up
+    // LOWER = 0.85, MIDDLE = 0.838, UPPER = .708
+
+
+
+    if(setpoint == Tilt.LOWER)  { //go to lower setpoint
+
+      if(Robot.ballIntake.isBallDetected()==true) { //if you have a ball
+        
+  			if (error > .001) { // need to move up
+          Robot.tilt.setSpeed(.5);
+  			} else if (error < -.001) { //need to go down
+          Robot.tilt.setSpeed(-.05);
+		  	} else {
+          Robot.tilt.setSpeed(.15); //need to hold it there
+		  	}
+
+      } else if(Robot.hatchClaw.isGrabbed()==true)  { //if you have a hatch
+        
+  			if (error > .001) { // need to move up
+          Robot.tilt.setSpeed(.5);
+  			} else if (error < -.001) { //need to go down
+          Robot.tilt.setSpeed(-.05);
+		  	} else {
+          Robot.tilt.setSpeed(.15); //need to hold it there
+		  	}
+
+      } else  {  //if you have no field objects
+        
+  			if (error > .001) { // need to move up
+          Robot.tilt.setSpeed(.5);
+  			} else if (error < -.001) { //need to go down
+          Robot.tilt.setSpeed(-.05);
+		  	} else {
+          Robot.tilt.setSpeed(.15); //need to hold it there
+		  	}
+
+      }
+    } else if(setpoint == Tilt.MIDDLE) {
+      if(Robot.ballIntake.isBallDetected()==true) { //if you have a ball
+        
+  			if (error > .001) { // need to move up
+          Robot.tilt.setSpeed(.5);
+  			} else if (error < -.001) { //need to go down
+          Robot.tilt.setSpeed(-.05);
+		  	} else {
+          Robot.tilt.setSpeed(.15); //need to hold it there
+		  	}
+
+      } else if(Robot.hatchClaw.isGrabbed()==true)  { //if you have a hatch
+        
+  			if (error > .001) { // need to move up
+          Robot.tilt.setSpeed(.5);
+  			} else if (error < -.001) { //need to go down
+          Robot.tilt.setSpeed(-.05);
+		  	} else {
+          Robot.tilt.setSpeed(.15); //need to hold it there
+		  	}
+
+      } else  {  //if you have no field objects
+        
+  			if (error > .001) { // need to move up
+          Robot.tilt.setSpeed(.5);
+  			} else if (error < -.001) { //need to go down
+          Robot.tilt.setSpeed(-.05);
+		  	} else {
+          Robot.tilt.setSpeed(.15); //need to hold it there
+        }
+      }
+
+
+    } else if(setpoint == Tilt.UPPER) { //if we want to go to upper
+      if(Robot.ballIntake.isBallDetected()==true) { //if you have a ball
+        
+        if(error > .1)  { //need to go up ALOT  (power needed earlier in the rotation)
+          Robot.tilt.setSpeed(.5);
+        }
+  			if (error > .001) { // need to move up  (power needed for fine adjustments at the top)
+          Robot.tilt.setSpeed(.2);
+  			} else if (error < -.001) { //need to go down
+          Robot.tilt.setSpeed(-.05);
+		  	} else {
+          Robot.tilt.setSpeed(.15); //need to hold it there
+		  	}
+
+      } else if(Robot.hatchClaw.isGrabbed()==true)  { //if you have a hatch
+        
+  			if (error > .001) { // need to move up
+          Robot.tilt.setSpeed(.5);
+  			} else if (error < -.001) { //need to go down
+          Robot.tilt.setSpeed(-.05);
+		  	} else {
+          Robot.tilt.setSpeed(.15); //need to hold it there
+		  	}
+
+      } else  {  //if you have no field objects
+        
+  			if (error > .001) { // need to move up
+          Robot.tilt.setSpeed(.5);
+  			} else if (error < -.001) { //need to go down
+          Robot.tilt.setSpeed(-.05);
+		  	} else {
+          Robot.tilt.setSpeed(.15); //need to hold it there
+        }
+        
+      } 
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
