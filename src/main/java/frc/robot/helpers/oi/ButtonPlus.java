@@ -1,16 +1,20 @@
 package frc.robot.helpers.oi;
 
+import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.helpers.commands.EmptyCommand;
 import frc.robot.helpers.commands.StopCommand;
-import frc.robot.helpers.oi.ButtonGroup;
+import frc.robot.helpers.triggers.TriggerPlus;
 
-public class ButtonPlus extends JoystickButton {
+public class ButtonPlus extends TriggerPlus {
+    private final GenericHID controller;
+    private final int id;
 
     public ButtonPlus(XboxControllerPlus controller, int id) {
-        super(controller, id);
+        this.controller = controller;
+        this.id = id;
     }
 
     public void resetMappings() {
@@ -19,12 +23,6 @@ public class ButtonPlus extends JoystickButton {
         whenReleased(new EmptyCommand());
         toggleWhenPressed(new EmptyCommand());
         cancelWhenPressed(new EmptyCommand());
-
-        whenActive(new EmptyCommand());
-        whileActive(new EmptyCommand());
-        whenInactive(new EmptyCommand());
-        toggleWhenActive(new EmptyCommand());
-        cancelWhenActive(new EmptyCommand());
 
         pressToStartReleaseToStop(new EmptyCommand());
         pressToStartReleaseToStop(new EmptyCommand(), new EmptyCommand());
@@ -39,8 +37,30 @@ public class ButtonPlus extends JoystickButton {
         whenReleased(stopCommand);
     }
 
-    public ButtonGroup and(Button otherButton) {
-        return new ButtonGroup(this, otherButton);
+    public void whenPressed(final Command command) {
+        whenActive(command);
+    }
+
+    public void whileHeld(final Command command) {
+        whileActive(command);
+    }
+    
+
+    public void whenReleased(final Command command) {
+        whenInactive(command);
+    }
+
+    public void toggleWhenPressed(final Command command) {
+        toggleWhenActive(command);
+    }
+
+    public void cancelWhenPressed(final Command command) {
+        cancelWhenActive(command);
+    }
+   
+    @Override
+    public boolean get() {
+        return controller.getRawButton(id);
     }
 
 }
