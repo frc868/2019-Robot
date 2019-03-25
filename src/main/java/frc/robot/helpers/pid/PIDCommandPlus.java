@@ -55,6 +55,12 @@ public abstract class PIDCommandPlus extends PIDCommand {
         }
     }
 
+    // public void setConstants(double P, double I, double D) {
+    //     setP(P);
+    //     setI(I);
+    //     setD(D);
+    // }
+
     public void setP(double P) {
         this.P = P;
         getPIDController().setP(P);

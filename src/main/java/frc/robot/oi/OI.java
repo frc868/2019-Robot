@@ -8,6 +8,13 @@ import frc.robot.carriage.tilt.SetTiltPosition;
 import frc.robot.carriage.tilt.Tilt;
 import frc.robot.climberelevator.forks.DeployForks;
 import frc.robot.climberelevator.powerpack.SmartSetElevatorPosition;
+import frc.robot.climberelevator.powerpack.smartsetelevator.ElevatorToBallBottomHeight;
+import frc.robot.climberelevator.powerpack.smartsetelevator.ElevatorToBallHeight;
+import frc.robot.climberelevator.powerpack.smartsetelevator.ElevatorToBallMiddleHeight;
+import frc.robot.climberelevator.powerpack.smartsetelevator.ElevatorToBallUpperHeight;
+import frc.robot.climberelevator.powerpack.smartsetelevator.ElevatorToHatchBottomHeight;
+import frc.robot.climberelevator.powerpack.smartsetelevator.ElevatorToHatchMiddleHeight;
+import frc.robot.climberelevator.powerpack.smartsetelevator.ElevatorToHatchUpperHeight;
 import frc.robot.climberelevator.ramps.DeployRamps;
 import frc.robot.helpers.oi.XboxControllerPlus;
 // import frc.robot.sensors.camera.FollowVision;
@@ -40,7 +47,29 @@ public class OI {
         operator.b.whenPressed(new SmartSetElevatorPosition(SmartSetElevatorPosition.Height.middle));
         operator.y.whenPressed(new SmartSetElevatorPosition(SmartSetElevatorPosition.Height.upper));
         operator.x.whenPressed(new SmartSetElevatorPosition(SmartSetElevatorPosition.Height.ballIntake));
-        // operator.a.whenPressed(new BallOrHatch(new ElevatorToHatchBottomHeight(), new ElevatorToBallBottomHeight()));
+
+        operator.lstk.pressToStartReleaseToStop(new IntakeAssistTilt());
+
+        // METHOD ONE
+        // operator.x.whenActive(new ElevatorToBallHeight());
+
+        // operator.a.and(Robot.ballIntake.detection_limit.getTrigger()).whenActive(new ElevatorToBallBottomHeight());
+        // operator.a.not(Robot.ballIntake.detection_limit.getTrigger()).whenActive(new ElevatorToHatchBottomHeight());
+
+        // operator.b.and(Robot.ballIntake.detection_limit.getTrigger()).whenActive(new ElevatorToBallMiddleHeight());
+        // operator.b.not(Robot.ballIntake.detection_limit.getTrigger()).whenActive(new ElevatorToHatchMiddleHeight());
+
+        // operator.y.and(Robot.ballIntake.detection_limit.getTrigger()).whenActive(new ElevatorToBallUpperHeight());
+        // operator.y.not(Robot.ballIntake.detection_limit.getTrigger()).whenActive(new ElevatorToHatchUpperHeight());
+       
+        // METHOD TWO 
+        // operator.a.whenPressed(new OtherSetElevatorPosition(OtherSetElevatorPosition.Height.lower));
+        // operator.b.whenPressed(new OtherSetElevatorPosition(OtherSetElevatorPosition.Height.middle));
+        // operator.y.whenPressed(new OtherSetElevatorPosition(OtherSetElevatorPosition.Height.upper));
+        // operator.x.whenPressed(new OtherSetElevatorPosition(OtherSetElevatorPosition.Height.intake));
+
+        // METHOD THREE
+        // // operator.a.whenPressed(new BallOrHatch(new ElevatorToHatchBottomHeight(), new ElevatorToBallBottomHeight()));
         // operator.b.whenPressed(new BallOrHatch(new ElevatorToHatchMiddleHeight(), new ElevatorToBallMiddleHeight()));
         // operator.y.whenPressed(new BallOrHatch(new ElevatorToHatchUpperHeight(), new ElevatorToBallUpperHeight()));
         // operator.x.whenPressed(new ElevatorToBallHeight());
@@ -63,8 +92,8 @@ public class OI {
         // operator.menu.whenPressed(new GiveToClaw());
     }
 
-    public static void update() {
+    public static void update() {            
 
-    }
+    }   
 
 }
