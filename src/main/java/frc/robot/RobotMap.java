@@ -52,6 +52,7 @@ public class RobotMap {
     public static class Tilt {
       public static final int MOTOR = 15; // TESTED
       public static final int POTENTIOMETER = 0;
+      public static final int BRAKE = 0;
     }
 
     public static class BallIntake {
