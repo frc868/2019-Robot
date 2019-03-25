@@ -1,7 +1,9 @@
 package frc.robot.carriage.tilt;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import frc.robot.helpers.Helper;
@@ -13,14 +15,16 @@ import frc.robot.helpers.subsystems.SubsystemManagerChild;
 public class Tilt extends SubsystemManagerChild {
     private WPI_TalonSRX motor;
     private AnalogPotentiometer potentiometer;
+    private Solenoid brake;
     private PotentiometerLimit limit;
-    public static final double LOWER = .265, MIDDLE = 0.248, UPPER = .134;
-    public static final double TILT_LOWER_SPEED = -0.1;
+    public static final double LOWER = 0.85, MIDDLE = 0.838, UPPER = .708;
+    private final boolean BRAKE_MODE = false;
     public boolean limitPower = false;
 
     public Tilt() {
         super("Tilt");
         motor = new WPI_TalonSRX(RobotMap.Carriage.Tilt.MOTOR);
+        brake = new Solenoid(RobotMap.PCM, RobotMap.Carriage.Tilt.BRAKE);
         potentiometer = new AnalogPotentiometer(RobotMap.Carriage.Tilt.POTENTIOMETER);
         limit = new PotentiometerLimit(potentiometer, LOWER, UPPER);
         motor.setInverted(true);
@@ -34,13 +38,13 @@ public class Tilt extends SubsystemManagerChild {
         if(limitPower){
             speed = Helper.boundValue(speed, -0.25, 0.25);
         }
-        if (getTopLimit()) {
-            speed = Helper.boundValue(speed, -1, 0);
-        } else if (getBottomLimit()) {
-            speed = Helper.boundValue(speed, 0, 1);
-        }
+        // if (getTopLimit()) {
+        //     speed = Helper.boundValue(speed, -1, 0);
+        // } else if (getBottomLimit()) {
+        //     speed = Helper.boundValue(speed, 0, 1);
+        // }
 
-        motor.set(Helper.boundValue(speed, TILT_LOWER_SPEED, 1));
+        motor.set(Helper.boundValue(speed));
     }
 
     /**
@@ -81,14 +85,43 @@ public class Tilt extends SubsystemManagerChild {
         return limit.getForwardLimit();
     }
 
+    /**
+     * returns brake solenoid state
+     */
+    public boolean getBrake() {
+        return brake.get();
+    }
+
+    /**
+     * @return true if elevator is braking
+     */
+    public boolean isBraked() {
+        return getBrake() == BRAKE_MODE;
+    }
+
+     /**
+     * turns brake on
+     */
+    public void brakeOn() {
+        brake.set(BRAKE_MODE);
+    }
+
+    /**
+     * turns brake off
+     */
+    public void brakeOff() {
+        brake.set(!BRAKE_MODE);
+    }
+
     @Override
     public void init() {
-        limit.getTrigger().whenActive(new StopMotor(motor));
+        // limit.getTrigger().whenActive(new StopMotor(motor));
     }
 
     @Override
     public void initEnabled() {
-        (new BrakeTilt()).start(); // brake the motor when we enable
+        // (new BrakeTilt())
+        // .start(); // brake the motor when we enable
     }
 
     @Override
@@ -101,5 +134,6 @@ public class Tilt extends SubsystemManagerChild {
     public void updateSD() {
         SmartDashboard.putNumber("Tilt Speed", getSpeed());
         SmartDashboard.putNumber("Tilt Position", getPotPosition());
+        SmartDashboard.putBoolean("Tilt Braked?", isBraked());
     }
 }

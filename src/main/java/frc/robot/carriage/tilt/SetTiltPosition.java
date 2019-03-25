@@ -2,11 +2,21 @@ package frc.robot.carriage.tilt;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
+import frc.robot.helpers.Helper;
 import frc.robot.helpers.pid.PIDCommandPlus;
 
 public class SetTiltPosition extends PIDCommandPlus {
     // PID constants
+<<<<<<< HEAD
     private static final double P = 16.0, I = 0.09, D = 0.9;
+=======
+    private static final double P = 18.0, I = 0.2, D = 12;
+
+    // private static final double P_HATCH = 0, I_HATCH = 0, D_HATCH = 0;
+    // private static final double P_BALL = 0, I_BALL = 0, D_BALL = 0;
+    // private static final double P_EMPTY = 0, I_EMPTY = 0, D_EMPTY = 0;
+
+>>>>>>> comp-bot
 
     /**
      * sets tilt to given position
@@ -23,6 +33,21 @@ public class SetTiltPosition extends PIDCommandPlus {
     }
 
     @Override
+    protected void initialize() {
+        // Robot.tilt.brakeOff();
+
+        SmartDashboard.putNumber("Tilt Setpoint", getSetpoint());
+
+        // if (Robot.ballIntake.isBallDetected()) {
+        //     setConstants(P_BALL, I_BALL, D_BALL);
+        // } else if (Robot.hatchClaw.isGrabbed()) {
+        //     setConstants(P_HATCH, I_HATCH, D_HATCH);
+        // } else {
+        //     setConstants(P_EMPTY, I_EMPTY, D_EMPTY);
+        // }
+    }
+
+    @Override
     protected void execute() {
         SmartDashboard.putNumber("Tilt Error", getError());
     }
@@ -34,12 +59,17 @@ public class SetTiltPosition extends PIDCommandPlus {
 
     @Override
     protected void usePIDOutput(double output) {
-        Robot.tilt.setSpeed(-output); // output of PID is negated and set to tilt motor
+        Robot.tilt.setSpeed(Helper.boundValue(-output, -0.3, 0.5)); // output of PID is negated and set to tilt motor
     }
 
     @Override
     protected boolean isFinished()  {
         // never end
         return false;
+    }
+
+    @Override
+    protected void end() {
+        // Robot.tilt.brakeOn();
     }
 }

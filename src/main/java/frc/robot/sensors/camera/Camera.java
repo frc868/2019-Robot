@@ -1,21 +1,12 @@
 package frc.robot.sensors.camera;
 
-import java.awt.Color;
-
-import org.opencv.core.Mat;
-import org.opencv.core.Point;
-import org.opencv.core.Scalar;
-import org.opencv.imgproc.Imgproc;
-
-import edu.wpi.cscore.CvSink;
-import edu.wpi.cscore.CvSource;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.cameraserver.CameraServer;
 import frc.robot.helpers.subsystems.SubsystemManagerChild;
 
 public class Camera extends SubsystemManagerChild {
 //   private SerialPort port;
-  private UsbCamera camera;
+  private UsbCamera camera0, camera1;
 //   private boolean vision_mode;
 
   public Camera() {
@@ -25,8 +16,12 @@ public class Camera extends SubsystemManagerChild {
 
   @Override
   public void init() {
-    UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
-    camera.setFPS(15);
+    camera0 = CameraServer.getInstance().startAutomaticCapture(0);
+    camera0.setFPS(15);
+
+    camera1 = CameraServer.getInstance().startAutomaticCapture(1);
+    camera1.setFPS(15);
+
 
   //   new Thread(() -> {
   //     camera = CameraServer.getInstance().startAutomaticCapture();

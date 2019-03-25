@@ -1,5 +1,6 @@
 package frc.robot.carriage.ballintake;
 
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
@@ -10,7 +11,7 @@ import frc.robot.oi.Rumble;
 
 public class BallIntake extends SubsystemManagerChild {
     private WPI_TalonSRX motor; // motor that will intake/outtake ball
-    private IRLimit detection_limit; // IR limit to detect balls
+    public IRLimit detection_limit; // IR limit to detect balls
     private final boolean BALL_DETECTED_STATE = true; // state the the IR will be set to if the ball is detected
 
     /**
@@ -22,6 +23,7 @@ public class BallIntake extends SubsystemManagerChild {
         detection_limit = new IRLimit(RobotMap.Carriage.BallIntake.DETECTION_LIMIT);
 
         motor.setInverted(true); // inverts intake motor
+        motor.setNeutralMode(NeutralMode.Brake);
     }
 
     /**

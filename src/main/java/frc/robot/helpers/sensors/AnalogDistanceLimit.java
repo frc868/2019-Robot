@@ -17,10 +17,14 @@ public class AnalogDistanceLimit {
     }
 
     public boolean get() {
-        return sensor.getDistance() < LIMIT;
+        return sensor.getDistance() < LIMIT && sensor.getDistance() > 0;
     }
 
     public LimitTrigger getTrigger() {
         return limitTrigger;
+    }
+
+    public AnalogDistanceSensor getRaw() {
+        return sensor;
     }
 }

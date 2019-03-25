@@ -7,6 +7,14 @@ public abstract class PIDCommandPlus extends PIDCommand {
     private double P, I, D;
     private boolean toleranceMode = false;
 
+    public PIDCommandPlus(double P, double I, double D) {
+        super(P, I, D);
+
+        this.P = P;
+        this.I = I;
+        this.D = D;
+    }
+
     public PIDCommandPlus(double P, double I, double D, double setpoint, double tolerance) {
         this(P, I, D, setpoint);
         toleranceMode = true;
@@ -43,9 +51,15 @@ public abstract class PIDCommandPlus extends PIDCommand {
         if (toleranceMode) {
             return super.getPIDController().onTarget();
         } else {
-            return forward ? getError() < 0 : getError() > 0;
+            return forward ? getError() <= 0 : getError() >= 0;
         }
     }
+
+    // public void setConstants(double P, double I, double D) {
+    //     setP(P);
+    //     setI(I);
+    //     setD(D);
+    // }
 
     public void setP(double P) {
         this.P = P;

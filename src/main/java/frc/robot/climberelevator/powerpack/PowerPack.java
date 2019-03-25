@@ -1,6 +1,8 @@
 package frc.robot.climberelevator.powerpack;
 
 import com.revrobotics.CANSparkMax.IdleMode;
+
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
@@ -18,11 +20,9 @@ public class PowerPack extends SubsystemManagerChild {
     private final boolean ELEVATOR_MODE = false, BRAKE_MODE = false;
 
     public static final double INTAKE_BALL = 2.54, 
-        LOWER_BALL = 8.83, LOWER_HATCH = 1.85, 
-        MIDDLE_BALL = 25.4, MIDDLE_HATCH = 19.66, 
-        UPPER_BALL = 39, UPPER_HATCH = 37.69;
-
-    private final double ELEVATOR_LOWER_SPEED = -.25;
+        LOWER_BALL = 5.02, LOWER_HATCH = 1.85, 
+        MIDDLE_BALL = 22.023, MIDDLE_HATCH = 19.66, 
+        UPPER_BALL = 39, UPPER_HATCH = 36.38;
 
     public PowerPack() {
         super("PowerPack");
@@ -33,6 +33,9 @@ public class PowerPack extends SubsystemManagerChild {
         secondary.setIdleMode(IdleMode.kBrake);
 
         secondary.follow(primary);
+
+        // primary.setInverted(true);
+        secondary.setInverted(true);
 
         switcher = new Solenoid(RobotMap.PCM, RobotMap.ClimberElevator.Powerpack.SWITCHER);
         elevator_brake = new Solenoid(RobotMap.PCM, RobotMap.ClimberElevator.Powerpack.ELEVATOR_BRAKE);
@@ -52,20 +55,21 @@ public class PowerPack extends SubsystemManagerChild {
         speed = Helper.boundValue(speed);
 
         if (isElevatorMode()) {
-            speed = Helper.boundValue(speed, ELEVATOR_LOWER_SPEED, 1); // if we are in elevator mode, the lowest possible speed is ELEVATOR_LOWER_SPEED
-
             if (getElevatorBottomLimitSwitch()) {
                 speed = Helper.boundValue(speed, 0, 1);
-            } else if (getElevatorTopLimitSwitch()) {
+            } 
+            else if (getElevatorTopLimitSwitch()) {
                 speed = Helper.boundValue(speed, -1, 0);
             }
-        } else {
-            if (getClimberBottomLimitSwitch()) {
-                speed = Helper.boundValue(speed, 0, 1);
-            } else if (getClimberTopLimitSwitch()) {
-                speed = Helper.boundValue(speed, -1, 0);
-            }
-        }
+        } 
+        // else {
+        //     if (getClimberBottomLimitSwitch()) {
+        //         speed = Helper.boundValue(speed, 0, 1);
+        //     } 
+        //     // else if (getClimberTopLimitSwitch()) {
+        //     //     speed = Helper.boundValue(speed, -1, 0);
+        //     // }
+        // }
 
         primary.set(speed);
     }
@@ -219,11 +223,11 @@ public class PowerPack extends SubsystemManagerChild {
 
     @Override
     public void init() {
-        elevator_bottom_limit.getTrigger().whenActive(new ResetEncoder(primary));
+        elevator_bottom_limit.getTrigger().whileActive(new ResetEncoder(primary));
         elevator_bottom_limit.getTrigger().whenActive(new StopMotor(primary, elevator_brake, BRAKE_MODE));
         elevator_top_limit.getTrigger().whenActive(new StopMotor(primary, elevator_brake, BRAKE_MODE));
-        climber_bottom_limit.getTrigger().whenActive(new StopMotor(primary));
-        climber_top_limit.getTrigger().whenActive(new StopMotor(primary));
+        // climber_bottom_limit.getTrigger().whenActive(new StopMotor(primary));
+        // climber_top_limit.getTrigger().whenActive(new StopMotor(primary));
     }
 
     @Override
