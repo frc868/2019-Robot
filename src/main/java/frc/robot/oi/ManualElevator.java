@@ -5,7 +5,7 @@ import frc.robot.Robot;
 import frc.robot.helpers.Helper;
 
 public class ManualElevator extends Command {
-
+    
     public ManualElevator() {
         requires(Robot.powerPack);
     }

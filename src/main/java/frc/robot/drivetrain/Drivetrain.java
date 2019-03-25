@@ -1,28 +1,29 @@
 package frc.robot.drivetrain;
 
+import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMax.IdleMode;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import frc.robot.helpers.Helper;
-import frc.robot.helpers.motorcontrollers.CANSparkMaxPlus;
 import frc.robot.helpers.subsystems.SubsystemManagerChild;
 
 public class Drivetrain extends SubsystemManagerChild {
-    private CANSparkMaxPlus leftPrimary, leftSecondary, leftTertiary, rightPrimary, rightSecondary, rightTertiary;
+    private CANSparkMax leftPrimary, leftSecondary, leftTertiary, rightPrimary, rightSecondary, rightTertiary;
     private final double INCHES_PER_TICK = 1; //0.0045998; 
     private final double DEGREES_PER_LOOP = -0.0018;
     private double angleOffset = 0;
 
     public Drivetrain() {
         super("Drivetrain");
-        leftPrimary = new CANSparkMaxPlus(RobotMap.Drivetrain.LEFT_PRIMARY);
-        leftSecondary = new CANSparkMaxPlus(RobotMap.Drivetrain.LEFT_SECONDARY);
-        leftTertiary = new CANSparkMaxPlus(RobotMap.Drivetrain.LEFT_TERTIARY);
+        leftPrimary = new CANSparkMax(RobotMap.Drivetrain.LEFT_PRIMARY, MotorType.kBrushless);
+        leftSecondary = new CANSparkMax(RobotMap.Drivetrain.LEFT_SECONDARY, MotorType.kBrushless);
+        leftTertiary = new CANSparkMax(RobotMap.Drivetrain.LEFT_TERTIARY, MotorType.kBrushless);
 
-        rightPrimary = new CANSparkMaxPlus(RobotMap.Drivetrain.RIGHT_PRIMARY);
-        rightSecondary = new CANSparkMaxPlus(RobotMap.Drivetrain.RIGHT_SECONDARY);
-        rightTertiary = new CANSparkMaxPlus(RobotMap.Drivetrain.RIGHT_TERTIARY);
+        rightPrimary = new CANSparkMax(RobotMap.Drivetrain.RIGHT_PRIMARY, MotorType.kBrushless);
+        rightSecondary = new CANSparkMax(RobotMap.Drivetrain.RIGHT_SECONDARY, MotorType.kBrushless);
+        rightTertiary = new CANSparkMax(RobotMap.Drivetrain.RIGHT_TERTIARY, MotorType.kBrushless);
 
         leftSecondary.follow(leftPrimary);
         leftTertiary.follow(leftPrimary);

@@ -16,7 +16,6 @@ public class Tilt extends SubsystemManagerChild {
     private WPI_TalonSRX motor;
     private AnalogPotentiometer potentiometer;
     private Solenoid brake;
-    private PotentiometerLimit limit;
     public static final double LOWER = 0.85, MIDDLE = 0.838, UPPER = .708;
     private final boolean BRAKE_MODE = false;
     public boolean limitPower = false;
@@ -26,7 +25,6 @@ public class Tilt extends SubsystemManagerChild {
         motor = new WPI_TalonSRX(RobotMap.Carriage.Tilt.MOTOR);
         brake = new Solenoid(RobotMap.PCM, RobotMap.Carriage.Tilt.BRAKE);
         potentiometer = new AnalogPotentiometer(RobotMap.Carriage.Tilt.POTENTIOMETER);
-        limit = new PotentiometerLimit(potentiometer, LOWER, UPPER);
         motor.setInverted(true);
     }
 
@@ -38,11 +36,6 @@ public class Tilt extends SubsystemManagerChild {
         if(limitPower){
             speed = Helper.boundValue(speed, -0.25, 0.25);
         }
-        // if (getTopLimit()) {
-        //     speed = Helper.boundValue(speed, -1, 0);
-        // } else if (getBottomLimit()) {
-        //     speed = Helper.boundValue(speed, 0, 1);
-        // }
 
         motor.set(Helper.boundValue(speed));
     }
@@ -71,21 +64,6 @@ public class Tilt extends SubsystemManagerChild {
     }
 
     /**
-     *
-     * @return if forward limit is tripped
-     */
-    public boolean getTopLimit() {
-        return limit.getReverseLimit();
-    }
-
-    /**
-     * @return if reverse limit is tripped
-     */
-    public boolean getBottomLimit() {
-        return limit.getForwardLimit();
-    }
-
-    /**
      * returns brake solenoid state
      */
     public boolean getBrake() {
@@ -111,23 +89,6 @@ public class Tilt extends SubsystemManagerChild {
      */
     public void brakeOff() {
         brake.set(!BRAKE_MODE);
-    }
-
-    @Override
-    public void init() {
-        // limit.getTrigger().whenActive(new StopMotor(motor));
-    }
-
-    @Override
-    public void initEnabled() {
-        // (new BrakeTilt())
-        // .start(); // brake the motor when we enable
-    }
-
-    @Override
-    public void initSD() {
-        addTab("Motor", motor);
-        addTab("Potentiometer", potentiometer);
     }
 
     @Override

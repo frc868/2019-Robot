@@ -3,6 +3,9 @@ package frc.robot.helpers.oi;
 import edu.wpi.first.wpilibj.XboxController;
 
 public class XboxControllerPlus extends XboxController {
+    /**
+     * class is dedicated to having all the static final ints needed for your xbox controller mapping
+     */
     private static class Bindings {
         private static final int A = 1;
         private static final int B = 2;
@@ -26,6 +29,10 @@ public class XboxControllerPlus extends XboxController {
     public ButtonPlus a, b, x, y, rb, lb, rstk, lstk, start, menu;
     public POVButtonPlus povN, povNE, povE, povSE, povS, povSW, povW, povNW;
 
+    /**
+     * extension of an xbox controller but using actual names instead of numbers for the buttons
+     * @param port the usb port the controller is plugged into (0 for driver, 1 for operator)
+     */
     public XboxControllerPlus(int port) {
         super(port);
         a = new ButtonPlus(this, Bindings.A);
@@ -49,42 +56,72 @@ public class XboxControllerPlus extends XboxController {
         povNW = new POVButtonPlus(this, 315);
     }
 
+    /**
+     * cubes joystick input
+     * @param input the value of the input
+     */
     public static double cube(double input) {
         return Math.pow(input, 3);
     }
 
+    /**
+     * @return value of left x axis
+     */
     public double getLX() {
         return getRawAxis(Bindings.LX);
     }
 
+    /**
+     * @return the value of the left y axis of the controller
+     */
     public double getLY() {
         return getRawAxis(Bindings.LY);
     }
 
+    /**
+     * @return the value of the right x axis of the controller
+     */        
     public double getRX() {
         return getRawAxis(Bindings.RX);
     }
 
+    /**
+     * @return the value of the right y axis of the controller
+     */                
     public double getRY() {
         return getRawAxis(Bindings.RY);
     }
 
+    /**
+     * @return the value of the left trigger axis of the controller
+     */        
     public double getLT() {
         return getRawAxis(Bindings.LT);
     }
 
+    /**
+     * @return the value of the right trigger of controller
+     */                
     public double getRT() {
         return getRawAxis(Bindings.RT);
     }
-
+    
+    /**
+     * @return the state of the right stick button
+     */
     public boolean getRSTK() {
         return getStickButtonPressed(Hand.kRight);
     }
-
+    /**
+     * @return the state of the left stick button
+     */
     public boolean getLSTK() {
         return getStickButtonPressed(Hand.kLeft);
     }
-
+    /**
+     * does the shaking thing on the controller
+     * @param state whether you want your hand to vibrate
+     */    
     public void setRumble(boolean state) {
         int value = state ? 1 : 0;
         setRumble(RumbleType.kLeftRumble, value);

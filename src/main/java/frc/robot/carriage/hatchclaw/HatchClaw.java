@@ -80,11 +80,6 @@ public class HatchClaw extends SubsystemManagerChild {
   }
 
   @Override
-  public void initSD() {
-    addTab("Actuator", actuator);
-  }
-
-  @Override
   public void initEnabled() {
     // Robot.ballIntake.detection_limit.getTrigger().whenActive(new Grab());
   }

@@ -2,6 +2,10 @@ package frc.robot.helpers.sensors;
 
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
 
+/**
+ * *Currently Unused*
+ * 
+ */
 public class PotentiometerLimit {
     private AnalogPotentiometer potentiometer;
     private final double FORWARD_LIMIT, REVERSE_LIMIT;

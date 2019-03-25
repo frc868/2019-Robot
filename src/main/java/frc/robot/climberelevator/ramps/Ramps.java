@@ -5,6 +5,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import frc.robot.helpers.subsystems.SubsystemManagerChild;
 
+/**
+ * ramps subsystem for climbing
+ */
 public class Ramps extends SubsystemManagerChild {
     private Solenoid actuator;
     private final boolean DEPLOYED_STATE = true;
@@ -54,11 +57,6 @@ public class Ramps extends SubsystemManagerChild {
     @Override
     public void initEnabled() {
         close();
-    }
-
-    @Override
-    public void initSD() {
-        addTab("Actuator", actuator);
     }
 
     @Override

@@ -1,17 +1,17 @@
 package frc.robot.helpers.commands;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-import edu.wpi.first.wpilibj.Encoder;
+import com.revrobotics.CANSparkMax;
 
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.helpers.motorcontrollers.CANSparkMaxPlus;
 
 public class ResetEncoder extends Command {
-  private CANSparkMaxPlus sparkMax;
+  private CANSparkMax sparkMax;
   private WPI_TalonSRX talon;
   private Encoder encoder;
 
-  public ResetEncoder(CANSparkMaxPlus sparkMax) {
+  public ResetEncoder(CANSparkMax sparkMax) {
     this.sparkMax = sparkMax;
   }
 

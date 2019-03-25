@@ -1,22 +1,22 @@
 package frc.robot.climberelevator.powerpack;
 
+import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMax.IdleMode;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
-import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import frc.robot.helpers.Helper;
 import frc.robot.helpers.commands.ResetEncoder;
 import frc.robot.helpers.commands.StopMotor;
-import frc.robot.helpers.motorcontrollers.CANSparkMaxPlus;
 import frc.robot.helpers.sensors.IRLimit;
 import frc.robot.helpers.subsystems.SubsystemManagerChild;
 
 public class PowerPack extends SubsystemManagerChild {
-    private CANSparkMaxPlus primary, secondary;
+    private CANSparkMax primary, secondary;
     private Solenoid switcher, elevator_brake, climber_brake;
-    private IRLimit elevator_top_limit, elevator_bottom_limit, climber_top_limit, climber_bottom_limit;
+    private IRLimit elevator_top_limit, elevator_bottom_limit;
     private final boolean ELEVATOR_MODE = false, BRAKE_MODE = false;
 
     public static final double INTAKE_BALL = 2.54, 
@@ -26,8 +26,8 @@ public class PowerPack extends SubsystemManagerChild {
 
     public PowerPack() {
         super("PowerPack");
-        primary = new CANSparkMaxPlus(RobotMap.ClimberElevator.Powerpack.PRIMARY);
-        secondary = new CANSparkMaxPlus(RobotMap.ClimberElevator.Powerpack.SECONDARY);
+        primary = new CANSparkMax(RobotMap.ClimberElevator.Powerpack.PRIMARY, MotorType.kBrushless);
+        secondary = new CANSparkMax(RobotMap.ClimberElevator.Powerpack.SECONDARY, MotorType.kBrushless);
 
         primary.setIdleMode(IdleMode.kBrake);
         secondary.setIdleMode(IdleMode.kBrake);
@@ -43,8 +43,6 @@ public class PowerPack extends SubsystemManagerChild {
 
         elevator_top_limit = new IRLimit(RobotMap.ClimberElevator.Powerpack.ELEVATOR_TOP_LIMIT);
         elevator_bottom_limit = new IRLimit(RobotMap.ClimberElevator.Powerpack.ELEVATOR_BOTTOM_LIMIT);
-        climber_top_limit = new IRLimit(RobotMap.ClimberElevator.Powerpack.CLIMBER_TOP_LIMIT);
-        climber_bottom_limit = new IRLimit(RobotMap.ClimberElevator.Powerpack.CLIMBER_BOTTOM_LIMIT);
     }
 
     /**
@@ -62,14 +60,6 @@ public class PowerPack extends SubsystemManagerChild {
                 speed = Helper.boundValue(speed, -1, 0);
             }
         } 
-        // else {
-        //     if (getClimberBottomLimitSwitch()) {
-        //         speed = Helper.boundValue(speed, 0, 1);
-        //     } 
-        //     // else if (getClimberTopLimitSwitch()) {
-        //     //     speed = Helper.boundValue(speed, -1, 0);
-        //     // }
-        // }
 
         primary.set(speed);
     }
@@ -118,22 +108,6 @@ public class PowerPack extends SubsystemManagerChild {
      */
     public boolean getElevatorBottomLimitSwitch() {
         return elevator_bottom_limit.get();
-    }
-
-    /**
-     *
-     * @return state of forward limit switch
-     */
-    public boolean getClimberTopLimitSwitch() {
-        return climber_top_limit.get();
-    }
-
-    /**
-     *
-     * @return state of reverse limit switch
-     */
-    public boolean getClimberBottomLimitSwitch() {
-        return climber_bottom_limit.get();
     }
 
     /**
@@ -226,8 +200,6 @@ public class PowerPack extends SubsystemManagerChild {
         elevator_bottom_limit.getTrigger().whileActive(new ResetEncoder(primary));
         elevator_bottom_limit.getTrigger().whenActive(new StopMotor(primary, elevator_brake, BRAKE_MODE));
         elevator_top_limit.getTrigger().whenActive(new StopMotor(primary, elevator_brake, BRAKE_MODE));
-        // climber_bottom_limit.getTrigger().whenActive(new StopMotor(primary));
-        // climber_top_limit.getTrigger().whenActive(new StopMotor(primary));
     }
 
     @Override
@@ -252,35 +224,13 @@ public class PowerPack extends SubsystemManagerChild {
     }
 
     @Override
-    public void initSD() {
-        addTab("Switcher", switcher);
-        addTab("Elevator Brake", elevator_brake);
-        addTab("Climber Brake", climber_brake);
-
-        addTab("Elevator Bottom Limit", elevator_bottom_limit);
-        addTab("Elevator Top Limit", elevator_top_limit);
-
-        addTab("Climber Bottom Limit", climber_bottom_limit);
-        addTab("Climber Top Limit", climber_top_limit);
-
-        // addTab("Motors", primary);
-        // addTab("Encoder", primary.getEncoder());
-    }
-
-    @Override
     public void updateSD() {
         SmartDashboard.putNumber("PowerPack Speed", getSpeed());
-        // SmartDashboard.putNumber("PowerPack Secondary Speed", secondary.get());
         SmartDashboard.putNumber("PowerPack Position", getEncPosition());
         SmartDashboard.putBoolean("Elevator Mode?", isElevatorMode());
         SmartDashboard.putBoolean("Elevator Brake?", isElevatorBraked());
         SmartDashboard.putBoolean("Climber Brake?", isClimberBraked());
         SmartDashboard.putBoolean("Elevator Top Limit?", getElevatorTopLimitSwitch());
         SmartDashboard.putBoolean("Elevator Bottom Limit?", getElevatorBottomLimitSwitch());
-        SmartDashboard.putBoolean("Climber Top Limit?", getClimberTopLimitSwitch());
-        SmartDashboard.putBoolean("Climber Bottom Limit?", getClimberBottomLimitSwitch());
-
-        SmartDashboard.putNumber("PowerPack Current", primary.getOutputCurrent());
-        // SmartDashboard.putNumber("PowerPack Secondary Current", secondary.getOutputCurrent());
     }
 }

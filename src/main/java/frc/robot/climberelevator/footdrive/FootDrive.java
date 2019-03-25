@@ -7,7 +7,9 @@ import frc.robot.RobotMap;
 import frc.robot.helpers.Helper;
 import frc.robot.helpers.subsystems.SubsystemManagerChild;
 
-
+/**
+ * subsystem for the bottom drive on foot
+ */
 public class FootDrive extends SubsystemManagerChild {
   private WPI_TalonSRX motor;
 
@@ -37,11 +39,6 @@ public class FootDrive extends SubsystemManagerChild {
    */
   public double getSpeed() {
     return motor.get();
-  }
-
-  @Override
-  public void initSD() {
-    addTab("Motor", motor);
   }
   
   @Override

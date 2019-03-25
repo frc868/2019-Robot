@@ -7,6 +7,7 @@ import frc.robot.carriage.tilt.SetTiltPosition;
 import frc.robot.carriage.tilt.Tilt;
 import frc.robot.helpers.Helper;
 
+//TODO make this a command groups, don't know why it's like that
 public class ManualClimber extends Command {
 
     public ManualClimber() {

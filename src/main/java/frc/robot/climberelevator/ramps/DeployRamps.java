@@ -10,6 +10,9 @@ package frc.robot.climberelevator.ramps;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
+/**
+ * command to deploy climbing ramps
+ */
 public class DeployRamps extends Command {
   public DeployRamps() {
     requires(Robot.climberRamps);

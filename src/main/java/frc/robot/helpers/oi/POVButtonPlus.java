@@ -3,9 +3,7 @@ package frc.robot.helpers.oi;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.POVButton;
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.helpers.commands.EmptyCommand;
 import frc.robot.helpers.commands.StopCommand;
-import frc.robot.helpers.oi.ButtonGroup;
 
 public class POVButtonPlus extends POVButton {
 
@@ -13,34 +11,22 @@ public class POVButtonPlus extends POVButton {
         super(controller, angle);
     }
 
-    public void resetMappings() {
-        whenPressed(new EmptyCommand());
-        whileHeld(new EmptyCommand());
-        whenReleased(new EmptyCommand());
-        toggleWhenPressed(new EmptyCommand());
-        cancelWhenPressed(new EmptyCommand());
-
-        whenActive(new EmptyCommand());
-        whileActive(new EmptyCommand());
-        whenInactive(new EmptyCommand());
-        toggleWhenActive(new EmptyCommand());
-        cancelWhenActive(new EmptyCommand());
-
-        pressToStartReleaseToStop(new EmptyCommand());
-        pressToStartReleaseToStop(new EmptyCommand(), new EmptyCommand());
-    }
-
+    /**
+     * run a command while button is held, stop once released
+     * @param command the command to run while held
+     */
     public void pressToStartReleaseToStop(Command command) {
         pressToStartReleaseToStop(command, new StopCommand(command));
     }
-
+    
+    /**
+     * like it sounds, it starts something when the trigger is activited and runs it's respective end command
+     * @param startCommand the command to start
+     * @param stopCommand the command to run when it is released
+     */
     public void pressToStartReleaseToStop(Command startCommand, Command stopCommand) {
         whenPressed(startCommand);
         whenReleased(stopCommand);
-    }
-
-    public ButtonGroup and(Button otherButton) {
-        return new ButtonGroup(this, otherButton);
     }
 
 }

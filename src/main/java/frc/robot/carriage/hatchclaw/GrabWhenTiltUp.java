@@ -25,16 +25,11 @@ public class GrabWhenTiltUp extends Command {
 
     @Override
     protected void execute() {
-        SmartDashboard.putNumber("GrabWhenTiltUp Upness", Robot.tilt.getPotPosition() - initialReading);
-        if (isUpEnough()) { // if we detect hatch, increment count
+        if ((Robot.tilt.getPotPosition() - initialReading) < ANGLE_UP_NEEDED) { // if we detect hatch, increment count
             counts++;
         } else { // if not, reset count
             counts = 0;
         }
-    }
-
-    private boolean isUpEnough() {
-        return (Robot.tilt.getPotPosition() - initialReading) < ANGLE_UP_NEEDED;
     }
 
     @Override

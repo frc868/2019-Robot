@@ -13,7 +13,6 @@ public class SetTiltPosition extends PIDCommandPlus {
     // private static final double P_BALL = 0, I_BALL = 0, D_BALL = 0;
     // private static final double P_EMPTY = 0, I_EMPTY = 0, D_EMPTY = 0;
 
-
     /**
      * sets tilt to given position
      * @param setpoint setpoint for tilt

@@ -3,11 +3,12 @@ package frc.robot.oi;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.*;
 import frc.robot.helpers.Helper;
-import frc.robot.helpers.oi.XboxControllerPlus;
 
 public class ArcadeDrive extends Command {
 
-
+    /**
+     * defalt command for running teleop drive train for the driver
+     */
     public ArcadeDrive() {
         requires(Robot.drivetrain);
     }
@@ -23,7 +24,7 @@ public class ArcadeDrive extends Command {
         }
 
         if(OI.driver.rb.get()){      //Josh's sniper button
-            if(x > 0){
+            if(x > 0){      //this is in case we change it to an even power
                 x = Math.abs(Math.pow(x, 0.55555555555555555555));
             }
             if(x < 0){
