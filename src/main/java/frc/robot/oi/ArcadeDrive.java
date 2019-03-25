@@ -17,14 +17,6 @@ public class ArcadeDrive extends Command {
     protected void execute() {
         double y = Helper.deadzone(-OI.driver.getLY(), .03);
         double x = Helper.deadzone(-OI.driver.getRX(), .03);
-<<<<<<< HEAD
-
-        if(!Robot.powerPack.isElevatorMode())   {// slow for climbing
-            y = y*.25;
-            x = x*.25;
-        } else if(OI.driver.rb.get())   {//Josh's sniper button
-            x = x*.5;
-=======
         if(!Robot.powerPack.isElevatorMode()){       //slow for climbing
             y = y * .25;
             x = x * .25;
@@ -37,7 +29,6 @@ public class ArcadeDrive extends Command {
             if(x < 0){
                 x = -Math.abs(Math.pow(x, 0.55555555555555555555));
             }
->>>>>>> 5aea99a65667af5667bcbfbac7995bd2058dd199
         }
         
         Robot.drivetrain.setSpeed(y - x, y + x);
