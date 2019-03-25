@@ -30,7 +30,7 @@ public class SetTiltPositionFeedForward extends Command {
     // LOWER = 0.85, MIDDLE = 0.838, UPPER = .708
 
 
-
+    //TODO: add real values to this as a failsafe in case we lose tilt
     if(setpoint == Tilt.LOWER)  { //go to lower setpoint
 
       if(Robot.ballIntake.isBallDetected()==true) { //if you have a ball
