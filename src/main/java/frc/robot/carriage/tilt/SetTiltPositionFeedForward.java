@@ -10,10 +10,10 @@ package frc.robot.carriage.tilt;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class SetTiltPositionFeedback extends Command {
+public class SetTiltPositionFeedForward extends Command {
   private double setpoint;
 
-  public SetTiltPositionFeedback(double setpoint) {
+  public SetTiltPositionFeedForward(double setpoint) {
 		this.setpoint = setpoint;
     requires(Robot.tilt);
   }
