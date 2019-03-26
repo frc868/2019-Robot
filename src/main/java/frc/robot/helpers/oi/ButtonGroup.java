@@ -2,7 +2,6 @@ package frc.robot.helpers.oi;
 
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.helpers.commands.EmptyCommand;
 import frc.robot.helpers.commands.StopCommand;
 
 public class ButtonGroup extends Button {
