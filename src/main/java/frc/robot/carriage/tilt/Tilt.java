@@ -38,6 +38,7 @@ public class Tilt extends SubsystemManagerChild {
         }
 
         motor.set(Helper.boundValue(speed));
+        SmartDashboard.putNumber("Tilt Current", motor.getOutputCurrent());
     }
 
     /**
