@@ -1,12 +1,12 @@
 package frc.robot.helpers.commands;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-import edu.wpi.first.wpilibj.Encoder;
 
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.command.InstantCommand;
 import frc.robot.helpers.motorcontrollers.CANSparkMaxPlus;
 
-public class ResetEncoder extends Command {
+public class ResetEncoder extends InstantCommand {
   private CANSparkMaxPlus sparkMax;
   private WPI_TalonSRX talon;
   private Encoder encoder;
@@ -32,10 +32,5 @@ public class ResetEncoder extends Command {
     } else {
       encoder.reset();
     }
-  }
-
-  @Override
-  protected boolean isFinished() {
-    return true;
   }
 }

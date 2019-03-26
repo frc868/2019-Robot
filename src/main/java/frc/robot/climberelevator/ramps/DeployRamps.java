@@ -7,10 +7,10 @@
 
 package frc.robot.climberelevator.ramps;
  
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.InstantCommand;
 import frc.robot.Robot;
 
-public class DeployRamps extends Command {
+public class DeployRamps extends InstantCommand {
   public DeployRamps() {
     requires(Robot.climberRamps);
   }
@@ -18,10 +18,5 @@ public class DeployRamps extends Command {
   @Override
   protected void initialize() {
     Robot.climberRamps.open();
-  }
-
-  @Override
-  protected boolean isFinished() {
-    return true;
   }
 }

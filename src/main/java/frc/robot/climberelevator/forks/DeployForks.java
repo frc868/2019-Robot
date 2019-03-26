@@ -7,10 +7,10 @@
 
 package frc.robot.climberelevator.forks;
 
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.InstantCommand;
 import frc.robot.Robot;
 
-public class DeployForks extends Command {
+public class DeployForks extends InstantCommand {
   public DeployForks() {
     requires(Robot.forks);
   }
@@ -18,10 +18,5 @@ public class DeployForks extends Command {
   @Override
   protected void initialize() {
     Robot.forks.open();
-  }
-
-  @Override
-  protected boolean isFinished() {
-    return true;
   }
 }

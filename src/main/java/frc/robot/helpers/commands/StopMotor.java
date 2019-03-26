@@ -2,9 +2,9 @@ package frc.robot.helpers.commands;
 
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.SpeedController;
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.InstantCommand;
 
-public class StopMotor extends Command {
+public class StopMotor extends InstantCommand {
 private SpeedController controller;
 private Solenoid sol;
 private boolean solSet = false;
@@ -36,10 +36,5 @@ private SpeedController[] controllers;
             controllerObject.set(0);
         }
     }
-  }
-
-  @Override
-  protected boolean isFinished() {
-    return true;
   }
 }

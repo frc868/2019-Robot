@@ -1,8 +1,9 @@
 package frc.robot.helpers.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.InstantCommand;
 
-public class StopCommand extends Command {
+public class StopCommand extends InstantCommand {
     private Command command;
 
     public StopCommand(Command command) {
@@ -12,10 +13,5 @@ public class StopCommand extends Command {
     @Override
     protected void initialize() {
         command.cancel();
-    }
-    
-    @Override
-    protected boolean isFinished() {
-        return true;
     }
 }

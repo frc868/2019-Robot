@@ -1,9 +1,9 @@
 package frc.robot.carriage.hatchclaw;
 
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.InstantCommand;
 import frc.robot.Robot;
 
-public class Grab extends Command {
+public class Grab extends InstantCommand {
   /**
    * opens the hatch claw to grab a hatch
    */
@@ -15,11 +15,5 @@ public class Grab extends Command {
   protected void initialize() {
     // grab hatch
     Robot.hatchClaw.grab();
-  }
-
-  @Override
-  protected boolean isFinished() {
-    // finish immediately
-    return true;
   }
 }

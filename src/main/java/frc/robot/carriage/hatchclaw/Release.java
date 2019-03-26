@@ -1,9 +1,9 @@
 package frc.robot.carriage.hatchclaw;
 
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.InstantCommand;
 import frc.robot.Robot;
 
-public class Release extends Command {
+public class Release extends InstantCommand {
   /**
    * closes the hatch claw to release a hatch
    */
@@ -15,11 +15,5 @@ public class Release extends Command {
   protected void initialize() {
     // releases a hatch
     Robot.hatchClaw.release();
-  }
-
-  @Override
-  protected boolean isFinished() {
-    // end immediately
-    return true;
   }
 }

@@ -1,9 +1,9 @@
 package frc.robot.carriage.hatchclaw;
 
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.InstantCommand;
 import frc.robot.Robot;
 
-public class ToggleClaw extends Command {
+public class ToggleClaw extends InstantCommand {
 
   /**
    * toggles hatch claw between the two states
@@ -19,11 +19,5 @@ public class ToggleClaw extends Command {
     } else { // if hatch is released, grab
         Robot.hatchClaw.grab();
     }
-  }
-
-  @Override
-  protected boolean isFinished() {
-    // finish immediately
-    return true;
   }
 }
