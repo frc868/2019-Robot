@@ -9,7 +9,7 @@ public class VisionData {
         try {
             if (newData != null && !newData.equals("")) {  
                 rawData = newData;      
-                if (hasTarget()) {
+                if (hasComs() && hasTarget()) {
                     String[] dataArray = rawData.split(",");
 
                     distance = Double.parseDouble(dataArray[0]);
@@ -21,7 +21,11 @@ public class VisionData {
     }
 
     public String getRawData() {
-        return rawData != null ? rawData : ",,";
+        return rawData;
+    }
+
+    public boolean hasComs() {
+        return !(getRawData() == null);
     }
 
     public boolean hasTarget() {
