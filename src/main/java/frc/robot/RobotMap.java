@@ -37,7 +37,7 @@ public class RobotMap {
     }
 
     public static class Ramps {
-      public static final int ACTUATOR = 0; 
+      public static final int ACTUATOR = 5; 
     }
   }
   
