@@ -16,7 +16,7 @@ private SpeedController[] controllers;
 
   public StopMotor(SpeedController controller) {
     this.controller = controller;
-  }
+  } 
 
   public StopMotor(SpeedController controller, Solenoid sol, Boolean solSet){
       this.controller = controller;
