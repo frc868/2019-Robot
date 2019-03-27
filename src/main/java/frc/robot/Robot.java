@@ -9,7 +9,7 @@ import frc.robot.carriage.tilt.Tilt;
 import frc.robot.climberelevator.footdrive.FootDrive;
 import frc.robot.climberelevator.forks.Forks;
 import frc.robot.climberelevator.powerpack.PowerPack;
-import frc.robot.climberelevator.ramps.Ramps;
+//import frc.robot.climberelevator.ramps.Ramps;
 import frc.robot.drivetrain.Drivetrain;
 import frc.robot.drivetrain.commands.DriveStraight;
 import frc.robot.drivetrain.commands.RunProfile;
@@ -18,6 +18,9 @@ import frc.robot.oi.OI;
 import frc.robot.sensors.camera.Camera;
 import frc.robot.sensors.gyro.Gyro;
 // import frc.robot.sensors.ultrasonic.UltrasonicArray;
+
+import frc.robot.sensors.camera.FollowVision;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Robot extends TimedRobot {
   public static BallIntake ballIntake = new BallIntake();
@@ -30,7 +33,7 @@ public class Robot extends TimedRobot {
   public static FootDrive footDrive = new FootDrive();
   public static Forks forks = new Forks();
   public static PowerPack powerPack = new PowerPack();
-  public static Ramps climberRamps = new Ramps();
+  //public static Ramps climberRamps = new Ramps();
 
   public static Camera camera = new Camera();
   public static Compressor compressor = new Compressor();
@@ -46,6 +49,10 @@ public class Robot extends TimedRobot {
     SubsystemManager.initSD();
 
     compressor.setClosedLoopControl(true);
+
+    SmartDashboard.putNumber("k_dist",  FollowVision.k_dist);
+    SmartDashboard.putNumber("k_pos",   FollowVision.k_pos);
+    SmartDashboard.putNumber("k_angle", FollowVision.k_angle);
   }
 
   @Override

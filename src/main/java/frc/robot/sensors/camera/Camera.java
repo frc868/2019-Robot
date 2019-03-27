@@ -7,9 +7,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import frc.robot.helpers.subsystems.SubsystemManagerChild;
 
+import frc.robot.sensors.camera.FollowVision;
+
 public class Camera extends SubsystemManagerChild {
   private SerialPort port;
-  private UsbCamera camera0, camera1;
+  private UsbCamera camera0;//, camera1;
 
   public Camera() {
     super("Camera");
@@ -18,11 +20,14 @@ public class Camera extends SubsystemManagerChild {
 
   @Override
   public void init() {
-    camera0 = CameraServer.getInstance().startAutomaticCapture(0);
-    camera0.setFPS(15);
+    //camera0 = CameraServer.getInstance().startAutomaticCapture(0);
+    //camera0.setFPS(15);
 
-    camera1 = CameraServer.getInstance().startAutomaticCapture(1);
-    camera1.setFPS(15);
+    //camera1 = CameraServer.getInstance().startAutomaticCapture(1);
+    //camera1.setFPS(15);
+
+    camera0 = CameraServer.getInstance().startAutomaticCapture();
+    camera0.setFPS(15);
   }
 
   public VisionData getData() {

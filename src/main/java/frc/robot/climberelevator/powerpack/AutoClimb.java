@@ -5,7 +5,7 @@ import frc.robot.carriage.hatchclaw.Grab;
 import frc.robot.carriage.tilt.SetTiltPosition;
 import frc.robot.carriage.tilt.Tilt;
 import frc.robot.climberelevator.footdrive.SetFootDriveSpeed;
-import frc.robot.climberelevator.ramps.DeployRamps;
+//import frc.robot.climberelevator.ramps.DeployRamps;
 import frc.robot.drivetrain.commands.DriveStraight;
 import frc.robot.helpers.commands.DelayedCommand;
 
@@ -25,7 +25,7 @@ public class AutoClimb extends CommandGroup {
         addSequential(new SetTiltPosition(Tilt.UPPER));
         addParallel(new Grab());
 
-        addSequential(new DeployRamps());
+        //addSequential(new DeployRamps());
 
         addSequential(new DelayedCommand(new SetClimberSpeed(0.5), 1), climbTime);
         addParallel(new SetFootDriveSpeed(0.1));
