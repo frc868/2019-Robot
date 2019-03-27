@@ -8,59 +8,58 @@ import frc.robot.helpers.subsystems.SubsystemManagerChild;
 /**
  * ramps subsystem for climbing
  */
-public class Ramps extends SubsystemManagerChild {
-    private Solenoid actuator;
+public class Ramps extends SubsystemManagerChild{
+    
     private final boolean DEPLOYED_STATE = true;
-
-    public Ramps() {
+    private Solenoid actuator;
+    
+    public Ramps(){
         super("Ramps");
         actuator = new Solenoid(RobotMap.PCM, RobotMap.ClimberElevator.Ramps.ACTUATOR);
     }
-
-    /**
-     * @param state state to set actuator to
-     */
-    public void setState(boolean state) {
-        actuator.set(state);
-    }
-
+    
     /**
      * opens ramp
      */
-    public void open() {
-       setState(DEPLOYED_STATE);
+    public void open(){
+        setState(DEPLOYED_STATE);
     }
-
-
+    
+    @Override
+    public void initEnabled(){
+        close();
+    }
+    
     /**
      * closes ramp
      */
-    public void close() {
+    public void close(){
         setState(!DEPLOYED_STATE);
     }
-
+    
+    @Override
+    public void updateSD(){
+        SmartDashboard.putBoolean("Ramps: Open?", isOpen());
+    }
+    
+    /**
+     * @return true if ramps are open
+     */
+    public boolean isOpen(){
+        return getState() == DEPLOYED_STATE;
+    }
+    
     /**
      * @return state of ramps
      */
-    public boolean getState() {
+    public boolean getState(){
         return actuator.get();
     }
-
+    
     /**
-     * 
-     * @return true if ramps are open
+     * @param state state to set actuator to
      */
-    public boolean isOpen() {
-        return getState() == DEPLOYED_STATE;
-    }
-
-    @Override
-    public void initEnabled() {
-        close();
-    }
-
-    @Override
-    public void updateSD() {
-        SmartDashboard.putBoolean("Ramps: Open?", isOpen());
+    public void setState(boolean state){
+        actuator.set(state);
     }
 }
