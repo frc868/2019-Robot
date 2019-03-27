@@ -35,9 +35,9 @@ public class Tilt extends SubsystemManagerChild {
      * @param speed percentage power from -1 to 1, will not work if limits are tripped
      */
     public void setSpeed(double speed) {
-        if(limitPower){
-            speed = Helper.boundValue(speed, -0.25, 0.25);
-        }
+        // if(limitPower){
+        //     speed = Helper.boundValue(speed, -0.25, 0.25);
+        // }
         // if (getTopLimit()) {
         //     speed = Helper.boundValue(speed, -1, 0);
         // } else if (getBottomLimit()) {
@@ -115,7 +115,7 @@ public class Tilt extends SubsystemManagerChild {
 
     @Override
     public void init() {
-        // limit.getTrigger().whenActive(new StopMotor(motor));
+        limit.getTrigger().whenActive(new StopMotor(motor));
     }
 
     @Override

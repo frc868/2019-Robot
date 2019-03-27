@@ -48,27 +48,20 @@ public class OI {
         operator.y.whenPressed(new SmartSetElevatorPosition(SmartSetElevatorPosition.Height.upper));
         operator.x.whenPressed(new SmartSetElevatorPosition(SmartSetElevatorPosition.Height.ballIntake));
 
-        operator.lstk.pressToStartReleaseToStop(new IntakeAssistTilt());
+        operator.x.whenActive(new ElevatorToBallHeight());
+        
+        operator.a.and(Robot.ballIntake.detection_limit.getTrigger()).whenActive(new ElevatorToBallBottomHeight());
+        operator.a.not(Robot.ballIntake.detection_limit.getTrigger()).whenActive(new ElevatorToHatchBottomHeight());
 
-        // METHOD ONE
-        // operator.x.whenActive(new ElevatorToBallHeight());
+        operator.b.and(Robot.ballIntake.detection_limit.getTrigger()).whenActive(new ElevatorToBallMiddleHeight());
+        operator.b.not(Robot.ballIntake.detection_limit.getTrigger()).whenActive(new ElevatorToHatchMiddleHeight());
 
-        // operator.a.and(Robot.ballIntake.detection_limit.getTrigger()).whenActive(new ElevatorToBallBottomHeight());
-        // operator.a.not(Robot.ballIntake.detection_limit.getTrigger()).whenActive(new ElevatorToHatchBottomHeight());
-
-        // operator.b.and(Robot.ballIntake.detection_limit.getTrigger()).whenActive(new ElevatorToBallMiddleHeight());
-        // operator.b.not(Robot.ballIntake.detection_limit.getTrigger()).whenActive(new ElevatorToHatchMiddleHeight());
-
-        // operator.y.and(Robot.ballIntake.detection_limit.getTrigger()).whenActive(new ElevatorToBallUpperHeight());
-        // operator.y.not(Robot.ballIntake.detection_limit.getTrigger()).whenActive(new ElevatorToHatchUpperHeight());
-       
-        // METHOD TWO 
+        operator.y.and(Robot.ballIntake.detection_limit.getTrigger()).whenActive(new ElevatorToBallUpperHeight());
+        operator.y.not(Robot.ballIntake.detection_limit.getTrigger()).whenActive(new ElevatorToHatchUpperHeight());
         // operator.a.whenPressed(new OtherSetElevatorPosition(OtherSetElevatorPosition.Height.lower));
         // operator.b.whenPressed(new OtherSetElevatorPosition(OtherSetElevatorPosition.Height.middle));
         // operator.y.whenPressed(new OtherSetElevatorPosition(OtherSetElevatorPosition.Height.upper));
         // operator.x.whenPressed(new OtherSetElevatorPosition(OtherSetElevatorPosition.Height.intake));
-
-        // METHOD THREE
         // // operator.a.whenPressed(new BallOrHatch(new ElevatorToHatchBottomHeight(), new ElevatorToBallBottomHeight()));
         // operator.b.whenPressed(new BallOrHatch(new ElevatorToHatchMiddleHeight(), new ElevatorToBallMiddleHeight()));
         // operator.y.whenPressed(new BallOrHatch(new ElevatorToHatchUpperHeight(), new ElevatorToBallUpperHeight()));

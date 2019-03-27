@@ -7,12 +7,7 @@ import frc.robot.helpers.pid.PIDCommandPlus;
 
 public class SetTiltPosition extends PIDCommandPlus {
     // PID constants
-    private static final double P = 18.0, I = 0.2, D = 12;
-
-    // private static final double P_HATCH = 0, I_HATCH = 0, D_HATCH = 0;
-    // private static final double P_BALL = 0, I_BALL = 0, D_BALL = 0;
-    // private static final double P_EMPTY = 0, I_EMPTY = 0, D_EMPTY = 0;
-
+    private static final double P = 20.0, I = 0.2, D = 12;
 
     /**
      * sets tilt to given position
