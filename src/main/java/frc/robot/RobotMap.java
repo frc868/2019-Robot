@@ -42,7 +42,7 @@ public class RobotMap {
     }
 
     public static class Forks {
-      public static final int RELEASE = 5;  // TESTED
+      public static final int RELEASE = 6;  // TESTED
       //public static final int LEFT = 2;
       //public static final int RIGHT = 3;
     }
@@ -52,7 +52,7 @@ public class RobotMap {
     public static class Tilt {
       public static final int MOTOR = 15; // TESTED
       public static final int POTENTIOMETER = 0;  // TESTED
-      public static final int BRAKE = 6;
+      public static final int BRAKE = 5;
     }
 
     public static class BallIntake {
