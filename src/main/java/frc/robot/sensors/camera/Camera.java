@@ -40,15 +40,15 @@ public class Camera extends SubsystemManagerChild {
 
   @Override
   public void update() {
-    VisionData data = getData();
+    // VisionData data = getData();
 
-    SmartDashboard.putString("Camera: Raw", data.getRawData());
+    // SmartDashboard.putString("Camera: Raw", data.getRawData());
 
-    SmartDashboard.putNumber("Camera: Distance", data.getDistance());
-    SmartDashboard.putNumber("Camera: Position", data.getPosition());
-    SmartDashboard.putNumber("Camera: Angle", data.getAngle());
+    // SmartDashboard.putNumber("Camera: Distance", data.getDistance());
+    // SmartDashboard.putNumber("Camera: Position", data.getPosition());
+    // SmartDashboard.putNumber("Camera: Angle", data.getAngle());
     
-    SmartDashboard.putBoolean("Camera: Connected?", data.hasComs());
-    SmartDashboard.putBoolean("Camera: Target?", data.hasTarget());
+    // SmartDashboard.putBoolean("Camera: Connected?", data.hasComs());
+    // SmartDashboard.putBoolean("Camera: Target?", data.hasTarget());
   }
 }

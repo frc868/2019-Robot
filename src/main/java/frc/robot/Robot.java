@@ -49,10 +49,6 @@ public class Robot extends TimedRobot {
     SubsystemManager.initSD();
 
     compressor.setClosedLoopControl(true);
-
-    SmartDashboard.putNumber("k_dist",  FollowVision.k_dist);
-    SmartDashboard.putNumber("k_pos",   FollowVision.k_pos);
-    SmartDashboard.putNumber("k_angle", FollowVision.k_angle);
   }
 
   @Override

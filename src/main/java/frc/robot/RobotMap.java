@@ -92,7 +92,7 @@ public class RobotMap {
   }
 
   public static class Controls{
-    public static final int DRIVER = 1;
-    public static final int OPERATOR = 2;
+    public static final int DRIVER = 0;
+    public static final int OPERATOR = 1;
   }
 }
