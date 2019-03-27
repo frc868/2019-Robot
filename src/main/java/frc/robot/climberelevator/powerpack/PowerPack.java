@@ -20,7 +20,7 @@ public class PowerPack extends SubsystemManagerChild {
     private final boolean ELEVATOR_MODE = false, BRAKE_MODE = false;
 
     public static final double INTAKE_BALL = 2.54, 
-        LOWER_BALL = 5.02, LOWER_HATCH = 1.85, 
+        LOWER_BALL = 5.02, LOWER_HATCH = 0, 
         MIDDLE_BALL = 22.023, MIDDLE_HATCH = 19.66, 
         UPPER_BALL = 39, UPPER_HATCH = 36.38;
 
