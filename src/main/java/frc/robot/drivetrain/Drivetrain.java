@@ -3,7 +3,6 @@ package frc.robot.drivetrain;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import frc.robot.helpers.Helper;
@@ -89,7 +88,7 @@ public class Drivetrain extends SubsystemManagerChild {
      /**
      * sets  motors' speed
      * @param leftSpeed left's percentage power from -1 to 1
-     * @param rigthSpeed right's percentage power from -1 to 1
+     * @param rightSpeed right's percentage power from -1 to 1
      */
     public void setSpeed(double leftSpeed, double rightSpeed) {
         setLeftSpeed(leftSpeed);

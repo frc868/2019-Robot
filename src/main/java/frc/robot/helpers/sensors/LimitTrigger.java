@@ -19,14 +19,14 @@ public class LimitTrigger extends TriggerPlus {
   }
 
   /**
-   * @param digitalInput the potentiometer limit sensor to use
+   * @param potentiometerLimit digitalInput the potentiometer limit sensor to use
    */
   public LimitTrigger(PotentiometerLimit potentiometerLimit) {
     this.potentiometerLimit = potentiometerLimit;
   }
 
   /**
-   * @param digitalInput the analog distance limit sensor to use
+   * @param analogDistanceLimit digitalInput the analog distance limit sensor to use
    */
   public LimitTrigger(AnalogDistanceLimit analogDistanceLimit) {
     this.analogDistanceLimit = analogDistanceLimit;

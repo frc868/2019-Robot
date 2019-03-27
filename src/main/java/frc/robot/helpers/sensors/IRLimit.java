@@ -6,7 +6,7 @@ public class IRLimit extends DigitalInput {
     private LimitTrigger limitTrigger;
     /**
      * the infrared limit switch
-     * @param the RoboRIO port the sensor is plugged into
+     * @param port the RoboRIO port the sensor is plugged into
      */
     public IRLimit(int port) {
         super(port);
