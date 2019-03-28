@@ -3,14 +3,16 @@
 // import edu.wpi.first.wpilibj.command.Command;
 // import frc.robot.Robot;
 
+// import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 // public class FollowVision extends Command {
-//   public final int VISION_TARGET = 180;
+//   public final int VISION_TARGET = 200;
 //   private int counts = 0;
 //   private final int COUNTS_NEEDED = 5;
 
-//   protected double k_dist = -0.028; // this is negative as a larger value means we are closer to the target 
-//   protected double k_pos =  0.012;
-//   protected double k_angle =  0.005;
+//   public static double k_dist = -0.01; // this is negative as a larger value means we are closer to the target 
+//   public static double k_pos =  0.01;
+//   public static double k_angle =  0.01;
 
 //   private VisionData data;
  
@@ -20,13 +22,12 @@
 //   }
 
 //   @Override
-//   protected void initialize() {
-//     Robot.camera.switchToVision();
-//   }
-
-//   @Override
 //   protected void execute() {
 //     data = Robot.camera.getData();
+
+//     SmartDashboard.putNumber("k_dist",  data.getDistance());
+//     SmartDashboard.putNumber("k_pos",   data.getPosition());
+//     SmartDashboard.putNumber("k_angle", data.getAngle());
 
 //     if (data.hasTarget()) {
 //       double distError = data.getDistance() - VISION_TARGET;
@@ -41,7 +42,7 @@
 //       double left = (distValue + posValue + angleValue) / 10.0;
 //       double right = (distValue - posValue - angleValue) / 10.0;
 
-//       Robot.drivetrain.setSpeed(left, -right);
+//       Robot.drivetrain.setSpeed(left, right);
 
 //       counts = 0;
 //     } else {

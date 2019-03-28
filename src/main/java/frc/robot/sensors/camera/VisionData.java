@@ -8,8 +8,9 @@ public class VisionData {
     public VisionData(String newData) {
         try {
             if (newData != null && !newData.equals("")) {  
-                rawData = newData;      
-                if (hasTarget()) {
+                rawData = newData;
+
+                if (hasComs() && hasTarget()) {
                     String[] dataArray = rawData.split(",");
 
                     distance = Double.parseDouble(dataArray[0]);
@@ -21,7 +22,11 @@ public class VisionData {
     }
 
     public String getRawData() {
-        return rawData != null ? rawData : ",,";
+        return rawData == null ? "" : rawData;
+    }
+
+    public boolean hasComs() {
+        return getRawData() != "";
     }
 
     public boolean hasTarget() {
@@ -39,6 +44,5 @@ public class VisionData {
     public double getAngle() {
         return angle;
     }
-    
 
 }
