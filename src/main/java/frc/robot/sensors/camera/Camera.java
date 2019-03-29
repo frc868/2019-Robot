@@ -14,7 +14,6 @@ public class Camera extends SubsystemManagerChild {
 
   public Camera() {
     super("Camera");
-    // port = new SerialPort(115200, RobotMap.Sensors.Camera.PORT);
   }
 
   @Override
@@ -25,8 +24,7 @@ public class Camera extends SubsystemManagerChild {
     camera1 = CameraServer.getInstance().startAutomaticCapture(1);
     camera1.setFPS(15);
 
-    // camera0 = CameraServer.getInstance().startAutomaticCapture();
-    // camera0.setFPS(15);
+    // port = new SerialPort(115200, RobotMap.Sensors.Camera.PORT);
   }
 
   public VisionData getData() {
