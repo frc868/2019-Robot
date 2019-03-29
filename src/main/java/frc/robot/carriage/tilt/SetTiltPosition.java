@@ -7,7 +7,9 @@ import frc.robot.helpers.pid.PIDCommandPlus;
 
 public class SetTiltPosition extends PIDCommandPlus {
     // PID constants
-    private static final double P = 16.0, I = 0.2, D = 10;
+    private static final double P = 20.0, I = 2, D = 10;
+    private int counts = 0;
+    private final int COUNTS_NEEDED = 10;
 
     // private static final double P_HATCH = 0, I_HATCH = 0, D_HATCH = 0;
     // private static final double P_BALL = 0, I_BALL = 0, D_BALL = 0;
@@ -42,7 +44,8 @@ public class SetTiltPosition extends PIDCommandPlus {
         //     setConstants(P_EMPTY, I_EMPTY, D_EMPTY);
         // }
 
-        getPIDController().setAbsoluteTolerance(0.01);
+        getPIDController().setAbsoluteTolerance(0.005);
+        // getPIDController().setToleranceBuffer(100P);
     }
 
     @Override
@@ -50,6 +53,12 @@ public class SetTiltPosition extends PIDCommandPlus {
         SmartDashboard.putNumber("Tilt Error", getError());
 
         if (getPIDController().onTarget()) {
+            counts++;
+        } else {
+            counts = 0;
+        }
+
+        if (counts >= COUNTS_NEEDED) {
             Robot.tilt.brakeOn();
         }
     }

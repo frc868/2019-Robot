@@ -3,6 +3,8 @@ package frc.robot.sensors.camera;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.SerialPort;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.RobotMap;
 import frc.robot.helpers.subsystems.SubsystemManagerChild;
 
 public class Camera extends SubsystemManagerChild {
@@ -26,13 +28,16 @@ public class Camera extends SubsystemManagerChild {
     // camera1.setExposureAuto();
     camera1.setFPS(15);
 
-    // try {
-      // port = new SerialPort(115200, RobotMap.Sensors.Camera.PORT);
-    // } catch (Exception e) {}
+    try {
+      port = new SerialPort(115200, RobotMap.Sensors.Camera.PORT);
+    } catch (Exception e) {}
+  }
+
+  public void updateData(){
+    data = new VisionData(port.readString());
   }
 
   public VisionData getData() {
-    data = new VisionData(port.readString());
     return data;
   }
 
@@ -42,13 +47,19 @@ public class Camera extends SubsystemManagerChild {
 
   @Override
   public void update() {
-    // SmartDashboard.putString("Camera: Raw", data.getRawData());
+    try {
+      // SmartDashboard.putString("ttest", port.readString());
+      updateData();
 
-    // SmartDashboard.putNumber("Camera: Distance", data.getDistance());
-    // SmartDashboard.putNumber("Camera: Position", data.getPosition());
-    // SmartDashboard.putNumber("Camera: Angle", data.getAngle());
+      SmartDashboard.putString("Camera: Raw", data.getRawData());
+
+      SmartDashboard.putNumber("Camera: Distance", data.getDistance());
+      SmartDashboard.putNumber("Camera: Position", data.getPosition());
+      SmartDashboard.putNumber("Camera: Angle", data.getAngle());
+      
+      SmartDashboard.putBoolean("Camera: Connected?", data.hasComs());
+      SmartDashboard.putBoolean("Camera: Target?", data.hasTarget());
+    } catch (Exception e) {}
     
-    // SmartDashboard.putBoolean("Camera: Connected?", data.hasComs());
-    // SmartDashboard.putBoolean("Camera: Target?", data.hasTarget());
   }
 }

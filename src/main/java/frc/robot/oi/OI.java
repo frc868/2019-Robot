@@ -10,6 +10,7 @@ import frc.robot.climberelevator.forks.DeployForks;
 import frc.robot.climberelevator.powerpack.SmartSetElevatorPosition;
 import frc.robot.climberelevator.ramps.DeployRamps;
 import frc.robot.helpers.oi.XboxControllerPlus;
+import frc.robot.sensors.camera.FollowVision;
 public class OI {
     public static XboxControllerPlus driver;
     public static XboxControllerPlus operator;
@@ -23,7 +24,7 @@ public class OI {
         Robot.ballIntake.setDefaultCommand(new ManualIntake());
 
         // DRIVER CONTROLS 
-        // driver.a.whileHeld(new FollowVision());
+        driver.a.pressToStartReleaseToStop(new FollowVision());
         // driver.x.pressToStartReleaseToStop(new IntakeUntilBallDetected());
         // driver.y.and(driver.rb).whenPressed(new AutoClimb(true));
 

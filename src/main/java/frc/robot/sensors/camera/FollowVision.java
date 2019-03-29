@@ -7,12 +7,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class FollowVision extends Command {
   public final int VISION_TARGET = 200;
-  private int counts = 0;
-  private final int COUNTS_NEEDED = 5;
 
-  public static double k_dist = -0.01; // this is negative as a larger value means we are closer to the target 
+  public static double k_dist = -0.011; // this is negative as a larger value means we are closer to the target 
   public static double k_pos =  0.01;
-  public static double k_angle =  0.01;
+  public static double k_angle =  0.00;
 
   private VisionData data;
  
@@ -43,16 +41,12 @@ public class FollowVision extends Command {
       double right = (distValue - posValue - angleValue) / 10.0;
 
       Robot.drivetrain.setSpeed(left, right);
-
-      counts = 0;
-    } else {
-      counts++;
     }
   }
 
   @Override
   protected boolean isFinished() {
-      return counts >= COUNTS_NEEDED;
+      return false;
   }
 
   @Override

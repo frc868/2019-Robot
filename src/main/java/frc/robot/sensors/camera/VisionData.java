@@ -38,7 +38,7 @@ public class VisionData {
     }
 
     public double getPosition() {
-        return position;
+        return position - 15.5 + 12.2 + 0.3;
     }
 
     public double getAngle() {
