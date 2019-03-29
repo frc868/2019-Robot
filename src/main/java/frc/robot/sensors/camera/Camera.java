@@ -10,6 +10,7 @@ import frc.robot.helpers.subsystems.SubsystemManagerChild;
 public class Camera extends SubsystemManagerChild {
   private SerialPort port;
   private UsbCamera camera0, camera1;
+  private VisionData data;
 
   public Camera() {
     super("Camera");
@@ -29,7 +30,8 @@ public class Camera extends SubsystemManagerChild {
   }
 
   public VisionData getData() {
-    return new VisionData(port.readString());
+    data = new VisionData(port.readString());
+    return data;
   }
 
   private void sendData(String data) {
@@ -38,8 +40,6 @@ public class Camera extends SubsystemManagerChild {
 
   @Override
   public void update() {
-    // VisionData data = getData();
-
     // SmartDashboard.putString("Camera: Raw", data.getRawData());
 
     // SmartDashboard.putNumber("Camera: Distance", data.getDistance());

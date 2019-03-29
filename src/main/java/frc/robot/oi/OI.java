@@ -8,16 +8,10 @@ import frc.robot.carriage.tilt.SetTiltPosition;
 import frc.robot.carriage.tilt.Tilt;
 import frc.robot.climberelevator.forks.DeployForks;
 import frc.robot.climberelevator.powerpack.SmartSetElevatorPosition;
-import frc.robot.climberelevator.powerpack.smartsetelevator.ElevatorToBallBottomHeight;
-import frc.robot.climberelevator.powerpack.smartsetelevator.ElevatorToBallHeight;
-import frc.robot.climberelevator.powerpack.smartsetelevator.ElevatorToBallMiddleHeight;
-import frc.robot.climberelevator.powerpack.smartsetelevator.ElevatorToBallUpperHeight;
-import frc.robot.climberelevator.powerpack.smartsetelevator.ElevatorToHatchBottomHeight;
-import frc.robot.climberelevator.powerpack.smartsetelevator.ElevatorToHatchMiddleHeight;
-import frc.robot.climberelevator.powerpack.smartsetelevator.ElevatorToHatchUpperHeight;
 import frc.robot.climberelevator.ramps.DeployRamps;
 import frc.robot.helpers.oi.XboxControllerPlus;
 // import frc.robot.sensors.camera.FollowVision;
+import frc.robot.sensors.camera.FollowVision;
 
 public class OI {
     public static XboxControllerPlus driver;
