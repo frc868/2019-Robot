@@ -2,9 +2,6 @@ package frc.robot.climberelevator.powerpack;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.Robot;
-import frc.robot.carriage.hatchclaw.Grab;
-import frc.robot.carriage.tilt.SetTiltPosition;
-import frc.robot.carriage.tilt.Tilt;
 
 public class SmartSetElevatorPosition extends CommandGroup {
 

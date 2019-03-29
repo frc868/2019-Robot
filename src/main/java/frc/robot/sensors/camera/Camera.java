@@ -3,8 +3,6 @@ package frc.robot.sensors.camera;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.SerialPort;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.RobotMap;
 import frc.robot.helpers.subsystems.SubsystemManagerChild;
 
 public class Camera extends SubsystemManagerChild {
