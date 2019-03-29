@@ -15,82 +15,82 @@ import frc.robot.oi.OI;
 import frc.robot.sensors.camera.Camera;
 import frc.robot.sensors.gyro.Gyro;
 
-public class Robot extends TimedRobot {
-  public static BallIntake ballIntake = new BallIntake();
-  public static HatchClaw hatchClaw = new HatchClaw();
-  public static Tilt tilt = new Tilt();
-
-  public static Drivetrain drivetrain = new Drivetrain();
-
-  public static FootDrive footDrive = new FootDrive();
-  public static PowerPack powerPack = new PowerPack();
-  public static Ramps climberRamps = new Ramps();
-
-  public static Camera camera = new Camera();
-  public static Compressor compressor = new Compressor();
-  public static Gyro gyro = new Gyro();
-  
-  @Override
-  public void robotInit() {
-    SubsystemManager.init();
-    SubsystemManager.initSD();
-
-    compressor.setClosedLoopControl(true);
-  }
-
-  @Override
-  public void robotPeriodic() {
-    SubsystemManager.update();
-    SubsystemManager.updateSD();
-  }
-  
-  @Override
-  public void disabledInit() {
-    SubsystemManager.initDisabled();
-  }
-
-  @Override
-  public void disabledPeriodic() {
-    Scheduler.getInstance().run();
-    SubsystemManager.updateDisabled();
-  }
-
-
-  @Override
-  public void autonomousInit() {
-    SubsystemManager.initEnabled();
-    OI.init();
-  }
-
-  @Override
-  public void autonomousPeriodic() {
-    Scheduler.getInstance().run();
-    SubsystemManager.updateEnabled();
-    OI.update();
-  }
-
-  @Override
-  public void teleopInit() {
-    SubsystemManager.initEnabled();
-    OI.init();
-
-  }
-
-  @Override
-  public void teleopPeriodic() {
-    Scheduler.getInstance().run();
-    SubsystemManager.updateEnabled();
-    OI.update();
-  }
-
-  @Override
-  public void testInit() {
-    SubsystemManager.initEnabled();
-  }
-
-  @Override
-  public void testPeriodic() {
-    Scheduler.getInstance().run();
-    SubsystemManager.updateEnabled();
-  }
+public class Robot extends TimedRobot{
+    
+    public static BallIntake ballIntake = new BallIntake();
+    public static HatchClaw hatchClaw = new HatchClaw();
+    public static Tilt tilt = new Tilt();
+    
+    public static Drivetrain drivetrain = new Drivetrain();
+    
+    public static FootDrive footDrive = new FootDrive();
+    public static PowerPack powerPack = new PowerPack();
+    public static Ramps climberRamps = new Ramps();
+    
+    public static Camera camera = new Camera();
+    public static Compressor compressor = new Compressor();
+    public static Gyro gyro = new Gyro();
+    
+    @Override
+    public void robotInit(){
+        SubsystemManager.init();
+        SubsystemManager.initSD();
+        
+        compressor.setClosedLoopControl(true);
+    }
+    
+    @Override
+    public void disabledInit(){
+        SubsystemManager.initDisabled();
+    }
+    
+    @Override
+    public void autonomousInit(){
+        SubsystemManager.initEnabled();
+        OI.init();
+    }
+    
+    @Override
+    public void teleopInit(){
+        SubsystemManager.initEnabled();
+        OI.init();
+        
+    }
+    
+    @Override
+    public void testInit(){
+        SubsystemManager.initEnabled();
+    }
+    
+    @Override
+    public void robotPeriodic(){
+        SubsystemManager.update();
+        SubsystemManager.updateSD();
+    }
+    
+    @Override
+    public void disabledPeriodic(){
+        Scheduler.getInstance().run();
+        SubsystemManager.updateDisabled();
+    }
+    
+    @Override
+    public void autonomousPeriodic(){
+        Scheduler.getInstance().run();
+        SubsystemManager.updateEnabled();
+        OI.update();
+    }
+    
+    @Override
+    public void teleopPeriodic(){
+        Scheduler.getInstance().run();
+        SubsystemManager.updateEnabled();
+        OI.update();
+    }
+    
+    @Override
+    public void testPeriodic(){
+        Scheduler.getInstance().run();
+        SubsystemManager.updateEnabled();
+    }
 }

@@ -4,37 +4,37 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.helpers.Helper;
 
-public class ManualElevator extends Command {
+public class ManualElevator extends Command{
     
-    public ManualElevator() {
+    public ManualElevator(){
         requires(Robot.powerPack);
     }
-
+    
     @Override
-    protected void initialize() {
+    protected void initialize(){
         Robot.powerPack.switchToElevator();
     }
-
+    
     @Override
-    protected void execute() {
+    protected void execute(){
         double input = Helper.deadzone(-OI.operator.getLY(), 0.1);      //deadzone to allow the brake to know when to enable
         Robot.powerPack.setSpeed(input);
-
-        if(input == 0) { 
+        
+        if(input == 0){
             Robot.powerPack.elevatorBrakeOn();
-        } else {
+        }else{
             Robot.powerPack.elevatorBrakeOff();
         }
     }
-
+    
     @Override
-    protected void end() {
+    protected boolean isFinished(){
+        return false;
+    }
+    
+    @Override
+    protected void end(){
         Robot.powerPack.stop();
         Robot.powerPack.elevatorBrakeOn();
-    }
-
-    @Override
-    protected boolean isFinished() {
-        return false;
     }
 }

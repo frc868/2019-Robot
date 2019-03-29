@@ -6,25 +6,26 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot.climberelevator.ramps;
- 
+
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 /**
  * command to deploy climbing ramps
  */
-public class DeployRamps extends Command {
-  public DeployRamps() {
-    requires(Robot.climberRamps);
-  }
-
-  @Override
-  protected void initialize() {
-    Robot.climberRamps.open();
-  }
-
-  @Override
-  protected boolean isFinished() {
-    return true;
-  }
+public class DeployRamps extends Command{
+    
+    public DeployRamps(){
+        requires(Robot.climberRamps);
+    }
+    
+    @Override
+    protected void initialize(){
+        Robot.climberRamps.open();
+    }
+    
+    @Override
+    protected boolean isFinished(){
+        return true;
+    }
 }
