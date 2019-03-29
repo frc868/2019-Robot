@@ -12,7 +12,7 @@ public class FollowVision extends Command {
   public static double k_pos =  0.01;
   public static double k_angle =  0.00;
 
-  private VisionData data;
+  protected VisionData data;
  
   public FollowVision() {
     requires(Robot.drivetrain);
