@@ -17,9 +17,13 @@ public class Camera extends SubsystemManagerChild {
   @Override
   public void init() {
     camera0 = CameraServer.getInstance().startAutomaticCapture(0);
+    camera0.setResolution(1, 1);
+    // camera0.setExposureAuto();
     camera0.setFPS(15);
 
     camera1 = CameraServer.getInstance().startAutomaticCapture(1);
+    camera1.setResolution(1, 1);
+    // camera1.setExposureAuto();
     camera1.setFPS(15);
 
     // port = new SerialPort(115200, RobotMap.Sensors.Camera.PORT);
