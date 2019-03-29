@@ -10,9 +10,6 @@ import frc.robot.climberelevator.forks.DeployForks;
 import frc.robot.climberelevator.powerpack.SmartSetElevatorPosition;
 import frc.robot.climberelevator.ramps.DeployRamps;
 import frc.robot.helpers.oi.XboxControllerPlus;
-// import frc.robot.sensors.camera.FollowVision;
-import frc.robot.sensors.camera.FollowVision;
-
 public class OI {
     public static XboxControllerPlus driver;
     public static XboxControllerPlus operator;
