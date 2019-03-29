@@ -26,7 +26,9 @@ public class Camera extends SubsystemManagerChild {
     // camera1.setExposureAuto();
     camera1.setFPS(15);
 
-    // port = new SerialPort(115200, RobotMap.Sensors.Camera.PORT);
+    // try {
+      // port = new SerialPort(115200, RobotMap.Sensors.Camera.PORT);
+    // } catch (Exception e) {}
   }
 
   public VisionData getData() {
