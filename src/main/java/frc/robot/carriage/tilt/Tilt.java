@@ -71,6 +71,13 @@ public class Tilt extends SubsystemManagerChild {
     }
 
     /**
+     * @return actual angle calculated based on the potentiometer reading
+     */
+    public double getAngle() {
+        return getPotPosition();
+    }
+
+    /**
      *
      * @return if forward limit is tripped
      */
