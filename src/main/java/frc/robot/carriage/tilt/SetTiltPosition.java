@@ -1,5 +1,9 @@
 package frc.robot.carriage.tilt;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 import frc.robot.helpers.Helper;
@@ -33,8 +37,6 @@ public class SetTiltPosition extends PIDCommandPlus {
         }
 
         // inputBuffer = new ArrayList<Double>();
-        
-        getPIDController().setAbsoluteTolerance(0.005);
     }
 
     @Override
@@ -50,6 +52,8 @@ public class SetTiltPosition extends PIDCommandPlus {
         // } else {
         //     setConstants(P_EMPTY, I_EMPTY, D_EMPTY);
         // }
+
+        getPIDController().setAbsoluteTolerance(0.005);
     }
 
     @Override
@@ -94,7 +98,6 @@ public class SetTiltPosition extends PIDCommandPlus {
     @Override
     protected boolean isFinished()  {
         // never end
-        // return getPIDController().onTarget();
         return false;
     }
 
