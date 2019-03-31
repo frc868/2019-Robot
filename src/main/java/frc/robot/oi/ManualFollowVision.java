@@ -22,11 +22,10 @@ public class ManualFollowVision extends FollowVision {
             double angleError = data.getAngle();
             double angleValue = angleError * k_angle;
 
-            double manual_y = Helper.deadzone(-OI.driver.getLY(), .03);
-            double manual_x = Helper.deadzone(-OI.driver.getRX(), .03);
+            double manual_y = Helper.deadzone(-OI.driver.getLY(), .03)*0.3;
 
-            double left = (manual_y - manual_x + posValue + angleValue) / 10.0;
-            double right = (manual_y + manual_x - posValue - angleValue) / 10.0;
+            double left = manual_y + ((posValue + angleValue) / 10.0);
+            double right = manual_y - ((posValue - angleValue) / 10.0);
 
             Robot.drivetrain.setSpeed(left, right);
         }
