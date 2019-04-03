@@ -23,7 +23,7 @@ public class ManualFollowVisionPosPID extends PIDCommand {
       lastData = data;
     }
 
-    return data.getPosition();
+    return lastData.getPosition();
   }
 
   @Override
