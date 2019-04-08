@@ -3,16 +3,16 @@ package frc.robot.sensors.camera;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 public class FollowVision extends Command {
-  public final int VISION_TARGET = 180;
-  private int counts = 0;
-  private final int COUNTS_NEEDED = 5;
+  public final int VISION_TARGET = 200;
 
-  protected double k_dist = -0.028; // this is negative as a larger value means we are closer to the target 
-  protected double k_pos =  0.012;
-  protected double k_angle =  0.005;
+  public static double k_dist = -0.011; // this is negative as a larger value means we are closer to the target 
+  public static double k_pos =  0.01;
+  public static double k_angle =  0.00;
 
-  private VisionData data;
+  protected VisionData data;
  
   public FollowVision() {
     requires(Robot.drivetrain);
@@ -22,6 +22,10 @@ public class FollowVision extends Command {
   @Override
   protected void execute() {
     data = Robot.camera.getData();
+
+    SmartDashboard.putNumber("k_dist",  data.getDistance());
+    SmartDashboard.putNumber("k_pos",   data.getPosition());
+    SmartDashboard.putNumber("k_angle", data.getAngle());
 
     if (data.hasTarget()) {
       double distError = data.getDistance() - VISION_TARGET;
@@ -36,17 +40,13 @@ public class FollowVision extends Command {
       double left = (distValue + posValue + angleValue) / 10.0;
       double right = (distValue - posValue - angleValue) / 10.0;
 
-      Robot.drivetrain.setSpeed(left, -right);
-
-      counts = 0;
-    } else {
-      counts++;
+      Robot.drivetrain.setSpeed(left, right);
     }
   }
 
   @Override
   protected boolean isFinished() {
-      return counts >= COUNTS_NEEDED;
+      return false;
   }
 
   @Override

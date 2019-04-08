@@ -17,7 +17,7 @@ public class Tilt extends SubsystemManagerChild {
     private AnalogPotentiometer potentiometer;
     private Solenoid brake;
     private PotentiometerLimit limit;
-    public static final double LOWER = 0.85, MIDDLE = 0.838, UPPER = .708;
+    public static final double LOWER = 0.85, MIDDLE = 0.831, UPPER = .708;
     private final boolean BRAKE_MODE = false;
     public boolean limitPower = false;
 
@@ -68,6 +68,13 @@ public class Tilt extends SubsystemManagerChild {
      */
     public double getPotPosition() {
         return potentiometer.get();
+    }
+
+    /**
+     * @return actual angle calculated based on the potentiometer reading
+     */
+    public double getAngle() {
+        return getPotPosition();
     }
 
     /**

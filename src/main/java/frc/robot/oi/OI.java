@@ -2,6 +2,7 @@ package frc.robot.oi;
 
 import frc.robot.Robot;
 import frc.robot.RobotMap;
+import frc.robot.carriage.hatchclaw.Grab;
 import frc.robot.carriage.hatchclaw.GrabWhenTiltUp;
 import frc.robot.carriage.hatchclaw.ToggleClaw;
 import frc.robot.carriage.tilt.SetTiltPosition;
@@ -10,9 +11,7 @@ import frc.robot.climberelevator.forks.DeployForks;
 import frc.robot.climberelevator.powerpack.SmartSetElevatorPosition;
 import frc.robot.climberelevator.ramps.DeployRamps;
 import frc.robot.helpers.oi.XboxControllerPlus;
-// import frc.robot.sensors.camera.FollowVision;
 import frc.robot.sensors.camera.FollowVision;
-
 public class OI {
     public static XboxControllerPlus driver;
     public static XboxControllerPlus operator;
@@ -26,7 +25,7 @@ public class OI {
         Robot.ballIntake.setDefaultCommand(new ManualIntake());
 
         // DRIVER CONTROLS 
-        driver.a.whileHeld(new FollowVision());
+        driver.a.pressToStartReleaseToStop(new ManualFollowVision());
         // driver.x.pressToStartReleaseToStop(new IntakeUntilBallDetected());
         // driver.y.and(driver.rb).whenPressed(new AutoClimb(true));
 
@@ -34,6 +33,8 @@ public class OI {
 
         driver.start.whenPressed(new DeployForks());
         driver.menu.whenPressed(new DeployRamps());
+        driver.menu.whenPressed(new SetTiltPosition(Tilt.UPPER));
+        driver.menu.whenPressed(new Grab());
         driver.menu.whenPressed(new ManualClimber());
 
         // OPERATOR CONTROLS

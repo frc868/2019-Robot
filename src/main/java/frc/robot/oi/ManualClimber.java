@@ -17,8 +17,6 @@ public class ManualClimber extends Command {
     @Override
     protected void initialize() {
         Robot.powerPack.switchToClimber();
-        (new SetTiltPosition(Tilt.UPPER)).start();
-        (new Grab()).start();
     }
 
     @Override

@@ -10,23 +10,35 @@ import frc.robot.helpers.subsystems.SubsystemManagerChild;
 public class Camera extends SubsystemManagerChild {
   private SerialPort port;
   private UsbCamera camera0, camera1;
+  private VisionData data;
 
   public Camera() {
     super("Camera");
-    port = new SerialPort(115200, RobotMap.Sensors.Camera.PORT);
   }
 
   @Override
   public void init() {
     camera0 = CameraServer.getInstance().startAutomaticCapture(0);
+    camera0.setResolution(1, 1);
+    // camera0.setExposureAuto();
     camera0.setFPS(15);
 
     camera1 = CameraServer.getInstance().startAutomaticCapture(1);
+    camera1.setResolution(1, 1);
+    // camera1.setExposureAuto();
     camera1.setFPS(15);
+
+    try {
+      port = new SerialPort(115200, RobotMap.Sensors.Camera.PORT);
+    } catch (Exception e) {}
+  }
+
+  public void updateData(){
+    data = new VisionData(port.readString());
   }
 
   public VisionData getData() {
-    return new VisionData(port.readString());
+    return data;
   }
 
   private void sendData(String data) {
@@ -35,15 +47,19 @@ public class Camera extends SubsystemManagerChild {
 
   @Override
   public void update() {
-    VisionData data = getData();
+    try {
+      // SmartDashboard.putString("ttest", port.readString());
+      updateData();
 
-    SmartDashboard.putString("Camera: Raw", data.getRawData());
+      SmartDashboard.putString("Camera: Raw", data.getRawData());
 
-    SmartDashboard.putNumber("Camera: Distance", data.getDistance());
-    SmartDashboard.putNumber("Camera: Position", data.getPosition());
-    SmartDashboard.putNumber("Camera: Angle", data.getAngle());
+      SmartDashboard.putNumber("Camera: Distance", data.getDistance());
+      SmartDashboard.putNumber("Camera: Position", data.getPosition());
+      SmartDashboard.putNumber("Camera: Angle", data.getAngle());
+      
+      SmartDashboard.putBoolean("Camera: Connected?", data.hasComs());
+      SmartDashboard.putBoolean("Camera: Target?", data.hasTarget());
+    } catch (Exception e) {}
     
-    SmartDashboard.putBoolean("Camera: Connected?", data.hasComs());
-    SmartDashboard.putBoolean("Camera: Target?", data.hasTarget());
   }
 }

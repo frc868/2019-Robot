@@ -7,7 +7,7 @@ import frc.robot.carriage.tilt.Tilt;
 import frc.robot.helpers.pid.PIDCommandPlus;
 
 public class SetElevatorPosition extends PIDCommandPlus {
-    public static final double P = 0.08 , I = 0.000, D = 0.00;
+    public static final double P = 0.08 , I = 0.000, D = 0.01;
     private final double setpoint;
 
     public SetElevatorPosition(double setpoint) {
