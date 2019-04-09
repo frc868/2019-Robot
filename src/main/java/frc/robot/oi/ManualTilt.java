@@ -12,7 +12,7 @@ public class ManualTilt extends Command {
 
     @Override
     protected void initialize() {
-        // Robot.tilt.brakeOff();
+        Robot.tilt.brakeOff();
     }
 
     @Override
@@ -25,7 +25,7 @@ public class ManualTilt extends Command {
     protected void end() {
         Robot.tilt.stop();
         // (new BrakeTilt()).start(); // maintain current position
-        // Robot.tilt.brakeOn();
+        Robot.tilt.brakeOn();
     }
 
     @Override
