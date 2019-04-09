@@ -11,9 +11,9 @@ import frc.robot.helpers.pid.PIDCommandPlus;
 
 public class SetTiltPosition extends PIDCommandPlus {
     // PID constants
-    private final int COUNTS_NEEDED = 10;
-    private int counts =  0;
-    private static final double P = 20.0, I = 1, D = 10;
+    // private final int COUNTS_NEEDED = 10;
+    // private int counts =  0;
+    private static final double P = 20, I = 0.75, D = 30;
 
     // private final int BUFFER_SIZE = 5;
     // private ArrayList<Double> inputBuffer;
@@ -53,22 +53,22 @@ public class SetTiltPosition extends PIDCommandPlus {
         //     setConstants(P_EMPTY, I_EMPTY, D_EMPTY);
         // }
 
-        getPIDController().setAbsoluteTolerance(0.005);
+        getPIDController().setAbsoluteTolerance(0.001);
     }
 
     @Override
     protected void execute() {
         SmartDashboard.putNumber("Tilt Error", getError());
 
-        if (getPIDController().onTarget()) {
-            counts++;
-        } else {
-            counts = 0;
-        }
+        // if (getPIDController().onTarget()) {
+        //     counts++;
+        // } else {
+        //     counts = 0;
+        // }
 
-        if (counts >= COUNTS_NEEDED) {
-            Robot.tilt.brakeOn();
-        }
+        // if (counts >= COUNTS_NEEDED) {
+        //     Robot.tilt.brakeOn();
+        // }
     }
 
     @Override
@@ -92,17 +92,18 @@ public class SetTiltPosition extends PIDCommandPlus {
 
     @Override
     protected void usePIDOutput(double output) {
-        Robot.tilt.setSpeed(Helper.boundValue(-output, -0.3, 0.5)); // output of PID is negated and set to tilt motor
+        Robot.tilt.setSpeed(Helper.boundValue(-output, -0.3, 0.6)); // output of PID is negated and set to tilt motor
     };
 
     @Override
     protected boolean isFinished()  {
         // never end
-        return false;
+        return getPIDController().onTarget();
     }
 
     @Override
     protected void end() {
-        // Robot.tilt.brakeOn();
+        Robot.tilt.brakeOn();
+        Robot.tilt.stop();
     }
 }
