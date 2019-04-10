@@ -11,6 +11,7 @@ public class SmartSetElevatorPosition extends CommandGroup {
     }
 
     public SmartSetElevatorPosition(Height height) {
+        setInterruptible(false);
         this.height = height;
     }
 
