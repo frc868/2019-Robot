@@ -15,7 +15,7 @@ import frc.robot.helpers.subsystems.SubsystemManagerChild;
 public class Tilt extends SubsystemManagerChild {
     private WPI_TalonSRX motor;
     private AnalogPotentiometer potentiometer;
-    private Solenoid brake;
+    // private Solenoid brake;
     private PotentiometerLimit limit;
     public static final double LOWER = 0.85, MIDDLE = 0.831, UPPER = .708;
     private final boolean BRAKE_MODE = false;
@@ -24,7 +24,7 @@ public class Tilt extends SubsystemManagerChild {
     public Tilt() {
         super("Tilt");
         motor = new WPI_TalonSRX(RobotMap.Carriage.Tilt.MOTOR);
-        brake = new Solenoid(RobotMap.PCM, RobotMap.Carriage.Tilt.BRAKE);
+        // brake = new Solenoid(RobotMap.PCM, RobotMap.Carriage.Tilt.BRAKE);
         potentiometer = new AnalogPotentiometer(RobotMap.Carriage.Tilt.POTENTIOMETER);
         limit = new PotentiometerLimit(potentiometer, LOWER, UPPER);
         motor.setInverted(true);
@@ -95,30 +95,30 @@ public class Tilt extends SubsystemManagerChild {
     /**
      * returns brake solenoid state
      */
-    public boolean getBrake() {
-        return brake.get();
-    }
+    // public boolean getBrake() {
+    //     return brake.get();
+    // }
 
     /**
      * @return true if elevator is braking
      */
-    public boolean isBraked() {
-        return getBrake() == BRAKE_MODE;
-    }
+    // public boolean isBraked() {
+    //     return getBrake() == BRAKE_MODE;
+    // }
 
      /**
      * turns brake on
      */
-    public void brakeOn() {
-        brake.set(BRAKE_MODE);
-    }
+    // public void brakeOn() {
+    //     brake.set(BRAKE_MODE);
+    // }
 
     /**
      * turns brake off
      */
-    public void brakeOff() {
-        brake.set(!BRAKE_MODE);
-    }
+    // public void brakeOff() {
+    //     brake.set(!BRAKE_MODE);
+    // }
 
     @Override
     public void init() {
@@ -141,6 +141,6 @@ public class Tilt extends SubsystemManagerChild {
     public void updateSD() {
         SmartDashboard.putNumber("Tilt Speed", getSpeed());
         SmartDashboard.putNumber("Tilt Position", getPotPosition());
-        SmartDashboard.putBoolean("Tilt Braked?", isBraked());
+        // SmartDashboard.putBoolean("Tilt Braked?", isBraked());
     }
 }

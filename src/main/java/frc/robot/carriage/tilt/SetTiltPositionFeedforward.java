@@ -1,66 +1,154 @@
+/*----------------------------------------------------------------------------*/
+/* Copyright (c) 2018 FIRST. All Rights Reserved.                             */
+/* Open Source Software - may be modified and shared by FRC teams. The code   */
+/* must be accompanied by the FIRST BSD license file in the root directory of */
+/* the project.                                                               */
+/*----------------------------------------------------------------------------*/
+
 package frc.robot.carriage.tilt;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
-import frc.robot.helpers.Helper;
-import frc.robot.helpers.pid.PIDCommandPlus;
 
-public class SetTiltPositionFeedforward extends PIDCommandPlus {
-    // PID constants
-    private final int COUNTS_NEEDED = 10;
-    private int counts =  0;
-    private static final double P = 20.0, I = 1, D = 10, F = 1;
+public class SetTiltPositionFeedForward extends Command {
+  private double setpoint;
 
-    /**
-     * sets tilt to given position
-     * @param setpoint setpoint for tilt
-     */
-    public SetTiltPositionFeedforward(double setpoint) {
-        super(P, I, D, setpoint); // sets PID constants and setpoint
-        requires(Robot.tilt);
+  public SetTiltPositionFeedForward(double setpoint) {
+		this.setpoint = setpoint;
+    requires(Robot.tilt);
+  }
 
-        if(setpoint == Robot.tilt.UPPER){
-            Robot.tilt.limitPower = true;
-        } else{
-            Robot.tilt.limitPower = false;
-        } 
+  // Called just before this Command runs the first time
+  @Override
+  protected void initialize() {
+  }
 
-        getPIDController().setAbsoluteTolerance(0.005);
-    }
+  // Called repeatedly when this Command is scheduled to run
+  @Override
+  protected void execute() {
+    double error = -(setpoint - Robot.tilt.getPotPosition());  //positive error means need to go up
+    // LOWER = 0.85, MIDDLE = 0.838, UPPER = .708
 
-    @Override
-    protected void initialize() {
-        Robot.tilt.brakeOff();
-    }
 
-    @Override
-    protected void execute() {
-        SmartDashboard.putNumber("Tilt Error", getError());
+    //TODO: add real values to this as a failsafe in case we lose tilt
+    if(setpoint == Tilt.LOWER)  { //go to lower setpoint
 
-        if (getPIDController().onTarget()) {
-            counts++;
-        } else {
-            counts = 0;
+      if(Robot.ballIntake.isBallDetected()==true) { //if you have a ball
+        
+  			if (error > .001) { // need to move up
+          Robot.tilt.setSpeed(.5);
+  			} else if (error < -.001) { //need to go down
+          Robot.tilt.setSpeed(-.05);
+		  	} else {
+          Robot.tilt.setSpeed(.15); //need to hold it there
+		  	}
+
+      } else if(Robot.hatchClaw.isGrabbed()==true)  { //if you have a hatch
+        
+  			if (error > .001) { // need to move up
+          Robot.tilt.setSpeed(.5);
+  			} else if (error < -.001) { //need to go down
+          Robot.tilt.setSpeed(-.05);
+		  	} else {
+          Robot.tilt.setSpeed(.15); //need to hold it there
+		  	}
+
+      } else  {  //if you have no field objects
+        
+  			if (error > .001) { // need to move up
+          Robot.tilt.setSpeed(.5);
+  			} else if (error < -.001) { //need to go down
+          Robot.tilt.setSpeed(-.05);
+		  	} else {
+          Robot.tilt.setSpeed(.15); //need to hold it there
+		  	}
+
+      }
+    } else if(setpoint == Tilt.MIDDLE) {
+      if(Robot.ballIntake.isBallDetected()==true) { //if you have a ball
+        
+  			if (error > .001) { // need to move up
+          Robot.tilt.setSpeed(.5);
+  			} else if (error < -.001) { //need to go down
+          Robot.tilt.setSpeed(-.05);
+		  	} else {
+          Robot.tilt.setSpeed(.15); //need to hold it there
+		  	}
+
+      } else if(Robot.hatchClaw.isGrabbed()==true)  { //if you have a hatch
+        
+  			if (error > .001) { // need to move up
+          Robot.tilt.setSpeed(.5);
+  			} else if (error < -.001) { //need to go down
+          Robot.tilt.setSpeed(-.05);
+		  	} else {
+          Robot.tilt.setSpeed(.15); //need to hold it there
+		  	}
+
+      } else  {  //if you have no field objects
+        
+  			if (error > .001) { // need to move up
+          Robot.tilt.setSpeed(.5);
+  			} else if (error < -.001) { //need to go down
+          Robot.tilt.setSpeed(-.05);
+		  	} else {
+          Robot.tilt.setSpeed(.15); //need to hold it there
         }
+      }
 
-        if (counts >= COUNTS_NEEDED) {
-            Robot.tilt.brakeOn();
+
+    } else if(setpoint == Tilt.UPPER) { //if we want to go to upper
+      if(Robot.ballIntake.isBallDetected()==true) { //if you have a ball
+        
+        if(error > .1)  { //need to go up ALOT  (power needed earlier in the rotation)
+          Robot.tilt.setSpeed(.5);
         }
-    }
+  			if (error > .001) { // need to move up  (power needed for fine adjustments at the top)
+          Robot.tilt.setSpeed(.2);
+  			} else if (error < -.001) { //need to go down
+          Robot.tilt.setSpeed(-.05);
+		  	} else {
+          Robot.tilt.setSpeed(.15); //need to hold it there
+		  	}
 
-    @Override
-    protected double returnPIDInput() {
-        return Robot.tilt.getAngle(); // input to PID is intake angle
-    }
+      } else if(Robot.hatchClaw.isGrabbed()==true)  { //if you have a hatch
+        
+  			if (error > .001) { // need to move up
+          Robot.tilt.setSpeed(.5);
+  			} else if (error < -.001) { //need to go down
+          Robot.tilt.setSpeed(-.05);
+		  	} else {
+          Robot.tilt.setSpeed(.15); //need to hold it there
+		  	}
 
-    @Override
-    protected void usePIDOutput(double pidoutput) {
-        double foutput = F*Math.cos(Robot.tilt.getAngle());
-        Robot.tilt.setSpeed(Helper.boundValue(foutput + pidoutput, -0.3, 0.5));
+      } else  {  //if you have no field objects
+        
+  			if (error > .001) { // need to move up
+          Robot.tilt.setSpeed(.5);
+  			} else if (error < -.001) { //need to go down
+          Robot.tilt.setSpeed(-.05);
+		  	} else {
+          Robot.tilt.setSpeed(.15); //need to hold it there
+        }
+        
+      } 
     }
+  }
 
-    @Override
-    protected boolean isFinished()  {
-        return false;
-    }
+  // Make this return true when this Command no longer needs to run execute()
+  @Override
+  protected boolean isFinished() {
+    return false;
+  }
+
+  // Called once after isFinished returns true
+  @Override
+  protected void end() {
+  }
+
+  // Called when another command which requires one or more of the same
+  // subsystems is scheduled to run
+  @Override
+  protected void interrupted() {
+  }
 }

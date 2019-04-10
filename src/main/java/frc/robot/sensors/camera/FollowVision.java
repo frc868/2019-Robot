@@ -10,7 +10,7 @@ public class FollowVision extends Command {
 
   public static double k_dist = -0.011; // this is negative as a larger value means we are closer to the target 
   public static double k_pos =  0.01;
-  public static double k_angle =  0.00;
+  public static double k_angle =  1;
 
   protected VisionData data;
  
@@ -23,10 +23,6 @@ public class FollowVision extends Command {
   protected void execute() {
     data = Robot.camera.getData();
 
-    SmartDashboard.putNumber("k_dist",  data.getDistance());
-    SmartDashboard.putNumber("k_pos",   data.getPosition());
-    SmartDashboard.putNumber("k_angle", data.getAngle());
-
     if (data.hasTarget()) {
       double distError = data.getDistance() - VISION_TARGET;
       double distValue = distError * k_dist;
@@ -37,6 +33,9 @@ public class FollowVision extends Command {
       double angleError = data.getAngle();
       double angleValue = angleError * k_angle;
 
+      SmartDashboard.putNumber("Angle Value", angleValue);
+      System.out.println(angleValue);
+      
       double left = (distValue + posValue + angleValue) / 10.0;
       double right = (distValue - posValue - angleValue) / 10.0;
 

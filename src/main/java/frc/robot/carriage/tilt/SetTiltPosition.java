@@ -41,7 +41,7 @@ public class SetTiltPosition extends PIDCommandPlus {
 
     @Override
     protected void initialize() {
-        Robot.tilt.brakeOff();
+        // Robot.tilt.brakeOff();
 
         SmartDashboard.putNumber("Tilt Setpoint", getSetpoint());
 
@@ -66,9 +66,9 @@ public class SetTiltPosition extends PIDCommandPlus {
             counts = 0;
         }
 
-        if (counts >= COUNTS_NEEDED) {
-            Robot.tilt.brakeOn();
-        }
+        // if (counts >= COUNTS_NEEDED) {
+            // Robot.tilt.brakeOn();
+        // }
     }
 
     @Override
