@@ -16,21 +16,25 @@ public class ManualFollowVision extends FollowVision {
     protected void execute() {
         data = Robot.camera.getData();
 
-        if (data.hasTarget()) {
-            double posError = data.getPosition();
-            double posValue = posError * k_pos;
+        try {
+            if (data.hasTarget()) {
+                double posError = data.getPosition();
+                double posValue = posError * k_pos;
 
-            double angleError = data.getAngle();
-            double angleValue = angleError * k_angle;
+                double angleError = data.getAngle();
+                double angleValue = angleError * k_angle;
 
-            SmartDashboard.putNumber("Angle Value", angleValue);
+                SmartDashboard.putNumber("Angle Value", angleValue);
 
-            double manual_y = Helper.deadzone(-OI.driver.getLY(), .03);
+                double manual_y = Helper.deadzone(-OI.driver.getLY(), .03);
 
-            double left = manual_y + ((posValue + angleValue) / 10.0);
-            double right = manual_y - ((posValue - angleValue) / 10.0);
+                double left = manual_y + ((posValue + angleValue) / 10.0);
+                double right = manual_y - ((posValue - angleValue) / 10.0);
 
-            Robot.drivetrain.setSpeed(left, right);
+                Robot.drivetrain.setSpeed(left, right);
+            }
+        } catch(NullPointerException npe) {
+            System.out.println("NULL POINTER EXCEPTION CAUGHT");
         }
     }
 }
