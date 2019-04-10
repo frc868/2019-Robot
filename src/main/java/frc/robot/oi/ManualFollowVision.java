@@ -1,5 +1,6 @@
 package frc.robot.oi;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 import frc.robot.helpers.Helper;
 import frc.robot.sensors.camera.FollowVision;
@@ -22,7 +23,9 @@ public class ManualFollowVision extends FollowVision {
             double angleError = data.getAngle();
             double angleValue = angleError * k_angle;
 
-            double manual_y = Helper.deadzone(-OI.driver.getLY(), .03)*0.3;
+            SmartDashboard.putNumber("Angle Value", angleValue);
+
+            double manual_y = Helper.deadzone(-OI.driver.getLY(), .03);
 
             double left = manual_y + ((posValue + angleValue) / 10.0);
             double right = manual_y - ((posValue - angleValue) / 10.0);
