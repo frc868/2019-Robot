@@ -4,6 +4,7 @@ public class VisionData {
     private String rawData;
     private double distance, position, angle;
     private final int WIDTH  = 320, HEIGHT = 240;
+    private final double DIST_CORRECT = -5; // adjust this as needed for x-axis error
 
     public VisionData(String newData) {
         try {
@@ -38,7 +39,7 @@ public class VisionData {
     }
 
     public double getPosition() {
-        return position - 15.5 + 12.2 + 0.3 + 7 - 40;
+        return position + DIST_CORRECT;
     }
 
     public double getAngle() {
