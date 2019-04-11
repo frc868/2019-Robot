@@ -17,7 +17,7 @@ public class Tilt extends SubsystemManagerChild {
     private AnalogPotentiometer potentiometer;
     private Solenoid brake;
     private PotentiometerLimit limit;
-    public static final double LOWER = 0.85, MIDDLE = 0.831, UPPER = .708;
+    public static final double LOWER = 0.85, MIDDLE = 0.831, UPPER = .726;
     private final boolean BRAKE_MODE = false;
     public boolean limitPower = false;
 

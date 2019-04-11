@@ -13,7 +13,7 @@ public class SetTiltPosition extends PIDCommandPlus {
     // PID constants
     // private final int COUNTS_NEEDED = 10;
     // private int counts =  0;
-    private static final double P = 20, I = 0.75, D = 30;
+    private static final double P = 16, I = 1.1, D = 14.5/*44*/;
 
     // private final int BUFFER_SIZE = 5;
     // private ArrayList<Double> inputBuffer;
