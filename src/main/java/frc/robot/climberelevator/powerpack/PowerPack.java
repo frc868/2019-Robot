@@ -16,7 +16,7 @@ import frc.robot.helpers.subsystems.SubsystemManagerChild;
 public class PowerPack extends SubsystemManagerChild {
     private CANSparkMaxPlus primary, secondary;
     private Solenoid switcher, elevator_brake, climber_brake;
-    private IRLimit elevator_top_limit, elevator_bottom_limit, climber_top_limit, climber_bottom_limit;
+    private IRLimit elevator_top_limit, elevator_bottom_limit, climber_top_limit, climber_bottom_limit, climber_limit_switch;
     private final boolean ELEVATOR_MODE = false, BRAKE_MODE = false;
 
     public static final double INTAKE_BALL = 2.54, 
@@ -45,6 +45,8 @@ public class PowerPack extends SubsystemManagerChild {
         elevator_bottom_limit = new IRLimit(RobotMap.ClimberElevator.Powerpack.ELEVATOR_BOTTOM_LIMIT);
         climber_top_limit = new IRLimit(RobotMap.ClimberElevator.Powerpack.CLIMBER_TOP_LIMIT);
         climber_bottom_limit = new IRLimit(RobotMap.ClimberElevator.Powerpack.CLIMBER_BOTTOM_LIMIT);
+
+        climber_limit_switch = new IRLimit(RobotMap.ClimberElevator.Powerpack.CLIMBER_LIMIT_SWITCH);
     }
 
     /**
@@ -62,6 +64,11 @@ public class PowerPack extends SubsystemManagerChild {
                 speed = Helper.boundValue(speed, -1, 0);
             }
         } 
+        else{
+            if(getClimberLimitSwitch()){
+                speed = 0;
+            }
+        }
         // else {
         //     if (getClimberBottomLimitSwitch()) {
         //         speed = Helper.boundValue(speed, 0, 1);
@@ -134,6 +141,10 @@ public class PowerPack extends SubsystemManagerChild {
      */
     public boolean getClimberBottomLimitSwitch() {
         return climber_bottom_limit.get();
+    }
+
+    public boolean getClimberLimitSwitch(){
+        return climber_limit_switch.get();
     }
 
     /**
