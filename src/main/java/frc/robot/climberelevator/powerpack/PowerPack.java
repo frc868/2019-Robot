@@ -4,6 +4,7 @@ import com.revrobotics.CANSparkMax.IdleMode;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.Ultrasonic;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import frc.robot.helpers.Helper;
@@ -19,10 +20,14 @@ public class PowerPack extends SubsystemManagerChild {
     private IRLimit elevator_top_limit, elevator_bottom_limit, climber_top_limit, climber_bottom_limit, climber_limit_switch;
     private final boolean ELEVATOR_MODE = false, BRAKE_MODE = false;
 
+    private Ultrasonic leftHeightSensor, rightHeightSensor;
+
     public static final double INTAKE_BALL = 2.54, 
         LOWER_BALL = 5.02, LOWER_HATCH = 0.5,//LOWER_HATCH = 0, 
         MIDDLE_BALL = 22.023, MIDDLE_HATCH = 19.66,//MIDDLE_HATCH = 19.66, 
         UPPER_BALL = 39, UPPER_HATCH = 35.85;
+
+    public static final double ULTRASONIC_HAB_HEIGHT = 6; //TODO: test and change
 
     public PowerPack() {
         super("PowerPack");
@@ -47,6 +52,10 @@ public class PowerPack extends SubsystemManagerChild {
         climber_bottom_limit = new IRLimit(RobotMap.ClimberElevator.Powerpack.CLIMBER_BOTTOM_LIMIT);
 
         climber_limit_switch = new IRLimit(RobotMap.ClimberElevator.Powerpack.CLIMBER_LIMIT_SWITCH);
+
+        leftHeightSensor = new Ultrasonic(RobotMap.Sensors.Ultrasonic.LEFT_TRIGGER, RobotMap.Sensors.Ultrasonic.LEFT_ECHO);
+        rightHeightSensor = new Ultrasonic(RobotMap.Sensors.Ultrasonic.RIGHT_TRIGGER, RobotMap.Sensors.Ultrasonic.RIGHT_ECHO);
+
     }
 
     /**
@@ -145,6 +154,15 @@ public class PowerPack extends SubsystemManagerChild {
 
     public boolean getClimberLimitSwitch(){
         return climber_limit_switch.get();
+    }
+    
+    //TODO: untested
+    public double getLeftUltrasonicValue(){
+        return leftHeightSensor.getRangeInches();
+    }
+
+    public double getRightUltrasonicValue(){
+        return rightHeightSensor.getRangeInches();
     }
 
     /**

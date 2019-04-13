@@ -84,7 +84,12 @@ public class RobotMap {
     public static class Ultrasonic {
       //public static final int FRONT_TRIGGER = 0;
       //public static final int FRONT_ECHO = 1;
-      public static final int ANALOG_PORT = 0;
+      public static final int LEFT_TRIGGER = 5;
+      public static final int LEFT_ECHO = 6;
+      public static final int RIGHT_TRIGGER = 7;
+      public static final int RIGHT_ECHO = 8;
+
+
     }
 
     public static class Gyro {
