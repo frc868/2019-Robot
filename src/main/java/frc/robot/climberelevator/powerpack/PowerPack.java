@@ -66,7 +66,7 @@ public class PowerPack extends SubsystemManagerChild {
         } 
         else{
             if(getClimberLimitSwitch()){
-                speed = 0;
+                speed = Helper.boundValue(speed, 0, 1);
             }
         }
         // else {
@@ -288,8 +288,8 @@ public class PowerPack extends SubsystemManagerChild {
         SmartDashboard.putBoolean("Climber Brake?", isClimberBraked());
         SmartDashboard.putBoolean("Elevator Top Limit?", getElevatorTopLimitSwitch());
         SmartDashboard.putBoolean("Elevator Bottom Limit?", getElevatorBottomLimitSwitch());
-        SmartDashboard.putBoolean("Climber Top Limit?", getClimberTopLimitSwitch());
-        SmartDashboard.putBoolean("Climber Bottom Limit?", getClimberBottomLimitSwitch());
+        SmartDashboard.putBoolean("Climber Limit?", getClimberLimitSwitch());
+        // SmartDashboard.putBoolean("Climber Bottom Limit?", getClimberBottomLimitSwitch());
 
         SmartDashboard.putNumber("PowerPack Current", primary.getOutputCurrent());
         // SmartDashboard.putNumber("PowerPack Secondary Current", secondary.getOutputCurrent());
