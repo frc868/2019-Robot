@@ -145,7 +145,7 @@ public class PowerPack extends SubsystemManagerChild {
     }
 
     public boolean getClimberLimitSwitch(){
-        return climber_limit_switch.get();
+        return !climber_limit_switch.get();
     }
 
     /**
