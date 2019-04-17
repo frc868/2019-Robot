@@ -9,8 +9,8 @@ public class FollowVision extends Command {
   public final int VISION_TARGET = 200;
 
   public static double k_dist = -0.011; // this is negative as a larger value means we are closer to the target 
-  public static double k_pos =  0.01;
-  public static double k_angle =  1.2;
+  public static double k_pos =  0.018;
+  public static double k_angle =  2;
 
   protected VisionData data;
  
