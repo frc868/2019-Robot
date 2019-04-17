@@ -19,7 +19,7 @@ public class Camera extends SubsystemManagerChild {
   @Override
   public void init() {
     camera0 = CameraServer.getInstance().startAutomaticCapture(0);
-    camera0.setResolution(1, 1);
+    camera0.setResolution(320, 180);
     // camera0.setExposureAuto();
     camera0.setFPS(15);
 

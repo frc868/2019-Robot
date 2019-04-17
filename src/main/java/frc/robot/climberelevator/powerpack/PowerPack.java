@@ -48,8 +48,8 @@ public class PowerPack extends SubsystemManagerChild {
 
         elevator_top_limit = new IRLimit(RobotMap.ClimberElevator.Powerpack.ELEVATOR_TOP_LIMIT);
         elevator_bottom_limit = new IRLimit(RobotMap.ClimberElevator.Powerpack.ELEVATOR_BOTTOM_LIMIT);
-        climber_top_limit = new IRLimit(RobotMap.ClimberElevator.Powerpack.CLIMBER_TOP_LIMIT);
-        climber_bottom_limit = new IRLimit(RobotMap.ClimberElevator.Powerpack.CLIMBER_BOTTOM_LIMIT);
+        // climber_top_limit = new IRLimit(RobotMap.ClimberElevator.Powerpack.CLIMBER_TOP_LIMIT);
+        // climber_bottom_limit = new IRLimit(RobotMap.ClimberElevator.Powerpack.CLIMBER_BOTTOM_LIMIT);
 
         climber_limit_switch = new IRLimit(RobotMap.ClimberElevator.Powerpack.CLIMBER_LIMIT_SWITCH);
 
@@ -82,9 +82,9 @@ public class PowerPack extends SubsystemManagerChild {
         //     if (getClimberBottomLimitSwitch()) {
         //         speed = Helper.boundValue(speed, 0, 1);
         //     } 
-        //     // else if (getClimberTopLimitSwitch()) {
-        //     //     speed = Helper.boundValue(speed, -1, 0);
-        //     // }
+        //     else if (getClimberTopLimitSwitch()) {
+        //         speed = Helper.boundValue(speed, -1, 0);
+        //     }
         // }
 
         primary.set(speed);
@@ -140,17 +140,17 @@ public class PowerPack extends SubsystemManagerChild {
      *
      * @return state of forward limit switch
      */
-    public boolean getClimberTopLimitSwitch() {
-        return climber_top_limit.get();
-    }
+    // public boolean getClimberTopLimitSwitch() {
+    //     return climber_top_limit.get();
+    // }
 
     /**
      *
      * @return state of reverse limit switch
      */
-    public boolean getClimberBottomLimitSwitch() {
-        return climber_bottom_limit.get();
-    }
+    // public boolean getClimberBottomLimitSwitch() {
+    //     return climber_bottom_limit.get();
+    // }
 
     public boolean getClimberLimitSwitch(){
         return climber_limit_switch.get();
@@ -306,8 +306,8 @@ public class PowerPack extends SubsystemManagerChild {
         SmartDashboard.putBoolean("Climber Brake?", isClimberBraked());
         SmartDashboard.putBoolean("Elevator Top Limit?", getElevatorTopLimitSwitch());
         SmartDashboard.putBoolean("Elevator Bottom Limit?", getElevatorBottomLimitSwitch());
-        SmartDashboard.putBoolean("Climber Top Limit?", getClimberTopLimitSwitch());
-        SmartDashboard.putBoolean("Climber Bottom Limit?", getClimberBottomLimitSwitch());
+        // SmartDashboard.putBoolean("Climber Top Limit?", getClimberTopLimitSwitch());
+        // SmartDashboard.putBoolean("Climber Bottom Limit?", getClimberBottomLimitSwitch());
 
         SmartDashboard.putNumber("PowerPack Current", primary.getOutputCurrent());
         // SmartDashboard.putNumber("PowerPack Secondary Current", secondary.getOutputCurrent());
