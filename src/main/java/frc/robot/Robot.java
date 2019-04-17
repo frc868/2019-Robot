@@ -3,6 +3,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import frc.robot.auton.commands.DriveAndScoreHatch;
 import frc.robot.carriage.ballintake.BallIntake;
 import frc.robot.carriage.hatchclaw.HatchClaw;
 import frc.robot.carriage.tilt.Tilt;
@@ -68,6 +69,7 @@ public class Robot extends TimedRobot {
   public void autonomousInit() {
     SubsystemManager.initEnabled();
     OI.init();
+      Scheduler.getInstance().add(new DriveAndScoreHatch("StartToRightFrontShip", DriveAndScoreHatch.Height.lower));
   }
 
   @Override
