@@ -62,6 +62,9 @@ public class TrajectoryPair {
 
             leftStream.close();
             rightStream.close();
+
+            this.left = segmentsLeft;
+            this.right = segmentsRight;
         } catch (FileNotFoundException e) {}
     }
 

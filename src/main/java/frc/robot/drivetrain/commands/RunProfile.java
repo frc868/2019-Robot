@@ -8,7 +8,7 @@ import frc.robot.helpers.motionprofiling.TrajectoryPair;
 
 public class RunProfile extends Command {
     private TrajectoryPair pair;
-    private final double P = 0.03, I = 0.00, D = 0.5, V = 0.3, A = 0.0; // constants for position keeping pids at max vel of 1.0
+    private final double P = 0.00003, I = 0.00, D = 0.0, V = 0.3, A = 0.0; // constants for position keeping pids at max vel of 1.0
     private final double Pa = .0048, Ia = 0.0, Da = 0.05; // constants for angle keeping pids
     
     private int i = 0;
@@ -114,6 +114,7 @@ public class RunProfile extends Command {
         if(System.currentTimeMillis() - lastTime > 50) {
             i++;
             lastTime = System.currentTimeMillis();
+            
         }
     }
 
