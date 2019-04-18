@@ -74,9 +74,24 @@ public class RunProfile extends Command {
                 return PIDSourceType.kDisplacement;
             }
         };
-        leftOutput = output -> Robot.drivetrain.setLeftSpeed((output + pair.getLeft().get(i).velocity * V + pair.getLeft().get(i).acceleration * A));
-        rightOutput = output -> Robot.drivetrain.setRightSpeed((output + pair.getRight().get(i).velocity * V + pair.getRight().get(i).acceleration * A));
-        angleOutput = output -> Robot.drivetrain.adjustSpeed(output, -output);
+        leftOutput = new PIDOutput(){
+            @Override
+            public void pidWrite(double output){
+                Robot.drivetrain.setLeftSpeed((output + pair.getLeft().get(i).velocity * V + pair.getLeft().get(i).acceleration * A));
+            }
+        };
+        rightOutput = new PIDOutput(){
+            @Override
+            public void pidWrite(double output){
+                Robot.drivetrain.setRightSpeed((output + pair.getRight().get(i).velocity * V + pair.getRight().get(i).acceleration * A));
+            }
+        };
+        angleOutput = new PIDOutput(){
+            @Override
+            public void pidWrite(double output){
+                Robot.drivetrain.adjustSpeed(output, -output);
+            }
+        };
         left = new PIDController(P, I, D, leftSource, leftOutput);
         right = new PIDController(P, I, D, rightSource, rightOutput);
         angle = new PIDController(Pa, Ia, Da, angleSource, angleOutput);
