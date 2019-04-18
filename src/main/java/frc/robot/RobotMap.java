@@ -29,8 +29,8 @@ public class RobotMap {
       
       public static final int ELEVATOR_TOP_LIMIT = 0;
       public static final int ELEVATOR_BOTTOM_LIMIT = 1;
-      public static final int CLIMBER_TOP_LIMIT = 5;
-      public static final int CLIMBER_BOTTOM_LIMIT = 6;
+      //public static final int CLIMBER_TOP_LIMIT = 5;
+      //public static final int CLIMBER_BOTTOM_LIMIT = 6;
 
       public static final int CLIMBER_LIMIT_SWITCH = 4;
     }

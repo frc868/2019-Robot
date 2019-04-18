@@ -2,7 +2,7 @@ package frc.robot.helpers.subsystems;
 
 import edu.wpi.first.wpilibj.Sendable;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+// import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 
 public abstract class SubsystemManagerChild extends Subsystem {  
   private String subsystemName; 
@@ -70,19 +70,19 @@ public abstract class SubsystemManagerChild extends Subsystem {
   }
   
   protected void addTab(String name, Sendable sendable) {
-    Shuffleboard.getTab(subsystemName).add(subsystemName + ": " + name, sendable);
+    // Shuffleboard.getTab(subsystemName).add(subsystemName + ": " + name, sendable);
   }
 
   protected void addTab(String name, Object value) {
-    Shuffleboard.getTab(subsystemName).add(subsystemName + ": " + name, value);
+    // Shuffleboard.getTab(subsystemName).add(subsystemName + ": " + name, value);
   }
 
   protected void addDebug(String name, Sendable sendable) {
-    Shuffleboard.getTab(DEBUG).add(DEBUG + ": " + name, sendable);
+    // Shuffleboard.getTab(DEBUG).add(DEBUG + ": " + name, sendable);
   }
 
   protected void addDebug(String name, Object value) {
-    Shuffleboard.getTab(DEBUG).add(DEBUG + ": " + name, value);
+    // Shuffleboard.getTab(DEBUG).add(DEBUG + ": " + name, value);
   }
 
   @Override
