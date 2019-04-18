@@ -114,7 +114,7 @@ public class RunProfile extends Command {
         if(System.currentTimeMillis() - lastTime > 50) {
             i++;
             lastTime = System.currentTimeMillis();
-            
+            Robot.drivetrain.setSpeed(left, right);
         }
     }
 
