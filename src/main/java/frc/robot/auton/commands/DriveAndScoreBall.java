@@ -12,9 +12,9 @@ public class DriveAndScoreBall extends CommandGroup {
     public enum Height {
         lower, middle, upper
     }
-
-    public DriveAndScoreBall(String filename, Height height) {
-        this(new RunProfile(filename), height);
+    
+    public DriveAndScoreBall(String filename, boolean backwards, Height height){
+        this(new RunProfile(filename, backwards), height);
     }
 
     public DriveAndScoreBall(Command command, Height height) {

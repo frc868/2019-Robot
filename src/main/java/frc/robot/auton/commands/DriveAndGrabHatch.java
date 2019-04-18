@@ -5,8 +5,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.carriage.hatchclaw.Grab;
 import frc.robot.climberelevator.powerpack.PowerPack;
 import frc.robot.climberelevator.powerpack.SetElevatorPosition;
-// import frc.robot.climberelevator.powerpack.AutoElevatorTilt;
 import frc.robot.drivetrain.commands.RunProfile;
+
+// import frc.robot.climberelevator.powerpack.AutoElevatorTilt;
 // import frc.robot.sensors.FollowVisionAndUltrasonic;
 
 public class DriveAndGrabHatch extends CommandGroup {
@@ -24,7 +25,7 @@ public class DriveAndGrabHatch extends CommandGroup {
     /**
      * @param filename file name of the path we are running
      */
-    public DriveAndGrabHatch (String filename) {
-        this(new RunProfile(filename)); // runs this command group with the motion profile given
+    public DriveAndGrabHatch(String filename, boolean backwards){
+        this(new RunProfile(filename, backwards)); // runs this command group with the motion profile given
     }
 }
