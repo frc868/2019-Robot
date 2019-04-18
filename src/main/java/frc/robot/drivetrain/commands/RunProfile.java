@@ -1,12 +1,9 @@
 package frc.robot.drivetrain.commands;
 
-import edu.wpi.first.wpilibj.PIDController;
-import edu.wpi.first.wpilibj.PIDOutput;
-import edu.wpi.first.wpilibj.PIDSource;
-import edu.wpi.first.wpilibj.PIDSourceType;
+import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.helpers.Helper;
 import frc.robot.Robot;
+import frc.robot.helpers.Helper;
 import frc.robot.helpers.motionprofiling.TrajectoryPair;
 
 public class RunProfile extends Command {
@@ -17,87 +14,72 @@ public class RunProfile extends Command {
     private int i = 0;
     private long lastTime;
     private double initialAngle;
-
-    PIDSource leftSource = new PIDSource(){
     
-        @Override
-        public void setPIDSourceType(PIDSourceType pidSource) {}
+    PIDSource leftSource;
+    PIDSource rightSource;
+    PIDSource angleSource;
+    PIDOutput leftOutput;
+    PIDOutput rightOutput;
+    PIDOutput angleOutput;
+    PIDController left, right, angle;
     
-        @Override
-        public double pidGet() {
-            return pair.getLeft().get(i).position - Robot.drivetrain.getScaledLeftDistance();
-        }
-    
-        @Override
-        public PIDSourceType getPIDSourceType() {
-            return PIDSourceType.kDisplacement;
-        }
-    };
-
-    PIDSource rightSource = new PIDSource(){
-    
-        @Override
-        public void setPIDSourceType(PIDSourceType pidSource) {}
-    
-        @Override
-        public double pidGet() {
-            return pair.getRight().get(i).position - Robot.drivetrain.getScaledRightDistance();
-        }
-    
-        @Override
-        public PIDSourceType getPIDSourceType() {
-            return PIDSourceType.kDisplacement;
-        }
-    };
-
-    PIDSource angleSource = new PIDSource(){
-    
-        @Override
-        public void setPIDSourceType(PIDSourceType pidSource) {}
-    
-        @Override
-        public double pidGet() {
-            return Helper.angleDiff(pair.getAvgAngle(i), (Robot.gyro.getRestrictedAngleRadians()-initialAngle));
-        }
-    
-        @Override
-        public PIDSourceType getPIDSourceType() {
-            return PIDSourceType.kDisplacement;
-        }
-    };
-
-    PIDOutput leftOutput = new PIDOutput(){
-        @Override
-        public void pidWrite(double output) {
-            Robot.drivetrain.setLeftSpeed((output + pair.getLeft().get(i).velocity * V + pair.getLeft().get(i).acceleration * A));
-        }
-    };
-
-    PIDOutput rightOutput = new PIDOutput(){
-    
-        @Override
-        public void pidWrite(double output) {
-            Robot.drivetrain.setRightSpeed((output + pair.getRight().get(i).velocity * V + pair.getRight().get(i).acceleration * A));
-        }
-    };
-
-    PIDOutput angleOutput = new PIDOutput(){
-    
-        @Override
-        public void pidWrite(double output) {
-            Robot.drivetrain.adjustSpeed(output, -output);
-        }
-    };
-
-    PIDController 
-        left = new PIDController(P, I, D, leftSource, leftOutput), 
-        right = new PIDController(P, I, D, rightSource, rightOutput),
-        angle = new PIDController(Pa, Ia, Da, angleSource, angleOutput);
-
-
-    public RunProfile(String filename) {
+    public RunProfile(String filename, boolean backwards){
         requires(Robot.drivetrain);
-        pair = new TrajectoryPair(filename);
+        pair = new TrajectoryPair(filename, backwards);
+        leftSource = new PIDSource(){
+            
+            @Override
+            public void setPIDSourceType(PIDSourceType pidSource){
+            }
+            
+            @Override
+            public double pidGet(){
+                return pair.getLeft().get(i).position - Robot.drivetrain.getScaledLeftDistance();
+            }
+            
+            @Override
+            public PIDSourceType getPIDSourceType(){
+                return PIDSourceType.kDisplacement;
+            }
+        };
+        rightSource = new PIDSource(){
+            
+            @Override
+            public void setPIDSourceType(PIDSourceType pidSource){
+            }
+            
+            @Override
+            public double pidGet(){
+                return pair.getRight().get(i).position - Robot.drivetrain.getScaledRightDistance();
+            }
+            
+            @Override
+            public PIDSourceType getPIDSourceType(){
+                return PIDSourceType.kDisplacement;
+            }
+        };
+        angleSource = new PIDSource(){
+            
+            @Override
+            public void setPIDSourceType(PIDSourceType pidSource){
+            }
+            
+            @Override
+            public double pidGet(){
+                return Helper.angleDiff(pair.getAvgAngle(i), (Robot.gyro.getRestrictedAngleRadians() - initialAngle));
+            }
+            
+            @Override
+            public PIDSourceType getPIDSourceType(){
+                return PIDSourceType.kDisplacement;
+            }
+        };
+        leftOutput = output -> Robot.drivetrain.setLeftSpeed((output + pair.getLeft().get(i).velocity * V + pair.getLeft().get(i).acceleration * A));
+        rightOutput = output -> Robot.drivetrain.setRightSpeed((output + pair.getRight().get(i).velocity * V + pair.getRight().get(i).acceleration * A));
+        angleOutput = output -> Robot.drivetrain.adjustSpeed(output, -output);
+        left = new PIDController(P, I, D, leftSource, leftOutput);
+        right = new PIDController(P, I, D, rightSource, rightOutput);
+        angle = new PIDController(Pa, Ia, Da, angleSource, angleOutput);
     }
     
     @Override
@@ -107,7 +89,7 @@ public class RunProfile extends Command {
         
         left.enable();
         right.enable();
-        angle.enable();
+//        angle.enable();
          
         lastTime = System.currentTimeMillis();
     }

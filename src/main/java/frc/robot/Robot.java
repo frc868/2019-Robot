@@ -69,7 +69,7 @@ public class Robot extends TimedRobot {
   public void autonomousInit() {
     SubsystemManager.initEnabled();
     OI.init();
-      Scheduler.getInstance().add(new DriveAndScoreHatch("StartToRightFrontShip", DriveAndScoreHatch.Height.lower));
+      Scheduler.getInstance().add(new DriveAndScoreHatch("StartToRightFrontShip", false, DriveAndScoreHatch.Height.lower));
   }
 
   @Override

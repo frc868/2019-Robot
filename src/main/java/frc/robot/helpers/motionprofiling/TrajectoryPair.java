@@ -1,19 +1,26 @@
 package frc.robot.helpers.motionprofiling;
 
+import jaci.pathfinder.Trajectory;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
-import jaci.pathfinder.Trajectory;
 
 public class TrajectoryPair {
     private ArrayList<Trajectory.Segment> left, right;
-
-    public TrajectoryPair(String filename) {
+    
+    public TrajectoryPair(String filename, boolean backwards){
         try {
             String leftpath = "home/lvuser/deploy/output/" + filename + ".left.pf1.csv";
             String rightpath = "home/lvuser/deploy/output/" + filename + ".right.pf1.csv";
-
+    
+            if(backwards){
+                String temp = leftpath;
+                leftpath = rightpath;
+                rightpath = leftpath;
+            }
+            
             File left = new File(leftpath), right = new File(rightpath);
             Scanner leftStream = new Scanner(left), rightStream = new Scanner(right);
 
@@ -36,7 +43,7 @@ public class TrajectoryPair {
                 double xLeft = Double.parseDouble(leftLineSplit[1]);
                 double yLeft = Double.parseDouble(leftLineSplit[2]);
                 double positionLeft = Double.parseDouble(leftLineSplit[3]);
-                double velocityLeft = Double.parseDouble(leftLineSplit[4]);
+                double velocityLeft = backwards ? -Double.parseDouble((leftLineSplit[4])) : Double.parseDouble(leftLineSplit[4]);
                 double accelerationLeft = Double.parseDouble(leftLineSplit[5]);
                 double jerkLeft = Double.parseDouble(leftLineSplit[6]);
                 double headingLeft = Double.parseDouble(leftLineSplit[7]);
@@ -44,7 +51,7 @@ public class TrajectoryPair {
                 double xRight = Double.parseDouble(rightLineSplit[1]);
                 double yRight = Double.parseDouble(rightLineSplit[2]);
                 double positionRight = Double.parseDouble(rightLineSplit[3]);
-                double velocityRight = Double.parseDouble(rightLineSplit[4]);
+                double velocityRight = backwards ? -Double.parseDouble(rightLineSplit[4]) : Double.parseDouble(rightLineSplit[4]);
                 double accelerationRight = Double.parseDouble(rightLineSplit[5]);
                 double jerkRight = Double.parseDouble(rightLineSplit[6]);
                 double headingRight = Double.parseDouble(rightLineSplit[7]);
