@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import frc.robot.auton.commands.DriveAndScoreHatch;
+import frc.robot.auton.paths.RightRocketFront;
 import frc.robot.carriage.ballintake.BallIntake;
 import frc.robot.carriage.hatchclaw.HatchClaw;
 import frc.robot.carriage.tilt.Tilt;
@@ -84,6 +85,7 @@ public class Robot extends TimedRobot {
         SubsystemManager.initEnabled();
         OI.init();
         Scheduler.getInstance().add(new DriveAndScoreHatch("StartToRightCloseRocket", DriveAndScoreHatch.Height.lower));
+        // Scheduler.getInstance().add(new RightRocketFront());
     }
     
     @Override
@@ -97,7 +99,6 @@ public class Robot extends TimedRobot {
     public void teleopInit() {
         SubsystemManager.initEnabled();
         OI.init();
-        
     }
     
     @Override
