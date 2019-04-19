@@ -26,6 +26,6 @@ public class DriveAndGrabHatch extends CommandGroup {
      * @param filename file name of the path we are running
      */
     public DriveAndGrabHatch(String filename, boolean backwards){
-        this(new RunProfile(filename, backwards)); // runs this command group with the motion profile given
+        this(new RunProfile(filename)); // runs this command group with the motion profile given
     }
 }

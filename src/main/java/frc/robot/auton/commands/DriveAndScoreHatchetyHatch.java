@@ -11,9 +11,9 @@ import java.util.ArrayList;
 
 public class DriveAndScoreHatchetyHatch extends CommandGroup{
     
-    public DriveAndScoreHatchetyHatch(ArrayList<String> fileName, ArrayList<Boolean> backwarsList, ArrayList<SmartSetElevatorPosition.Height> height, ArrayList<Boolean> grabHatch){
+    public DriveAndScoreHatchetyHatch(ArrayList<String> fileName, ArrayList<SmartSetElevatorPosition.Height> height, ArrayList<Boolean> grabHatch){
         for(int i = 0; i < fileName.size(); i++){
-            addSequential(new RunProfile(fileName.get(i), backwarsList.get(i)));
+            addSequential(new RunProfile(fileName.get(i)));
             addSequential(new SmartSetElevatorPosition(height.get(i)));
             addSequential(new FollowVision(), 2000);
             if(!grabHatch.get(i)){

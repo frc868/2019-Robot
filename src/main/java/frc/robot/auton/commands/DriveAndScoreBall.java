@@ -14,7 +14,7 @@ public class DriveAndScoreBall extends CommandGroup {
     }
     
     public DriveAndScoreBall(String filename, boolean backwards, Height height){
-        this(new RunProfile(filename, backwards), height);
+        this(new RunProfile(filename), height);
     }
 
     public DriveAndScoreBall(Command command, Height height) {
