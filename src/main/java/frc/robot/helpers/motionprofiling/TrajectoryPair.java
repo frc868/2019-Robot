@@ -7,8 +7,6 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import frc.robot.drivetrain.Drivetrain;
-
 public class TrajectoryPair {
     private ArrayList<Trajectory.Segment> left, right;
     
@@ -21,7 +19,7 @@ public class TrajectoryPair {
             if(backwards){
                 String temp = leftpath;
                 leftpath = rightpath;
-                rightpath = leftpath;
+                rightpath = temp;
             }
             
             File left = new File(leftpath), right = new File(rightpath);

@@ -14,8 +14,8 @@ public class DriveAndScoreHatch extends CommandGroup {
         lower, middle, upper
     }
     
-    public DriveAndScoreHatch(String filename, boolean backwards, Height height){
-        this(new RunProfile(filename, backwards), height);
+    public DriveAndScoreHatch(String filename, Height height){
+        this(new RunProfile(filename), height);
     }
 
     public DriveAndScoreHatch(Command command, Height height) {
