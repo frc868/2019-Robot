@@ -34,7 +34,7 @@ public class RightRocketFront extends CommandGroup {
     addSequential(new DriveStraightRamp(50, .7, .2));
 
     // Follow vision into the rocket and score hatch
-    addSequential(new FollowVision(), 3000);  //TODO: make shorter after testing
+    addSequential(new FollowVision(), 3);  //TODO: make shorter after testing
     addSequential(new Release());
 
     // Back out

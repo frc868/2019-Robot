@@ -34,7 +34,7 @@ public class RightRocketFrontDouble extends CommandGroup {
     addSequential(new DriveStraight(184, .4, 28.75)); //TODO: after testing, add ramping and tune values
 
     // Follow vision into the rocket and score hatch
-    addSequential(new FollowVision(), 3000);  //TODO: make shorter after testing
+    addSequential(new FollowVision(), 3);  //TODO: make shorter after testing
     addSequential(new Release());
 
     // Back out and turn towards player station
@@ -44,7 +44,7 @@ public class RightRocketFrontDouble extends CommandGroup {
     addSequential(new DriveStraight(200, .4));
 
     // Follow vision into player station and grab hatch
-    addSequential(new FollowVision(), 3000);
+    addSequential(new FollowVision(), 3);
     addSequential(new Grab());
 
     // Back out and turn
@@ -56,7 +56,7 @@ public class RightRocketFrontDouble extends CommandGroup {
     addSequential(new SetElevatorPosition(PowerPack.MIDDLE_HATCH));
 
     // Follow Vision and score hatch
-    addSequential(new FollowVision(), 3000);
+    addSequential(new FollowVision(), 3);
     addSequential(new Release());
 
     // Back out
