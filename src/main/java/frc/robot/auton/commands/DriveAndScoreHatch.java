@@ -19,6 +19,7 @@ public class DriveAndScoreHatch extends CommandGroup {
     }
 
     public DriveAndScoreHatch(Command command, Height height) {
+        System.out.println("adding runprofile");
         addSequential(command);
         
         if (height == Height.lower) {

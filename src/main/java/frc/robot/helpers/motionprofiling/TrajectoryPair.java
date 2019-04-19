@@ -7,6 +7,8 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import frc.robot.drivetrain.Drivetrain;
+
 public class TrajectoryPair {
     private ArrayList<Trajectory.Segment> left, right;
     
@@ -14,6 +16,7 @@ public class TrajectoryPair {
         try {
             String leftpath = "home/lvuser/deploy/output/" + filename + ".left.pf1.csv";
             String rightpath = "home/lvuser/deploy/output/" + filename + ".right.pf1.csv";
+            System.out.println("made strings for files");
     
             if(backwards){
                 String temp = leftpath;
@@ -22,6 +25,7 @@ public class TrajectoryPair {
             }
             
             File left = new File(leftpath), right = new File(rightpath);
+            System.out.println("made file objects");
             Scanner leftStream = new Scanner(left), rightStream = new Scanner(right);
 
             ArrayList<Trajectory.Segment> segmentsLeft = new ArrayList<Trajectory.Segment>();
@@ -32,7 +36,9 @@ public class TrajectoryPair {
             rightStream.nextLine();
 
             // fill segment array lists w/ csv data
+            System.out.println("reaading file");
             while (leftStream.hasNext()) {
+                System.out.println("reading line ");
                 String leftLine = leftStream.nextLine();
                 String rightLine = rightStream.nextLine();
                 String[] leftLineSplit = leftLine.split(",");
@@ -59,13 +65,16 @@ public class TrajectoryPair {
                 segmentsLeft.add(new Trajectory.Segment(dt, xLeft, yLeft, positionLeft, velocityLeft, accelerationLeft, jerkLeft, headingLeft));
                 segmentsRight.add(new Trajectory.Segment(dt, xRight, yRight, positionRight, velocityRight, accelerationRight, jerkRight, headingRight));
             }
+            System.out.println("finished reading file");
 
             leftStream.close();
             rightStream.close();
 
             this.left = segmentsLeft;
             this.right = segmentsRight;
-        } catch (FileNotFoundException e) {}
+        } catch (FileNotFoundException e) {
+            System.out.println("file not found");
+        }
     }
 
     public TrajectoryPair(ArrayList<Trajectory.Segment> left, ArrayList<Trajectory.Segment> right) {

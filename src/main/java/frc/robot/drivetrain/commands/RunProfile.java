@@ -2,13 +2,14 @@ package frc.robot.drivetrain.commands;
 
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 import frc.robot.helpers.Helper;
 import frc.robot.helpers.motionprofiling.TrajectoryPair;
 
 public class RunProfile extends Command {
     private TrajectoryPair pair;
-    private final double P = 0.00003, I = 0.00, D = 0.0, V = 0.3, A = 0.0; // constants for position keeping pids at max vel of 1.0
+    private final double P = 0.003, I = 0.00, D = 0.0, V = 0.3, A = 0.0; // constants for position keeping pids at max vel of 1.0
     private final double Pa = .0048, Ia = 0.0, Da = 0.05; // constants for angle keeping pids
     
     private int i = 0;
@@ -25,6 +26,7 @@ public class RunProfile extends Command {
     
     public RunProfile(String filename, boolean backwards){
         requires(Robot.drivetrain);
+        System.out.println("making new pair");
         pair = new TrajectoryPair(filename, backwards);
         leftSource = new PIDSource(){
             
@@ -95,6 +97,7 @@ public class RunProfile extends Command {
         left = new PIDController(P, I, D, leftSource, leftOutput);
         right = new PIDController(P, I, D, rightSource, rightOutput);
         angle = new PIDController(Pa, Ia, Da, angleSource, angleOutput);
+        System.out.println("made PID stuff");
     }
     
     @Override
@@ -104,6 +107,7 @@ public class RunProfile extends Command {
         
         left.enable();
         right.enable();
+        System.out.println("enable pid");
 //        angle.enable();
          
         lastTime = System.currentTimeMillis();
@@ -113,8 +117,8 @@ public class RunProfile extends Command {
     protected void execute() {
         if(System.currentTimeMillis() - lastTime > 50) {
             i++;
+            SmartDashboard.putNumber("IIIIIIIII", i);
             lastTime = System.currentTimeMillis();
-            Robot.drivetrain.setSpeed(left, right);
         }
     }
 
