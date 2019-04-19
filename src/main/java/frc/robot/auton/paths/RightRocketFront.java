@@ -14,6 +14,7 @@ import frc.robot.carriage.tilt.Tilt;
 import frc.robot.climberelevator.powerpack.PowerPack;
 import frc.robot.climberelevator.powerpack.SetElevatorPosition;
 import frc.robot.drivetrain.commands.DriveStraight;
+import frc.robot.drivetrain.commands.DriveStraightRamp;
 import frc.robot.sensors.camera.FollowVision;
 
 public class RightRocketFront extends CommandGroup {
@@ -28,7 +29,9 @@ public class RightRocketFront extends CommandGroup {
     addParallel(new SetElevatorPosition(PowerPack.LOWER_HATCH));
 
     // Drive to the Rocket
-    addSequential(new DriveStraight(184, .4, 28.75)); //TODO: after testing, add ramping and tune values
+    addSequential(new DriveStraightRamp(50, .2, .7)); //TODO: tune all values
+    addSequential(new DriveStraight(84, .7, 28.75));
+    addSequential(new DriveStraightRamp(50, .7, .2));
 
     // Follow vision into the rocket and score hatch
     addSequential(new FollowVision(), 3000);  //TODO: make shorter after testing
