@@ -10,8 +10,11 @@ import frc.robot.carriage.tilt.Tilt;
 import frc.robot.climberelevator.forks.DeployForks;
 import frc.robot.climberelevator.powerpack.SmartSetElevatorPosition;
 import frc.robot.climberelevator.ramps.DeployRamps;
+import frc.robot.drivetrain.commands.DriveStraight;
+import frc.robot.drivetrain.commands.GyroReset;
+import frc.robot.drivetrain.commands.TurnToAngleGyro;
 import frc.robot.helpers.oi.XboxControllerPlus;
-import frc.robot.sensors.camera.FollowVision;
+
 public class OI {
     public static XboxControllerPlus driver;
     public static XboxControllerPlus operator;
@@ -28,6 +31,11 @@ public class OI {
         driver.a.pressToStartReleaseToStop(new ManualFollowVision());
         // driver.x.pressToStartReleaseToStop(new IntakeUntilBallDetected());
         // driver.y.and(driver.rb).whenPressed(new AutoClimb(true));
+
+        driver.b.whenPressed(new TurnToAngleGyro(true, 130));
+        // driver.y.whenPressed(new GyroReset());
+        driver.y.whenPressed(new DriveStraight(60, .4));
+        driver.x.whenPressed(new TurnToAngleGyro(false, -130));
 
         driver.lb.whenPressed(new ToggleClaw());
 

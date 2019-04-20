@@ -8,7 +8,6 @@
 package frc.robot.auton.paths;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import frc.robot.RobotMap.ClimberElevator.Powerpack;
 import frc.robot.carriage.hatchclaw.Grab;
 import frc.robot.carriage.hatchclaw.Release;
 import frc.robot.carriage.tilt.SetTiltPosition;
@@ -16,7 +15,7 @@ import frc.robot.carriage.tilt.Tilt;
 import frc.robot.climberelevator.powerpack.PowerPack;
 import frc.robot.climberelevator.powerpack.SetElevatorPosition;
 import frc.robot.drivetrain.commands.DriveStraight;
-import frc.robot.drivetrain.commands.TurnByAngleGyro;
+import frc.robot.drivetrain.commands.TurnToAngleGyro;
 import frc.robot.sensors.camera.FollowVision;
 
 public class RightRocketFrontDouble extends CommandGroup {
@@ -49,7 +48,7 @@ public class RightRocketFrontDouble extends CommandGroup {
 
     // Back out and turn
     addSequential(new DriveStraight(-50, -.2));
-    addSequential(new TurnByAngleGyro(180));
+    addSequential(new TurnToAngleGyro(true,180));
 
     // Drive to rocket and set elevator height
     addSequential(new DriveStraight(180, .4));

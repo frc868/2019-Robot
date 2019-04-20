@@ -15,7 +15,7 @@ import frc.robot.carriage.tilt.Tilt;
 import frc.robot.climberelevator.powerpack.PowerPack;
 import frc.robot.climberelevator.powerpack.SetElevatorPosition;
 import frc.robot.drivetrain.commands.DriveStraight;
-import frc.robot.drivetrain.commands.TurnByAngleGyro;
+import frc.robot.drivetrain.commands.TurnToAngleGyro;
 import frc.robot.sensors.camera.FollowVision;
 
 public class LeftRocketFrontDouble extends CommandGroup {
@@ -47,7 +47,7 @@ public class LeftRocketFrontDouble extends CommandGroup {
 
     // Back out and turn
     addSequential(new DriveStraight(-50, -.2));
-    addSequential(new TurnByAngleGyro(-180));
+    addSequential(new TurnToAngleGyro(false,-180));
 
     // Drive to rocket and set elevator height
     addSequential(new DriveStraight(180, .4));
