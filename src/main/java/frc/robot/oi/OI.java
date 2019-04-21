@@ -39,7 +39,7 @@ public class OI {
 
         driver.lb.whenPressed(new ToggleClaw());
 
-        driver.start.whenPressed(new DeployForks());
+        driver.start.whenPressed(new ArcadeDrive.ToggleClimberSpeedReduction());
         driver.menu.whenPressed(new DeployRamps());
         driver.menu.whenPressed(new SetTiltPosition(Tilt.UPPER));
         driver.menu.whenPressed(new Grab());

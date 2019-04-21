@@ -1,10 +1,23 @@
 package frc.robot.oi;
 
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.*;
+import edu.wpi.first.wpilibj.command.InstantCommand;
+import frc.robot.Robot;
 import frc.robot.helpers.Helper;
 
 public class ArcadeDrive extends Command {
+    public static boolean climber_speed_reduction = false;
+
+    public static void toggleClimberSpeedReduction() {
+        climber_speed_reduction = !climber_speed_reduction;
+    }
+
+    public static class ToggleClimberSpeedReduction extends InstantCommand {
+        @Override
+        protected void initialize() {
+            toggleClimberSpeedReduction();
+        }
+    }
 
 
     public ArcadeDrive() {
@@ -22,8 +35,10 @@ public class ArcadeDrive extends Command {
 
 
         if(!Robot.powerPack.isElevatorMode())   {// slow for climbing
-            y = y*.25;
-            x = x*.25;
+            if(climber_speed_reduction) {
+                y = y*.25;
+                x = x*.25;
+            }
 
             if(Robot.powerPack.getClimberLimitSwitch()){
 
