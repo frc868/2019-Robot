@@ -8,6 +8,7 @@
 package frc.robot.auton.paths;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import frc.robot.RobotMap.ClimberElevator.Powerpack;
 import frc.robot.carriage.hatchclaw.Grab;
 import frc.robot.carriage.hatchclaw.Release;
 import frc.robot.carriage.tilt.SetTiltPosition;

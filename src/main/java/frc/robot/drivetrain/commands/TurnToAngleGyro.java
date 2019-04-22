@@ -40,15 +40,10 @@ public class TurnToAngleGyro extends PIDCommand {
 	@Override
 	protected void usePIDOutput(double output) {
 		Robot.drivetrain.setSpeed(output, -output);
-		SmartDashboard.putNumber("gyro error", super.getPIDController().getError());
-		System.out.println(output);
 	}
 
 	@Override
 	protected boolean isFinished() {
-		return super.getPIDController().onTarget();
+		return false;
 	}
-
-	
-
 }

@@ -60,8 +60,6 @@ public class Robot extends TimedRobot {
             }
         });
         compressor.setClosedLoopControl(true);
-        gyro.reset();
-        
     }
     
     @Override
