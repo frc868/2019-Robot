@@ -13,6 +13,7 @@ public class Drivetrain extends SubsystemManagerChild {
     public static final double INCHES_PER_TICK = 0.4424778761; //0.0045998;
     private final double DEGREES_PER_LOOP = -0.0018;
     private double angleOffset = 0;
+    public boolean climberReduce = false;
 
     public Drivetrain() {
         super("Drivetrain");

@@ -32,21 +32,19 @@ public class OI {
         // driver.x.pressToStartReleaseToStop(new IntakeUntilBallDetected());
         // driver.y.and(driver.rb).whenPressed(new AutoClimb(true));
 
-        driver.b.whenPressed(new TurnToAngleGyro(true, 140));
-        // driver.y.whenPressed(new GyroReset());
+        driver.b.whenPressed(new TurnToAngleGyro(130));
         driver.y.whenPressed(new DriveStraight(60, .4));
-        driver.x.whenPressed(new TurnToAngleGyro(false, -140));
+        driver.x.whenPressed(new TurnToAngleGyro(-130));
 
-        driver.povW.whenPressed(new TurnToAngleGyro(false, -90));
-        driver.povE.whenPressed(new TurnToAngleGyro(true, 90));
+        driver.povW.whenPressed(new TurnToAngleGyro(-90));
+        driver.povE.whenPressed(new TurnToAngleGyro(90));
 
         driver.lb.whenPressed(new ToggleClaw());
 
-        driver.start.whenPressed(new ArcadeDrive.ToggleClimberSpeedReduction());
         driver.menu.whenPressed(new DeployRamps());
         driver.menu.whenPressed(new SetTiltPosition(Tilt.UPPER));
         driver.menu.whenPressed(new Grab());
-        driver.menu.whenPressed(new ManualClimber());
+        driver.start.whenPressed(new ManualClimber());
 
         // OPERATOR CONTROLS
         operator.a.whenPressed(new SmartSetElevatorPosition(SmartSetElevatorPosition.Height.lower));

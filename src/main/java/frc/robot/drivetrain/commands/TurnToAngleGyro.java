@@ -7,13 +7,11 @@ import frc.robot.Robot;
 public class TurnToAngleGyro extends PIDCommand {
 	public static final double P = 0.01, I = 0.0, D = 0.01;
 	private double angle;
-	private boolean turnright;
 
-	public TurnToAngleGyro(boolean turnright, double angle) {
+	public TurnToAngleGyro(double angle) {
 		super(P, I, D);
 		requires(Robot.drivetrain);
 		requires(Robot.gyro);
-		this.turnright = turnright;
 		this.angle = angle;
 		super.getPIDController().setAbsoluteTolerance(1.5);
 		setTimeout(1);

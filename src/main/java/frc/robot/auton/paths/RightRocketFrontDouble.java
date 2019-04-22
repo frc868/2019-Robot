@@ -48,7 +48,7 @@ public class RightRocketFrontDouble extends CommandGroup {
 
     // Back out and turn
     addSequential(new DriveStraight(-50, -.2));
-    addSequential(new TurnToAngleGyro(true,180));
+    addSequential(new TurnToAngleGyro(180));
 
     // Drive to rocket and set elevator height
     addSequential(new DriveStraight(180, .4));
