@@ -10,19 +10,18 @@ public class ArcadeDrive extends Command {
         requires(Robot.drivetrain);
     }
 
-
     @Override
     protected void execute() {
         double y = Helper.deadzone(-OI.driver.getLY(), .03);
         double x = Helper.deadzone(-OI.driver.getRX(), .03);
 
 
-        if(!Robot.powerPack.isElevatorMode())   {// slow for climbing
+        if(!Robot.powerPack.isElevatorMode()){// slow for climbing
             
             y = y*.25;
             x = x*.25;
 
-            if(Robot.powerPack.getClimberLimitSwitch()){
+            // if(Robot.powerPack.getClimberLimitSwitch()){
 
                 // if(Robot.powerPack.getLeftUltrasonicValue() > Robot.powerPack.ULTRASONIC_HAB_HEIGHT){
                 //     Robot.drivetrain.setLeftSpeed(Helper.boundValue(y-x, -1, 0));
@@ -31,12 +30,13 @@ public class ArcadeDrive extends Command {
                 // }   else    {
                 //     Robot.drivetrain.setSpeed(y-x,y+x);
                 // }
-            }
+            // }
+            Robot.drivetrain.setSpeed(y-x, y+x);
             
-        } else if(OI.driver.rb.get())   {//Josh's sniper button
+        } else if(OI.driver.rb.get()){//Josh's sniper button
             x = x*.5;
         }
-        if(Robot.powerPack.isElevatorMode())    {
+        if(Robot.powerPack.isElevatorMode()){
             Robot.drivetrain.setSpeed(y - x, y + x);
         }
     }
