@@ -75,7 +75,7 @@ public class PowerPack extends SubsystemManagerChild {
         } 
         else{
             if(getClimberLimitSwitch()){
-                speed = 0;
+                speed = Helper.boundValue(speed, 0, 1);
             }
         }
         // else {
