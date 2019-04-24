@@ -17,7 +17,8 @@ import frc.robot.helpers.subsystems.SubsystemManagerChild;
 public class PowerPack extends SubsystemManagerChild {
     private CANSparkMaxPlus primary, secondary;
     private Solenoid switcher, elevator_brake, climber_brake;
-    private IRLimit elevator_top_limit, elevator_bottom_limit, climber_top_limit, climber_bottom_limit, climber_limit_switch;
+    private IRLimit elevator_top_limit, elevator_bottom_limit, climber_top_limit, climber_bottom_limit;
+    private DigitalInput climber_limit_switch;
     private final boolean ELEVATOR_MODE = false, BRAKE_MODE = false;
 
     private Ultrasonic leftHeightSensor, rightHeightSensor;
@@ -51,7 +52,7 @@ public class PowerPack extends SubsystemManagerChild {
         // climber_top_limit = new IRLimit(RobotMap.ClimberElevator.Powerpack.CLIMBER_TOP_LIMIT);
         // climber_bottom_limit = new IRLimit(RobotMap.ClimberElevator.Powerpack.CLIMBER_BOTTOM_LIMIT);
 
-        climber_limit_switch = new IRLimit(RobotMap.ClimberElevator.Powerpack.CLIMBER_LIMIT_SWITCH);
+        climber_limit_switch = new DigitalInput(RobotMap.ClimberElevator.Powerpack.CLIMBER_LIMIT_SWITCH);
 
         leftHeightSensor = new Ultrasonic(RobotMap.Sensors.Ultrasonic.LEFT_TRIGGER, RobotMap.Sensors.Ultrasonic.LEFT_ECHO);
         rightHeightSensor = new Ultrasonic(RobotMap.Sensors.Ultrasonic.RIGHT_TRIGGER, RobotMap.Sensors.Ultrasonic.RIGHT_ECHO);
@@ -153,7 +154,7 @@ public class PowerPack extends SubsystemManagerChild {
     // }
 
     public boolean getClimberLimitSwitch(){
-        return climber_limit_switch.get();
+        return !climber_limit_switch.get();
     }
     
     //TODO: untested
