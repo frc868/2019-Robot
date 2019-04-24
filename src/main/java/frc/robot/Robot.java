@@ -3,8 +3,8 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import frc.robot.auton.commands.DriveAndScoreHatch;
-import frc.robot.auton.paths.RightRocketFront;
+// import frc.robot.auton.commands.DriveAndScoreHatch;
+// import frc.robot.auton.paths.RightRocketFront;
 import frc.robot.carriage.ballintake.BallIntake;
 import frc.robot.carriage.hatchclaw.HatchClaw;
 import frc.robot.carriage.tilt.Tilt;
@@ -13,15 +13,15 @@ import frc.robot.climberelevator.forks.Forks;
 import frc.robot.climberelevator.powerpack.PowerPack;
 import frc.robot.climberelevator.ramps.Ramps;
 import frc.robot.drivetrain.Drivetrain;
-import frc.robot.helpers.motionprofiling.TrajectoryPair;
+// import frc.robot.helpers.motionprofiling.TrajectoryPair;
 import frc.robot.helpers.subsystems.SubsystemManager;
 import frc.robot.oi.OI;
 import frc.robot.sensors.camera.Camera;
 import frc.robot.sensors.gyro.Gyro;
 
-import java.util.HashMap;
-import java.util.function.IntConsumer;
-import java.util.stream.IntStream;
+// import java.util.HashMap;
+// import java.util.function.IntConsumer;
+// import java.util.stream.IntStream;
 // import frc.robot.sensors.ultrasonic.UltrasonicArray;
 
 public class Robot extends TimedRobot {
@@ -40,10 +40,10 @@ public class Robot extends TimedRobot {
     public static Camera camera = new Camera();
     public static Compressor compressor = new Compressor();
     public static Gyro gyro = new Gyro();
-    public static HashMap<String, TrajectoryPair> paths = new HashMap<>();
+    // public static HashMap<String, TrajectoryPair> paths = new HashMap<>();
     
-    public final String[] pathNames = {"StartToRightCloseRocket"};
-    public final boolean[] pathDirection = {false};
+    // public final String[] pathNames = {"StartToRightCloseRocket"};
+    // public final boolean[] pathDirection = {false};
     
     // public static PDP
     
@@ -53,12 +53,12 @@ public class Robot extends TimedRobot {
     public void robotInit() {
         SubsystemManager.init();
         SubsystemManager.initSD();
-        IntStream.range(0, pathNames.length - 1).forEach(new IntConsumer(){
-            @Override
-            public void accept(int i){
-                paths.put(pathNames[i], new TrajectoryPair(pathNames[i], pathDirection[i]));
-            }
-        });
+        // IntStream.range(0, pathNames.length - 1).forEach(new IntConsumer(){
+        //     @Override
+        //     public void accept(int i){
+        //         paths.put(pathNames[i], new TrajectoryPair(pathNames[i], pathDirection[i]));
+        //     }
+        // });
         compressor.setClosedLoopControl(true);
     }
     
@@ -84,7 +84,7 @@ public class Robot extends TimedRobot {
     public void autonomousInit() {
         SubsystemManager.initEnabled();
         OI.init();
-        Scheduler.getInstance().add(new DriveAndScoreHatch("StartToRightCloseRocket", DriveAndScoreHatch.Height.lower));
+        // Scheduler.getInstance().add(new DriveAndScoreHatch("StartToRightCloseRocket", DriveAndScoreHatch.Height.lower));
         // Scheduler.getInstance().add(new RightRocketFront());
     }
     
