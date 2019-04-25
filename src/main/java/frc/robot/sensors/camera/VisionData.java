@@ -4,7 +4,7 @@ public class VisionData {
     private String rawData;
     private double distance, position, angle;
     private final int WIDTH  = 320, HEIGHT = 240;
-    private final double DIST_CORRECT = -13.5 + 5; // adjust this as needed for x-axis error
+    private final double DIST_CORRECT = -13.5 + 5 - 10.5; // adjust this as needed for x-axis error
                                             // positive -> further right, negative -> left
 
     public VisionData(String newData) {
