@@ -11,7 +11,8 @@ public class Camera extends SubsystemManagerChild {
   private SerialPort port;
   private UsbCamera camera0, camera1;
   private VisionData data;
-  private final int WIDTH = 240, HEIGHT = 180;
+  // private final int WIDTH = 240, HEIGHT = 180;
+  private final int WIDTH = 1, HEIGHT = 1;
 
   public Camera() {
     super("Camera");
