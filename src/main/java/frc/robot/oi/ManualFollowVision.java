@@ -29,7 +29,7 @@ public class ManualFollowVision extends FollowVision {
                 double manual_y = Helper.deadzone(-OI.driver.getLY(), .03);
 
                 double left = manual_y + ((posValue + angleValue) / 10.0);
-                double right = manual_y - ((posValue - angleValue) / 10.0);
+                double right = manual_y - ((posValue + angleValue) / 10.0);
 
                 Robot.drivetrain.setSpeed(left, right);
             }
