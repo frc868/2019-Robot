@@ -11,8 +11,8 @@ public class Camera extends SubsystemManagerChild {
   private SerialPort port;
   private UsbCamera camera0, camera1;
   private VisionData data;
-  private final int WIDTH = 360, HEIGHT = 240;
-  // private final int WIDTH = 1, HEIGHT = 1;
+  private final int WIDTH = 240, HEIGHT = 135;
+  // private final int WIDTH = 2, HEIGHT = 2;
 
   public Camera() {
     super("Camera");
@@ -21,12 +21,12 @@ public class Camera extends SubsystemManagerChild {
   @Override
   public void init() {
     camera0 = CameraServer.getInstance().startAutomaticCapture(0);
-    // camera0.setResolution(WIDTH, HEIGHT);
+    camera0.setResolution(WIDTH, HEIGHT);
     // camera0.setExposureAuto();
     camera0.setFPS(15);
 
     camera1 = CameraServer.getInstance().startAutomaticCapture(1);
-    // camera1.setResolution(WIDTH, HEIGHT);
+    camera1.setResolution(WIDTH, HEIGHT);
     // camera1.setExposureAuto();
     camera1.setFPS(15);
 
