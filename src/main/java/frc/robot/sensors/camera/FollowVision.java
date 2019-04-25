@@ -11,6 +11,9 @@ public class FollowVision extends Command {
   public static double k_dist = -0.011; // this is negative as a larger value means we are closer to the target 
   public static double k_pos =  0.0125;
   public static double k_angle =  1;
+  public static double l_dist = 0.0;
+  public static double l_pos = 0.0;
+  public static double l_angle = 0.0;
   // public static double k_angle = 0;
 
   protected VisionData data;
@@ -18,6 +21,15 @@ public class FollowVision extends Command {
   public FollowVision() {
     requires(Robot.drivetrain);
     requires(Robot.camera);
+  }
+
+  @Override
+  protected void initialize() {
+    if(Robot.camera.getClass().getTypeName().equals("LimeLight")){
+      k_dist = l_dist;
+      k_pos = l_pos;
+      k_angle = l_angle;
+    }
   }
 
   @Override

@@ -7,6 +7,8 @@ public class VisionData {
     private final double DIST_CORRECT = -13.5 + 5 - 10.5; // adjust this as needed for x-axis error
                                             // positive -> further right, negative -> left
 
+    public VisionData(){}
+
     public VisionData(String newData) {
         try {
             if (newData != null && !newData.equals("")) {  

@@ -17,6 +17,7 @@ import frc.robot.helpers.motionprofiling.TrajectoryPair;
 import frc.robot.helpers.subsystems.SubsystemManager;
 import frc.robot.oi.OI;
 import frc.robot.sensors.camera.Camera;
+import frc.robot.sensors.camera.LimeLight;
 import frc.robot.sensors.gyro.Gyro;
 
 import java.util.HashMap;
@@ -37,7 +38,8 @@ public class Robot extends TimedRobot {
     public static PowerPack powerPack = new PowerPack();
     public static Ramps climberRamps = new Ramps();
     
-    public static Camera camera = new Camera();
+    public static LimeLight camera = new LimeLight();
+    // public static Camera camera = new Camera();
     public static Compressor compressor = new Compressor();
     public static Gyro gyro = new Gyro();
     public static HashMap<String, TrajectoryPair> paths = new HashMap<>();
