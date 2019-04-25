@@ -71,6 +71,7 @@ public class Gyro extends SubsystemManagerChild {
 
     @Override
     public void updateSD() {
+        // System.out.println(gyro.getAngle());
         SmartDashboard.putNumber("Angle", getAngle());
         SmartDashboard.putNumber("Pitch", getPitch());
         SmartDashboard.putNumber("Roll", getRoll());

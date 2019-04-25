@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 
 public class TurnToAngleGyro extends PIDCommand {
-	public static final double P = 0.0075, I = 0.0, D = 0.0005;
+	public static final double P = 0.0075, I = 0.0, D = 0.0007;
 	private double angle;
 
 	public TurnToAngleGyro(double angle) {
@@ -13,7 +13,7 @@ public class TurnToAngleGyro extends PIDCommand {
 		requires(Robot.drivetrain);
 		requires(Robot.gyro);
 		this.angle = angle;
-		super.getPIDController().setAbsoluteTolerance(1.5);
+		super.getPIDController().setAbsoluteTolerance(3);
 		// setTimeout(1);
 	}
 
@@ -28,13 +28,14 @@ public class TurnToAngleGyro extends PIDCommand {
 		// 	angle = Robot.gyro.getAngle() - angle;
 		// }
 		SmartDashboard.putNumber("setpoint", angle);
+
 		setSetpoint(angle);		
 		System.out.println("Setpoint is now " + getSetpoint());
 	}
 
 	@Override
 	protected double returnPIDInput() {
-		return -Robot.gyro.getAngle();
+		return Robot.gyro.getAngle();
 	}
 
 	@Override
@@ -44,6 +45,6 @@ public class TurnToAngleGyro extends PIDCommand {
 
 	@Override
 	protected boolean isFinished() {
-		return false;
+		return getPIDController().onTarget();
 	}
 }
