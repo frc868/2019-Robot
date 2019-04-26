@@ -14,14 +14,14 @@ public class ManualFollowVision extends FollowVision {
 
     @Override
     protected void execute() {
-        data = Robot.camera.getData();
+        super.data = Robot.camera.getData();
 
         try {
             if (data.hasTarget()) {
-                double posError = data.getPosition();
+                double posError = super.data.getPosition();
                 double posValue = posError * k_pos;
 
-                double angleError = data.getAngle();
+                double angleError = super.data.getAngle();
                 double angleValue = angleError * k_angle;
 
                 SmartDashboard.putNumber("Angle Value", angleValue);

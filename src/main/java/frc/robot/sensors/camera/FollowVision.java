@@ -12,8 +12,8 @@ public class FollowVision extends Command {
   public static double k_pos =  0.0125;
   public static double k_angle =  1;
   public static double l_dist = 0.0;
-  public static double l_pos = 0.0;
-  public static double l_angle = 0.0;
+  public static double l_pos = 0.001;
+  public static double l_angle = 0.001;
   // public static double k_angle = 0;
 
   protected VisionData data;
