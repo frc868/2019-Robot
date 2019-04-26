@@ -24,7 +24,7 @@ public class LimeData extends VisionData{
     NetworkTableEntry ty;
     NetworkTableEntry ts;
 
-    double skewOffset = 6;
+    double skewOffset = 4;
     
     public LimeData(){
     }
@@ -40,7 +40,11 @@ public class LimeData extends VisionData{
 
     @Override
     public boolean hasTarget() {
-        return tv.getBoolean(false);
+        return tv.getDouble(0.0) == 1;
+    }
+
+    public double getArea() {
+        return ta.getDouble(0.0);
     }
 
     @Override
@@ -61,7 +65,7 @@ public class LimeData extends VisionData{
         }else {
             angle = -angle;
         }
-        return angle;
+        return -angle;
         // return (ts.getDouble(0.0) >= 0 ? ts.getDouble(0.0) : -(90 + ts.getDouble(0.0))) + skewOffset;
     }
 
@@ -69,5 +73,6 @@ public class LimeData extends VisionData{
         SmartDashboard.putNumber("lime pos", getPosition());
         SmartDashboard.putNumber("lime angle without offset", getAngle() - skewOffset);
         SmartDashboard.putNumber("limeangle", getAngle());
+        SmartDashboard.putBoolean("target?", hasTarget());
     }
 }

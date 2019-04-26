@@ -29,7 +29,7 @@ public class LimeLight extends Camera{
     }
 
     @Override
-    public VisionData getData() {
+    public LimeData getData() {
         return data;
     }
 }
