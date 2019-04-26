@@ -13,7 +13,7 @@ public class FollowVision extends Command {
   public static double k_angle =  1;
   public static double l_dist = 0.0;
   public static double l_pos = 0.008;
-  public static double a_correction = .75;
+  public static double a_correction = 1;
   // public static double l_pos = 0;
   public static double l_angle = 0;
   // public static double k_angle = 0;
