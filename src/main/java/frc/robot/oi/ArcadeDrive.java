@@ -31,7 +31,7 @@ public class ArcadeDrive extends Command {
                 //     Robot.drivetrain.setSpeed(y-x,y+x);
                 // }
             // }
-            Robot.drivetrain.setSpeed(y-x, y+x);
+            Robot.drivetrain.setSpeed(0.75*(y-x), 0.75*(y+x));
             
         } else if(OI.driver.rb.get()){//Josh's sniper button
             x = x*.5;
