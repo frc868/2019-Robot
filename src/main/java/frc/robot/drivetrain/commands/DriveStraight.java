@@ -1,11 +1,11 @@
 package frc.robot.drivetrain.commands;
 
+import edu.wpi.first.wpilibj.command.PIDCommand;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 import frc.robot.helpers.Helper;
-import frc.robot.helpers.pid.PIDCommandPlus;
 
-public class DriveStraight extends PIDCommandPlus {
+public class DriveStraight extends PIDCommand {
     private static final double P = 0.01, I = 0.0, D = 0.0; //TODO: tune these constants
     public double initialDistance;
     public double targetDistance, targetPower, targetAngleChange;
@@ -47,6 +47,10 @@ public class DriveStraight extends PIDCommandPlus {
     @Override
     protected boolean isFinished() {
         return Robot.drivetrain.getAvgScaledDistance() - initialDistance > targetDistance;
+    }
+
+    protected double getError(){
+        return Robot.drivetrain.getAvgScaledDistance() - initialDistance;
     }
 
     @Override

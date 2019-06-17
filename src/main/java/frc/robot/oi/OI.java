@@ -30,7 +30,7 @@ public class OI {
         // driver.y.and(driver.rb).whenPressed(new AutoClimb(true));
 
         driver.b.whenPressed(new TurnToAngleGyro(130));
-        // driver.y.whenPressed(new DriveStraight(60, .4));
+        driver.y.whenPressed(new DriveStraight(48, .4));
         driver.x.whenPressed(new TurnToAngleGyro(-130));
 
         driver.povW.whenPressed(new TurnToAngleGyro(-90));
