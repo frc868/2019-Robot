@@ -17,6 +17,7 @@ public class FollowVision extends Command {
   // public static double l_pos = 0;
   public static double l_angle = 0;
   // public static double k_angle = 0;
+  private double distError;
 
   protected VisionData data;
  
@@ -37,7 +38,8 @@ public class FollowVision extends Command {
     data = Robot.camera.getData();
 
     if (data.hasTarget()) {
-      double distError = data.getDistance() - VISION_TARGET;
+      // double distError = data.getDistance() - VISION_TARGET;
+      distError = data.getDistance() - VISION_TARGET;
       double distValue = distError * k_dist;
 
       double posError = data.getPosition();
@@ -58,7 +60,7 @@ public class FollowVision extends Command {
 
   @Override
   protected boolean isFinished() {
-      return false;
+      return distError <= 0;
   }
 
   @Override

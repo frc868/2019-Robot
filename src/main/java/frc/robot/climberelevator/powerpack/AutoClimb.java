@@ -31,6 +31,6 @@ public class AutoClimb extends CommandGroup {
         addParallel(new SetFootDriveSpeed(0.1));
 
         addSequential(new SetClimberSpeed(-0.5), climbTime);
-        addSequential(new DriveStraight(30, 0.5));
+        // addSequential(new DriveStraight(30, 0.5));
     }
 }

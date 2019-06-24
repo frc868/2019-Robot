@@ -1,60 +1,123 @@
 package frc.robot.drivetrain.commands;
 
+import edu.wpi.first.wpilibj.PIDController;
+import edu.wpi.first.wpilibj.PIDOutput;
+import edu.wpi.first.wpilibj.PIDSource;
+import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.command.PIDCommand;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 import frc.robot.helpers.Helper;
 
 public class DriveStraight extends PIDCommand {
-    private static final double P = 0.01, I = 0.0, D = 0.0; //TODO: tune these constants
-    public double initialDistance;
-    public double targetDistance, targetPower, targetAngleChange;
+    public double initialDist,targetDist;//initialAngle,targetAngle;
+    // private double Pa = 0.001, Ia = 0, Da = 0;
+    private static final double Pd = -.05, Id = 0, Dd = 0;
 
-    public DriveStraight(double targetDistance, double targetPower) {
-        this(targetDistance, targetPower, 0);
-    }
-    
-    public DriveStraight(double targetDistance, double targetPower, double targetAngleChange) {
-        super(P, I, D, targetAngleChange);
-        this.targetDistance = targetDistance;
-        this.targetPower = targetPower;
-    }
+    // private double angleOut;
+    // private double distOut;
 
+    // private PIDSource distSource,angleSource;
+    // private PIDController distController,angleController;
+    // private PIDOutput distOutput,angleOutput;
 
-    @Override
-    protected void initialize() {
-        setSetpointRelative(Robot.gyro.getAngle());
-        initialDistance = Robot.drivetrain.getAvgScaledDistance();
-    }
+    // public DriveStraight(double targetDist) {
+    //     this(targetDist,0);
+    // }
+
+    public DriveStraight(double targetDist) {
+        super(Pd,Id,Dd);
+        requires(Robot.drivetrain);
+        this.targetDist = targetDist;
+        // this.targetAngle = targetAngle;
+
+        // distSource = new PIDSource(){
+        
+        //     @Override
+        //     public void setPIDSourceType(PIDSourceType pidSource) {}
+        
+        //     @Override
+        //     public double pidGet() {
+        //         return Robot.drivetrain.getAvgScaledDistance();
+        //     }
+        
+        //     @Override
+        //     public PIDSourceType getPIDSourceType() {
+        //         return PIDSourceType.kDisplacement;
+        //     }
+        // };
+        // distOutput = new PIDOutput(){
+        
+        //     @Override
+        //     public void pidWrite(double output) {
+        //         System.out.println("Output!:" + output);
+        //         Robot.drivetrain.setSpeed(Helper.boundValue(output), Helper.boundValue(output));
+        //     }
+        }
+
+        // angleSource = new PIDSource(){
+        
+        //     @Override
+        //     public void setPIDSourceType(PIDSourceType pidSource) {}
+        
+        //     @Override
+        //     public double pidGet() {
+        //         return Robot.gyro.getAngle();
+        //     }
+        
+        //     @Override
+        //     public PIDSourceType getPIDSourceType() {
+        //         return PIDSourceType.kDisplacement;
+        //     }
+        // };
+        // angleOutput = new PIDOutput(){
+        
+        //     @Override
+        //     public void pidWrite(double output) {
+        //         angleOut = output;
+        //     }
+        // };
+
+        // distController = new PIDController(Pd, Id, Dd, distSource, distOutput);
+    // }
 
     @Override
     protected double returnPIDInput() {
-        return Robot.gyro.getAngle();
+        return targetDist - Robot.drivetrain.getAvgScaledDistance();
     }
 
     @Override
     protected void usePIDOutput(double output) {
-        double left = targetPower + output;
-        double right = targetPower - output;
-        Robot.drivetrain.setSpeed(Helper.boundValue(left), Helper.boundValue(right));
+        System.out.println(output);
+        double speed = Helper.boundValue(output);
+        Robot.drivetrain.setSpeed(speed, speed);
     }
 
     @Override
-    protected void execute() {
-        SmartDashboard.putNumber("Drive Straight Error", getError());
-    }
-    
-    @Override
-    protected boolean isFinished() {
-        return Robot.drivetrain.getAvgScaledDistance() - initialDistance > targetDistance;
+    public void initialize() {
+        initialDist = Robot.drivetrain.getAvgScaledDistance();
+        System.out.println("Started!!!!!!!!!!!!!!!!!!!!  " + initialDist);
     }
 
-    protected double getError(){
-        return Robot.drivetrain.getAvgScaledDistance() - initialDistance;
+    // public void combineOutputs(double angle, double distance) {
+    //     Robot.drivetrain.setSpeed(distance-angle, distance+angle);
+    // }
+
+    @Override
+    public void execute() {
+        // combineOutputs(angleOut, distOut);
+        SmartDashboard.putNumber("Drive Straight Error", targetDist - Robot.drivetrain.getAvgScaledDistance());
+    }
+
+    @Override
+    public boolean isFinished() {
+        return (Robot.drivetrain.getAvgScaledDistance() - initialDist) > targetDist;
+        // return false;
     }
 
     @Override
     protected void end() {
-        Robot.drivetrain.stop();
+        System.out.println("STOPPED===============");
     }
+
 }

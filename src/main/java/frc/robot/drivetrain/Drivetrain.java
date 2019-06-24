@@ -10,7 +10,7 @@ import frc.robot.helpers.subsystems.SubsystemManagerChild;
 
 public class Drivetrain extends SubsystemManagerChild {
     private CANSparkMaxPlus leftPrimary, leftSecondary, leftTertiary, rightPrimary, rightSecondary, rightTertiary;
-    public static final double INCHES_PER_TICK = 2.27812; //0.0045998;
+    public static final double INCHES_PER_TICK = 2.15812; //0.0045998;
     private final double DEGREES_PER_LOOP = -0.0018;
     private double angleOffset = 0;
 
