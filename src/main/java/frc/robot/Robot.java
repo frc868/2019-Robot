@@ -1,8 +1,14 @@
 package frc.robot;
 
+import java.util.HashMap;
+// import java.util.function.IntConsumer;
+// import java.util.stream.IntStream;
+// import frc.robot.sensors.ultrasonic.UltrasonicArray;
+
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
+// import frc.robot.auton.commands.LHab2ToFrontRocket;
 // import frc.robot.auton.commands.DriveAndScoreHatch;
 // import frc.robot.auton.paths.RightRocketFront;
 import frc.robot.carriage.ballintake.BallIntake;
@@ -16,14 +22,8 @@ import frc.robot.drivetrain.Drivetrain;
 import frc.robot.helpers.motionprofiling.TrajectoryPair;
 import frc.robot.helpers.subsystems.SubsystemManager;
 import frc.robot.oi.OI;
-import frc.robot.sensors.camera.Camera;
 import frc.robot.sensors.camera.LimeLight;
 import frc.robot.sensors.gyro.Gyro;
-
-import java.util.HashMap;
-// import java.util.function.IntConsumer;
-// import java.util.stream.IntStream;
-// import frc.robot.sensors.ultrasonic.UltrasonicArray;
 
 public class Robot extends TimedRobot {
     public static BallIntake ballIntake = new BallIntake();
@@ -43,6 +43,8 @@ public class Robot extends TimedRobot {
     public static Compressor compressor = new Compressor();
     public static Gyro gyro = new Gyro();
     public static HashMap<String, TrajectoryPair> paths = new HashMap<>();
+
+    // public LHab2ToFrontRocket auton;
     
     // public final String[] pathNames = {"StartToRightCloseRocket"};
     // public final boolean[] pathDirection = {false};
@@ -86,6 +88,7 @@ public class Robot extends TimedRobot {
     public void autonomousInit() {
         SubsystemManager.initEnabled();
         OI.init();
+        // (new LHab2ToFrontRocket(1)).start();
         // Scheduler.getInstance().add(new DriveAndScoreHatch("StartToRightCloseRocket", DriveAndScoreHatch.Height.lower));
         // Scheduler.getInstance().add(new RightRocketFront());
     }
