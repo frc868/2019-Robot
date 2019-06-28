@@ -18,19 +18,19 @@ import frc.robot.drivetrain.commands.TurnToAngleGyro;
 import frc.robot.sensors.camera.FollowVision;
 
 
-public class LHab2ToFrontRocketDouble extends CommandGroup {
+public class RHab2ToFrontRocketDouble extends CommandGroup {
   /**
    * Add your docs here.
    */
-  public LHab2ToFrontRocketDouble(int position) {
-    addSequential(new LHab2ToFrontRocket(position));
+  public RHab2ToFrontRocketDouble(int position) {
+    addSequential(new RHab2ToFrontRocket(position));
     
     addSequential(new DriveStraightNoPID(-36,0.3,0.3));
-    addSequential(new TurnToAngleGyro(-100));
+    addSequential(new TurnToAngleGyro(100));
     addSequential(new FollowVision(true, 70));
     addSequential(new Grab());
     addSequential(new DriveStraightNoPID(-150,0.3,0.3));
-    addSequential(new TurnToAngleGyro(45));
+    addSequential(new TurnToAngleGyro(-45));
     addSequential(new FollowVision(true,70));
     addSequential(new SmartSetElevatorPosition(Height.middle));
     addSequential(new Release());
