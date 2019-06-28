@@ -9,7 +9,7 @@ import frc.robot.sensors.camera.LimeData;
 public class ManualFollowVision extends FollowVision {
 
     public ManualFollowVision() {
-        super();
+        super(false);
         super.k_dist = 0; // stop distance from having an effect as the driver will control this
     }
 
@@ -26,6 +26,10 @@ public class ManualFollowVision extends FollowVision {
                 double angleError = data.getAngle();
                 double angleValue = 0.0;//angleError * k_angle;
 
+                double distance = data.getDistance();
+
+                SmartDashboard.putNumber("Lime Distance", distance);
+
                 SmartDashboard.putNumber("Angle Value", angleValue);
                 SmartDashboard.putString("hello", "i wok");
 
@@ -34,6 +38,7 @@ public class ManualFollowVision extends FollowVision {
                 double left = manual_y + ((posValue + angleValue)); /// 10.0);
                 double right = manual_y - ((posValue + angleValue));// / 10.0);
 
+
                 Robot.drivetrain.setSpeed(left, right);
             }
         // } catch(NullPointerException npe) {
@@ -41,3 +46,4 @@ public class ManualFollowVision extends FollowVision {
         // }
     }
 }
+

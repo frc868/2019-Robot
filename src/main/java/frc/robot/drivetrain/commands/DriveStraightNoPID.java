@@ -34,7 +34,7 @@ public class DriveStraightNoPID extends Command {
   @Override
   protected void execute() {
     double targetSpeed = startPower + ((endPower - startPower) / distanceToTarget());
-    System.out.println(targetSpeed + "   : TARGETSPEED");
+    // System.out.println(targetSpeed + "   : TARGETSPEED");
     targetSpeed *= pGain;
     targetSpeed = Helper.boundValue(targetSpeed);
     Robot.drivetrain.setSpeed(targetSpeed, targetSpeed);
@@ -50,7 +50,7 @@ public class DriveStraightNoPID extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    System.out.println("ENDED");
+    // System.out.println("ENDED");
   }
 
   // Called when another command which requires one or more of the same
