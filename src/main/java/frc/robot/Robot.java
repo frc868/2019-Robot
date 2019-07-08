@@ -8,6 +8,8 @@ import java.util.HashMap;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import frc.robot.auton.commands.LHab2ToFrontRocket;
+import frc.robot.auton.commands.LHab2ToFrontRocketDouble;
 // import frc.robot.auton.commands.LHab2ToFrontRocket;
 // import frc.robot.auton.commands.DriveAndScoreHatch;
 // import frc.robot.auton.paths.RightRocketFront;
@@ -88,7 +90,7 @@ public class Robot extends TimedRobot {
     public void autonomousInit() {
         SubsystemManager.initEnabled();
         OI.init();
-        // (new LHab2ToFrontRocket(1)).start();
+        (new LHab2ToFrontRocket(1)).start();
         // Scheduler.getInstance().add(new DriveAndScoreHatch("StartToRightCloseRocket", DriveAndScoreHatch.Height.lower));
         // Scheduler.getInstance().add(new RightRocketFront());
     }

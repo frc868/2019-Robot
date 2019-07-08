@@ -25,10 +25,10 @@ public class LHab2ToFrontRocket extends CommandGroup { //TODO: finished conditio
    */
   public LHab2ToFrontRocket(int position) {
     addSequential(new DriveStraightNoPID(36,0.3,0.3));
-    addSequential(new TurnToAngleGyro(-45));
+    addSequential(new TurnToAngleGyro(-40));
     addSequential(new FollowVision(true, 70));
     if(position == 1) {
-      addParallel(new SetTiltPosition(Tilt.MIDDLE));
+      // addParallel(new SetTiltPosition(Tilt.MIDDLE));
       addSequential(new Release());
     }
     else if(position == 2) {

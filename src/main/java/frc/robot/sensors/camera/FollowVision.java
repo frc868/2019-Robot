@@ -11,12 +11,14 @@ public class FollowVision extends Command {
 
   public static double k_dist = -0.011; // this is negative as a larger value means we are closer to the target 
   public static double k_pos =  0.0125;
-  public static double k_angle =  1;
-  public static double l_dist = 0.25; //THIS ONE
-  public static double l_pos = 0.008;
-  public static double a_correction = .1;
 
-  public static final double END_AREA = 3;
+  public static double k_angle =  1;
+  // public static double l_dist = 0.25; //THIS ONE
+  public static double l_dist = 0.18;
+  public static double l_pos = 0.008;
+  public static double areaCorrection = .1;
+
+  public static final double END_AREA = 10;
   public double endCounts;
   // public static double l_pos = 0;
   public static double l_angle = .01;
@@ -79,9 +81,9 @@ public class FollowVision extends Command {
 
     // }
     if (data.hasTarget()) {
-      double area = data.getArea();
+      area = data.getArea();
       double posError = data.getPosition();
-      double posValue = (posError * k_pos) * Math.sqrt(Helper.boundValue(area * a_correction, 0, 1));
+      double posValue = (posError * k_pos) * Math.sqrt(Helper.boundValue(area * areaCorrection, 0, 1));
 
       // double angleError = data.getAngle();
       // double angleValue = angleError * k_angle;
@@ -110,8 +112,9 @@ public class FollowVision extends Command {
   @Override
   protected boolean isFinished() {
       // return distError <= 0;
+      SmartDashboard.putBoolean("Follow Vision is finished", area > END_AREA);
       if(endable) {
-        return area > END_AREA || counts > endCounts;
+        return area > END_AREA;// || counts > endCounts;
       }
       return false;
   }
@@ -119,6 +122,7 @@ public class FollowVision extends Command {
   @Override
   protected void end() {
     System.out.println("Ended");
+    Robot.drivetrain.resetEncPositions();
     Robot.drivetrain.stop();
   }
 }

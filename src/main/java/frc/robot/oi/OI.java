@@ -32,7 +32,7 @@ public class OI {
 
         driver.b.whenPressed(new TurnToAngleGyro(130));
         // driver.y.whenPressed(new DriveStraightNoPID(48,0.3,0.3));
-        driver.y.whenPressed(new LHab2ToFrontRocketDouble(1));
+        driver.y.whenPressed(new LHab2ToFrontRocket(1));
         driver.x.whenPressed(new TurnToAngleGyro(-130));
 
         driver.povW.whenPressed(new TurnToAngleGyro(-90));

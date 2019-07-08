@@ -21,7 +21,7 @@ public class ManualFollowVision extends FollowVision {
             if (data.hasTarget()) {
                 double area = data.getArea();
                 double posError = data.getPosition();
-                double posValue = (posError * k_pos) * Math.sqrt(Helper.boundValue(area * a_correction, 0, 1));
+                double posValue = (posError * k_pos) * Math.sqrt(Helper.boundValue(area * areaCorrection, 0, 1));
 
                 double angleError = data.getAngle();
                 double angleValue = 0.0;//angleError * k_angle;

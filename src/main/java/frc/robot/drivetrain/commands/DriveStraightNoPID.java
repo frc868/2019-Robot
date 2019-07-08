@@ -37,14 +37,15 @@ public class DriveStraightNoPID extends Command {
     // System.out.println(targetSpeed + "   : TARGETSPEED");
     targetSpeed *= pGain;
     targetSpeed = Helper.boundValue(targetSpeed);
+    SmartDashboard.putNumber("TargetSpeed===========", targetSpeed);
     Robot.drivetrain.setSpeed(targetSpeed, targetSpeed);
-    SmartDashboard.putNumber("Drive Straight No PID Error", targetDist - Robot.drivetrain.getAvgScaledDistance());
+    SmartDashboard.putNumber("Drive Straight No PID Error", Math.abs(targetDist) - Robot.drivetrain.getAvgScaledDistance());
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return (Robot.drivetrain.getAvgScaledDistance() - initialDist) > targetDist;
+    return (Robot.drivetrain.getAvgScaledDistance() - initialDist) > Math.abs(targetDist);
   }
 
   // Called once after isFinished returns true
