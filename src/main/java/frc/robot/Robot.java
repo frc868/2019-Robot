@@ -10,8 +10,8 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import frc.robot.auton.commands.LHab2ToFrontRocket;
-import frc.robot.auton.commands.RHab2ToFrontRocket;
+import frc.robot.auton.commands.LHab1ToFrontRocket;
+import frc.robot.auton.commands.RHab1ToFrontRocket;
 // import frc.robot.auton.commands.LHab2ToFrontRocket;
 // import frc.robot.auton.commands.DriveAndScoreHatch;
 // import frc.robot.auton.paths.RightRocketFront;
@@ -79,8 +79,8 @@ public class Robot extends TimedRobot {
         chooser.addOption("Left Rocket", left);
         chooser.addOption("Right Rocket", right);
 
-        leftRocketAuto = new LHab2ToFrontRocket(1);
-        rightRocketAuto = new RHab2ToFrontRocket(1);
+        leftRocketAuto = new LHab1ToFrontRocket(1);
+        rightRocketAuto = new RHab1ToFrontRocket(1);
 
         compressor.setClosedLoopControl(true);
     }

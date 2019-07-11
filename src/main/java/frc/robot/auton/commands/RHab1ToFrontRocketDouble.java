@@ -8,7 +8,6 @@
 package frc.robot.auton.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import frc.robot.Robot;
 import frc.robot.carriage.hatchclaw.Grab;
 import frc.robot.carriage.hatchclaw.Release;
 import frc.robot.climberelevator.powerpack.SmartSetElevatorPosition;
@@ -19,29 +18,21 @@ import frc.robot.drivetrain.commands.TurnToAngleGyro;
 import frc.robot.sensors.camera.FollowVision;
 
 
-public class LHab2ToFrontRocketDouble extends CommandGroup {
+public class RHab1ToFrontRocketDouble extends CommandGroup {
   /**
    * Add your docs here.
    */
-  public LHab2ToFrontRocketDouble(int position) {
-    addSequential(new LHab2ToFrontRocket(position));
-
-    // addSequential(new DriveStraightNoPID(36,0.3,0.3));
-    // addSequential(new TurnToAngleGyro(-45));
-    // addSequential(new FollowVision(true, 70));
-    // if(position == 1) {
-    //   // addParallel(new SetTiltPosition(Tilt.MIDDLE));
-    //   addSequential(new Release());
-    // }
-
-    addSequential(new DriveStraightNoPID(-36,-0.5,-0.5));
-    // addSequential(new TurnToAngleGyro(-100));
-    // addSequential(new FollowVision(true, 70));
-    // addSequential(new Grab());
-    // addSequential(new DriveStraightNoPID(-150,0.3,0.3));
-    // addSequential(new TurnToAngleGyro(45));
-    // addSequential(new FollowVision(true,70));
-    // addSequential(new SmartSetElevatorPosition(Height.middle));
-    // addSequential(new Release());
+  public RHab1ToFrontRocketDouble(int position) {
+    addSequential(new RHab1ToFrontRocket(position));
+    
+    addSequential(new DriveStraightNoPID(-36,0.3,0.3));
+    addSequential(new TurnToAngleGyro(100));
+    addSequential(new FollowVision(true, 70));
+    addSequential(new Grab());
+    addSequential(new DriveStraightNoPID(-150,0.3,0.3));
+    addSequential(new TurnToAngleGyro(-45));
+    addSequential(new FollowVision(true,70));
+    addSequential(new SmartSetElevatorPosition(Height.middle));
+    addSequential(new Release());
   }
 }
