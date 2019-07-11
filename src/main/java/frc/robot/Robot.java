@@ -7,9 +7,11 @@ import java.util.HashMap;
 
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import frc.robot.auton.commands.LHab2ToFrontRocket;
-import frc.robot.auton.commands.LHab2ToFrontRocketDouble;
+import frc.robot.auton.commands.RHab2ToFrontRocket;
 // import frc.robot.auton.commands.LHab2ToFrontRocket;
 // import frc.robot.auton.commands.DriveAndScoreHatch;
 // import frc.robot.auton.paths.RightRocketFront;
@@ -46,6 +48,14 @@ public class Robot extends TimedRobot {
     public static Gyro gyro = new Gyro();
     public static HashMap<String, TrajectoryPair> paths = new HashMap<>();
 
+    private final SendableChooser<String> chooser = new SendableChooser<>();
+    private String selectedAuto;
+    private static final String nothing = "Nothing";
+    private static final String left = "Left rocket single";
+    private static final String right = "Right rocket single";
+
+    private Command leftRocketAuto, rightRocketAuto;
+
     // public LHab2ToFrontRocket auton;
     
     // public final String[] pathNames = {"StartToRightCloseRocket"};
@@ -65,6 +75,13 @@ public class Robot extends TimedRobot {
         //         paths.put(pathNames[i], new TrajectoryPair(pathNames[i], pathDirection[i]));
         //     }
         // });
+        chooser.setDefaultOption("Nothing", nothing);
+        chooser.addOption("Left Rocket", left);
+        chooser.addOption("Right Rocket", right);
+
+        leftRocketAuto = new LHab2ToFrontRocket(1);
+        rightRocketAuto = new RHab2ToFrontRocket(1);
+
         compressor.setClosedLoopControl(true);
     }
     
@@ -89,10 +106,19 @@ public class Robot extends TimedRobot {
     @Override
     public void autonomousInit() {
         SubsystemManager.initEnabled();
-        OI.init();
-        (new LHab2ToFrontRocket(1)).start();
-        // Scheduler.getInstance().add(new DriveAndScoreHatch("StartToRightCloseRocket", DriveAndScoreHatch.Height.lower));
-        // Scheduler.getInstance().add(new RightRocketFront());
+        switch(selectedAuto) {
+            case(nothing): {
+                OI.init();
+            }
+            case(left): {
+                leftRocketAuto.start();
+                OI.init();
+            }
+            case(right): {
+                rightRocketAuto.start();
+                OI.init();
+            }
+        }
     }
     
     @Override
