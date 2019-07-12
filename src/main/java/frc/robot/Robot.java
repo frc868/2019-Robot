@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.auton.commands.LHab1ToFrontRocket;
 import frc.robot.auton.commands.RHab1ToFrontRocket;
 // import frc.robot.auton.commands.LHab2ToFrontRocket;
@@ -78,7 +79,7 @@ public class Robot extends TimedRobot {
         chooser.setDefaultOption("Nothing", nothing);
         chooser.addOption("Left Rocket", left);
         chooser.addOption("Right Rocket", right);
-
+        SmartDashboard.putData(chooser);
         leftRocketAuto = new LHab1ToFrontRocket(1);
         rightRocketAuto = new RHab1ToFrontRocket(1);
 
@@ -105,20 +106,25 @@ public class Robot extends TimedRobot {
     
     @Override
     public void autonomousInit() {
+        selectedAuto = chooser.getSelected();
         SubsystemManager.initEnabled();
         switch(selectedAuto) {
             case(nothing): {
+                System.out.println(leftRocketAuto.isRunning() + "  ====LEFT RUNNING");
+                System.out.println(rightRocketAuto.isRunning() + "  ====RighT RUNNING");
+
                 OI.init();
             }
             case(left): {
                 leftRocketAuto.start();
-                OI.init();
+                // OI.init();
             }
             case(right): {
                 rightRocketAuto.start();
-                OI.init();
+                // OI.init();
             }
         }
+        OI.init();
     }
     
     @Override
