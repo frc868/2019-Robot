@@ -169,7 +169,10 @@ public class Robot extends TimedRobot {
     @Override
     public void teleopInit() {
         SubsystemManager.initEnabled();
-        selectedCommand.cancel();
+        if(selectedCommand != null) {
+            selectedCommand.cancel();
+
+        }
         OI.init();
     }
     
