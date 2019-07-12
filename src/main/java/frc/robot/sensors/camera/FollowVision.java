@@ -52,6 +52,11 @@ public class FollowVision extends Command {
 
   @Override
   protected void execute() {
+    // if(OI.driver.getAButton()) {
+    //   // OI.init();
+    //   cancel();
+    //   // end();
+    // }
     data = Robot.camera.getData();
     counts = Robot.drivetrain.getAvgEncPosition();
     SmartDashboard.putNumber("VisionCounts", counts);

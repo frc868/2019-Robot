@@ -62,6 +62,7 @@ public class Robot extends TimedRobot {
     private static final String right2 = "Right hab 2 rocket single";
 
     private Command leftRocketAuto, rightRocketAuto, noAuto, leftRocketHab2Auto, rightRocketHab2Auto;
+    private Command selectedCommand;
 
     // public LHab2ToFrontRocket auton;
     
@@ -129,20 +130,24 @@ public class Robot extends TimedRobot {
                 break;
             }
             case(left): {
+                selectedCommand = leftRocketAuto;
                 leftRocketAuto.start();
                 // OI.init();
                 break;
             }
             case(right): {
+                selectedCommand = rightRocketAuto;
                 rightRocketAuto.start();
                 // OI.init();
                 break;
             }
             case(left2): {
+                selectedCommand = leftRocketHab2Auto;
                 leftRocketHab2Auto.start();
                 break;
             }
             case(right2): {
+                selectedCommand = rightRocketHab2Auto;
                 rightRocketHab2Auto.start();
                 break;
             }
@@ -152,6 +157,10 @@ public class Robot extends TimedRobot {
     
     @Override
     public void autonomousPeriodic() {
+        if(OI.driver.getAButton()) {
+            selectedCommand.cancel();
+            OI.init();
+        }
         Scheduler.getInstance().run();
         SubsystemManager.updateEnabled();
         OI.update();
@@ -160,6 +169,7 @@ public class Robot extends TimedRobot {
     @Override
     public void teleopInit() {
         SubsystemManager.initEnabled();
+        selectedCommand.cancel();
         OI.init();
     }
     
