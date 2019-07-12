@@ -11,8 +11,11 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.auton.commands.DoNothing;
 import frc.robot.auton.commands.LHab1ToFrontRocket;
+import frc.robot.auton.commands.LHab2ToFrontRocket;
 import frc.robot.auton.commands.RHab1ToFrontRocket;
+import frc.robot.auton.commands.RHab2ToFrontRocket;
 // import frc.robot.auton.commands.LHab2ToFrontRocket;
 // import frc.robot.auton.commands.DriveAndScoreHatch;
 // import frc.robot.auton.paths.RightRocketFront;
@@ -26,6 +29,7 @@ import frc.robot.climberelevator.ramps.Ramps;
 import frc.robot.drivetrain.Drivetrain;
 import frc.robot.helpers.motionprofiling.TrajectoryPair;
 import frc.robot.helpers.subsystems.SubsystemManager;
+import frc.robot.oi.ArcadeDrive;
 import frc.robot.oi.OI;
 import frc.robot.sensors.camera.LimeLight;
 import frc.robot.sensors.gyro.Gyro;
@@ -53,9 +57,11 @@ public class Robot extends TimedRobot {
     private String selectedAuto;
     private static final String nothing = "Nothing";
     private static final String left = "Left rocket single";
+    private static final String left2 = "Left hab 2 rocket single";
     private static final String right = "Right rocket single";
+    private static final String right2 = "Right hab 2 rocket single";
 
-    private Command leftRocketAuto, rightRocketAuto;
+    private Command leftRocketAuto, rightRocketAuto, noAuto, leftRocketHab2Auto, rightRocketHab2Auto;
 
     // public LHab2ToFrontRocket auton;
     
@@ -79,9 +85,14 @@ public class Robot extends TimedRobot {
         chooser.setDefaultOption("Nothing", nothing);
         chooser.addOption("Left Rocket", left);
         chooser.addOption("Right Rocket", right);
+        chooser.addOption("Left Rocket Hab 2", left2);
+        chooser.addOption("Right Rocket Hab 2", right2);
         SmartDashboard.putData(chooser);
         leftRocketAuto = new LHab1ToFrontRocket(1);
         rightRocketAuto = new RHab1ToFrontRocket(1);
+        leftRocketHab2Auto = new LHab2ToFrontRocket(1);
+        rightRocketHab2Auto = new RHab2ToFrontRocket(1);
+        noAuto = new DoNothing();
 
         compressor.setClosedLoopControl(true);
     }
@@ -107,21 +118,33 @@ public class Robot extends TimedRobot {
     @Override
     public void autonomousInit() {
         selectedAuto = chooser.getSelected();
+        SmartDashboard.putString("Selected autonomous:", selectedAuto);
         SubsystemManager.initEnabled();
         switch(selectedAuto) {
             case(nothing): {
-                System.out.println(leftRocketAuto.isRunning() + "  ====LEFT RUNNING");
-                System.out.println(rightRocketAuto.isRunning() + "  ====RighT RUNNING");
-
+                // System.out.println(leftRocketAuto.isRunning() + "  ====LEFT RUNNING"); // both return false when testing
+                // System.out.println(rightRocketAuto.isRunning() + "  ====RIGHT RUNNING");
+                // noAuto.start();
                 OI.init();
+                break;
             }
             case(left): {
                 leftRocketAuto.start();
                 // OI.init();
+                break;
             }
             case(right): {
                 rightRocketAuto.start();
                 // OI.init();
+                break;
+            }
+            case(left2): {
+                leftRocketHab2Auto.start();
+                break;
+            }
+            case(right2): {
+                rightRocketHab2Auto.start();
+                break;
             }
         }
         OI.init();

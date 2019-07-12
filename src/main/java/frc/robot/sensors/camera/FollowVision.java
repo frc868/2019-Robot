@@ -30,12 +30,14 @@ public class FollowVision extends Command {
   protected LimeData data;
  
   public FollowVision(boolean endable, double endCounts) {
+    // setInterruptible(true);
     requires(Robot.drivetrain);
     requires(Robot.camera);
     this.endable = endable;
     this.endCounts = endCounts;
   }
   public FollowVision(boolean endable) {
+    // setInterruptible(true);
     requires(Robot.drivetrain);
     requires(Robot.camera);
     this.endable = endable;
@@ -80,6 +82,7 @@ public class FollowVision extends Command {
     //   SmartDashboard.putNumber("LIME AREA", area);
 
     // }
+    
     if (data.hasTarget()) {
       area = data.getArea();
       double posError = data.getPosition();
@@ -125,4 +128,9 @@ public class FollowVision extends Command {
     Robot.drivetrain.resetEncPositions();
     Robot.drivetrain.stop();
   }
+
+  // @Override
+  // protected void interrupted() {
+  //   OI.init();
+  // }
 }
