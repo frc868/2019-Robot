@@ -129,7 +129,7 @@ public class FollowVision extends Command {
 
   @Override
   protected void end() {
-    System.out.println("Ended");
+    // System.out.println("=================== Follow vision Ended");
     Robot.drivetrain.resetEncPositions();
     Robot.drivetrain.stop();
   }

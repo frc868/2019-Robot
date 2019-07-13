@@ -1,7 +1,9 @@
 package frc.robot.oi;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
+import frc.robot.auton.commands.DoNothing;
 import frc.robot.carriage.hatchclaw.Grab;
 import frc.robot.carriage.hatchclaw.GrabWhenTiltUp;
 import frc.robot.carriage.hatchclaw.ToggleClaw;
@@ -18,6 +20,9 @@ public class OI {
     public static void init(){
         driver = new XboxControllerPlus(RobotMap.Controls.DRIVER);
         operator = new XboxControllerPlus(RobotMap.Controls.OPERATOR);
+
+
+        // SmartDashboard.putData("Stop everything", new DoNothing());
 
         // MANUAL CONTROLS
         Robot.drivetrain.setDefaultCommand(new ArcadeDrive());
@@ -46,7 +51,7 @@ public class OI {
         operator.a.whenPressed(new SmartSetElevatorPosition(SmartSetElevatorPosition.Height.lower));
         operator.b.whenPressed(new SmartSetElevatorPosition(SmartSetElevatorPosition.Height.middle));
         operator.y.whenPressed(new SmartSetElevatorPosition(SmartSetElevatorPosition.Height.upper));
-        operator.x.whenPressed(new SmartSetElevatorPosition(SmartSetElevatorPosition.Height.ballIntake));
+        operator.x.whenPressed(new DoNothing());
 
         operator.lstk.pressToStartReleaseToStop(new IntakeAssistTilt());
 

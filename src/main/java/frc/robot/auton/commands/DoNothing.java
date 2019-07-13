@@ -13,6 +13,16 @@ import frc.robot.Robot;
 public class DoNothing extends Command {
   public DoNothing() {
     requires(Robot.drivetrain);
+    requires(Robot.powerPack);
+    requires(Robot.tilt);
+    requires(Robot.gyro);
+    requires(Robot.footDrive);
+    requires(Robot.forks);
+    requires(Robot.hatchClaw);
+    requires(Robot.camera);
+    requires(Robot.ballIntake);
+    requires(Robot.climberRamps);
+  
     setInterruptible(true);
   }
 

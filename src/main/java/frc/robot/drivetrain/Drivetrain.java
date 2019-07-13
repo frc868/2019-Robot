@@ -35,6 +35,8 @@ public class Drivetrain extends SubsystemManagerChild {
         rightPrimary.setInverted(true);
         rightSecondary.setInverted(true);
         rightTertiary.setInverted(true);
+
+        SmartDashboard.putData("Drive Subsystem", this);
      }
 
     public void brakeOff() {

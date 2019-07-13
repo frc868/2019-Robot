@@ -1,5 +1,6 @@
 package frc.robot.climberelevator.powerpack;
 
+import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 import frc.robot.carriage.hatchclaw.Grab;
@@ -10,6 +11,7 @@ import frc.robot.helpers.pid.PIDCommandPlus;
 public class SetElevatorPosition extends PIDCommandPlus {
     public static final double P = 0.08 , I = 0.000, D = 0.01;
     private final double setpoint;
+    private Command setTiltPosition;
 
     public SetElevatorPosition(double setpoint) {
         super(P, I, D, setpoint, .1);
@@ -18,11 +20,13 @@ public class SetElevatorPosition extends PIDCommandPlus {
         requires(Robot.hatchClaw);
         // requires(Robot.tilt);
         getPIDController().setOutputRange(-0.35, 1);
+        setTiltPosition = new SetTiltPosition(Tilt.MIDDLE);
     }
     
     @Override
     protected void initialize() {
-        (new SetTiltPosition(Tilt.MIDDLE)).start();
+        setTiltPosition.start();
+        // (new SetTiltPosition(Tilt.MIDDLE)).start();
         Robot.powerPack.switchToElevator();
         Robot.powerPack.elevatorBrakeOff();
     }

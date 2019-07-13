@@ -64,6 +64,8 @@ public class Robot extends TimedRobot {
     private Command leftRocketAuto, rightRocketAuto, noAuto, leftRocketHab2Auto, rightRocketHab2Auto;
     private Command selectedCommand;
 
+    private int oiCount = 0;
+
     // public LHab2ToFrontRocket auton;
     
     // public final String[] pathNames = {"StartToRightCloseRocket"};
@@ -85,15 +87,17 @@ public class Robot extends TimedRobot {
         // });
         chooser.setDefaultOption("Nothing", nothing);
         chooser.addOption("Left Rocket", left);
-        chooser.addOption("Right Rocket", right);
+        // chooser.addOption("Right Rocket", right);
         chooser.addOption("Left Rocket Hab 2", left2);
-        chooser.addOption("Right Rocket Hab 2", right2);
+        // chooser.addOption("Right Rocket Hab 2", right2);
         SmartDashboard.putData(chooser);
         leftRocketAuto = new LHab1ToFrontRocket(1);
-        rightRocketAuto = new RHab1ToFrontRocket(1);
+        // rightRocketAuto = new RHab1ToFrontRocket(1);
         leftRocketHab2Auto = new LHab2ToFrontRocket(1);
-        rightRocketHab2Auto = new RHab2ToFrontRocket(1);
+        // rightRocketHab2Auto = new RHab2ToFrontRocket(1);
         noAuto = new DoNothing();
+
+        OI.init();
 
         compressor.setClosedLoopControl(true);
     }
@@ -126,7 +130,7 @@ public class Robot extends TimedRobot {
                 // System.out.println(leftRocketAuto.isRunning() + "  ====LEFT RUNNING"); // both return false when testing
                 // System.out.println(rightRocketAuto.isRunning() + "  ====RIGHT RUNNING");
                 // noAuto.start();
-                OI.init();
+                // OI.init();
                 break;
             }
             case(left): {
@@ -135,31 +139,37 @@ public class Robot extends TimedRobot {
                 // OI.init();
                 break;
             }
-            case(right): {
-                selectedCommand = rightRocketAuto;
-                rightRocketAuto.start();
-                // OI.init();
-                break;
-            }
+            // case(right): {
+            //     selectedCommand = rightRocketAuto;
+            //     rightRocketAuto.start();
+            //     // OI.init();
+            //     break;
+            // }
             case(left2): {
                 selectedCommand = leftRocketHab2Auto;
                 leftRocketHab2Auto.start();
                 break;
             }
-            case(right2): {
-                selectedCommand = rightRocketHab2Auto;
-                rightRocketHab2Auto.start();
-                break;
-            }
+            // case(right2): {
+            //     selectedCommand = rightRocketHab2Auto;
+            //     rightRocketHab2Auto.start();
+            //     break;
+            // }
         }
-        OI.init();
+        // System.out.println("======================Autonomous ended");
+        // OI.init();
+        // System.out.println("======================OI Initialized");
     }
     
     @Override
     public void autonomousPeriodic() {
-        if(OI.driver.getAButton()) {
+        if(OI.driver.getAButton() && selectedCommand != null) {
+            // oiCount++;
             selectedCommand.cancel();
-            OI.init();
+            // if(oiCount == 1) {
+            //     OI.init();
+            // }
+            // System.out.println("====================INTERRUPTED");
         }
         Scheduler.getInstance().run();
         SubsystemManager.updateEnabled();
@@ -168,16 +178,18 @@ public class Robot extends TimedRobot {
     
     @Override
     public void teleopInit() {
+        // System.out.println("=====================Teleop init");
         SubsystemManager.initEnabled();
         if(selectedCommand != null) {
             selectedCommand.cancel();
 
         }
-        OI.init();
+        // OI.init();
     }
     
     @Override
     public void teleopPeriodic() {
+        // System.out.println("=========================TEleop periodic");
         Scheduler.getInstance().run();
         SubsystemManager.updateEnabled();
         OI.update();
