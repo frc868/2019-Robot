@@ -124,6 +124,9 @@ public class FollowVision extends Command {
       if(endable) {
         return area > END_AREA;// || counts > endCounts;
       }
+      if (timeSinceInitialized() > 3.0) {
+        return true;
+      }
       return false;
   }
 
