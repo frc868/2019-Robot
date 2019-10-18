@@ -10,6 +10,7 @@ import frc.robot.carriage.hatchclaw.ToggleClaw;
 import frc.robot.carriage.tilt.SetTiltPosition;
 import frc.robot.carriage.tilt.Tilt;
 import frc.robot.climberelevator.powerpack.SmartSetElevatorPosition;
+import frc.robot.climberelevator.powerpack.smartsetelevator.ElevatorToBallHeight;
 import frc.robot.climberelevator.ramps.DeployRamps;
 import frc.robot.drivetrain.commands.TurnToAngleGyro;
 import frc.robot.helpers.oi.XboxControllerPlus;
@@ -51,7 +52,7 @@ public class OI {
         operator.a.whenPressed(new SmartSetElevatorPosition(SmartSetElevatorPosition.Height.lower));
         operator.b.whenPressed(new SmartSetElevatorPosition(SmartSetElevatorPosition.Height.middle));
         operator.y.whenPressed(new SmartSetElevatorPosition(SmartSetElevatorPosition.Height.upper));
-        operator.x.whenPressed(new DoNothing());
+        operator.x.whenPressed(new ElevatorToBallHeight()); //TODO: Test this on Monday
 
         operator.lstk.pressToStartReleaseToStop(new IntakeAssistTilt());
 
