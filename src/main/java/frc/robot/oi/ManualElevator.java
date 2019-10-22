@@ -5,8 +5,9 @@ import frc.robot.Robot;
 import frc.robot.helpers.Helper;
 
 public class ManualElevator extends Command {
-
-    public ManualElevator() {
+    private boolean trainingMode;
+    public ManualElevator(boolean trainingMode) {
+        this.trainingMode = trainingMode;
         requires(Robot.powerPack);
     }
 
@@ -18,6 +19,7 @@ public class ManualElevator extends Command {
     @Override
     protected void execute() {
         double input = Helper.deadzone(-OI.operator.getLY(), 0.1);      //deadzone to allow the brake to know when to enable
+        if(trainingMode) input = input*0.5;
         Robot.powerPack.setSpeed(input);
 
         if(input == 0) { 

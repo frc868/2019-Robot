@@ -5,9 +5,10 @@ import frc.robot.Robot;
 import frc.robot.helpers.Helper;
 
 public class ArcadeDrive extends Command {
-
-    public ArcadeDrive() {
+    private boolean trainingMode;
+    public ArcadeDrive(boolean trainingMode) {
         requires(Robot.drivetrain);
+        this.trainingMode = trainingMode;
     }
 
     @Override
@@ -35,6 +36,9 @@ public class ArcadeDrive extends Command {
             
         } else if(OI.driver.rb.get()){//Josh's sniper button
             x = x*.5;
+        } else if(trainingMode) {
+            x = x*.75;
+            y = y*.75;
         }
         if(Robot.powerPack.isElevatorMode()){
             Robot.drivetrain.setSpeed(y - x, y + x);

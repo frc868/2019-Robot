@@ -26,7 +26,7 @@ public class OI {
         // SmartDashboard.putData("Stop everything", new DoNothing());
 
         // MANUAL CONTROLS
-        Robot.drivetrain.setDefaultCommand(new ArcadeDrive());
+        Robot.drivetrain.setDefaultCommand(new ArcadeDrive(true)); // added trainingMode parameter
         Robot.ballIntake.setDefaultCommand(new ManualIntake());
 
         // DRIVER CONTROLS 
@@ -52,7 +52,7 @@ public class OI {
         operator.a.whenPressed(new SmartSetElevatorPosition(SmartSetElevatorPosition.Height.lower));
         operator.b.whenPressed(new SmartSetElevatorPosition(SmartSetElevatorPosition.Height.middle));
         operator.y.whenPressed(new SmartSetElevatorPosition(SmartSetElevatorPosition.Height.upper));
-        operator.x.whenPressed(new ElevatorToBallHeight()); //TODO: Test this on Monday
+        operator.x.whenPressed(new SmartSetElevatorPosition(SmartSetElevatorPosition.Height.ballIntake)); //TODO: Test this on Monday
 
         operator.lstk.pressToStartReleaseToStop(new IntakeAssistTilt());
 
@@ -81,7 +81,7 @@ public class OI {
         // operator.x.whenPressed(new ElevatorToBallHeight());
 
         operator.lb.whenPressed(new ToggleClaw());
-        operator.rb.pressToStartReleaseToStop(new ManualElevator());
+        operator.rb.pressToStartReleaseToStop(new ManualElevator(true));// added trainingMode parameter
         operator.menu.pressToStartReleaseToStop(new ManualTilt());
         operator.start.pressToStartReleaseToStop(new GrabWhenTiltUp());
         // operator.start.whenPressed(new DeployForks());
