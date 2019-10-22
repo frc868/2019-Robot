@@ -53,6 +53,7 @@ public class OI {
         operator.b.whenPressed(new SmartSetElevatorPosition(SmartSetElevatorPosition.Height.middle));
         operator.y.whenPressed(new SmartSetElevatorPosition(SmartSetElevatorPosition.Height.upper));
         operator.x.whenPressed(new SmartSetElevatorPosition(SmartSetElevatorPosition.Height.ballIntake)); //TODO: Test this on Monday
+        // operator.x.whenPressed(new SetTiltPosition(Tilt.LOWER));
 
         operator.lstk.pressToStartReleaseToStop(new IntakeAssistTilt());
 

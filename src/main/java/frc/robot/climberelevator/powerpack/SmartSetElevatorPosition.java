@@ -2,6 +2,9 @@ package frc.robot.climberelevator.powerpack;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.Robot;
+import frc.robot.carriage.hatchclaw.Grab;
+import frc.robot.carriage.tilt.SetTiltPosition;
+import frc.robot.carriage.tilt.Tilt;
 
 public class SmartSetElevatorPosition extends CommandGroup {
 
@@ -20,8 +23,8 @@ public class SmartSetElevatorPosition extends CommandGroup {
         CommandGroup command = new CommandGroup();
         if (height == Height.ballIntake) {
             command.addSequential(new SetElevatorPosition(PowerPack.INTAKE_BALL));
-            // command.addSequential(new SetTiltPosition(Tilt.LOWER));
-            // command.addParallel(new Grab());
+            command.addSequential(new SetTiltPosition(Tilt.LOWER));
+            command.addParallel(new Grab());
         } else if (height == Height.lower) {
             if (Robot.ballIntake.isBallDetected()) {
                 command.addSequential(new SetElevatorPosition(PowerPack.LOWER_BALL));
