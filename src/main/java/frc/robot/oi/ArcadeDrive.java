@@ -37,8 +37,8 @@ public class ArcadeDrive extends Command {
         } else if(OI.driver.rb.get()){//Josh's sniper button
             x = x*.5;
         } else if(trainingMode) {
-            x = x*.75;
-            y = y*.75;
+            x = x*.85;
+            y = y*.85;
         }
         if(Robot.powerPack.isElevatorMode()){
             Robot.drivetrain.setSpeed(y - x, y + x);
