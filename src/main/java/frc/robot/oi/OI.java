@@ -34,12 +34,12 @@ public class OI {
         // driver.x.pressToStartReleaseToStop(new IntakeUntilBallDetected());
         // driver.y.and(driver.rb).whenPressed(new AutoClimb(true));
 
-        driver.b.whenPressed(new TurnToAngleGyro(130));
+        // driver.b.whenPressed(new TurnToAngleGyro(130));
         
-        driver.x.whenPressed(new TurnToAngleGyro(-130));
+        // driver.x.whenPressed(new TurnToAngleGyro(-130));
 
-        driver.povW.whenPressed(new TurnToAngleGyro(-90));
-        driver.povE.whenPressed(new TurnToAngleGyro(90));
+        // driver.povW.whenPressed(new TurnToAngleGyro(-90));
+        // driver.povE.whenPressed(new TurnToAngleGyro(90));
 
         driver.lb.whenPressed(new ToggleClaw());
 
